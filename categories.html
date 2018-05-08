@@ -1,4 +1,6 @@
---- permalink: / ---
+--- 
+permalink: / 
+---
 <!DOCTYPE html>
 <html>
 
@@ -31,8 +33,10 @@
       <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
     </div>
     <div class="w3-container">
-      <div class="content" style="background-color:white;>
-
+      <div class="content">
+          {% if site.front_img %}
+          <img src="{{ site.front_img_path }}" id="fullscreen"> {% endif %} {% if site.avatar %}
+          <img src="{{ site.avatar_img_path }}" id="avatar"> {% endif %}
       </div>
     </div>
 
