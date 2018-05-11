@@ -32,6 +32,7 @@ paginate: 10
 paginate_path: “/blog/page:num/”
 
 
+
 avatar: yes
 #avatar_img_path: "imgs/avatar.jpg""
 # You can link to your GitHub image. That way it will get updated
