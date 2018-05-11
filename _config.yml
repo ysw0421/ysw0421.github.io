@@ -50,3 +50,15 @@ favicon_img_path: "imgs/favicon.ico"
 # Build settings
 markdown: kramdown
 permalink: pretty
+
+
+
+
+# _config.yml
+plugins:
+  - jekyll-paginate-v2
+pagination:
+  enabled: true
+  per_page: 9
+  sort_reverse: true
+
