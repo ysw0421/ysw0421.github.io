@@ -49,6 +49,8 @@ categories: news
 
 ㅁ 마크다운과 liquid가 아주 편리하다.
 
+<img src="/imgs/my_face.jpg">
+
 
 윈도우에서 잘 안되는데, 가장 큰 이유는 Ruby때문이라고한다.
 </html>
