@@ -44,15 +44,17 @@ h3 {
     text-align: center;
 }
 .custom {
-    padding-top: 100px;
+    padding-top: -40px;
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 40px;
     background-color: rgb(255, 255, 255);
 }
 .custom ul{
+    color: black;
 }
 .custom li{
+    color: black;
 }
 .content ul {
     list-style: none;
