@@ -60,9 +60,11 @@ ul .custom{
 li .custom{
     color: #000000;
 }
-a .custom{
-    font-family: Verdana, sans-serif;
-    color: #000000;
+@import url(//www.google.com/css/maia.css){
+    a .custom{
+        font-family: 'Nanum Pen Script', cursive;
+        color: #000000;
+    }
 }
 ul {
     list-style: none;
