@@ -43,24 +43,24 @@ h3 {
     background-color: rgba(0, 0, 0, 0.5);
     text-align: center;
 }
-.custom {
-    padding-top: -40px;
+div .custom {
+    padding-top: 0px;
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 40px;
     background-color: rgb(255, 255, 255);
 }
-.custom ul{
+ul .custom{
     color: black;
 }
-.custom li{
+li .custom{
     color: black;
 }
-.content ul {
+ul {
     list-style: none;
     padding: 0;
 }
-.content li {
+li {
     border-radius: 100%;
     border: 2px solid white;
     color: white;
