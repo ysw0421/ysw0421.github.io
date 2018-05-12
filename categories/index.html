@@ -23,8 +23,8 @@ layout: default
           <ul class="custom">
             {% for news in site.posts %}
             <li class="custom">
-              <a href="{{ news.url }}">{{ news.title }}</a>
-              <p>{{ news.meta }}</p>
+              <a class="custom" href="{{ news.url }}">{{ news.title }}</a>
+              <p class="custom">{{ news.meta }}</p>
             </li>
             {% endfor %}
           </ul>
