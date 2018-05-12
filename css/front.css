@@ -54,11 +54,11 @@ h3 {
 }
 .custom li{
 }
-ul {
+.content ul {
     list-style: none;
     padding: 0;
 }
-li {
+.content li {
     border-radius: 100%;
     border: 2px solid white;
     color: white;
