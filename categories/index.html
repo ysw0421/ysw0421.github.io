@@ -21,10 +21,10 @@ layout: default
       {% if site.front_img %}<img src="{{ site.front_img_path }}" id="fullscreen"> {% endif %} 
       <h1>News</h1>
       <ul>
-        {% for news in site.categories.news %}
+        {% for news in site.posts %}
           <li>
-            <a href="#">{{news.title}} hello</a>
-            <p>{{news.meta}} </p>
+            <a href="#">{{news.title}}</a>
+            <p>{{news.meta}}</p>
           </li>
         {% endfor %}
       </ul>
