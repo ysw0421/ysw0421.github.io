@@ -79,4 +79,4 @@ cctv플랫폼 써보면 파악 도커 컨네이너를 통해서
 트래픽 분석을 해서 여러 api들이 있을 경우에 자바 api 멀티미디어 api 있을경우 어디로 트래픽쪽으로 분석한다음에 거기에 분석한 결과를 바탕으로
 트래픽 량을 따져서 autoscale링 하는것이다.
 
-![title](/imgs/my_face.jpg){ width:100px;height:50px}
+![title](/imgs/my_face.jpg){"width:100px;height:50px"}
