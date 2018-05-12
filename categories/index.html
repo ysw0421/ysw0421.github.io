@@ -1,14 +1,23 @@
 ---
 layout: default
 ---
+<body>
 
-<h1>News</h1>
-
-<ul>
-  {% for news in site.posts %}
-    <li>
-      <a href="#">{{news.title}}</a>
-      <p>{{news.meta}}</p>
-    </li>
-  {% endfor %}
-</ul>
+  <div class="w3-container">
+      <div class="content">
+      {% if site.front_img %}
+        <img src="{{ site.front_img_path }}" id="fullscreen"> {% endif %} {% if site.avatar %}
+        <img src="{{ site.avatar_img_path }}" id="avatar"> {% endif %}
+  
+    </div>
+  </div>
+  <h1>News</h1>
+  <ul>
+    {% for news in site.posts %}
+      <li>
+        <a href="#">{{news.title}}</a>
+        <p>{{news.meta}}</p>
+      </li>
+    {% endfor %}
+  </ul>
+</body>
