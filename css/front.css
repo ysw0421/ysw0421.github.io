@@ -86,7 +86,6 @@ li:hover {
 }
 a {
     color: white;
-    padding: 15px;
     text-decoration: none;
 }
 .description {
@@ -117,7 +116,6 @@ a {
     border: 2px solid white;
     border-radius: 5px;
     color: white;
-    padding: 15px;
     padding-left: 30px;
     width: 70%;
 }
