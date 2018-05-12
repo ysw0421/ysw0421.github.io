@@ -22,10 +22,8 @@ layout: default
           {% if site.front_img %}<img src="{{ site.front_img_path }}" id="fullscreen"> {% endif %} 
           <ul class="custom">
             {% for news in site.posts %}
-            <li class="custom">
               <a class="custom" href="{{ news.url }}">{{ news.title }}</a>
               <p class="custom">{{ news.meta }}</p>
-            </li>
             {% endfor %}
           </ul>
         </div>
