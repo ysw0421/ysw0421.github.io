@@ -56,9 +56,7 @@ li .custom{
     color: #000000;
 }
 a .custom{
-    color: #000000;
-}
-p .custom{
+    text-align: left;
     color: #000000;
 }
 ul {
