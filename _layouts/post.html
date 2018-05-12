@@ -43,9 +43,9 @@
           {% if site.front_img %}<img src="{{ site.front_img_path }}" id="fullscreen"> {% endif %} 
           <ul class="custom">
             {% for news in site.posts %}
-            <a class="custom">
+            <p><a class="custom">
               {{ content }}
-            </a>
+            </a></p>
             {% endfor %}
           </ul>
         </div>
