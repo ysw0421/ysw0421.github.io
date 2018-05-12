@@ -58,12 +58,12 @@ li .custom{
 a .custom{
     padding-top: 40px;
     font-family: Verdana, sans-serif;
-    text-align: left;
     color: #000000;
 }
 ul {
     list-style: none;
     padding: 0;
+    text-align: left;
 }
 li {
     border-radius: 100%;
