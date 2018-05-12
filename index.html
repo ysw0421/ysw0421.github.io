@@ -17,6 +17,10 @@ layout: default
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
+  {% if site.avatar %}<img src="{{ site.avatar_img_path }}" id="avatar"> {% endif %}
+  <h1>{{ site.name }}</h1>
+  <h3>{{ site.description }}</h3>
+  <ul>
   {% if site.github_username %}
       <li><a class="fa fa-2x fa-github" href="https://github.com/{{ site.github_username }}"><span class="description">GitHub</span></a></li>
       {% endif %} {% if site.codepen_username %}
@@ -60,4 +64,5 @@ layout: default
       {% endif %} {% if site.public_key_url %}
       <li><a class="fa fa-2x fa-key" href="{{ site.public_key_url }}"><span class="description">PGP Key</span></a></li>
       {% endif %}
+    </ul>
 </body>
