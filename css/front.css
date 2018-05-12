@@ -51,16 +51,16 @@ div .custom {
     background-color: rgb(255, 255, 255);
 }
 ul .custom{
-    color: black;
+    color: #000000;
 }
 li .custom{
-    color: black;
+    color: #000000;
 }
 a .custom{
-    color: black;
+    color: #000000;
 }
 p .custom{
-    color: black;
+    color: #000000;
 }
 ul {
     list-style: none;
