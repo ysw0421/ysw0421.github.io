@@ -56,6 +56,12 @@ ul .custom{
 li .custom{
     color: black;
 }
+a .custom{
+    color: black;
+}
+p .custom{
+    color: black;
+}
 ul {
     list-style: none;
     padding: 0;
