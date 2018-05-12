@@ -32,7 +32,17 @@
         <h1>My Page</h1>
       </div>
     </div>
-    {{content}}
+    <div class="w3-container">
+      <div class="content">
+      {% if site.front_img %}
+        <img src="{{ site.front_img_path }}" id="fullscreen"> {% endif %} {% if site.avatar %}
+        <img src="{{ site.avatar_img_path }}" id="avatar"> {% endif %}
+        <h1>{{ site.name }}</h1>
+        <h3>{{ site.description }}</h3>
+    <ul>
+      {{content}}
+    </ul>
+    </div>
   </div>
   <script>
     function w3_open() {
