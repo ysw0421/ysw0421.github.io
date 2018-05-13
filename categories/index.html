@@ -28,7 +28,7 @@ layout: default
         <div class="custom">
           {% if site.front_img %}<img src="{{ site.front_img_path }}" id="fullscreen"> {% endif %} 
           <ul>
-            <h3>Jekyll</h3>
+            <h3 style="color:black;">Jekyll</h3>
             {% for news in site.categories.jekyll %}
               <a class="custom" href="{{ news.url }}"> * {{ news.title }}</a><br>
             {% endfor %}
