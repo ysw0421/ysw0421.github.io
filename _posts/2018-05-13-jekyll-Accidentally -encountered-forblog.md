@@ -4,18 +4,7 @@ title: 우연하게 마주친 지킬
 meta: 알고싶다...
 categories: news
 ---
-
 <html>
-  <head>
-    <style>
-    @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-    a.custom{ font-family: 'Nanum Pen Script', cursive;
-              font-weight:600;
-              font-size:24pt;
-    }
-  </style>
-</head>
-<body>
 페이스북, 트위터, 미디엄, 브런치도 있는데 왜;;? 글을 쓰고, 글과 멀티미디어로 관계맺기를 하는 것이 목표라면, 
 모두 아주 좋은 전략이다. 게다가 간편하고, 따로 배워야 하는 것도 없고, 따로 돈을 낼 필요도 없다. 
 사소한 문제라면, 글의 휘발성이 너무 높다는 것, 컨텐츠나 포맷을 사용자가 직접 통제할 수 없으며, 그래도
@@ -51,15 +40,11 @@ categories: news
 
 글쓴이가 지킬을 좋아하는 이유 :
 
-ㅁ github pages에서 공짜로 홈페이지를 만들 수 있다.
-
-ㅁ git, github등의 버전관리 프로그램을 이용할 수 있다.
-
-ㅁ 데이터베이스를 이용하지 않으므로 백업이 간단하다. 데이터베이스 엑스포트를 하지 않고, 그냥 텍스트 파일을 다른 곳으로 복사하면 그만.
-
-ㅁ 마크다운과 liquid가 아주 편리하다.
+ㅁ github pages에서 공짜로 홈페이지를 만들 수 있다.<br>
+ㅁ git, github등의 버전관리 프로그램을 이용할 수 있다.<br>
+ㅁ 데이터베이스를 이용하지 않으므로 백업이 간단하다. 데이터베이스 엑스포트를 하지 않고, 그냥 텍스트 파일을 다른 곳으로 복사하면 그만.<br>
+ㅁ 마크다운과 liquid가 아주 편리하다.<br>
 
 
 윈도우에서 잘 안되는데, 가장 큰 이유는 Ruby때문이라고한다.
-</body>
 </html>
