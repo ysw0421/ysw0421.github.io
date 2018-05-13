@@ -19,6 +19,7 @@ layout: default
     h3{ font-family: 'Hanna'; 
         font-weight:600;
         font-size:28pt;
+        color:black;
     }
     a.custom{ font-family: 'Nanum Pen Script', cursive;
               font-weight:600;
@@ -32,8 +33,15 @@ layout: default
         <div class="custom">
           {% if site.front_img %}<img src="{{ site.front_img_path }}" id="fullscreen"> {% endif %} 
           <ul>
-            <h3 style="color:black;">Jekyll</h3>
+            <h3>Jekyll</h3>
             {% for news in site.categories.jekyll %}
+              <a class="custom" href="{{ news.url }}"> * {{ news.title }}</a><br>
+            {% endfor %}
+            <h3>Data structure & Algorithm</h3>
+            {% for news in site.categories.Algorithm %}
+              <a class="custom" href="{{ news.url }}"> * {{ news.title }}</a><br>
+            {% endfor %}
+            {% for news in site.categories.Data_structure %}
               <a class="custom" href="{{ news.url }}"> * {{ news.title }}</a><br>
             {% endfor %}
           </ul>
