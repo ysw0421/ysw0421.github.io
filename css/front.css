@@ -58,6 +58,7 @@ li .custom{
     color: #000000;
 }
 a .custom{
+    text-decoration: none;
     font-family: 'Nanum Pen Script', cursive;
     color: #000000;
 }
