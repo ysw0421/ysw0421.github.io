@@ -5,7 +5,7 @@ meta: 알고싶다...
 categories: news
 ---
 <html>
-<a class="custom" style="font-size:27px;padding:-15px">
+<a class="custom" style="font-size:30px;">
 페이스북, 트위터, 미디엄, 브런치도 있는데 왜;;? 글을 쓰고, 글과 멀티미디어로 관계맺기를 하는 것이 목표라면, 
 모두 아주 좋은 전략이다. 게다가 간편하고, 따로 배워야 하는 것도 없고, 따로 돈을 낼 필요도 없다. 
 사소한 문제라면, 글의 휘발성이 너무 높다는 것, 컨텐츠나 포맷을 사용자가 직접 통제할 수 없으며, 그래도
