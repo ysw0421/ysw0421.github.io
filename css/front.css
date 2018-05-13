@@ -131,6 +131,10 @@ a:hover {
     color: white;
     text-decoration: none;
 }
+a:-webkit-any-link {
+    cursor: pointer;
+    text-decoration: none;
+}
 .description {
     display: inline-block;
     color: white;
