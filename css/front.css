@@ -124,7 +124,6 @@ a {
     width: 70%;
 }
 a:hover {
-    text-decoration: none;
     -webkit-transition: 500ms;
     -moz-transition: 500ms;
     transition: 500ms;
