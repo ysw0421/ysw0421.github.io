@@ -10,34 +10,31 @@ category: R
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script type="text/javascript">
-      document.writeln('글 쓰기 테스트입니다.');
-      document.write('글 쓰기 테스트입니다.' + '<br />');
-      document.write('글 쓰기 테스트입니다.' + '<br />');
-      document.write('글 쓰기 테스트입니다.' + '<br />');
-// 빈 줄 3줄 넣기
-      document.write('<br /><br /><br />');
-
-
-      var s = 'ABCD';
-      document.write('변수 내용 쓰기 테스트: ' + s + '<br />');
-
-
-      var n = 123.001;
-      document.write('변수 내용 쓰기 테스트: ' + n + '<br />');
-
-
-// 또는 쉼표(콤마)로도, 문자열/변수를 서로 연결할 수 있음
-      document.write('변수 내용 쓰기 테스트: ', n, '<br />');
-
-    </script>
   </head>
   <body>
     <a class="custom" style="font-size:30px;">
   R에서 "factor"는 범주형 변수(벡터) or 비연속적 변수(벡터)를 지칭합니다. 인자 벡터는 문자열 벡터로부터 또는 수치형 벡터로부터 생성될 수 있습니다.
   "factor"는 범주형 데이터를 표현하는데 사용됩니다. 범주형 데이터는 유한한 수의 범주 or 고유 그룹이 포함됩니다. 범주형 데이터에는 논리적 순서가 없을 수도 있습니다. 예를 들어, 성별, 재료, 유형, 결제 방법이 이에 해당됩니다. 수치형 벡터로 생성된 "factor"는 level으로 알려진 사전에 정의된 집합값만 담을 수 있다.<br>
     <img src="/asset/r/factor_1.JPG">
-    <pre><code class="html" style="font-size:18px">...</code></pre>
+    <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = rawFile.responseText; alert(allText); 
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/factor_1.R");
+        </script>
+      </code>
+    </pre>
     <br>
     <br>
   table() 함수는 빈도표를 만들어 냅니다. addmargins() 함수는 빈도표의 주변 합을 테이블에 추가합니다.<br>
