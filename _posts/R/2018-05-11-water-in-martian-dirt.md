@@ -11,15 +11,14 @@ category: R
   <img src="/asset/r/factor_1.JPG">
 <br>
   table() 함수는 빈도표를 만들어 냅니다. addmargins() 함수는 빈도표의 주변 합을 테이블에 추가합니다.<br>
-  <img src="/asset/r/factor_2.JPG">
+  <img src="/asset/r/factor_2.JPG">  <img src="/asset/r/factor_3.JPG">
 <br>
   tapply(x, f, function)는 x를 f의 수준 별로 쪼개서 function을 적용합니다.<br>
 sppaly()와 split()은 쪼갬의 대상이 벡터가 아니라 데이터 프레임인 경우에 사용한다.<br>
-  <img src="/asset/r/factor_3.JPG">
+  <img src="/asset/r/factor_4.JPG">
 <br>
   aggregate(x,list(f,g),function)은 x(벡터 or dataframe)를 f와 g의 조합으로 쪼개서 function을 적용합니다. 즉, 종합하고 집계합니다.<br>
 cut(x, 0:10)은 벡터 x를 0:10로 쪼개서 factor 변수로 만드는, 소위 구간화(binning)을 합니다.
 지킬을 쓰려면 배워야하는게 많다.<br>
-  <img src="/asset/r/factor_4.JPG">
 </a>
 </html>
