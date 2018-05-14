@@ -1,3 +1,4 @@
+
 set.seed(1)
 alpha = sample(c("A","B","C"),25,replace=T)
 f = factor(alpha)
