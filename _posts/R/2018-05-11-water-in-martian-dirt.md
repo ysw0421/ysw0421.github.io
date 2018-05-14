@@ -8,13 +8,10 @@ category: R
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title>Marked in the browser</title>
-  <script src="lib/marked.js"></script>
-</head>
-  <body>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script>hljs.initHighlightingOnLoad();</script></head>
+  <body>
     <a class="custom" style="font-size:30px;">
   R에서 "factor"는 범주형 변수(벡터) or 비연속적 변수(벡터)를 지칭합니다. 인자 벡터는 문자열 벡터로부터 또는 수치형 벡터로부터 생성될 수 있습니다.
   "factor"는 범주형 데이터를 표현하는데 사용됩니다. 범주형 데이터는 유한한 수의 범주 or 고유 그룹이 포함됩니다. 범주형 데이터에는 논리적 순서가 없을 수도 있습니다. 예를 들어, 성별, 재료, 유형, 결제 방법이 이에 해당됩니다. 수치형 벡터로 생성된 "factor"는 level으로 알려진 사전에 정의된 집합값만 담을 수 있다.<br>
