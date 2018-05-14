@@ -44,6 +44,10 @@ layout: default
             {% for news in site.categories.Data_structure %}
               <a class="custom" href="{{ news.url }}"> * {{ news.title }}</a><br>
             {% endfor %}
+            <h3>R Programming</h3>
+            {% for news in site.categories.R %}
+              <a class="custom" href="{{ news.url }}"> * {{ news.title }}</a><br>
+            {% endfor %}
           </ul>
         </div>
       </div>
