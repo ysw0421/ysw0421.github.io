@@ -3,6 +3,7 @@ layout: post
 title: 우연하게 마주친 지킬
 meta: 알고싶다...
 categories: jekyll
+comments: true
 ---
 <html>
 <a class="custom" style="font-size:30px;">
