@@ -46,6 +46,7 @@ comments: true
           <ul class="custom">
             <div style="margin-left:20%;margin-right:20%;">
               {{ content }}
+              {% include disqus.html %}
             <div>
           </ul>
         </div>
@@ -68,5 +69,4 @@ comments: true
       document.getElementById("openNav").style.display = "inline-block";
     }
   </script>
-      {% include disqus.html %}
 </body>
