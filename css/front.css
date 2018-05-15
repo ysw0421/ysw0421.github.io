@@ -80,7 +80,8 @@ a .custom{
 
 ul {
     list-style: none;
-    padding: 0;
+    padding-left: 10%;
+    padding-right: 10%;
     text-align: left;
 }
 li {
