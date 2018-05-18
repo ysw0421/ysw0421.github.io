@@ -73,6 +73,7 @@ a {
 a .custom{
     text-decoration: none;
     font-family: 'Nanum Pen Script', cursive;
+    background: transparent; 
     color: #000000;
 }
 
