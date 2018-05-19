@@ -17,10 +17,10 @@ comments: false
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
     @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-    h3{ font-family: 'Hanna'; 
-        font-weight:600;
-        font-size:28pt;
-        color:black;
+    h2{ font-family: "PT Sans",Helvetica,Arial,sans-serif; 
+        font-weight: 400;
+        font-size: 28pt;
+        color: #313131;
     }
     a.custom{ font-family: 'Nanum Pen Script', cursive;
               font-weight:600;
@@ -34,18 +34,18 @@ comments: false
         <div class="custom">
           {% if site.front_img %}<img src="{{ site.front_img_path }}" id="fullscreen"> {% endif %} 
           <ul>
-            <h3>Jekyll</h3>
+            <h2>Jekyll</h2>
             {% for news in site.categories.jekyll %}
               <a class="custom" href="{{ news.url }}"> * {{ news.title }}</a><br>
             {% endfor %}
-            <h3>Data structure & Algorithm</h3>
+            <h2>Data structure & Algorithm</h2>
             {% for news in site.categories.Algorithm %}
               <a class="custom" href="{{ news.url }}"> * {{ news.title }}</a><br>
             {% endfor %}
             {% for news in site.categories.Data_structure %}
               <a class="custom" href="{{ news.url }}"> * {{ news.title }}</a><br>
             {% endfor %}
-            <h3>R Programming</h3>
+            <h2>R Programming</h2>
             {% for news in site.categories.R %}
               <a class="custom" href="{{ news.url }}"> * {{ news.title }}</a><br>
             {% endfor %}
