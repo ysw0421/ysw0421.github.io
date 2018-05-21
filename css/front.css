@@ -68,6 +68,7 @@ a {
     padding: 15px;
     color: white;
     text-decoration: none;
+    background-color: transparent;
 }
 
 a .custom{
