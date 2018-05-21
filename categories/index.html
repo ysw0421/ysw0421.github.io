@@ -22,9 +22,6 @@ comments: false
         color: #313131;
         background-color: transparent;
     }
-    a .custom{
-        background-color: transparent;
-    }
   </style>
 </head>
 <body>
@@ -36,22 +33,22 @@ comments: false
             <h2>Jekyll</h2>
             <h4>
             {% for news in site.categories.jekyll %}
-              <a class="custom" href="{{ news.url }}"> * {{ news.title }}</a><br>
+              <a class="custom" href="{{ news.url }}" style="background-color: transparent;"> * {{ news.title }}</a><br>
             {% endfor %}
             </h4>
             <h2>Data structure & Algorithm</h2>
             <h4>
             {% for news in site.categories.Algorithm %}
-              <a class="custom" href="{{ news.url }}"> * {{ news.title }}</a><br>
+              <a class="custom" href="{{ news.url }}"  style="background-color: transparent;"> * {{ news.title }}</a><br>
             {% endfor %}
             {% for news in site.categories.Data_structure %}
-              <a class="custom" href="{{ news.url }}"> * {{ news.title }}</a><br>
+              <a class="custom" href="{{ news.url }}"  style="background-color: transparent;"> * {{ news.title }}</a><br>
             {% endfor %}
             </h4>
             <h2>R Programming</h2>
             <h4>
             {% for news in site.categories.R %}
-              <a class="custom" href="{{ news.url }}"> * {{ news.title }}</a><br>
+              <a class="custom" href="{{ news.url }}"  style="background-color: transparent;"> * {{ news.title }}</a><br>
             {% endfor %}
             </h4>
           </ul>
