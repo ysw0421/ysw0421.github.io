@@ -61,8 +61,30 @@ sppaly()와 split()은 쪼갬의 대상이 벡터가 아니라 데이터 프레�
     <br>
   aggregate(x,list(f,g),function)은 x(벡터 or dataframe)를 f와 g의 조합으로 쪼개서 function을 적용합니다. 즉, 종합하고 집계합니다.
     <br>
-  cut(x, 0:10)은 벡터 x를 0:10로 쪼개서 factor 변수로 만드는, 소위 구간화(binning)을 합니다.
-      <br>
+  cut(x, 0:10)은 벡터 x를 0:10로 쪼개서 factor 변수로 만드는, 소위 구간화(binning)을 합니다. 
+      (x,y)의 산점도에 x의 구간별 평균을 막대로 넣어 구간별 평균의 이동을 산출하는 R 스크립트입니다.
+    <br>
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/factor_2.R");
+        </script>
+      </code>
+      </pre>
+      <iframe src="/asset/r/factor_5_graph.JPG" scrolling="auto" width=100% height="auto" marginwidth=0 marginheight=0 frameborder=0></iframe>
     </a>
   </body>
 </html>
