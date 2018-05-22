@@ -104,7 +104,8 @@ ul:hover {
   height: 10px;
   border: 1px solid blue;
   border-radius: 50%;
-  float:left;
+  float: left;
+  padding: 2px;
 }
 
 .circle:hover {                 
@@ -112,7 +113,8 @@ ul:hover {
   height: 10px;               
   background: blue;           
   border-radius: 100px;
-  float:left;
+  float: left;
+  padding: 2px;
 }    
 
 @media (max-width: 450px) {
