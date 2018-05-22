@@ -33,22 +33,22 @@ comments: false
             <h2>Jekyll</h2>
             <h4>
             {% for news in site.categories.jekyll %}
-              <a class="list" href="{{ news.url }}"><li>{{ news.title }}</li></a><br>
+              <a class="custom2" href="{{ news.url }}"><li class="list">{{ news.title }}</li></a><br>
             {% endfor %}
             </h4>
             <h2>Data structure & Algorithm</h2>
             <h4>
             {% for news in site.categories.Algorithm %}
-              <a class="list" href="{{ news.url }}"><li>{{ news.title }}</li></a><br>            
+              <a class="custom2" href="{{ news.url }}"><li class="list">{{ news.title }}</li></a><br>            
               {% endfor %}
             {% for news in site.categories.Data_structure %}
-              <a class="list" href="{{ news.url }}"><li>{{ news.title }}</li></a><br>
+              <a class="custom2" href="{{ news.url }}"><li class="list">{{ news.title }}</li></a><br>
             {% endfor %}
             </h4>
             <h2>R Programming</h2>
             <h4>
             {% for news in site.categories.R %}
-              <a class="list" href="{{ news.url }}"><li>{{ news.title }}</li></a><br>
+              <a class="custom2" href="{{ news.url }}"><li class="list">{{ news.title }}</li></a><br>
             {% endfor %}
             </h4>
           </ul>
