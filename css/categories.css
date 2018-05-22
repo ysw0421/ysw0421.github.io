@@ -24,6 +24,14 @@ body {
     border: 5px solid white;
     margin-bottom: 40px;
 }
+
+a {
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+    padding-top: 15px;
+}
+
 h1 {
     color: white;
     font-weight: bold;
@@ -71,17 +79,23 @@ pre {
     padding-right: 40px;
 }
 
-a {
-    color: white;
-    text-decoration: none;
-    background-color: transparent;
-    padding-top: 15px;
-}
-
-
-
 .description {
     display: none;
+}
+
+ul{
+  list-style-type:circle  
+}
+ul:hover {
+  list-style-type:disc
+}
+
+.square {
+  transition: transform 0.8s;
+  position: absolute;
+}
+.square:hover {
+  transform: translate(20px, 0px);
 }
 
 
