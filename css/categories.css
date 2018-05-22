@@ -94,10 +94,26 @@ ul:hover {
   transition: transform 0.8s;
   position: absolute;
 }
+
 .square:hover {
   transform: translate(20px, 0px);
 }
 
+.circle {
+  width: 10px;
+  height: 10px;
+  border: 1px solid hotpink;
+  border-radius: 50%;
+  float:left;
+}
+
+.circle:hover {                 
+  width: 10px;         
+  height: 10px;               
+  background: #15c;           
+  border-radius: 100px;
+  float:left;
+}    
 
 @media (max-width: 450px) {
 .description {
