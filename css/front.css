@@ -64,13 +64,6 @@ li .custom{
     color: #000000;
 }
 
-a {
-    padding: 15px;
-    color: white;
-    text-decoration: none;
-    background-color: transparent;
-}
-
 a .custom2{
     text-decoration: none;
     font-family: 'Nanum Pen Script', cursive;
