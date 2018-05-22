@@ -102,7 +102,7 @@ ul:hover {
 .circle {
   width: 10px;
   height: 10px;
-  border: 1px solid hotpink;
+  border: 1px solid blue;
   border-radius: 50%;
   float:left;
 }
@@ -110,7 +110,7 @@ ul:hover {
 .circle:hover {                 
   width: 10px;         
   height: 10px;               
-  background: #15c;           
+  background: blue;           
   border-radius: 100px;
   float:left;
 }    
