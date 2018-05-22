@@ -76,6 +76,9 @@ a .custom{
     font-family: 'Nanum Pen Script', cursive;
     background-color: transparent;
     color: #000000;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    
 }
 
 ul {
