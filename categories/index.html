@@ -28,30 +28,35 @@ comments: false
     <div class="w3-container">
       <div class="content">
         <div class="custom">
-          <div class="square">
-              <a href="#">Try hovering over this link.</a>
-          </div>
           {% if site.front_img %}<img src="{{ site.front_img_path }}" id="fullscreen"> {% endif %} 
           <ul>
             <h2>Jekyll</h2>
             <h4>
             {% for news in site.categories.jekyll %}
-              <a class="custom2" href="{{ news.url }}">{{ news.title }}</a><br>
+              <div class="square">
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a><br>
+              </div>
             {% endfor %}
             </h4>
             <h2>Data structure & Algorithm</h2>
             <h4>
             {% for news in site.categories.Algorithm %}
-              <a class="custom2" href="{{ news.url }}">{{ news.title }}</a><br>            
-              {% endfor %}
+              <div class="square">
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a><br>
+              </div>            
+            {% endfor %}
             {% for news in site.categories.Data_structure %}
-              <a class="custom2" href="{{ news.url }}">{{ news.title }}</a><br>
+              <div class="square">
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a><br>
+              </div>
             {% endfor %}
             </h4>
             <h2>R Programming</h2>
             <h4>
             {% for news in site.categories.R %}
-              <a class="custom2" href="{{ news.url }}">{{ news.title }}</a><br>
+              <div class="square">
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a><br>
+              </div>
             {% endfor %}
             </h4>
           </ul>
