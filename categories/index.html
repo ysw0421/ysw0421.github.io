@@ -22,19 +22,6 @@ comments: false
         color: #313131;
         background-color: transparent;
     }
-    ul{
-      list-style-type:circle  
-    }
-    ul:hover {
-      list-style-type:disc
-    }
-    .square {
-      transition: transform 0.8s;
-      position: absolute;
-    }
-    .square:hover {
-      transform: translate(20px, 0px);
-    }
   </style>
 </head>
 <body>
@@ -42,9 +29,7 @@ comments: false
       <div class="content">
         <div class="custom">
           <div class="square">
-            <ul>
-              <a href="#"><li>Try hovering over this link.</li></a>
-            </ul>
+              <a href="#">Try hovering over this link.</a>
           </div>
           {% if site.front_img %}<img src="{{ site.front_img_path }}" id="fullscreen"> {% endif %} 
           <ul>
