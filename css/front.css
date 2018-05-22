@@ -72,10 +72,10 @@ pre {
     padding-right: 40px;
 }
 
-.list{
+li .list{
     list-style: circle;
 }
-.list:hover{
+li .list:hover{
     text-decoration: none;
     -webkit-transition: 500ms;
     -moz-transition: 500ms;
