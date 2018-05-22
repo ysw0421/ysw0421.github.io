@@ -72,19 +72,6 @@ pre {
     padding-right: 40px;
 }
 
-li .list{
-    list-style: circle;
-}
-li .list:hover{
-    text-decoration: none;
-    -webkit-transition: 500ms;
-    -moz-transition: 500ms;
-    transition: 500ms;
-    text-decoration: none;
-    list-style: disc;
-    background-color: transparent;
-}
-
 a {
     color: white;
     text-decoration: none;
