@@ -42,7 +42,28 @@ pre {
     margin-top: -30px;
     margin-bottom: -30px;
 }
+ul{
+  list-style-type:circle  
+}
+ul:hover {
+  list-style-type:disc
+}
+a {
+    text-decoration: none;
+    background-color: transparent;
+}
+a:hover {
+    color: blue;
+}
 
+.square {
+  transition: transform 0.8s;
+  position: absolute;
+    &:hover {
+      transform: translate(20px, 0px);
+  }
+}
+  
 .content {
     padding-left:20px;
     padding-right:20px;
