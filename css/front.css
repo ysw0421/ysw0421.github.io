@@ -103,45 +103,10 @@ li:hover {
     display: none;
 }
 
-
-ul{
-  list-style-type:circle  
+ul {
+    list-style: none;
+    text-align: left;
 }
-ul:hover {
-  list-style-type:disc
-}
-
-.square {
-  transition: transform 0.8s;
-  position: absolute;
-}
-
-.square:hover {
-  transform: translate(20px, 0px);
-}
-
-.circle {
-  width: 10px;
-  height: 10px;
-  border: 1px solid blue;
-  border-radius: 50%;
-  float: left;
-  margin-left: 40px;
-  margin-top: 10px;
-}
-
-.circle:hover {                 
-  width: 10px;         
-  height: 10px;               
-  background: blue;           
-  border-radius: 100px;
-  float: left;
-  margin-left: 40px;
-  margin-top: 10px;
-}    
-
-
-
 
 @media (max-width: 450px) {
 ul {
