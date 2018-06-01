@@ -99,8 +99,10 @@ comments: true
       <p>
         이제 어떻게 데이터를 수신하는지 알아보도록 하자. 패킷이 외부에서 도착했을 때 어떻게 작동하는지에 대한 것이다. 그림 3에서 네트워크 스택이 수신한 패킷을 처리하는 과정을 알 수 있다.</br>
         </br>
-        networkstack2</br>
-        그림 2 데이터 수신 시 TCP/IP 네트워크 스택의 각 레이어 별 동작 과정</br>
+      <p class="p_img">
+          <img src="/asset/TD_img/TCP_IP_stack_2.JPG"></br>
+          <데이터 수신 시 TCP/IP 네트워크 스택의 각 레이어 별 동작 과정></br>
+      </p>
         우선 NIC가 패킷을 자신의 메모리에 기록한다. CRC 검사로 패킷이 올바른지 검사하고, 호스트의 메모리버퍼로 전송한다. 이 버퍼는 드라이버가 커널에 요청하여 패킷 수신용으로 미리 할당한 메모리이고, 할당을 받은 후 드라이버는 NIC에 메모리 주소와 크기를 알려 준다. NIC가 패킷을 받았는데, 드라이버가 미리 할당해 놓은 호스트 메모리 버퍼가 없으면 NIC가 패킷을 버릴 수 있다 (packet drop).</br>
         패킷을 호스트 메모리로 전송한 후, NIC가 호스트운영체제에 인터럽트를 보낸다.</br>
         드라이버가 새로운 패킷을 보고 자신이 처리할 수 있는 패킷인지 검사한다. 여기까지는 제조사가 정의한 드라이버-NIC 통신 규약을 사용한다.
@@ -135,9 +137,10 @@ comments: true
         이제 Linux 네트워크 스택의 내부 흐름을 좀더 깊게 살펴보자. 네트워크 스택이 아닌 서브시스템과 마찬가지로, 네트워크 스택은 기본적으로 이벤트 발생에 반응하는 event-driven 방식으로 작동한다. 따라서 스택 수행을 위한 별도 스레드는 없다. 그림 2와 그림 3은 제어 흐름을 매우 단순화한 것이고, 그림 4에서 좀 더 정확한 제어 흐름을 볼 수 있다.</br>
         </br>
         </br>
-        networkstack3</br>
-        </br>
-        그림 3 스택 내부 제어 흐름</br>
+      <p class="p_img">
+          <img src="/asset/TD_img/TCP_IP_stack_3.JPG"></br>
+          <스택 내부 제어 흐름></br>
+      </p>
         </br>
         그림 3의 (1)은 애플리케이션이 시스템 콜을 호출하여 TCP를 수행(사용)하는 경우다. 예를 들어, read 시스템 콜과 write 시스템 콜을 호출하고 TCP를 수행한다. 하지만 패킷 전송은 없다.</br>
         </br>
@@ -162,9 +165,10 @@ comments: true
         인터럽트 처리는 복잡하지만 패킷 수신 처리에 따른 성능 문제를 이해하기 위해 필요하다. 그림 4에서 인터럽트 처리 과정을 볼 수 있다.</br>
         </br>
         </br>
-        networkstack4</br>
-        </br>
-        그림 4 인터럽트, softirq, 그리고 수신 패킷 처리</br>
+      <p class="p_img">
+          <img src="/asset/TD_img/TCP_IP_stack_4.JPG"></br>
+          <인터럽트, softirq, 그리고 수신 패킷 처리></br>
+      </p>
         CPU 0이 애플리케이션 프로그램(user program)을 실행하고 있다고 가정하자. 이때 NIC가 패킷을 수신하고 CPU 0을 인터럽트한다. CPU는 커널 인터럽트(흔히 irq라고 부른다) 핸들러를 실행한다. 이 핸들러가 인터럽트 번호를 보고 드라이버 인터럽트 핸들러를 호출한다. 드라이버는 전송된 패킷은 반환하고, 수신된 패킷을 처리하기 위해 napi_schedule() 함수를 호출한다. 이 함수가 softirq(소프트웨어 인터럽트)를 요청한다.</br>
         드라이버 인터럽트 핸들러의 실행이 종료되면 커널 핸들러로 제어권이 돌아간다. 커널 핸들러가 softirq에 대한 인터럽트 핸들러를 실행시킨다.</br>
         Interrupt context가 실행되었으니 softirq context가 실행될 차례이다. Interrupt context와 softirq context가 실행되는 스레드는 같다. 하지만 스택이 서로 다르다. 그리고 interrupt context는 하드웨어 인터럽트를 차단하지만, softirq context는 하드웨어 인터럽트를 허용한다.</br>
@@ -184,9 +188,10 @@ comments: true
       <p>
         첫째, 패킷을 의미하는 sk_buff 구조체 혹은 skb 구조체가 있다. 그림 5는 sk_buff 구조체의 일부를 보여준다. 기능이 발전되면서 이보다 더 복잡해졌지만 기본적으로 필요한 기능은 누구나 생각할 수 있는 것들이다.</br>
         </br>
-        networkstack5</br>
-        그림 5 패킷 구조체 sk_buff</br>
-        </br>
+      <p class="p_img">
+          <img src="/asset/TD_img/TCP_IP_stack_5.JPG"></br>
+          <패킷 구조체 sk_buff></br>
+      </p>
         패킷 데이터, 메타 데이터 포함</br>
         패킷 데이터를 구조체가 직접 포함하고 있거나, 포인터를 사용해서 참조하고 있다. 그림 5에서는 패킷 일부는 (Ethernet부터 buffer까지) 데이터 포인터를 이용해 참조하고 있고, 추가 데이터(frags)는 실제 페이지를 참조하고 있다.</br>
         </br>
@@ -207,9 +212,10 @@ comments: true
       <p>
         둘째, TCP 연결을 대표하는 구조체가 있다. 앞서 추상적으로 TCP control block이라 불렀는데, Linux는 tcp_sock을 사용한다. 그림 7에서 file, socket과 tcp_sock 등이 어떤 관계에 있는지 알 수 있다.</br>
         </br>
-        networkstack6</br>
-        그림 6 TCP 연결 구조체</br>
-        </br>
+      <p class="p_img">
+          <img src="/asset/TD_img/TCP_IP_stack_6.JPG"></br>
+          <TCP 연결 구조체></br>
+      </p>
         시스템 콜이 발생하면 시스템 콜을 호출한 애플리케이션이 사용하는 file descriptor에 있는 file을 찾는다. Unix 계열 운영체제에서는 socket, 저장을 위한 일반 files system 용 file, 디바이스 등 여러 가지를 모두 file로 추상화한다. 따라서 file 구조체는 최소한의 정보만 포함한다. Socket의 경우 별도 socket 구조체가 소켓 관련 정보를 저장하고, file은 socket을 포인터로 참조한다. Socket은 다시 tcp_sock을 참조한다. tcp_sock은 sock, inet_sock 등으로 세분화되어 있는데, TCP 외의 다양한 프로토콜을 지원하기 위해서다. 일종의 폴리모피즘과 비슷하다고 보면 되겠다.</br>
         tcp_sock에는 TCP 프로토콜이 사용하는 모든 상태 정보를 저장한다. 예를 들어, 시퀀스 번호, receive window, congestion control, 재전송 타이머 등 정보가 모두 모여 있다.</br>
         </br>
