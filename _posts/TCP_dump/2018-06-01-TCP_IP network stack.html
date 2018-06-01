@@ -22,208 +22,159 @@ comments: true
   </head>
   <body>
     <!--#################################################################################################-->
-    <h3>Packet Analysis</h3>
+    <h3>TCP/IP network stack</h3>
     <a class="custom" style="font-size:24px;background-color: transparent;">
       </br>
       </br>
-      <p>
-      TCP/IP 네트워크 스택 이해하기
-2012.04.26|182127
-TCP/IP 없는 인터넷 서비스는 상상할 수 없습니다. 우리가 개발하고 사용하는 모든 인터넷 서비스는 TCP/IP라는 튼튼한 토대에 기반하고 있습니다. 어떻게 네트워크를 통해 데이터가 오가는지를 이해하면, 튜닝 등을 통한 성능 개선이나 트러블 슈팅, 신기술 도입 등에 많은 도움이 됩니다.
+      <p style="font-size:15px">
+        TCP/IP 네트워크 스택 이해하기
+        TCP/IP 없는 인터넷 서비스는 상상할 수 없습니다. 우리가 개발하고 사용하는 모든 인터넷 서비스는 TCP/IP라는 튼튼한 토대에 기반하고 있습니다.
+        어떻게 네트워크를 통해 데이터가 오가는지를 이해하면, 튜닝 등을 통한 성능 개선이나 트러블 슈팅, 신기술 도입 등에 많은 도움이 됩니다.
+        이 글에서는 Linux 운영체제와 하드웨어 레이어에서의 데이터 흐름과 제어 흐름을 바탕으로 네트워크 스택에 대한 전반적인 작동 방식을 알아보겠습니다.
+        TCP/IP의 중요한 성질
+        데이터의 순서가 바뀌지 않으면서 데이터가 유실되지 않도록 가급적 빠르게 데이터를 보내려면 네트워크 프로토콜을 어떻게 설계해야 할까? TCP/IP는 이런 고민 아래 설계된 것이다. 다음은 스택을 이해하는데 필요한 TCP/IP의 중요한 성질이다.
+        TCP와 IP
+        엄밀히 말해 TCP와 IP는 서로 다른 레이어의 것이라 분리해서 이해하는 것이 옳지만, 이해의 편의상 여기서는이 장에서는 둘을 분리하지 않고 설명한다.
+        1. Connection oriented
+        두 개 엔드포인트(로컬, 리모트) 사이에 연결을 먼저 맺고 데이터를 주고받는다. 여기서 'TCP 연결 식별자'는 두 엔드포인트의 주소를 합친 것으로, <로컬 IP 주소, 로컬 포트번호, 리모트 IP 주소, 리모트 포트번호> 형태이다.
+        2. Bidirectional byte stream
+        양방향 데이터 통신을 하고, 바이트 스트림을 사용한다.
+        3. In-order delivery
+        송신자(sender)가 보낸 순서대로 수신자(receiver)가 데이터를 받는다. 이를 위해서는 데이터의 순서가 필요하다. 순서를 표시하기 위해 32-bit 정수 자료형을 사용한다.
+        4. Reliability through ACK
+        데이터를 송신하고 수신자로부터 ACK(데이터 받았음)를 받지 않으면, 송신자 TCP가 데이터를 재전송한다. 따라서 송신자 TCP는 수신자로부터 ACK를 받지 않은 데이터를 보관한다(buffer unacknowledged data).
+        5. Flow control
+        송신자는 수신자가 받을 수 있는 만큼 데이터를 전송한다. 수신자가 자신이 받을 수 있는 바이트 수 (사용하지 않은 버퍼 크기, receive window)를 송신자에게 전달한다. 송신자는 수신자 receive window가 허용하는 바이트 수만큼 데이터를 전송한다.
+        6. Congestion control
+        네트워크 정체를 방지하기 위해 receive window와 별도로 congestion window를 사용하는데 이는 네트워크에 유입되는 데이터양을 제한하기 위해서이다. Receive window와 마찬가지로 congestion window가 허용하는 바이트 수만큼 데이터를 전송하며 여기에는 TCP Vegas, Westwood, BIC, CUBIC 등 다양한 알고리즘이 있다. Flow control과 달리 송신자가 단독으로 구현한다.
+        
+        데이터 전송
+        이름이 설명하듯, 네트워크 스택에는 여러 레이어(layer)가 있다. 어떤 레이어가 있는지는 그림 2에서 알 수 있다.
+        여러 레이어가 있지만, 크게 유저(user) 영역, 커널(kernel) 영역, 디바이스로(device) 영역으로 나눌 수 있다. 유저 영역과 커널 영역에서의 작업은 CPU가 수행한다. 이 유저 영역과 커널 영역은 디바이스 영역과 구별하기 위해 호스트(host)라고 부른다. 여기서 디바이스는 패킷을 송수신하는 NIC(Network Interface Card)이다. 흔히 부르는 랜카드보다 더 정확한 용어이다.
+
+        networkstack1
+        그림 1 데이터 전송 시 TCP/IP 네트워크 스택의 각 레이어 별 동작 과정
+        유저 영역부터 밑으로 내려가 보자. 우선 애플리케이션이 전송할 데이터를 생성하고(그림 1에서 User data 상자), write 시스템 콜을 호출해서 데이터를 보낸다. 소켓(그림 2에서 fd)은 이미 생성되어 연결되어 있다고 가정한다. 시스템 콜을 호출하면 커널 영역으로 전환된다.
+        Linux나 Unix를 포함한 POSIX 계열 운영체제는 소켓을 file descriptor로 애플리케이션에 노출한다. 이런 POSIX 계열의 운영체제에서 소켓은 파일의 한 종류다. 파일(file) 레이어는 단순한 검사만 하고 파일 구조체에 연결된 소켓 구조체를 사용해서 소켓 함수를 호출한다.
+        커널 소켓은 두 개의 버퍼를 가지고 있다. 송신용으로 준비한 send socket buffer, 수신용으로 준비한 receive socket buffer이다. Write 시스템 콜을 호출하면 유저 영역의 데이터가 커널 메모리로 복사되고, send socket buffer의 뒷부분에 추가된다. 순서대로 전송하기 위해서다. 그림에서 옅은 회식 상자가 이미 socket buffer에 존재하는 데이터를 의미한다. 이 다음으로 TCP를 호출한다.
+        소켓과 연결된 TCP Control Block(TCB) 구조체가 있다. TCB에는 TCP 연결 처리에 필요한 정보가 있다. TCB에 있는 데이터는 connection state(LISTEN, ESTABLISHED, TIME_WAIT 등), receive window, congestion window, sequence 번호, 재전송 타이머 등이다.
+        현재 TCP 상태가 데이터 전송을 허용하면 새로운 TCP segment, 즉 패킷을 생성한다. Flow control 같은 이유로 데이터 전송이 불가능하면 시스템 콜은 여기서 끝나고, 유저 모드로 돌아간다(즉, 애플리케이션으로 제어권이 넘어간다).
+        TCP segment에는 TCP 헤더와 페이로드(payload)가 있다. 페이로드에는 ACK를 받지 않은 send socket buffer에 있는 데이터가 담겨 있다. 페이로드의 최대 길이는 receive window, congestion window, MSS(Maximum Segment Size) 중 최대 값이다.
+        그리고 TCP checksum을 계산한다. 이 checksum 계산에는 pseudo 헤더 정보(IP 주소들, segment 길이, 프로토콜 번호)를 포함시킨다. 여기서 TCP 상태에 따라 패킷을 한 개 이상 전송할 수 있다.
+        사실 요즘의 네트워크 스택에서는 checksum offload 기술을 사용하기 때문에, 커널이 직접 TCP checksum을 계산하지 않고 대신 NIC가 checksum을 계산한다. 여기서는 설명의 편의를 위해 커널이 checksum을 계산한다고 가정한다.
+        생성된 TCP segment는 IP 레이어로 이동한다(내려 간다). IP 레이어에서는 TCP segment에 IP 헤더를 추가하고, IP routing을 한다. IP routing이란 목적지 IP 주소(destination IP)로 가기 위한 다음 장비의 IP 주소(next hop IP)를 찾는 과정을 말한다.
+        IP 레이어에서 IP 헤더 checksum을 계산하여 덧붙인 후, Ethernet 레이어로 데이터를 보낸다.
+        Ethernet 레이어는 ARP(Address Resolution Protocol)를 사용해서 next hop IP의 MAC 주소를 찾는다. 그리고 Ethernet 헤더를 패킷에 추가한다. Ethernet 헤더까지 붙으면 호스트의 패킷은 완성이다.
+        IP routing을 하면 그 결과물로 next hop IP와 해당 IP로 패킷 전송할 때 사용하는 인터페이스(transmit interface, 혹은 NIC)를 알게 된다. 따라서 transmit NIC의 드라이버를 호출한다.
+        만약 tcpdump나 Wireshark 같은 패킷 캡처 프로그램이 작동 중이면 커널은 패킷 데이터를 프로그램이 사용하는 메모리 버퍼에 복사한다. 수신도 마찬가지로 드라이버 바로 위에서 패킷을 캡처한다. 대개 traffic shaper 기능도 이 레이어에서 동작하도록 구현되어있다.
+        드라이버는 NIC 제조사가 정의한 드라이버-NIC 통신 규약에 따라 패킷 전송을 요청한다.
+        NIC는 패킷 전송 요청을 받고, 메인 메모리에 있는 패킷을 자신의 메모리로 복사하고, 네트워크 선으로 전송한다. 이때 Ethernet 표준에 따라 IFG(Inter-Frame Gap), preamble, 그리고 CRC를 패킷에 추가한다. IFG, preamble은 패킷의 시작을 판단하기 위해 사용하고(네트워킹 용어로는 framing), CRC는 데이터 보호를 위해 사용한다(TCP, IP checksum과 같은 용도이다). 패킷 전송은 Ethernet의 물리적 속도, 그리고 Ethernet flow control에 따라 전송할 수 있는 상황일 때 시작된다. 회의장에서 발언권을 얻고 말하는 것과 비슷하다.
+        NIC가 패킷을 전송할 때 NIC는 호스트 CPU에 인터럽트(interrupt)를 발생시킨다. 모든 인터럽트에는 인터럽트 번호가 있으며, 운영체제는 이 번호를 이용하여 이 인터럽트를 처리할 수 있는 적합한 드라이버를 찾는다. 드라이버는 인터럽트를 처리할 수 있는 함수(인터럽트 핸들러)를 드라이브가 가동되었을 때 운영체제에 등록해둔다. 운영체제가 핸들러를 호출하고, 핸들러는 전송된 패킷을 운영체제에 반환한다.
+        지금까지 설명한 것은 애플리케이션에서 쓰기를 하였을 때 데이터가 커널과 디바이스를 거쳐 전송되는 과정이다. 그런데 애플리케이션이 쓰기 요청을 직접적으로 하지 않아도 커널이 TCP를 호출해서 패킷을 전송하는 경우가 있다. 예를 들어 ACK을 받아 receive window가 늘어나면 socket buffer에 남아있는 데이터를 포함한 TCP segment를 생성하여 상대편에 전송한다.
+
+        데이터 수신
+        이제 어떻게 데이터를 수신하는지 알아보도록 하자. 패킷이 외부에서 도착했을 때 어떻게 작동하는지에 대한 것이다. 그림 3에서 네트워크 스택이 수신한 패킷을 처리하는 과정을 알 수 있다.
+
+        networkstack2
+        그림 2 데이터 수신 시 TCP/IP 네트워크 스택의 각 레이어 별 동작 과정
+        우선 NIC가 패킷을 자신의 메모리에 기록한다. CRC 검사로 패킷이 올바른지 검사하고, 호스트의 메모리버퍼로 전송한다. 이 버퍼는 드라이버가 커널에 요청하여 패킷 수신용으로 미리 할당한 메모리이고, 할당을 받은 후 드라이버는 NIC에 메모리 주소와 크기를 알려 준다. NIC가 패킷을 받았는데, 드라이버가 미리 할당해 놓은 호스트 메모리 버퍼가 없으면 NIC가 패킷을 버릴 수 있다 (packet drop).
+        패킷을 호스트 메모리로 전송한 후, NIC가 호스트운영체제에 인터럽트를 보낸다.
+        드라이버가 새로운 패킷을 보고 자신이 처리할 수 있는 패킷인지 검사한다. 여기까지는 제조사가 정의한 드라이버-NIC 통신 규약을 사용한다.
+        드라이버가 상위 레이어로 패킷을 전달하려면 운영체제가 이해할 수 있도록, 받은 패킷을 운영체제가 사용하는 패킷 구조체로 포장해야 한다. 예를 들어, Linux의 sk_buff, BSD 계열 커널의 mbuf, 그리고 Microsoft Windows의 NET_BUFFER_LIST가 운영체제의 패킷 구조체이다. 드라이버는 이렇게 포장한 패킷을 상위 레이어로 전달한다.
+        Ethernet 레이어에서도 패킷이 올바른지 검사하고, 상위 프로토콜(네트워크 프로토콜)을 찾는다(de-multiplex). 이때 Ethernet 헤더의 ethertype 값을 사용한다. IPv4 ethertype은 0x0800이다. Ethernet 헤더를 제거하고 IP 레이어로 패킷을 전달한다.
+        IP 레이어에서도 패킷이 올바른지 검사한다. IP 헤더 checksum을 확인하는 것이다. 논리적으로 여기서 IP routing을 해서 패킷을 로컬 장비가 처리해야 하는지, 아니면 다른 장비로 전달해야 하는지 판단한다. 로컬 장비가 처리해야 하는 패킷이면 IP 헤더의 proto 값을 보고 상위 프로토콜(트랜스포트 프로토콜)을 찾는다. TCP proto 값은 6이다. IP 헤더를 제거하고 TCP 레이어로 패킷을 전달한다.
+        하위 레이어에서와 마찬가지로 TCP 레이어에서도 패킷이 올바른지 검사한다. TCP checksum도 확인한다. 앞서 언급했듯이 요즘의 네트워크 스택에는 checksum offload 기술이 적용되어 있기 때문에 커널이 checksum을 직접 계산하지 않는다.
+        다음으로 패킷이 속하는 연결, 즉 TCP control block을 찾는다. 이때 패킷의 <소스 IP, 소스 port, 타깃 IP, 타깃 port>를 식별자로 사용한다. 연결을 찾으면 프로토콜을 수행해서 받은 패킷을 처리한다. 새로운 데이터를 받았다면, 데이터를 receive socket buffer에 추가한다. TCP 상태에 따라 새로운 TCP 패킷(예를 들어 ACK 패킷)을 전송할 수 있다. 여기까지 해서 TCP/IP 수신 패킷 처리 과정이 끝나게 된다.
+        Receive socket buffer 크기가 결국은 TCP의 receive window이다. 어느 지점까지는 receive window가 크면 TCP throughput이 증가한다. 예전에는 socket buffer 크기를 애플리케이션이나 운영체제 설정에서 조절하고는 했다. 최신 네트워크 스택은 receive socket buffer 크기, 즉 receive window를 자동으로 조절하는 기능을 가지고 있다.
+        이후 애플리케이션이 read 시스템 콜을 호출하면 커널 영역으로 전환되고, socket buffer에 있는 데이터를 유저 공간의 메모리로 복사해 간다. 복사한 데이터는 socket buffer에서 제거한다. 그리고 TCP를 호출한다. TCP는 socket buffer에 새로운 공간이 생겼기 때문에 receive window를 증가시킨다. 그리고 프로토콜 상태에 따라 패킷을 전송한다. 패킷 전송이 없으면 시스템 콜이 종료된다.
+
+        네트워크 스택 발전 방향
+        지금까지 설명한 네트워크 스택 레이어가 하는 일은 가장 기본적인 기능이다. 1990년대 초반의 네트워크 스택은 이보다 약간 더 기능이 많은 정도였다. 하지만 요즘의 최신 네트워크 스택은 더 많은 기능을 가지고 있고, 따라서 네트워크 스택 구현체의 복잡성도 증가했다.
+        최신의 네트워크 스택을 목적에 따라 구분해 보면 다음과 같다.
+
+        패킷 처리 과정 조작 기능
+        Netfilter(방화벽, NAT 등), traffic control 같은 기능이다. 기본 처리 흐름에 사용자가 제어할 수 있는 코드를 삽입해서 사용자 설정에 따라 다양한 효과를 낸다.
+
+        프로토콜 성능
+        주어진 네트워크 환경에서 TCP 프로토콜이 달성할 수 있는 throughput, latency, stability 등의 개선을 목표로 한다. 다양한 congestion control 알고리즘들과 SACK 같은 TCP 추가 기능이 대표적인 예이다. 프로토콜 개선 사항은 이 글의 범위 바깥이라 여기서는 다루지 않겠다.
+        
+        패킷 처리 효율
+        한 장비가 패킷을 처리하는데 소요되는 CPU cycle, 메모리 사용량, 메모리 접근 수 등을 줄여서 초당 처리할 수 있는 최대 패킷 수를 개선하는 것을 목표로 한다. 장비 내부에서의 레이턴시(latency)를 줄이는 것을 포함한 여러 시도가 있었다. 스택 병렬처리, header prediction, zero-copy, single-copy, checksum offload, TSO, LRO, RSS 등 여러 가지가 있다.
+        
+        스택 내부 제어 흐름(control flow)
+        이제 Linux 네트워크 스택의 내부 흐름을 좀더 깊게 살펴보자. 네트워크 스택이 아닌 서브시스템과 마찬가지로, 네트워크 스택은 기본적으로 이벤트 발생에 반응하는 event-driven 방식으로 작동한다. 따라서 스택 수행을 위한 별도 스레드는 없다. 그림 2와 그림 3은 제어 흐름을 매우 단순화한 것이고, 그림 4에서 좀 더 정확한 제어 흐름을 볼 수 있다.
+
+
+        networkstack3
+
+        그림 3 스택 내부 제어 흐름
+
+        그림 3의 (1)은 애플리케이션이 시스템 콜을 호출하여 TCP를 수행(사용)하는 경우다. 예를 들어, read 시스템 콜과 write 시스템 콜을 호출하고 TCP를 수행한다. 하지만 패킷 전송은 없다.
+
+        (2)는 (1)과 같은데, TCP 수행 결과 패킷 전송이 필요한 경우다. 패킷을 생성해서 드라이버로 패킷을 내려 보낸다. 드라이버의 앞 부분에는 큐(queue)가 있다. 패킷은 우선 큐에 들어가고, 큐 구현체가 패킷이 드라이버로 전달되는 시점을 결정한다. Linux의 qdisc(queue discipline)가 이것이다. Linux traffic control 기능은 qdisc를 조작하는 것이다. 기본으로 사용하는 qdisc는 단순한 FIFO(first-in-first-out) 큐이다. 다른 qdisc를 사용하면 인위적인 패킷 유실, 패킷 지연, 전송 속도 제한 등 여러 가지 효과를 달성할 수 있다. (1), (2)에서는 애플리케이션의 프로세스 스레드가 드라이버까지 실행한다.
+
+        (3) 흐름은 TCP가 사용하는 타이머가 만료된 경우다. 예를 들어, TIME_WAIT 타이머가 만료되면 TCP를 호출해서 연결을 삭제한다.
+
+        (4) 흐름은 (3)과 같이 TCP가 사용하는 타이머가 만료된 경우인데, TCP 수행 결과 패킷 전송이 필요한 경우다. 예를 들어 재전송 타이머(retransmit timer)가 만료되면, ACK를 받지 못한 패킷을 전송한다.
+
+        (3), (4) 흐름은 타이머 인터럽트를 처리한 softirq가 실행되는 과정이다.
+
+        NIC 드라이버가 인터럽트를 받으면 전송된 패킷을 반환한다(free). 대개 여기서 드라이버 실행이 끝난다. (5) 흐름은 transmit queue에 패킷이 적체된 경우다. 드라이버가 softirq를 요청하고, softirq 핸들러가 transmit queue를 실행해서 적체된 패킷을 드라이버로 보낸다.
+
+        NIC 드라이버가 인터럽트를 받고 새로 수신된 패킷을 발견하면 softirq를 요청한다. 수신 패킷을 처리하는 softirq가 드라이버를 호출해서 수신된 패킷을 상위 레이어로 전달한다. Linux는 이와 같이 수신 패킷을 처리하는 것을 NAPI(new API)라고 부른다. 드라이버가 상위 레이어로 직접 전달하지 않고, 상위 레이어가 직접 패킷을 가져가기 때문에 polling과 유사하다. 실제 코드는 NAPI poll 혹은 poll이라 부른다.
+
+        (6)은 TCP까지 수행한 경우, (7)은 추가 패킷 전송이 필요한 경우를 보여준다. (5), (6), (7) 모두 NIC 인터럽트를 처리한 softirq가 실행한다.
+
+        인터럽트와 수신 패킷 처리
+        인터럽트 처리는 복잡하지만 패킷 수신 처리에 따른 성능 문제를 이해하기 위해 필요하다. 그림 4에서 인터럽트 처리 과정을 볼 수 있다.
 
-이 글에서는 Linux 운영체제와 하드웨어 레이어에서의 데이터 흐름과 제어 흐름을 바탕으로 네트워크 스택에 대한 전반적인 작동 방식을 알아보겠습니다.
 
-TCP/IP의 중요한 성질
-데이터의 순서가 바뀌지 않으면서 데이터가 유실되지 않도록 가급적 빠르게 데이터를 보내려면 네트워크 프로토콜을 어떻게 설계해야 할까? TCP/IP는 이런 고민 아래 설계된 것이다. 다음은 스택을 이해하는데 필요한 TCP/IP의 중요한 성질이다.
+        networkstack4
 
-TCP와 IP
+        그림 4 인터럽트, softirq, 그리고 수신 패킷 처리
+        CPU 0이 애플리케이션 프로그램(user program)을 실행하고 있다고 가정하자. 이때 NIC가 패킷을 수신하고 CPU 0을 인터럽트한다. CPU는 커널 인터럽트(흔히 irq라고 부른다) 핸들러를 실행한다. 이 핸들러가 인터럽트 번호를 보고 드라이버 인터럽트 핸들러를 호출한다. 드라이버는 전송된 패킷은 반환하고, 수신된 패킷을 처리하기 위해 napi_schedule() 함수를 호출한다. 이 함수가 softirq(소프트웨어 인터럽트)를 요청한다.
+        드라이버 인터럽트 핸들러의 실행이 종료되면 커널 핸들러로 제어권이 돌아간다. 커널 핸들러가 softirq에 대한 인터럽트 핸들러를 실행시킨다.
+        Interrupt context가 실행되었으니 softirq context가 실행될 차례이다. Interrupt context와 softirq context가 실행되는 스레드는 같다. 하지만 스택이 서로 다르다. 그리고 interrupt context는 하드웨어 인터럽트를 차단하지만, softirq context는 하드웨어 인터럽트를 허용한다.
+        수신 패킷을 처리하는 softirq 핸들러는 net_rx_action() 함수이다. 이 함수는 드라이버의 poll() 함수를 호출한다. poll() 함수는 netif_receive_skb() 함수를 호출해서 수신 패킷을 한 개씩 상위 레이어로 보낸다. softirq 처리가 종료되면, 애플리케이션은 시스템 콜을 요청하기 위하여 중단했던 지점부터 다시 수행을 재개한다.
+        따라서 인터럽트를 받은 CPU가 수신 패킷을 처음부터 끝까지 처리한다. Linux, BSD, Microsoft Windows 모두 기본으로 이와 같이 작동한다.
+        패킷 수신을 많이 하는 서버 CPU 사용률을 보면 한 CPU만 열심히 softirq를 실행하는 현상을 종종 확인할 수 있다. 지금까지 설명한 수신 패킷 처리 방식 때문에 발생하는 현상이다. 이 문제를 풀기 위해 multi-queue NIC, RSS, RPS가 나왔다.
 
-엄밀히 말해 TCP와 IP는 서로 다른 레이어의 것이라 분리해서 이해하는 것이 옳지만, 이해의 편의상 여기서는이 장에서는 둘을 분리하지 않고 설명한다.
+        데이터 구조체
+        중요한 데이터 구조체 몇 개를 살펴보고 실제 코드를 따라가 보자.
 
-1. Connection oriented
-두 개 엔드포인트(로컬, 리모트) 사이에 연결을 먼저 맺고 데이터를 주고받는다. 여기서 'TCP 연결 식별자'는 두 엔드포인트의 주소를 합친 것으로, <로컬 IP 주소, 로컬 포트번호, 리모트 IP 주소, 리모트 포트번호> 형태이다.
+        sk_buff 구조체
+        첫째, 패킷을 의미하는 sk_buff 구조체 혹은 skb 구조체가 있다. 그림 5는 sk_buff 구조체의 일부를 보여준다. 기능이 발전되면서 이보다 더 복잡해졌지만 기본적으로 필요한 기능은 누구나 생각할 수 있는 것들이다.
 
-2. Bidirectional byte stream
-양방향 데이터 통신을 하고, 바이트 스트림을 사용한다.
+        networkstack5
+        그림 5 패킷 구조체 sk_buff
 
-3. In-order delivery
-송신자(sender)가 보낸 순서대로 수신자(receiver)가 데이터를 받는다. 이를 위해서는 데이터의 순서가 필요하다. 순서를 표시하기 위해 32-bit 정수 자료형을 사용한다.
+        패킷 데이터, 메타 데이터 포함
+        패킷 데이터를 구조체가 직접 포함하고 있거나, 포인터를 사용해서 참조하고 있다. 그림 5에서는 패킷 일부는 (Ethernet부터 buffer까지) 데이터 포인터를 이용해 참조하고 있고, 추가 데이터(frags)는 실제 페이지를 참조하고 있다.
 
-4. Reliability through ACK
-데이터를 송신하고 수신자로부터 ACK(데이터 받았음)를 받지 않으면, 송신자 TCP가 데이터를 재전송한다. 따라서 송신자 TCP는 수신자로부터 ACK를 받지 않은 데이터를 보관한다(buffer unacknowledged data).
+        메타 데이터 영역에는 헤더, 페이로드 길이 등 필요한 정보를 저장한다. 예를 들어, 그림 5에서 볼 수 있는 mac_header에는 Ethernet 헤더, network_header에는 IP 헤더, transport_header에는 TCP 헤더 시작 위치를 가리키고 있는 포인터 데이터가 있다. 이런 방식은 TCP 프로토콜 매우 편리하게 처리할 수 있게 한다.
 
-5. Flow control
-송신자는 수신자가 받을 수 있는 만큼 데이터를 전송한다. 수신자가 자신이 받을 수 있는 바이트 수 (사용하지 않은 버퍼 크기, receive window)를 송신자에게 전달한다. 송신자는 수신자 receive window가 허용하는 바이트 수만큼 데이터를 전송한다.
+        헤더 추가, 삭제
+        네트워크 스택의 각 레이어를 왔다갔다하며 헤더를 추가, 삭제한다. 효율적으로 처리하기 위해 포인터들을 사용한다. 예를 들어, Ethernet 헤더를 제거하려면, head 포인터를 증가하면 된다.
 
-6. Congestion control
-네트워크 정체를 방지하기 위해 receive window와 별도로 congestion window를 사용하는데 이는 네트워크에 유입되는 데이터양을 제한하기 위해서이다. Receive window와 마찬가지로 congestion window가 허용하는 바이트 수만큼 데이터를 전송하며 여기에는 TCP Vegas, Westwood, BIC, CUBIC 등 다양한 알고리즘이 있다. Flow control과 달리 송신자가 단독으로 구현한다.
+        패킷 결합, 분리
+        Socket buffer에 패킷 페이로드 데이터를 추가, 삭제, 또는 패킷 체인 같은 작업을 효율적으로 수행하기 위해 linked list를 사용한다. next, prev 포인터가 이 용도로 사용된다.
 
-데이터 전송
-이름이 설명하듯, 네트워크 스택에는 여러 레이어(layer)가 있다. 어떤 레이어가 있는지는 그림 2에서 알 수 있다.
+        빠른 할당(allocation)과 반환(free)
+        패킷을 생성할 때마다 구조체를 할당하기 때문에 빠른 allocator를 사용한다. 예를 들어, 10 Gigabit Ethernet 속도로 데이터를 전송하면 초당 1백만 패킷 이상을 생성, 제거해야 한다.
 
-여러 레이어가 있지만, 크게 유저(user) 영역, 커널(kernel) 영역, 디바이스로(device) 영역으로 나눌 수 있다. 유저 영역과 커널 영역에서의 작업은 CPU가 수행한다. 이 유저 영역과 커널 영역은 디바이스 영역과 구별하기 위해 호스트(host)라고 부른다. 여기서 디바이스는 패킷을 송수신하는 NIC(Network Interface Card)이다. 흔히 부르는 랜카드보다 더 정확한 용어이다.
+        TCP control block
+        둘째, TCP 연결을 대표하는 구조체가 있다. 앞서 추상적으로 TCP control block이라 불렀는데, Linux는 tcp_sock을 사용한다. 그림 7에서 file, socket과 tcp_sock 등이 어떤 관계에 있는지 알 수 있다.
 
-networkstack1
+        networkstack6
+        그림 6 TCP 연결 구조체
 
-그림 1 데이터 전송 시 TCP/IP 네트워크 스택의 각 레이어 별 동작 과정
+        시스템 콜이 발생하면 시스템 콜을 호출한 애플리케이션이 사용하는 file descriptor에 있는 file을 찾는다. Unix 계열 운영체제에서는 socket, 저장을 위한 일반 files system 용 file, 디바이스 등 여러 가지를 모두 file로 추상화한다. 따라서 file 구조체는 최소한의 정보만 포함한다. Socket의 경우 별도 socket 구조체가 소켓 관련 정보를 저장하고, file은 socket을 포인터로 참조한다. Socket은 다시 tcp_sock을 참조한다. tcp_sock은 sock, inet_sock 등으로 세분화되어 있는데, TCP 외의 다양한 프로토콜을 지원하기 위해서다. 일종의 폴리모피즘과 비슷하다고 보면 되겠다.
+        tcp_sock에는 TCP 프로토콜이 사용하는 모든 상태 정보를 저장한다. 예를 들어, 시퀀스 번호, receive window, congestion control, 재전송 타이머 등 정보가 모두 모여 있다.
 
-유저 영역부터 밑으로 내려가 보자. 우선 애플리케이션이 전송할 데이터를 생성하고(그림 1에서 User data 상자), write 시스템 콜을 호출해서 데이터를 보낸다. 소켓(그림 2에서 fd)은 이미 생성되어 연결되어 있다고 가정한다. 시스템 콜을 호출하면 커널 영역으로 전환된다.
+        Send socket buffer와 receive socket buffer는 sk_buff 리스트이고, tcp_sock을 포함한다. IP routing 결과물인 dst_entry도 참조해서 매번 routing하지 않도록 한다. dst_entry를 사용해서 ARP 결과, 즉 목적지 MAC 주소도 쉽게 찾는다. dst_entry는 routing table의 일부이다. routing table의 구조는 상당히 복잡해서 이 글에서는 다루지 않겠다. dst_entry를 사용해서 패킷 송신에 사용해야 하는 NIC를 찾는다. NIC는 net_device 구조체로 표현한다.
+        따라서 file만 찾으면 TCP 연결을 처리하는데 필요한 모든 구조체(file부터 드라이버까지)를 포인터로 쉽게 찾을 수 있다. 이들 구조체의 크기가 TCP 연결 하나가 사용하는 메모리의 양이다. 메모리의 양은 수 KB 정도(패킷 데이터 제외)다. 메모리 사용량도 기능이 추가되면서 꾸준히 증가했다.
 
-Linux나 Unix를 포함한 POSIX 계열 운영체제는 소켓을 file descriptor로 애플리케이션에 노출한다. 이런 POSIX 계열의 운영체제에서 소켓은 파일의 한 종류다. 파일(file) 레이어는 단순한 검사만 하고 파일 구조체에 연결된 소켓 구조체를 사용해서 소켓 함수를 호출한다.
-
-커널 소켓은 두 개의 버퍼를 가지고 있다. 송신용으로 준비한 send socket buffer, 수신용으로 준비한 receive socket buffer이다. Write 시스템 콜을 호출하면 유저 영역의 데이터가 커널 메모리로 복사되고, send socket buffer의 뒷부분에 추가된다. 순서대로 전송하기 위해서다. 그림에서 옅은 회식 상자가 이미 socket buffer에 존재하는 데이터를 의미한다. 이 다음으로 TCP를 호출한다.
-
-소켓과 연결된 TCP Control Block(TCB) 구조체가 있다. TCB에는 TCP 연결 처리에 필요한 정보가 있다. TCB에 있는 데이터는 connection state(LISTEN, ESTABLISHED, TIME_WAIT 등), receive window, congestion window, sequence 번호, 재전송 타이머 등이다.
-
-현재 TCP 상태가 데이터 전송을 허용하면 새로운 TCP segment, 즉 패킷을 생성한다. Flow control 같은 이유로 데이터 전송이 불가능하면 시스템 콜은 여기서 끝나고, 유저 모드로 돌아간다(즉, 애플리케이션으로 제어권이 넘어간다).
-
-TCP segment에는 TCP 헤더와 페이로드(payload)가 있다. 페이로드에는 ACK를 받지 않은 send socket buffer에 있는 데이터가 담겨 있다. 페이로드의 최대 길이는 receive window, congestion window, MSS(Maximum Segment Size) 중 최대 값이다.
-
-그리고 TCP checksum을 계산한다. 이 checksum 계산에는 pseudo 헤더 정보(IP 주소들, segment 길이, 프로토콜 번호)를 포함시킨다. 여기서 TCP 상태에 따라 패킷을 한 개 이상 전송할 수 있다.
-
-사실 요즘의 네트워크 스택에서는 checksum offload 기술을 사용하기 때문에, 커널이 직접 TCP checksum을 계산하지 않고 대신 NIC가 checksum을 계산한다. 여기서는 설명의 편의를 위해 커널이 checksum을 계산한다고 가정한다.
-
-생성된 TCP segment는 IP 레이어로 이동한다(내려 간다). IP 레이어에서는 TCP segment에 IP 헤더를 추가하고, IP routing을 한다. IP routing이란 목적지 IP 주소(destination IP)로 가기 위한 다음 장비의 IP 주소(next hop IP)를 찾는 과정을 말한다.
-
-IP 레이어에서 IP 헤더 checksum을 계산하여 덧붙인 후, Ethernet 레이어로 데이터를 보낸다.
-
-Ethernet 레이어는 ARP(Address Resolution Protocol)를 사용해서 next hop IP의 MAC 주소를 찾는다. 그리고 Ethernet 헤더를 패킷에 추가한다. Ethernet 헤더까지 붙으면 호스트의 패킷은 완성이다.
-
-IP routing을 하면 그 결과물로 next hop IP와 해당 IP로 패킷 전송할 때 사용하는 인터페이스(transmit interface, 혹은 NIC)를 알게 된다. 따라서 transmit NIC의 드라이버를 호출한다.
-
-만약 tcpdump나 Wireshark 같은 패킷 캡처 프로그램이 작동 중이면 커널은 패킷 데이터를 프로그램이 사용하는 메모리 버퍼에 복사한다. 수신도 마찬가지로 드라이버 바로 위에서 패킷을 캡처한다. 대개 traffic shaper 기능도 이 레이어에서 동작하도록 구현되어있다.
-
-드라이버는 NIC 제조사가 정의한 드라이버-NIC 통신 규약에 따라 패킷 전송을 요청한다.
-
-NIC는 패킷 전송 요청을 받고, 메인 메모리에 있는 패킷을 자신의 메모리로 복사하고, 네트워크 선으로 전송한다. 이때 Ethernet 표준에 따라 IFG(Inter-Frame Gap), preamble, 그리고 CRC를 패킷에 추가한다. IFG, preamble은 패킷의 시작을 판단하기 위해 사용하고(네트워킹 용어로는 framing), CRC는 데이터 보호를 위해 사용한다(TCP, IP checksum과 같은 용도이다). 패킷 전송은 Ethernet의 물리적 속도, 그리고 Ethernet flow control에 따라 전송할 수 있는 상황일 때 시작된다. 회의장에서 발언권을 얻고 말하는 것과 비슷하다.
-
-NIC가 패킷을 전송할 때 NIC는 호스트 CPU에 인터럽트(interrupt)를 발생시킨다. 모든 인터럽트에는 인터럽트 번호가 있으며, 운영체제는 이 번호를 이용하여 이 인터럽트를 처리할 수 있는 적합한 드라이버를 찾는다. 드라이버는 인터럽트를 처리할 수 있는 함수(인터럽트 핸들러)를 드라이브가 가동되었을 때 운영체제에 등록해둔다. 운영체제가 핸들러를 호출하고, 핸들러는 전송된 패킷을 운영체제에 반환한다.
-
-지금까지 설명한 것은 애플리케이션에서 쓰기를 하였을 때 데이터가 커널과 디바이스를 거쳐 전송되는 과정이다. 그런데 애플리케이션이 쓰기 요청을 직접적으로 하지 않아도 커널이 TCP를 호출해서 패킷을 전송하는 경우가 있다. 예를 들어 ACK을 받아 receive window가 늘어나면 socket buffer에 남아있는 데이터를 포함한 TCP segment를 생성하여 상대편에 전송한다.
-
-데이터 수신
-이제 어떻게 데이터를 수신하는지 알아보도록 하자. 패킷이 외부에서 도착했을 때 어떻게 작동하는지에 대한 것이다. 그림 3에서 네트워크 스택이 수신한 패킷을 처리하는 과정을 알 수 있다.
-
-networkstack2
-
-그림 2 데이터 수신 시 TCP/IP 네트워크 스택의 각 레이어 별 동작 과정
-
-우선 NIC가 패킷을 자신의 메모리에 기록한다. CRC 검사로 패킷이 올바른지 검사하고, 호스트의 메모리버퍼로 전송한다. 이 버퍼는 드라이버가 커널에 요청하여 패킷 수신용으로 미리 할당한 메모리이고, 할당을 받은 후 드라이버는 NIC에 메모리 주소와 크기를 알려 준다. NIC가 패킷을 받았는데, 드라이버가 미리 할당해 놓은 호스트 메모리 버퍼가 없으면 NIC가 패킷을 버릴 수 있다 (packet drop).
-
-패킷을 호스트 메모리로 전송한 후, NIC가 호스트운영체제에 인터럽트를 보낸다.
-
-드라이버가 새로운 패킷을 보고 자신이 처리할 수 있는 패킷인지 검사한다. 여기까지는 제조사가 정의한 드라이버-NIC 통신 규약을 사용한다.
-
-드라이버가 상위 레이어로 패킷을 전달하려면 운영체제가 이해할 수 있도록, 받은 패킷을 운영체제가 사용하는 패킷 구조체로 포장해야 한다. 예를 들어, Linux의 sk_buff, BSD 계열 커널의 mbuf, 그리고 Microsoft Windows의 NET_BUFFER_LIST가 운영체제의 패킷 구조체이다. 드라이버는 이렇게 포장한 패킷을 상위 레이어로 전달한다.
-
-Ethernet 레이어에서도 패킷이 올바른지 검사하고, 상위 프로토콜(네트워크 프로토콜)을 찾는다(de-multiplex). 이때 Ethernet 헤더의 ethertype 값을 사용한다. IPv4 ethertype은 0x0800이다. Ethernet 헤더를 제거하고 IP 레이어로 패킷을 전달한다.
-
-IP 레이어에서도 패킷이 올바른지 검사한다. IP 헤더 checksum을 확인하는 것이다. 논리적으로 여기서 IP routing을 해서 패킷을 로컬 장비가 처리해야 하는지, 아니면 다른 장비로 전달해야 하는지 판단한다. 로컬 장비가 처리해야 하는 패킷이면 IP 헤더의 proto 값을 보고 상위 프로토콜(트랜스포트 프로토콜)을 찾는다. TCP proto 값은 6이다. IP 헤더를 제거하고 TCP 레이어로 패킷을 전달한다.
-
-하위 레이어에서와 마찬가지로 TCP 레이어에서도 패킷이 올바른지 검사한다. TCP checksum도 확인한다. 앞서 언급했듯이 요즘의 네트워크 스택에는 checksum offload 기술이 적용되어 있기 때문에 커널이 checksum을 직접 계산하지 않는다.
-
-다음으로 패킷이 속하는 연결, 즉 TCP control block을 찾는다. 이때 패킷의 <소스 IP, 소스 port, 타깃 IP, 타깃 port>를 식별자로 사용한다. 연결을 찾으면 프로토콜을 수행해서 받은 패킷을 처리한다. 새로운 데이터를 받았다면, 데이터를 receive socket buffer에 추가한다. TCP 상태에 따라 새로운 TCP 패킷(예를 들어 ACK 패킷)을 전송할 수 있다. 여기까지 해서 TCP/IP 수신 패킷 처리 과정이 끝나게 된다.
-
-Receive socket buffer 크기가 결국은 TCP의 receive window이다. 어느 지점까지는 receive window가 크면 TCP throughput이 증가한다. 예전에는 socket buffer 크기를 애플리케이션이나 운영체제 설정에서 조절하고는 했다. 최신 네트워크 스택은 receive socket buffer 크기, 즉 receive window를 자동으로 조절하는 기능을 가지고 있다.
-
-이후 애플리케이션이 read 시스템 콜을 호출하면 커널 영역으로 전환되고, socket buffer에 있는 데이터를 유저 공간의 메모리로 복사해 간다. 복사한 데이터는 socket buffer에서 제거한다. 그리고 TCP를 호출한다. TCP는 socket buffer에 새로운 공간이 생겼기 때문에 receive window를 증가시킨다. 그리고 프로토콜 상태에 따라 패킷을 전송한다. 패킷 전송이 없으면 시스템 콜이 종료된다.
-
-네트워크 스택 발전 방향
-지금까지 설명한 네트워크 스택 레이어가 하는 일은 가장 기본적인 기능이다. 1990년대 초반의 네트워크 스택은 이보다 약간 더 기능이 많은 정도였다. 하지만 요즘의 최신 네트워크 스택은 더 많은 기능을 가지고 있고, 따라서 네트워크 스택 구현체의 복잡성도 증가했다.
-
-최신의 네트워크 스택을 목적에 따라 구분해 보면 다음과 같다.
-
-패킷 처리 과정 조작 기능
-Netfilter(방화벽, NAT 등), traffic control 같은 기능이다. 기본 처리 흐름에 사용자가 제어할 수 있는 코드를 삽입해서 사용자 설정에 따라 다양한 효과를 낸다.
-
-프로토콜 성능
-주어진 네트워크 환경에서 TCP 프로토콜이 달성할 수 있는 throughput, latency, stability 등의 개선을 목표로 한다. 다양한 congestion control 알고리즘들과 SACK 같은 TCP 추가 기능이 대표적인 예이다. 프로토콜 개선 사항은 이 글의 범위 바깥이라 여기서는 다루지 않겠다.
-
-패킷 처리 효율
-한 장비가 패킷을 처리하는데 소요되는 CPU cycle, 메모리 사용량, 메모리 접근 수 등을 줄여서 초당 처리할 수 있는 최대 패킷 수를 개선하는 것을 목표로 한다. 장비 내부에서의 레이턴시(latency)를 줄이는 것을 포함한 여러 시도가 있었다. 스택 병렬처리, header prediction, zero-copy, single-copy, checksum offload, TSO, LRO, RSS 등 여러 가지가 있다.
-
-스택 내부 제어 흐름(control flow)
-이제 Linux 네트워크 스택의 내부 흐름을 좀더 깊게 살펴보자. 네트워크 스택이 아닌 서브시스템과 마찬가지로, 네트워크 스택은 기본적으로 이벤트 발생에 반응하는 event-driven 방식으로 작동한다. 따라서 스택 수행을 위한 별도 스레드는 없다. 그림 2와 그림 3은 제어 흐름을 매우 단순화한 것이고, 그림 4에서 좀 더 정확한 제어 흐름을 볼 수 있다.
-
-networkstack3
-
-그림 3 스택 내부 제어 흐름
-
-그림 3의 (1)은 애플리케이션이 시스템 콜을 호출하여 TCP를 수행(사용)하는 경우다. 예를 들어, read 시스템 콜과 write 시스템 콜을 호출하고 TCP를 수행한다. 하지만 패킷 전송은 없다.
-
-(2)는 (1)과 같은데, TCP 수행 결과 패킷 전송이 필요한 경우다. 패킷을 생성해서 드라이버로 패킷을 내려 보낸다. 드라이버의 앞 부분에는 큐(queue)가 있다. 패킷은 우선 큐에 들어가고, 큐 구현체가 패킷이 드라이버로 전달되는 시점을 결정한다. Linux의 qdisc(queue discipline)가 이것이다. Linux traffic control 기능은 qdisc를 조작하는 것이다. 기본으로 사용하는 qdisc는 단순한 FIFO(first-in-first-out) 큐이다. 다른 qdisc를 사용하면 인위적인 패킷 유실, 패킷 지연, 전송 속도 제한 등 여러 가지 효과를 달성할 수 있다. (1), (2)에서는 애플리케이션의 프로세스 스레드가 드라이버까지 실행한다.
-
-(3) 흐름은 TCP가 사용하는 타이머가 만료된 경우다. 예를 들어, TIME_WAIT 타이머가 만료되면 TCP를 호출해서 연결을 삭제한다.
-
-(4) 흐름은 (3)과 같이 TCP가 사용하는 타이머가 만료된 경우인데, TCP 수행 결과 패킷 전송이 필요한 경우다. 예를 들어 재전송 타이머(retransmit timer)가 만료되면, ACK를 받지 못한 패킷을 전송한다.
-
-(3), (4) 흐름은 타이머 인터럽트를 처리한 softirq가 실행되는 과정이다.
-
-NIC 드라이버가 인터럽트를 받으면 전송된 패킷을 반환한다(free). 대개 여기서 드라이버 실행이 끝난다. (5) 흐름은 transmit queue에 패킷이 적체된 경우다. 드라이버가 softirq를 요청하고, softirq 핸들러가 transmit queue를 실행해서 적체된 패킷을 드라이버로 보낸다.
-
-NIC 드라이버가 인터럽트를 받고 새로 수신된 패킷을 발견하면 softirq를 요청한다. 수신 패킷을 처리하는 softirq가 드라이버를 호출해서 수신된 패킷을 상위 레이어로 전달한다. Linux는 이와 같이 수신 패킷을 처리하는 것을 NAPI(new API)라고 부른다. 드라이버가 상위 레이어로 직접 전달하지 않고, 상위 레이어가 직접 패킷을 가져가기 때문에 polling과 유사하다. 실제 코드는 NAPI poll 혹은 poll이라 부른다.
-
-(6)은 TCP까지 수행한 경우, (7)은 추가 패킷 전송이 필요한 경우를 보여준다. (5), (6), (7) 모두 NIC 인터럽트를 처리한 softirq가 실행한다.
-
-인터럽트와 수신 패킷 처리
-인터럽트 처리는 복잡하지만 패킷 수신 처리에 따른 성능 문제를 이해하기 위해 필요하다. 그림 4에서 인터럽트 처리 과정을 볼 수 있다.
-
-networkstack4
-
-그림 4 인터럽트, softirq, 그리고 수신 패킷 처리
-
-CPU 0이 애플리케이션 프로그램(user program)을 실행하고 있다고 가정하자. 이때 NIC가 패킷을 수신하고 CPU 0을 인터럽트한다. CPU는 커널 인터럽트(흔히 irq라고 부른다) 핸들러를 실행한다. 이 핸들러가 인터럽트 번호를 보고 드라이버 인터럽트 핸들러를 호출한다. 드라이버는 전송된 패킷은 반환하고, 수신된 패킷을 처리하기 위해 napi_schedule() 함수를 호출한다. 이 함수가 softirq(소프트웨어 인터럽트)를 요청한다.
-
-드라이버 인터럽트 핸들러의 실행이 종료되면 커널 핸들러로 제어권이 돌아간다. 커널 핸들러가 softirq에 대한 인터럽트 핸들러를 실행시킨다.
-
-Interrupt context가 실행되었으니 softirq context가 실행될 차례이다. Interrupt context와 softirq context가 실행되는 스레드는 같다. 하지만 스택이 서로 다르다. 그리고 interrupt context는 하드웨어 인터럽트를 차단하지만, softirq context는 하드웨어 인터럽트를 허용한다.
-
-수신 패킷을 처리하는 softirq 핸들러는 net_rx_action() 함수이다. 이 함수는 드라이버의 poll() 함수를 호출한다. poll() 함수는 netif_receive_skb() 함수를 호출해서 수신 패킷을 한 개씩 상위 레이어로 보낸다. softirq 처리가 종료되면, 애플리케이션은 시스템 콜을 요청하기 위하여 중단했던 지점부터 다시 수행을 재개한다.
-
-따라서 인터럽트를 받은 CPU가 수신 패킷을 처음부터 끝까지 처리한다. Linux, BSD, Microsoft Windows 모두 기본으로 이와 같이 작동한다.
-
-패킷 수신을 많이 하는 서버 CPU 사용률을 보면 한 CPU만 열심히 softirq를 실행하는 현상을 종종 확인할 수 있다. 지금까지 설명한 수신 패킷 처리 방식 때문에 발생하는 현상이다. 이 문제를 풀기 위해 multi-queue NIC, RSS, RPS가 나왔다.
-
-데이터 구조체
-중요한 데이터 구조체 몇 개를 살펴보고 실제 코드를 따라가 보자.
-
-sk_buff 구조체
-첫째, 패킷을 의미하는 sk_buff 구조체 혹은 skb 구조체가 있다. 그림 5는 sk_buff 구조체의 일부를 보여준다. 기능이 발전되면서 이보다 더 복잡해졌지만 기본적으로 필요한 기능은 누구나 생각할 수 있는 것들이다.
-
-networkstack5
-
-그림 5 패킷 구조체 sk_buff
-
-패킷 데이터, 메타 데이터 포함
-패킷 데이터를 구조체가 직접 포함하고 있거나, 포인터를 사용해서 참조하고 있다. 그림 5에서는 패킷 일부는 (Ethernet부터 buffer까지) 데이터 포인터를 이용해 참조하고 있고, 추가 데이터(frags)는 실제 페이지를 참조하고 있다.
-
-메타 데이터 영역에는 헤더, 페이로드 길이 등 필요한 정보를 저장한다. 예를 들어, 그림 5에서 볼 수 있는 mac_header에는 Ethernet 헤더, network_header에는 IP 헤더, transport_header에는 TCP 헤더 시작 위치를 가리키고 있는 포인터 데이터가 있다. 이런 방식은 TCP 프로토콜 매우 편리하게 처리할 수 있게 한다.
-
-헤더 추가, 삭제
-네트워크 스택의 각 레이어를 왔다갔다하며 헤더를 추가, 삭제한다. 효율적으로 처리하기 위해 포인터들을 사용한다. 예를 들어, Ethernet 헤더를 제거하려면, head 포인터를 증가하면 된다.
-
-패킷 결합, 분리
-Socket buffer에 패킷 페이로드 데이터를 추가, 삭제, 또는 패킷 체인 같은 작업을 효율적으로 수행하기 위해 linked list를 사용한다. next, prev 포인터가 이 용도로 사용된다.
-
-빠른 할당(allocation)과 반환(free)
-패킷을 생성할 때마다 구조체를 할당하기 때문에 빠른 allocator를 사용한다. 예를 들어, 10 Gigabit Ethernet 속도로 데이터를 전송하면 초당 1백만 패킷 이상을 생성, 제거해야 한다.
-
-TCP control block
-둘째, TCP 연결을 대표하는 구조체가 있다. 앞서 추상적으로 TCP control block이라 불렀는데, Linux는 tcp_sock을 사용한다. 그림 7에서 file, socket과 tcp_sock 등이 어떤 관계에 있는지 알 수 있다.
-
-networkstack6
-
-그림 6 TCP 연결 구조체
-
-시스템 콜이 발생하면 시스템 콜을 호출한 애플리케이션이 사용하는 file descriptor에 있는 file을 찾는다. Unix 계열 운영체제에서는 socket, 저장을 위한 일반 files system 용 file, 디바이스 등 여러 가지를 모두 file로 추상화한다. 따라서 file 구조체는 최소한의 정보만 포함한다. Socket의 경우 별도 socket 구조체가 소켓 관련 정보를 저장하고, file은 socket을 포인터로 참조한다. Socket은 다시 tcp_sock을 참조한다. tcp_sock은 sock, inet_sock 등으로 세분화되어 있는데, TCP 외의 다양한 프로토콜을 지원하기 위해서다. 일종의 폴리모피즘과 비슷하다고 보면 되겠다.
-
-tcp_sock에는 TCP 프로토콜이 사용하는 모든 상태 정보를 저장한다. 예를 들어, 시퀀스 번호, receive window, congestion control, 재전송 타이머 등 정보가 모두 모여 있다.
-
-Send socket buffer와 receive socket buffer는 sk_buff 리스트이고, tcp_sock을 포함한다. IP routing 결과물인 dst_entry도 참조해서 매번 routing하지 않도록 한다. dst_entry를 사용해서 ARP 결과, 즉 목적지 MAC 주소도 쉽게 찾는다. dst_entry는 routing table의 일부이다. routing table의 구조는 상당히 복잡해서 이 글에서는 다루지 않겠다. dst_entry를 사용해서 패킷 송신에 사용해야 하는 NIC를 찾는다. NIC는 net_device 구조체로 표현한다.
-
-따라서 file만 찾으면 TCP 연결을 처리하는데 필요한 모든 구조체(file부터 드라이버까지)를 포인터로 쉽게 찾을 수 있다. 이들 구조체의 크기가 TCP 연결 하나가 사용하는 메모리의 양이다. 메모리의 양은 수 KB 정도(패킷 데이터 제외)다. 메모리 사용량도 기능이 추가되면서 꾸준히 증가했다.
-
-마지막으로 TCP 연결 lookup table이 있다. 해시 테이블(hash table)인데, 수신된 패킷이 속하는 TCP 연결을 찾는데 사용한다. 해시 값은 패킷의 <소스 IP, 타깃 IP, 소스 port, 타깃 port>를 입력 데이터로 하고, Jenkins hash 알고리즘을 사용해서 계산한다. 해시 함수는 해시 테이블 공격에 대한 방어를 고려해서 선택했다고 한다.
+        마지막으로 TCP 연결 lookup table이 있다. 해시 테이블(hash table)인데, 수신된 패킷이 속하는 TCP 연결을 찾는데 사용한다. 해시 값은 패킷의 <소스 IP, 타깃 IP, 소스 port, 타깃 port>를 입력 데이터로 하고, Jenkins hash 알고리즘을 사용해서 계산한다. 해시 함수는 해시 테이블 공격에 대한 방어를 고려해서 선택했다고 한다.
 </p>
       <p style="font-size:15px">
         UDP란?</br>
