@@ -223,7 +223,7 @@ comments: true
       </p>
       <p class="p_img">
           <img src="/asset/TD_img/TCP_IP_stack_6.JPG"></br>
-          <TCP 연결 구조체></br>
+          <TCP연결 조></br>
       </p>
       <p>
         시스템 콜이 발생하면 시스템 콜을 호출한 애플리케이션이 사용하는 file descriptor에 있는 file을 찾는다. Unix 계열 운영체제에서는 socket, 저장을 위한 일반 files system 용 file, 디바이스 등 여러 가지를 모두 file로 추상화한다. 따라서 file 구조체는 최소한의 정보만 포함한다. Socket의 경우 별도 socket 구조체가 소켓 관련 정보를 저장하고, file은 socket을 포인터로 참조한다. Socket은 다시 tcp_sock을 참조한다. tcp_sock은 sock, inet_sock 등으로 세분화되어 있는데, TCP 외의 다양한 프로토콜을 지원하기 위해서다. 일종의 폴리모피즘과 비슷하다고 보면 되겠다.</br>
