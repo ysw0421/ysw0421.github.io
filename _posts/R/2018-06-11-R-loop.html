@@ -52,15 +52,27 @@ a = apply(A,1,f)로 적용가능
 당면 목표가 개체별로 변수 값들의 최댓값을 구하는 것이라고 합시다.
 데이터 프레임은 평균이 100이고 표준 편차가 15인 정규분포 N(100,15)로부터 임의 생성된 모의자료이다.
 apply()함수를 써서 각 행의 최대값을 구하고 그것들의 분포를 히스토그램으로 구하는 스크립트
-n =100000
-m =100
-A = matrix(rnorm(n*m,100,15),n,m)
-tim = proc.time()
-a.1 = apply(A,1,max)
-proc.time() - time
-windows(height=5, width=6)
-hist(a.1, xlim=c(120,180),xlab="x.max",main="Histogram of Maximums")
 </p>
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/loop_1.R");
+        </script>
+      </code>
+      </pre>
 
 <p class="p_weight">2. lapply()</p></br>
 <p>
@@ -70,34 +82,55 @@ lapply()함수는 리스트 자료에 적용됩니다. 그리고 그 결과를 �
 자료 값으로 구성되어 있습니다. (m=100, 평균 = 100, 표준편차 = 15)
 한 예로서 이제 리스트 내 각 요소에 있는 Poisson(m)개 정규변량 자료값들의 최대값을 구해보기로 합니다.
 반환된 a.1의 클래스가 리스트라서 컴팩트하지 않습니다. unlist()함수를 써서 리스트인 a.1을 numeric 벡터로 바꾸었습니다. 
-n = 10000
-m = 100
-s = rpois(n, m)
-A = vector(mode="list",length=n)
-for(i in 1:n) A[[i]] = rnorm(s[i],100,15)
-time = proc.time()
-a.1 = lapply(A, max)
-proc.time() - time
-head(unlist(a.1),5)
 </p>
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/loop_2.R");
+        </script>
+      </code>
+      </pre>
 
 <p class="p_weight">3. sapply()</p></br>
 <p>
 sapply() 함수는 lapply()함수와 거의 같아서 용법도 lapply()함수와 같이 sapply(A,f,...)로 씁니다.
 그러나 반환되는 출력이 벡터 또는 행렬로 간결화 된다는 점이 다릅니다.
 a.1의 클래스가 numeric 벡터이므로 히스토그램을 그리는 hist()함수에 투입할 수 있습니다.
-n = 10000
-m = 100
-s = rpois(n, m)
-A = vector(mode="list",length=n)
-for(i in 1:n) A[[i]] = rnorm(s[i],100,15)
-time = proc.time()
-a.1 = sapply(A, max)
-proc.time() - time
-windows(height=5, width=6)
-hist(a.1, xlim=c(120,180),xlab="x.max",main="Histogram of Maximums")
-
-
+</p>
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/loop_3.R");
+        </script>
+      </code>
+      </pre>
+<p>
 다른 예 1.
 앞의 리스트 A에서 n(=10000)개 요소별로 Poisson(100)개 자료값들의 절삭평균(trimmed mean)을 구해봅시다. (절삭율 a = 0.1). 
 즉, 리스트의 각 요소에 적용할 함수는 mean(x, trim=0.1)입니다. 
@@ -133,67 +166,6 @@ rnorm(40,k,k)이면 될 것입니다. 따라서 이것이 1부터 100까지의 k
 x= mapply(rnorm, rep(40,100),1:100,1:100,SIMPLIFY=T)를 쓰면 40개 행, 100개 열의 행렬이 만들어집니다.
 
 연습문제 1. 앞에서 만들어진 행렬 x에 대하여, 다음 R 스크립트를 실행하는 경우 어떤 출력이 예상됩니까?
-mean.x = apply(X, 2, mean)
-sd.x = apply(X, 2, sd)
-head(cbind(mean.x, sd.x),5)
-tail(cbind(mean.x, sd.x),5)
-windows(height=5, width=6)
-plot(mean.x, main="Trend of Mean")
-windows(height=5, width=6)
-plot(sd.x, main="Trend of SD")
-</p>
-
-<p class="p_weight">5. tapply()</p></br>
-<p>
-tapply(x, grp, f)는 벡터 x 내 자료값들을 인자 grp의 수준별로 분할하고 분할된 자료에 함수 f를 적용하여 grp와 같은 길이의 벡터 또는 grp의 길이와 같은 수의 요소를
-갖는 리스트를 반환합니다. 따라서 이 함수는 수치 자료에 대한 통계적 집계 또는 요약에 자주 활용됩니다.
-n = 10000
-m = 100
-N = n*m
-x = rnorm(N,100,15)
-grp = sample(1:n, N, replace=T)
-time = proc.time()
-x.1 = tapply(x, grp, max)
-proc.time() - time
-
-루프
-R이 한번에 한 줄씩 소스 코드를 해석하여 실행하는 interpreter language입니다. 따라서 루프(loop)를 사용하는 경우 비효울이 발생합니다. 
-내장함수를 써서 루프를 대처할 수 있는 방안이 모색할 필요가 있습니다. 물론 모든 경우에 그런 것이 가능한 것은 아닙니다.
-1절의 예를 다시 생각해 봅시다. 
-데이터 프레임 A가 10000개 개체의 100개 변수로 구성되어 있고 목표는 개체별로 변수 값들의 최댓값을 구하는 것입니다.
-데이터 프레임은 평균 100이고 표준편차가 15인 정규분포 N(100,15)로 부터 임의생성된 모의자료입니다.
-이를 위한 가장 좋은 코딩은 apply()함수와  그 안에서 데이터 프레임 A의 행에 max()를 적용하는 것입니다.
-
-apply(), max()를 사용
-n = 100000
-m = 100
-A = matrix(rnorm(n*m,100, 15), n, m)
-time= proc.time()
-a.1 = apply(A,1,max)
-proc.time() - time
-
-apply(), max를 사용하지 않고 직접 코딩
-time=proc.time()
-a.1=matrix(0,n)
-for(i in 1:n){
-a.1[i] = A[i,1]
-for(j in 2:m) if(A[i,j]> a.1[i]) a.1[i] = A[i,j]
-}
-proc.time() -time
-
-최대값 부분을 사용자 함수로 정의하여 사용
-max.1 = function(x){
-	if(length(x)==1)return(x)
-	else{
-	for(j in 2:length(x)) if(x[1]<x[j]) x[1] = x[j]
-	}
-}
-
-time = proc.time()
-a.1 = rep(0,n)
-for (i in 1:n)a.1[i] = max.1(A[i,])
-proc.time() - time
-</p>
 </p>
       <pre>
       <code class="html" style="font-size:18px">
@@ -211,11 +183,64 @@ proc.time() - time
             }; 
             rawFile.send(null); 
           }
-          readTextFile("/R_code/factor_1.R");
+          readTextFile("/R_code/loop_4.R");
         </script>
       </code>
       </pre>
-      </p>
+<p class="p_weight">5. tapply()</p></br>
+<p>
+tapply(x, grp, f)는 벡터 x 내 자료값들을 인자 grp의 수준별로 분할하고 분할된 자료에 함수 f를 적용하여 grp와 같은 길이의 벡터 또는 grp의 길이와 같은 수의 요소를
+갖는 리스트를 반환합니다. 따라서 이 함수는 수치 자료에 대한 통계적 집계 또는 요약에 자주 활용됩니다.
+</p>
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/loop_5.R");
+        </script>
+      </code>
+      </pre>
+<p>
+루프
+R이 한번에 한 줄씩 소스 코드를 해석하여 실행하는 interpreter language입니다. 따라서 루프(loop)를 사용하는 경우 비효울이 발생합니다. 
+내장함수를 써서 루프를 대처할 수 있는 방안이 모색할 필요가 있습니다. 물론 모든 경우에 그런 것이 가능한 것은 아닙니다.
+1절의 예를 다시 생각해 봅시다. 
+데이터 프레임 A가 10000개 개체의 100개 변수로 구성되어 있고 목표는 개체별로 변수 값들의 최댓값을 구하는 것입니다.
+데이터 프레임은 평균 100이고 표준편차가 15인 정규분포 N(100,15)로 부터 임의생성된 모의자료입니다.
+이를 위한 가장 좋은 코딩은 apply()함수와  그 안에서 데이터 프레임 A의 행에 max()를 적용하는 것입니다.
+</p>
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/loop_6.R");
+        </script>
+      </code>
+      </pre>
     </a>
     <!--#################################################################################################-->
   </body>
