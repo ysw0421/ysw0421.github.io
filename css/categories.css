@@ -45,7 +45,18 @@ h3 {
     padding-bottom: 20px;
     font-weight: thin;
 }
-
+h2{
+        font-weight: 600;
+}
+p{
+    font-size:15px;
+}
+.p_weight{
+    font-weight: 600;
+}
+.p_img{
+    text-align:center;
+}
 pre {
     margin-top: -30px;
     margin-bottom: -30px;
@@ -117,7 +128,8 @@ ul:hover {
   float: left;
   margin-left: 40px;
   margin-top: 10px;
-}    
+}
+
 
 @media (max-width: 450px) {
 .description {
