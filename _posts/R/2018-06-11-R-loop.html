@@ -38,7 +38,7 @@ comments: true
   </head>
   <body>
     <!--#################################################################################################-->
-    <h3>TCP/IP network stack</h3>
+    <h3>R loop</h3>
     <a class="custom" style="font-size:24px;background-color: transparent;">
       </br>
       </br>
@@ -59,12 +59,9 @@ comments: true
       <p class="p_weight">
         1. Connection oriented</br>
       </p>
-      <p>
-        두 개 엔드포인트(로컬, 리모트) 사이에 연결을 먼저 맺고 데이터를 주고받는다. 여기서 'TCP 연결 식별자'는 두 엔드포인트의 주소를 합친 것으로, <로컬 IP 주소, 로컬 포트번호, 리모트 IP 주소, 리모트 포트번호> 형태이다.</br>
-데이터분석에서 여러 데이터세트에 동일한 처리가 적용 apply(),lapply(),sapply(),mapply(),tapply()
-다른 한 이유는 벡터화 연산 R이 한 번에 한 줄씩 소스 코드를 해석하여 실행하는 고수준 interpreter language이기 때문에 생기는 문제
-
-apply()
+      
+<h2>apply()</h2></br>
+<p>
 데이터 프레임 A의 n개 행 각각에 대하여 f라는 동일한 함수를 적용할 필요가 있을 때 사용.
 a = apply(A,1,f)로 적용가능
 두 번째 인수 값 "1"은 데이터 프레임 A의 각 행에 함수 f가 적용할 것을 지시합니다.
@@ -81,9 +78,10 @@ a.1 = apply(A,1,max)
 proc.time() - time
 windows(height=5, width=6)
 hist(a.1, xlim=c(120,180),xlab="x.max",main="Histogram of Maximums")
+</p>
 
-
-lapply()
+<h2>lapply()</h2></br>
+<p>
 lapply()함수는 리스트 자료에 적용됩니다. 그리고 그 결과를 리스트로 반환합니다. 용법은 lapply(A,f,...)입니다.
 여기서 A는 n개 요소로 구성된 리스트이고 f는 리스트 A의 각 요소에 적용할 함수입니다. "..."부분은 필요에 따라 지정되는 함수 f의 인수입니다.
 한 예로서 다음과 같이 임의 생성된 리스트 자료를 생각하기로 합시다. 리스트 A는 개체(요소) 수가 10000 (=n)개이고 각 개체는 Poisson(m)개의 N
@@ -99,8 +97,10 @@ time = proc.time()
 a.1 = lapply(A, max)
 proc.time() - time
 head(unlist(a.1),5)
+</p>
 
-sapply()
+<h2>sapply()</h2></br>
+<p>
 sapply() 함수는 lapply()함수와 거의 같아서 용법도 lapply()함수와 같이 sapply(A,f,...)로 씁니다.
 그러나 반환되는 출력이 벡터 또는 행렬로 간결화 된다는 점이 다릅니다.
 a.1의 클래스가 numeric 벡터이므로 히스토그램을 그리는 hist()함수에 투입할 수 있습니다.
@@ -139,9 +139,10 @@ head(a.3, 5)
 a.3 = sapply(A,range)
 str(a.3)
 head(t(a.3),5)
+</p>
 
-
-mapply()
+<h2>mapply()</h2></br>
+<p>
 mapply()함수는 함수 f를 여러 번 적용하는 경우에 효과적인 쓰일 수 있습니다.
 a,b,c,가 길이 n의 벡터라고 할 때 mapply(f,a,b,c)는 f(ai,bi,ci), i = 1,2,...,n을 계산하여 
 "SIMPLIFY=F"이면 리스트(list)로, "SIMPLIFY=T"이면 벡터 또는 행렬을 반환합니다.
@@ -158,9 +159,10 @@ windows(height=5, width=6)
 plot(mean.x, main="Trend of Mean")
 windows(height=5, width=6)
 plot(sd.x, main="Trend of SD")
+</p>
 
-
-tapply()
+<h2>tapply()</h2></br>
+<p>
 tapply(x, grp, f)는 벡터 x 내 자료값들을 인자 grp의 수준별로 분할하고 분할된 자료에 함수 f를 적용하여 grp와 같은 길이의 벡터 또는 grp의 길이와 같은 수의 요소를
 갖는 리스트를 반환합니다. 따라서 이 함수는 수치 자료에 대한 통계적 집계 또는 요약에 자주 활용됩니다.
 n = 10000
@@ -209,7 +211,8 @@ time = proc.time()
 a.1 = rep(0,n)
 for (i in 1:n)a.1[i] = max.1(A[i,])
 proc.time() - time
-					    
+</p>
+</p>
       <pre>
       <code class="html" style="font-size:18px">
         <script type="text/javascript">
