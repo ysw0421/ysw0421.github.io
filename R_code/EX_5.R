@@ -17,6 +17,3 @@ classified[which(sapply(classified,length)==max(sapply(classified,length)))]
 # 활동년 가장 큰 선수의 ERA추세
 ERA = Pitching$ERA[Pitching$playerID==names(classified[which(sapply(classified,length)==max(sapply(classified,length)))])]
 plot(ERA,type="o")
-
-# SET 4 5번 문제
-# ???????????? 이건 정말 모르겠습니다...
