@@ -1,7 +1,7 @@
-#7.2절의 예 1과 2의 프로그램을 while문을 사용하여 구현하라.
-#7.2_1
-#야구 1이닝에서 히트 수 구하기
-#아웃이 3개명 이닝 종료
+# Implement the program in examples 1 and 2 in section 7.2 using the while statement.
+# 7.2_1
+# Get the number of hits in 1 baseball
+# Out of 3 names ending
 outs = 0
 hits = 0
 while(outs<=3){
@@ -12,9 +12,9 @@ while(outs<=3){
   else 
     outs= outs+1
 }
-#7.2_2
-# 매 게임당 1$씩 배팅하다가 털리면 정지되는 도박
-# 3달러가지고 시작 획득 40% 1$ 손실 60% -1$
+# 7.2_2
+# Betting $ 1 per game
+# Get Started with $ 3 $ 40% 1 $ Loss 60% -1 $
 positions = 3
 count = 1
 while(positions>0){
