@@ -69,7 +69,7 @@ apply()함수를 써서 각 행의 최대값을 구하고 그것들의 분포를
             }; 
             rawFile.send(null); 
           }
-          readTextFile("/R_code/loop_1.R");
+          readTextFile("/R_code/EX_1.R");
         </script>
       </code>
       </pre>
@@ -99,7 +99,7 @@ lapply()함수는 리스트 자료에 적용됩니다. 그리고 그 결과를 �
             }; 
             rawFile.send(null); 
           }
-          readTextFile("/R_code/loop_2.R");
+          readTextFile("/R_code/EX_2.R");
         </script>
       </code>
       </pre>
@@ -126,7 +126,7 @@ a.1의 클래스가 numeric 벡터이므로 히스토그램을 그리는 hist()�
             }; 
             rawFile.send(null); 
           }
-          readTextFile("/R_code/loop_3.R");
+          readTextFile("/R_code/EX_3.R");
         </script>
       </code>
       </pre>
@@ -184,7 +184,7 @@ x= mapply(rnorm, rep(40,100),1:100,1:100,SIMPLIFY=T)를 쓰면 40개 행, 100개
             }; 
             rawFile.send(null); 
           }
-          readTextFile("/R_code/loop_4.R");
+          readTextFile("/R_code/EX_4.R");
         </script>
       </code>
       </pre>
@@ -209,40 +209,11 @@ tapply(x, grp, f)는 벡터 x 내 자료값들을 인자 grp의 수준별로 분
             }; 
             rawFile.send(null); 
           }
-          readTextFile("/R_code/loop_5.R");
+          readTextFile("/R_code/EX_5.R");
         </script>
       </code>
       </pre>
-<p class="p_weight">6. 루프</p></br>
-<p>
-R이 한번에 한 줄씩 소스 코드를 해석하여 실행하는 interpreter language입니다. 따라서 루프(loop)를 사용하는 경우 비효울이 발생합니다. 
-내장함수를 써서 루프를 대처할 수 있는 방안이 모색할 필요가 있습니다. 물론 모든 경우에 그런 것이 가능한 것은 아닙니다.
-1절의 예를 다시 생각해 봅시다. </br>
-데이터 프레임 A가 10000개 개체의 100개 변수로 구성되어 있고 목표는 개체별로 변수 값들의 최댓값을 구하는 것입니다.
-데이터 프레임은 평균 100이고 표준편차가 15인 정규분포 N(100,15)로 부터 임의생성된 모의자료입니다.
-이를 위한 가장 좋은 코딩은 apply()함수와  그 안에서 데이터 프레임 A의 행에 max()를 적용하는 것입니다.
-</br>
 </p>
-      <pre>
-      <code class="html" style="font-size:18px">
-        <script type="text/javascript">
-          function readTextFile(file) { 
-            var rawFile = new XMLHttpRequest();
-            rawFile.open("GET", file, false);
-            rawFile.onreadystatechange = function () { 
-              if(rawFile.readyState === 4) { 
-                if(rawFile.status === 200 || rawFile.status == 0) { 
-                  var allText = "\n" + rawFile.responseText; 
-                  document.write(allText);
-                } 
-              } 
-            }; 
-            rawFile.send(null); 
-          }
-          readTextFile("/R_code/loop_6.R");
-        </script>
-      </code>
-      </pre>
     </a>
     <!--#################################################################################################-->
   </body>
