@@ -209,6 +209,27 @@ time = proc.time()
 a.1 = rep(0,n)
 for (i in 1:n)a.1[i] = max.1(A[i,])
 proc.time() - time
+					    
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/factor_1.R");
+        </script>
+      </code>
+      </pre>
       </p>
     </a>
     <!--#################################################################################################-->
