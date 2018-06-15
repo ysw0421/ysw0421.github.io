@@ -25,7 +25,9 @@ comments: true
     <a class="custom" style="background-color: transparent;">
       R에서 "factor"는 범주형 변수(벡터) or 비연속적 변수(벡터)를 지칭합니다. 인자 벡터는 문자열 벡터로부터 또는 수치형 벡터로부터 생성될 수 있습니다.
       "factor"는 범주형 데이터를 표현하는데 사용됩니다. 범주형 데이터는 유한한 수의 범주 or 고유 그룹이 포함됩니다. 범주형 데이터에는 논리적 순서가 없을 수도 있습니다. 
-      예를 들어, 성별, 재료, 유형, 결제 방법이 이에 해당됩니다. 수치형 벡터로 생성된 "factor"는 level으로 알려진 사전에 정의된 집합값만 담을 수 있다.<br>
+      예를 들어, 성별, 재료, 유형, 결제 방법이 이에 해당됩니다. 수치형 벡터로 생성된 "factor"는 level으로 알려진 사전에 정의된 집합값만 담을 수 있다.</br>
+    </br>
+    </br>
       <pre>
       <code class="html" style="font-size:18px">
         <script type="text/javascript">
@@ -47,23 +49,25 @@ comments: true
       </code>
       </pre>
       <iframe src="/asset/r/factor_1.JPG" scrolling="auto" width=100% height="auto" marginwidth=0 marginheight=0 frameborder=0></iframe>
-    <br>
-    <br>
+    </br>
+    </br>
   table() 함수는 빈도표를 만들어 냅니다. addmargins() 함수는 빈도표의 주변 합을 테이블에 추가합니다.<br>
     <iframe src="/asset/r/factor_2.JPG" scrolling="auto" width=50% height="auto" marginwidth=0 marginheight=0 frameborder=0></iframe>
     <iframe src="/asset/r/factor_3.JPG" scrolling="auto" width=50% height="auto" marginwidth=0 marginheight=0 frameborder=0></iframe>
-    <br>
-    <br>
+    </br>
+    </br>
   tapply(x, f, function)는 x를 f의 수준 별로 쪼개서 function을 적용합니다.<br>
 sppaly()와 split()은 쪼갬의 대상이 벡터가 아니라 데이터 프레임인 경우에 사용한다.<br>
     <iframe src="/asset/r/factor_4.JPG" scrolling="auto" width=100% marginwidth=0 marginheight=0 frameborder=0></iframe>
-    <br>
-    <br>
+    </br>
+    </br>
   aggregate(x,list(f,g),function)은 x(벡터 or dataframe)를 f와 g의 조합으로 쪼개서 function을 적용합니다. 즉, 종합하고 집계합니다.
-    <br>
+    </br>
   cut(x, 0:10)은 벡터 x를 0:10로 쪼개서 factor 변수로 만드는, 소위 구간화(binning)을 합니다. 
       (x,y)의 산점도에 x의 구간별 평균을 막대로 넣어 구간별 평균의 이동을 산출하는 R 스크립트입니다.
-    <br>
+    </br>
+    </br>
+    </br>
       <pre>
       <code class="html" style="font-size:18px">
         <script type="text/javascript">
