@@ -1,15 +1,79 @@
-�����ͺм����� ���� �����ͼ�Ʈ�� ������ ó���� ���� apply(),lapply(),sapply(),mapply(),tapply()
-�ٸ� �� ������ ����ȭ ���� R�� �� ���� �� �پ� �ҽ� �ڵ带 �ؼ��Ͽ� �����ϴ� ������ interpreter language�̱� ������ ����� ����
+---
+layout: post
+title: R-loop
+meta: R-loop
+category: R
+comments: true
+---
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+      h3{ font-family: 'Hanna'; 
+          font-weight: 600;
+          font-size: 36pt;
+          color:black;
+      }
+      h2{
+        font-weight: 600;
+      }
+      h1{
+        font-weight: 600;
+        color:black;
+      }
+      p{
+        font-size:15px;
+      }
+      .p_weight{
+        font-weight: 600;
+      }
+      .p_img{
+        text-align:center;
+      }
+    </style>
+  </head>
+  <body>
+    <!--#################################################################################################-->
+    <h3>TCP/IP network stack</h3>
+    <a class="custom" style="font-size:24px;background-color: transparent;">
+      </br>
+      </br>
+      <h1>TCP/IP 네트워크 스택 이해하기</h1></br>
+      <p>
+        TCP/IP 없는 인터넷 서비스는 상상할 수 없습니다. 우리가 개발하고 사용하는 모든 인터넷 서비스는 TCP/IP라는 튼튼한 토대에 기반하고 있습니다.</br>
+        어떻게 네트워크를 통해 데이터가 오가는지를 이해하면, 튜닝 등을 통한 성능 개선이나 트러블 슈팅, 신기술 도입 등에 많은 도움이 됩니다.</br>
+        이 글에서는 Linux 운영체제와 하드웨어 레이어에서의 데이터 흐름과 제어 흐름을 바탕으로 네트워크 스택에 대한 전반적인 작동 방식을 알아보겠습니다.</br>
+      </p>
+        <!--#######################-->
+        <h2>TCP/IP의 중요한 성질</h2></br>
+      <p>
+        데이터의 순서가 바뀌지 않으면서 데이터가 유실되지 않도록 가급적 빠르게 데이터를 보내려면 네트워크 프로토콜을 어떻게 설계해야 할까?</br> 
+        TCP/IP는 이런 고민 아래 설계된 것이다. 다음은 스택을 이해하는데 필요한 TCP/IP의 중요한 성질이다.</br>
+        TCP와 IP</br>
+        엄밀히 말해 TCP와 IP는 서로 다른 레이어의 것이라 분리해서 이해하는 것이 옳지만, 이해의 편의상 여기서는이 장에서는 둘을 분리하지 않고 설명한다.</br>
+      </p>
+      <p class="p_weight">
+        1. Connection oriented</br>
+      </p>
+      <p>
+        두 개 엔드포인트(로컬, 리모트) 사이에 연결을 먼저 맺고 데이터를 주고받는다. 여기서 'TCP 연결 식별자'는 두 엔드포인트의 주소를 합친 것으로, <로컬 IP 주소, 로컬 포트번호, 리모트 IP 주소, 리모트 포트번호> 형태이다.</br>
+      </p>
+데이터분석에서 여러 데이터세트에 동일한 처리가 적용 apply(),lapply(),sapply(),mapply(),tapply()
+다른 한 이유는 벡터화 연산 R이 한 번에 한 줄씩 소스 코드를 해석하여 실행하는 고수준 interpreter language이기 때문에 생기는 문제
 
 apply()
-������ ������ A�� n�� �� ������ ���Ͽ� f��� ������ �Լ��� ������ �ʿ䰡 ���� �� ���.
-a = apply(A,1,f)�� ���밡��
-�� ��° �μ� �� "1"�� ������ ������ A�� �� �࿡ �Լ� f�� ������ ���� �����մϴ�.
-���� ex)
-�� ���μ� ������ ������ A�� 10,000�� ��ü�� 100�� ������ �����Ǿ� �ְ� 
-��� ��ǥ�� ��ü���� ���� ������ �ִ��� ���ϴ� ���̶�� �սô�.
-������ �������� ����� 100�̰� ǥ�� ������ 15�� ���Ժ��� N(100,15)�κ��� ���� ������ �����ڷ��̴�.
-apply()�Լ��� �Ἥ �� ���� �ִ밪�� ���ϰ� �װ͵��� ������ ������׷����� ���ϴ� ��ũ��Ʈ
+데이터 프레임 A의 n개 행 각각에 대하여 f라는 동일한 함수를 적용할 필요가 있을 때 사용.
+a = apply(A,1,f)로 적용가능
+두 번째 인수 값 "1"은 데이터 프레임 A의 각 행에 함수 f가 적용할 것을 지시합니다.
+예시 ex)
+한 예로서 데이터 프레임 A가 10,000개 개체의 100개 변수로 구성되어 있고 
+당면 목표가 개체별로 변수 값들의 최댓값을 구하는 것이라고 합시다.
+데이터 프레임은 평균이 100이고 표준 편차가 15인 정규분포 N(100,15)로부터 임의 생성된 모의자료이다.
+apply()함수를 써서 각 행의 최대값을 구하고 그것들의 분포를 히스토그램으로 구하는 스크립트
 n =100000
 m =100
 A = matrix(rnorm(n*m,100,15),n,m)
@@ -21,12 +85,12 @@ hist(a.1, xlim=c(120,180),xlab="x.max",main="Histogram of Maximums")
 
 
 lapply()
-lapply()�Լ��� ����Ʈ �ڷῡ ����˴ϴ�. �׸��� �� ����� ����Ʈ�� ��ȯ�մϴ�. ����� lapply(A,f,...)�Դϴ�.
-���⼭ A�� n�� ��ҷ� ������ ����Ʈ�̰� f�� ����Ʈ A�� �� ��ҿ� ������ �Լ��Դϴ�. "..."�κ��� �ʿ信 ���� �����Ǵ� �Լ� f�� �μ��Դϴ�.
-�� ���μ� ������ ���� ���� ������ ����Ʈ �ڷḦ �����ϱ�� �սô�. ����Ʈ A�� ��ü(���) ���� 10000 (=n)���̰� �� ��ü�� Poisson(m)���� N
-�ڷ� ������ �����Ǿ� �ֽ��ϴ�. (m=100, ��� = 100, ǥ������ = 15)
-�� ���μ� ���� ����Ʈ �� �� ��ҿ� �ִ� Poisson(m)�� ���Ժ��� �ڷᰪ���� �ִ밪�� ���غ���� �մϴ�.
-��ȯ�� a.1�� Ŭ������ ����Ʈ�� ����Ʈ���� �ʽ��ϴ�. unlist()�Լ��� �Ἥ ����Ʈ�� a.1�� numeric ���ͷ� �ٲپ����ϴ�. 
+lapply()함수는 리스트 자료에 적용됩니다. 그리고 그 결과를 리스트로 반환합니다. 용법은 lapply(A,f,...)입니다.
+여기서 A는 n개 요소로 구성된 리스트이고 f는 리스트 A의 각 요소에 적용할 함수입니다. "..."부분은 필요에 따라 지정되는 함수 f의 인수입니다.
+한 예로서 다음과 같이 임의 생성된 리스트 자료를 생각하기로 합시다. 리스트 A는 개체(요소) 수가 10000 (=n)개이고 각 개체는 Poisson(m)개의 N
+자료 값으로 구성되어 있습니다. (m=100, 평균 = 100, 표준편차 = 15)
+한 예로서 이제 리스트 내 각 요소에 있는 Poisson(m)개 정규변량 자료값들의 최대값을 구해보기로 합니다.
+반환된 a.1의 클래스가 리스트라서 컴팩트하지 않습니다. unlist()함수를 써서 리스트인 a.1을 numeric 벡터로 바꾸었습니다. 
 n = 10000
 m = 100
 s = rpois(n, m)
@@ -38,9 +102,9 @@ proc.time() - time
 head(unlist(a.1),5)
 
 sapply()
-sapply() �Լ��� lapply()�Լ��� ���� ���Ƽ� ����� lapply()�Լ��� ���� sapply(A,f,...)�� ���ϴ�.
-�׷��� ��ȯ�Ǵ� ����� ���� �Ǵ� ��ķ� ����ȭ �ȴٴ� ���� �ٸ��ϴ�.
-a.1�� Ŭ������ numeric �����̹Ƿ� ������׷��� �׸��� hist()�Լ��� ������ �� �ֽ��ϴ�.
+sapply() 함수는 lapply()함수와 거의 같아서 용법도 lapply()함수와 같이 sapply(A,f,...)로 씁니다.
+그러나 반환되는 출력이 벡터 또는 행렬로 간결화 된다는 점이 다릅니다.
+a.1의 클래스가 numeric 벡터이므로 히스토그램을 그리는 hist()함수에 투입할 수 있습니다.
 n = 10000
 m = 100
 s = rpois(n, m)
@@ -53,23 +117,23 @@ windows(height=5, width=6)
 hist(a.1, xlim=c(120,180),xlab="x.max",main="Histogram of Maximums")
 
 
-�ٸ� �� 1.
-���� ����Ʈ A���� n(=10000)�� ��Һ��� Poisson(100)�� �ڷᰪ���� �������(trimmed mean)�� ���غ��ô�. (������ a = 0.1). 
-��, ����Ʈ�� �� ��ҿ� ������ �Լ��� mean(x, trim=0.1)�Դϴ�. 
-�̷� ���� lapply() �Լ��� �� 3�� �μ��� "trim=0.1"�� �ֽ��ϴ�.
+다른 예 1.
+앞의 리스트 A에서 n(=10000)개 요소별로 Poisson(100)개 자료값들의 절삭평균(trimmed mean)을 구해봅시다. (절삭율 a = 0.1). 
+즉, 리스트의 각 요소에 적용할 함수는 mean(x, trim=0.1)입니다. 
+이런 때는 lapply() 함수에 제 3의 인수로 "trim=0.1"을 넣습니다.
 a.2 = lapply(A, mean, trim=0.1)
 head(a.2, 5)
 
-sapply() �Լ��� ���� ��쵵 ���������� ��3�� �μ��� "trim=0.1"�� �ֽ��ϴ�.
-sapply()�� ��ȯ ���� lapply()�� ��ȯ ������ ����մϴ�.
+sapply() 함수를 쓰는 경우도 마찬가지로 제3의 인수로 "trim=0.1"을 넣습니다.
+sapply()의 반환 값이 lapply()의 반환 값보다 깔끔합니다.
 a.2 = sapply(A, mean, trim=0.1)
 head(a.2, 5)
 
 
-�ٸ� �� 2.
-���� ����Ʈ A���� n(=10000)�� ��Һ��� Poisson(100)�� �ڷᰪ���� ����(range). ��, (min, max)�� ���Ͽ����ô�. 
-������ �Լ��� ���� 2�� ���͸� ��ȯ�ϴ� range(x)�Դϴ�.
-lapply()�� ��ȯ ���� ���� 10000�� ����Ʈ�̸� ����Ʈ�� ��ȯ ���� 2xn ����̸� �� ����� �� ���� 2�� �� - min�� max - �� �����˴ϴ�.
+다른 예 2.
+앞의 리스트 A에서 n(=10000)개 요소별로 Poisson(100)개 자료값들의 범위(range). 즉, (min, max)를 구하여봅시다. 
+적용할 함수는 길이 2의 벡터를 반환하는 range(x)입니다.
+lapply()의 반환 값은 길이 10000의 리스트이며 리스트의 반환 값은 2xn 행렬이며 각 행렬의 각 열의 2개 값 - min과 max - 로 구성됩니다.
 a.3 = lapply(A, range)
 head(a.3, 5)
 
@@ -79,14 +143,14 @@ head(t(a.3),5)
 
 
 mapply()
-mapply()�Լ��� �Լ� f�� ���� �� �����ϴ� ��쿡 ȿ������ ���� �� �ֽ��ϴ�.
-a,b,c,�� ���� n�� ���Ͷ�� �� �� mapply(f,a,b,c)�� f(ai,bi,ci), i = 1,2,...,n�� ����Ͽ� 
-"SIMPLIFY=F"�̸� ����Ʈ(list)��, "SIMPLIFY=T"�̸� ���� �Ǵ� ����� ��ȯ�մϴ�.
-������, �� k(=1,2,...,100)�� ���Ͽ�, ���Ժ��� N(k,k)���� 40���� �������� ���� �����Ͽ� ���ô�. ����, �̰��� 1���� k�� ���Ͽ� �����Ѵٸ�
-rnorm(40,k,k)�̸� �� ���Դϴ�. ���� �̰��� 1���� 100������ k�� ���Ͽ� �ݺ��Ǿ�� �ϹǷ�
-x= mapply(rnorm, rep(40,100),1:100,1:100,SIMPLIFY=T)�� ���� 40�� ��, 100�� ���� ����� ��������ϴ�.
+mapply()함수는 함수 f를 여러 번 적용하는 경우에 효과적인 쓰일 수 있습니다.
+a,b,c,가 길이 n의 벡터라고 할 때 mapply(f,a,b,c)는 f(ai,bi,ci), i = 1,2,...,n을 계산하여 
+"SIMPLIFY=F"이면 리스트(list)로, "SIMPLIFY=T"이면 벡터 또는 행렬을 반환합니다.
+예컨대, 각 k(=1,2,...,100)에 대하여, 정규분포 N(k,k)에서 40개의 관측값을 임의 생성하여 봅시다. 만약, 이것이 1개의 k에 대하여 국한한다면
+rnorm(40,k,k)이면 될 것입니다. 따라서 이것이 1부터 100까지의 k에 대하여 반복되어야 하므로
+x= mapply(rnorm, rep(40,100),1:100,1:100,SIMPLIFY=T)를 쓰면 40개 행, 100개 열의 행렬이 만들어집니다.
 
-�������� 1. �տ��� ������� ��� x�� ���Ͽ�, ���� R ��ũ��Ʈ�� �����ϴ� ��� � ����� ����˴ϱ�?
+연습문제 1. 앞에서 만들어진 행렬 x에 대하여, 다음 R 스크립트를 실행하는 경우 어떤 출력이 예상됩니까?
 mean.x = apply(X, 2, mean)
 sd.x = apply(X, 2, sd)
 head(cbind(mean.x, sd.x),5)
@@ -98,8 +162,8 @@ plot(sd.x, main="Trend of SD")
 
 
 tapply()
-tapply(x, grp, f)�� ���� x �� �ڷᰪ���� ���� grp�� ���غ��� �����ϰ� ���ҵ� �ڷῡ �Լ� f�� �����Ͽ� grp�� ���� ������ ���� �Ǵ� grp�� ���̿� ���� ���� ��Ҹ�
-���� ����Ʈ�� ��ȯ�մϴ�. ���� �� �Լ��� ��ġ �ڷῡ ���� ����� ���� �Ǵ� ��࿡ ���� Ȱ��˴ϴ�.
+tapply(x, grp, f)는 벡터 x 내 자료값들을 인자 grp의 수준별로 분할하고 분할된 자료에 함수 f를 적용하여 grp와 같은 길이의 벡터 또는 grp의 길이와 같은 수의 요소를
+갖는 리스트를 반환합니다. 따라서 이 함수는 수치 자료에 대한 통계적 집계 또는 요약에 자주 활용됩니다.
 n = 10000
 m = 100
 N = n*m
@@ -109,15 +173,15 @@ time = proc.time()
 x.1 = tapply(x, grp, max)
 proc.time() - time
 
-����
-R�� �ѹ��� �� �پ� �ҽ� �ڵ带 �ؼ��Ͽ� �����ϴ� interpreter language�Դϴ�. ���� ����(loop)�� ����ϴ� ��� ��ȿ���� �߻��մϴ�. 
-�����Լ��� �Ἥ ������ ��ó�� �� �ִ� ����� ����� �ʿ䰡 �ֽ��ϴ�. ���� ��� ��쿡 �׷� ���� ������ ���� �ƴմϴ�.
-1���� ���� �ٽ� ������ ���ô�. 
-������ ������ A�� 10000�� ��ü�� 100�� ������ �����Ǿ� �ְ� ��ǥ�� ��ü���� ���� ������ �ִ��� ���ϴ� ���Դϴ�.
-������ �������� ��� 100�̰� ǥ�������� 15�� ���Ժ��� N(100,15)�� ���� ���ǻ����� �����ڷ��Դϴ�.
-�̸� ���� ���� ���� �ڵ��� apply()�Լ���  �� �ȿ��� ������ ������ A�� �࿡ max()�� �����ϴ� ���Դϴ�.
+루프
+R이 한번에 한 줄씩 소스 코드를 해석하여 실행하는 interpreter language입니다. 따라서 루프(loop)를 사용하는 경우 비효울이 발생합니다. 
+내장함수를 써서 루프를 대처할 수 있는 방안이 모색할 필요가 있습니다. 물론 모든 경우에 그런 것이 가능한 것은 아닙니다.
+1절의 예를 다시 생각해 봅시다. 
+데이터 프레임 A가 10000개 개체의 100개 변수로 구성되어 있고 목표는 개체별로 변수 값들의 최댓값을 구하는 것입니다.
+데이터 프레임은 평균 100이고 표준편차가 15인 정규분포 N(100,15)로 부터 임의생성된 모의자료입니다.
+이를 위한 가장 좋은 코딩은 apply()함수와  그 안에서 데이터 프레임 A의 행에 max()를 적용하는 것입니다.
 
-apply(), max()�� ���
+apply(), max()를 사용
 n = 100000
 m = 100
 A = matrix(rnorm(n*m,100, 15), n, m)
@@ -125,7 +189,7 @@ time= proc.time()
 a.1 = apply(A,1,max)
 proc.time() - time
 
-apply(), max�� ������� �ʰ� ���� �ڵ�
+apply(), max를 사용하지 않고 직접 코딩
 time=proc.time()
 a.1=matrix(0,n)
 for(i in 1:n){
@@ -134,7 +198,7 @@ for(j in 2:m) if(A[i,j]> a.1[i]) a.1[i] = A[i,j]
 }
 proc.time() -time
 
-�ִ밪 �κ��� ����� �Լ��� �����Ͽ� ���
+최대값 부분을 사용자 함수로 정의하여 사용
 max.1 = function(x){
 	if(length(x)==1)return(x)
 	else{
