@@ -60,7 +60,7 @@ comments: true
         1. Connection oriented</br>
       </p>
       
-<h2>apply()</h2></br>
+<p class="p_weight">apply()</p></br>
 <p>
 데이터 프레임 A의 n개 행 각각에 대하여 f라는 동일한 함수를 적용할 필요가 있을 때 사용.
 a = apply(A,1,f)로 적용가능
@@ -80,7 +80,7 @@ windows(height=5, width=6)
 hist(a.1, xlim=c(120,180),xlab="x.max",main="Histogram of Maximums")
 </p>
 
-<h2>lapply()</h2></br>
+<p class="p_weight">lapply()</p></br>
 <p>
 lapply()함수는 리스트 자료에 적용됩니다. 그리고 그 결과를 리스트로 반환합니다. 용법은 lapply(A,f,...)입니다.
 여기서 A는 n개 요소로 구성된 리스트이고 f는 리스트 A의 각 요소에 적용할 함수입니다. "..."부분은 필요에 따라 지정되는 함수 f의 인수입니다.
@@ -99,7 +99,7 @@ proc.time() - time
 head(unlist(a.1),5)
 </p>
 
-<h2>sapply()</h2></br>
+<p class="p_weight">sapply()</p></br>
 <p>
 sapply() 함수는 lapply()함수와 거의 같아서 용법도 lapply()함수와 같이 sapply(A,f,...)로 씁니다.
 그러나 반환되는 출력이 벡터 또는 행렬로 간결화 된다는 점이 다릅니다.
@@ -141,7 +141,7 @@ str(a.3)
 head(t(a.3),5)
 </p>
 
-<h2>mapply()</h2></br>
+<p class="p_weight">mapply()</p></br>
 <p>
 mapply()함수는 함수 f를 여러 번 적용하는 경우에 효과적인 쓰일 수 있습니다.
 a,b,c,가 길이 n의 벡터라고 할 때 mapply(f,a,b,c)는 f(ai,bi,ci), i = 1,2,...,n을 계산하여 
@@ -161,7 +161,7 @@ windows(height=5, width=6)
 plot(sd.x, main="Trend of SD")
 </p>
 
-<h2>tapply()</h2></br>
+<p class="p_weight">tapply()</p></br>
 <p>
 tapply(x, grp, f)는 벡터 x 내 자료값들을 인자 grp의 수준별로 분할하고 분할된 자료에 함수 f를 적용하여 grp와 같은 길이의 벡터 또는 grp의 길이와 같은 수의 요소를
 갖는 리스트를 반환합니다. 따라서 이 함수는 수치 자료에 대한 통계적 집계 또는 요약에 자주 활용됩니다.
