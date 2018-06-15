@@ -1,0 +1,249 @@
+---
+layout: post
+title: R Comprehensive questions and solutions
+meta: loop
+category: R
+comments: true
+---
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+      h3{ font-family: 'Hanna'; 
+          font-weight: 600;
+          font-size: 36pt;
+          color:black;
+      }
+      h2{
+        font-weight: 600;
+      }
+      h1{
+        font-weight: 600;
+        color:black;
+      }
+      p{
+        font-size:15px;
+      }
+      .p_weight{
+        font-weight: 600;
+      }
+      .p_img{
+        text-align:center;
+      }
+    </style>
+  </head>
+  <body>
+    <!--#################################################################################################-->
+    <h3>R loop</h3>
+    <a class="custom" style="font-size:24px;background-color: transparent;">
+      </br>
+      </br>
+<p class="p_weight">1. apply()</p></br>
+<p>
+데이터 프레임 A의 n개 행 각각에 대하여 f라는 동일한 함수를 적용할 필요가 있을 때 사용.</br>
+a = apply(A,1,f)로 적용가능</br>
+두 번째 인수 값 "1"은 데이터 프레임 A의 각 행에 함수 f가 적용할 것을 지시합니다.</br>
+예시 ex)</br>
+한 예로서 데이터 프레임 A가 10,000개 개체의 100개 변수로 구성되어 있고 </br>
+당면 목표가 개체별로 변수 값들의 최댓값을 구하는 것이라고 합시다.</br>
+데이터 프레임은 평균이 100이고 표준 편차가 15인 정규분포 N(100,15)로부터 임의 생성된 모의자료이다.</br>
+apply()함수를 써서 각 행의 최대값을 구하고 그것들의 분포를 히스토그램으로 구하는 스크립트</br>
+</p>
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/loop_1.R");
+        </script>
+      </code>
+      </pre>
+
+<p class="p_weight">2. lapply()</p></br>
+<p>
+lapply()함수는 리스트 자료에 적용됩니다. 그리고 그 결과를 리스트로 반환합니다. 용법은 lapply(A,f,...)입니다.</br>
+여기서 A는 n개 요소로 구성된 리스트이고 f는 리스트 A의 각 요소에 적용할 함수입니다. "..."부분은 필요에 따라 지정되는 함수 f의 인수입니다.</br>
+한 예로서 다음과 같이 임의 생성된 리스트 자료를 생각하기로 합시다. 리스트 A는 개체(요소) 수가 10000 (=n)개이고 각 개체는 Poisson(m)개의 N
+자료 값으로 구성되어 있습니다. (m=100, 평균 = 100, 표준편차 = 15)</br>
+한 예로서 이제 리스트 내 각 요소에 있는 Poisson(m)개 정규변량 자료값들의 최대값을 구해보기로 합니다.</br>
+반환된 a.1의 클래스가 리스트라서 컴팩트하지 않습니다. unlist()함수를 써서 리스트인 a.1을 numeric 벡터로 바꾸었습니다. </br>
+</p>
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/loop_2.R");
+        </script>
+      </code>
+      </pre>
+
+<p class="p_weight">3. sapply()</p></br>
+<p>
+sapply() 함수는 lapply()함수와 거의 같아서 용법도 lapply()함수와 같이 sapply(A,f,...)로 씁니다.</br>
+그러나 반환되는 출력이 벡터 또는 행렬로 간결화 된다는 점이 다릅니다.</br>
+a.1의 클래스가 numeric 벡터이므로 히스토그램을 그리는 hist()함수에 투입할 수 있습니다.</br>
+</p>
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/loop_3.R");
+        </script>
+      </code>
+      </pre>
+<p>
+다른 예 1.</br>
+앞의 리스트 A에서 n(=10000)개 요소별로 Poisson(100)개 자료값들의 절삭평균(trimmed mean)을 구해봅시다. (절삭율 a = 0.1). </br>
+즉, 리스트의 각 요소에 적용할 함수는 mean(x, trim=0.1)입니다. </br>
+이런 때는 lapply() 함수에 제 3의 인수로 "trim=0.1"을 넣습니다.</br>
+a.2 = lapply(A, mean, trim=0.1)</br>
+head(a.2, 5)</br>
+</br>
+sapply() 함수를 쓰는 경우도 마찬가지로 제3의 인수로 "trim=0.1"을 넣습니다.</br>
+sapply()의 반환 값이 lapply()의 반환 값보다 깔끔합니다.</br>
+a.2 = sapply(A, mean, trim=0.1)</br>
+head(a.2, 5)</br>
+</br>
+</br>
+다른 예 2.</br>
+앞의 리스트 A에서 n(=10000)개 요소별로 Poisson(100)개 자료값들의 범위(range). 즉, (min, max)를 구하여봅시다. </br>
+적용할 함수는 길이 2의 벡터를 반환하는 range(x)입니다.</br>
+lapply()의 반환 값은 길이 10000의 리스트이며 리스트의 반환 값은 2xn 행렬이며 각 행렬의 각 열의 2개 값 - min과 max - 로 구성됩니다.</br>
+a.3 = lapply(A, range)</br>
+head(a.3, 5)</br>
+</br>
+a.3 = sapply(A,range)</br>
+str(a.3)</br>
+head(t(a.3),5)</br>
+</p>
+
+<p class="p_weight">4. mapply()</p></br>
+<p>
+mapply()함수는 함수 f를 여러 번 적용하는 경우에 효과적인 쓰일 수 있습니다.</br>
+a,b,c,가 길이 n의 벡터라고 할 때 mapply(f,a,b,c)는 f(ai,bi,ci), i = 1,2,...,n을 계산하여 </br>
+"SIMPLIFY=F"이면 리스트(list)로, "SIMPLIFY=T"이면 벡터 또는 행렬을 반환합니다.</br>
+예컨대, 각 k(=1,2,...,100)에 대하여, 정규분포 N(k,k)에서 40개의 관측값을 임의 생성하여 봅시다. 만약, 이것이 1개의 k에 대하여 국한한다면</br>
+rnorm(40,k,k)이면 될 것입니다. 따라서 이것이 1부터 100까지의 k에 대하여 반복되어야 하므로</br>
+x= mapply(rnorm, rep(40,100),1:100,1:100,SIMPLIFY=T)를 쓰면 40개 행, 100개 열의 행렬이 만들어집니다.</br>
+</br>
+연습문제 1. </br>
+앞에서 만들어진 행렬 x에 대하여, 다음 R 스크립트를 실행하는 경우 어떤 출력이 예상됩니까?</br>
+</p>
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/loop_4.R");
+        </script>
+      </code>
+      </pre>
+<p class="p_weight">5. tapply()</p></br>
+<p>
+tapply(x, grp, f)는 벡터 x 내 자료값들을 인자 grp의 수준별로 분할하고 분할된 자료에 함수 f를 적용하여 grp와 같은 길이의 벡터 또는 grp의 길이와 같은 수의 요소를</br>
+갖는 리스트를 반환합니다. 따라서 이 함수는 수치 자료에 대한 통계적 집계 또는 요약에 자주 활용됩니다.</br>
+</p>
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/loop_5.R");
+        </script>
+      </code>
+      </pre>
+<p class="p_weight">6. 루프</p></br>
+<p>
+R이 한번에 한 줄씩 소스 코드를 해석하여 실행하는 interpreter language입니다. 따라서 루프(loop)를 사용하는 경우 비효울이 발생합니다. 
+내장함수를 써서 루프를 대처할 수 있는 방안이 모색할 필요가 있습니다. 물론 모든 경우에 그런 것이 가능한 것은 아닙니다.
+1절의 예를 다시 생각해 봅시다. </br>
+데이터 프레임 A가 10000개 개체의 100개 변수로 구성되어 있고 목표는 개체별로 변수 값들의 최댓값을 구하는 것입니다.
+데이터 프레임은 평균 100이고 표준편차가 15인 정규분포 N(100,15)로 부터 임의생성된 모의자료입니다.
+이를 위한 가장 좋은 코딩은 apply()함수와  그 안에서 데이터 프레임 A의 행에 max()를 적용하는 것입니다.
+</br>
+</p>
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/loop_6.R");
+        </script>
+      </code>
+      </pre>
+    </a>
+    <!--#################################################################################################-->
+  </body>
+</html>
