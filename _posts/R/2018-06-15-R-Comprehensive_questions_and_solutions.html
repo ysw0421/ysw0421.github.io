@@ -183,6 +183,34 @@ Lahman 패키지의 Pitching 데이터로부터 선수의 활동년 수를 산�
         </script>
       </code>
       </pre>
+<p class="p_weight">Programming practice_6</p></br>
+<p>
+  다음 벡터 x내 100개 elements 중에서 홀수는 모두 몇 개인가?</br>
+  다음 벡터 x 내 단조증가 subsequences 길이 중 최대값은?</br>
+  조합 수 nCk가 담긴 리스트 L을 제시하라.</br>
+  다음과 같이 각 열에 최소값 0, 최대값 1의 범위 표준화 변환을 하는 R스크립트를 제시하라.</br>
+  다음과 같이 카이제곱검정의 출력을 내는 R 스크립트를 제시하라. 카이제곱통계량. 자유도 p-갑이 산출되어야함.</br>
+</p>
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/EX_6.R");
+        </script>
+      </code>
+      </pre>
 </p>
     </a>
     <!--#################################################################################################-->
