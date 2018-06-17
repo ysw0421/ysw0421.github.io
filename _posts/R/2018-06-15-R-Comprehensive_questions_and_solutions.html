@@ -211,6 +211,41 @@ Lahman 패키지의 Pitching 데이터로부터 선수의 활동년 수를 산�
         </script>
       </code>
       </pre>
+<p class="p_weight">Programming practice_6</p></br>
+<p>
+  0과 1 사이의 균일 임의 수(UNIFORM RANDOM NUMBER)를 2개 취하여, 0과 2개 점, 그리고 1에서 끊기는 3개의 선분으로 삼각형이 
+  만들어질 확률을 N(=10,000)회의 몬테칼로 시행을 통하여 추정하라.</br>
+  숫자 1부터 52가 표기된 52장의 카드를 이항 임의 수(~B(52,0.5))개를 비복원 추출하여 왼편에 놓고 나머지를 오른편에 놓는다. 
+  그리고 왼쪽 카드들을 자체적으로 순서정렬하고 오른쪽 카드들도 자체적으로 순서정렬하여 왼쪽 카드들에 이어 놓는다.
+  (작은 번호일 수록 왼쪽에서 몇 번째 위치에 놓는다.)
+  이런 카드 재배열 작업을 N(=1O,000)회 반복하여, 2번 카드가 가장 왼쪽에서 몇 번째 위치에 나타났는지를 보고하고 
+  그 빈도 분포를 막대그림으로 표현한다.</br>
+  메이저리그 야구 2015년 투수들의 연봉과 IPouts (innings pitched*3)의 산점도를 제시하라.</br>
+  메이저 리그 야구의 1966년 - 2015년 Pitching 기록에서 연도별 최대 IPouts의 추이를 보여주는 꺽은 선 그래프를 제시하라. 
+  단, tapply()함수를 활용해야함.</br>
+  메이저리그 야구의 1985-2015년 Salaries 기록에서 연도별 중간 연봉의 추이를 보여주는 꺽은 선 그래프(시도표, time plot)를 제시하라.
+  단, aggregate()함수를 활용해야 함. 연봉을 1,000불 단위로 할 것.</br>
+</p>
+      <pre>
+      <code class="html" style="font-size:18px">
+        <script type="text/javascript">
+          function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () { 
+              if(rawFile.readyState === 4) { 
+                if(rawFile.status === 200 || rawFile.status == 0) { 
+                  var allText = "\n" + rawFile.responseText; 
+                  document.write(allText);
+                } 
+              } 
+            }; 
+            rawFile.send(null); 
+          }
+          readTextFile("/R_code/EX_7.R");
+        </script>
+      </code>
+      </pre>
 </p>
     </a>
     <!--#################################################################################################-->
