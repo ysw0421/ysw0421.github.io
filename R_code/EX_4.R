@@ -1,4 +1,4 @@
-#1번 문제
+#[1번 문제]
 setwd("C:/Users/ysw/Desktop")
 bob = scan("bob.txt",what="",sep="\n")
 length(bob)
