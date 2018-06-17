@@ -138,9 +138,17 @@ sort()를 이용해 나온 통계를 큰 순서대로 정리한다.</br>
 <p>
   1. Bob Dylan의 Blowing in the wind 가사를 첨부 파일로부터 읽어, 행 별 단어 수를 산출하라</br>
   그리고 그 결과를 막대 그림으로 표출하라. 단, 2개 단어가 apostrophe로 연결된 경우는 1개 단어로 간주한다.
+  setwd()를 통해 코드가 실행될 환경 or 디렉토리를 설정한다.</br>
   연 단위로 구분하여 컬러를 넣을 것.</br>
   2. 위 문제를 이어 6회 출현한 단어들을 빈도가 큰 것부터 작아지는 순서로 제시하라.</br>
+  scan() 엔터마다 리스트에 집어넣는다.
+  gsub(pattern,replacement,x)를 통해서 문자열중 특정 패턴을 찾아 어떤 문자로 대처했다.
+  strsplit(x,split)로 띄어쓰기마다 리스트에 집어넣는다.
+  unlist()를 써서 두겹의 리스트를 벡터로 변경한다.
+  sort()로 6번 이상 나온 단어중 많이 쓰인 단어 순으로 정리한다.
   3. 위 문제를 이어 문장부호 apostrophe는 모두 몇 번 나오는가? apostrophe가 나타난 단어들의 리스트를 제시하라.</br>
+  grep(pattern,x)를 사용하여 apostrophe를 잡아낸다.
+  unique()를 사용하여 중첩되있는 단어들을 빼고 유니크한 단어들만 뽑아낸다.
 </p>
       <pre>
       <code class="html" style="font-size:18px">
