@@ -10,24 +10,24 @@
 |   └── post.html
 ├── _posts
 |   ├── Web Framework
-|    |    ├── Node.js
-|    |    └── Flask
+|   |   ├── Node.js
+|   |   ├── Flask
 |   ├── DB
-|    |    ├── Mysql
-|    |    ├── MariaDB
-|    |    └── InfluxDB
+|   |   ├── Mysql
+|   |   ├── MariaDB
+|   |   └── InfluxDB
 |   ├── Script
-|    |    ├── Python
-|    |    ├── JavaScript
-|    |    └── C#
+|    |  ├── Python
+|    |  ├── JavaScript
+|    |  └── C#
 |   ├── Algorithm
 |   ├── Data structure
 |   ├── Network
-|    |    └── TCP_dump
+|   |   └── TCP_dump
 |   ├── R
 |   ├── Machine Learning
 |   ├── Project
-|    |    └── IoT
+|   |   └── IoT
 |   └── jekyll
 ├── _site
 ├── asset
