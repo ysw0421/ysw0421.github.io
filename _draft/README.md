@@ -32,7 +32,7 @@
 |   ├── Project
 |   |   ├── SDN
 |   |   ├── Big Data
-|   |   └── IoT
+|   |   └── IoT Middleware
 |   └── Jekyll
 ├── _site
 ├── asset
