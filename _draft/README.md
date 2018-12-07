@@ -17,9 +17,9 @@
 |   |   ├── MariaDB
 |   |   └── InfluxDB
 |   ├── Script
-|   |  ├── Python
-|   |  ├── JavaScript
-|   |  └── C#
+|   |   ├── Python
+|   |   ├── JavaScript
+|   |   └── C#
 |   ├── Algorithm
 |   ├── Data structure
 |   ├── Network
