@@ -1,8 +1,0 @@
-x = runif(100,0,10)
-y = 5 + 0.5*(x-5) + rnorm(100)
-x.cut = cut(x, 0:10)
-cbind(x, x.cut)
-y.local = aggregate(y, list(x.cut), mean)
-plot(x,y,ylim=c(0,10),main="x vs. y")
-segments(0:9, y.local$x, 1:10, y.local$x, lwd=2)
-abline(v=1:9, lty="dotted", col="blue")
