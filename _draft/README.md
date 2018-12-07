@@ -9,7 +9,7 @@
 ├── _layouts
 |   ├── default.html
 |   └── post.html
-├── [3._posts]
+├── _posts
 |   ├── Web Server
 |   |   ├── Apache
 |   |   └── NginX
@@ -43,7 +43,7 @@
 |   ├── [1.page.css]
 |   └── front.css
 ├── imgs
-├── [2.Code]
+├── CodeExample	
 |   ├── R_code
 |   ├── Python_code
 |   ├── JavaScript_code
