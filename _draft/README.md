@@ -8,7 +8,7 @@
 ├── _layouts
 |   ├── default.html
 |   └── post.html
-├── _posts
+├── [_posts]
 |   ├── Web Framework
 |   |   ├── Node.js
 |   |   ├── Flask
@@ -35,9 +35,10 @@
 |   └── index.html
 ├── css
 |   ├── categories.css
+|   ├── [page.css]
 |   └── front.css
 ├── imgs
-├── Code
+├── [Code]
 |   ├── R_code
 |   ├── Python_code
 |   ├── JavaScript_code
