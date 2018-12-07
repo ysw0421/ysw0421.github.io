@@ -11,7 +11,7 @@
 ├── [_posts]
 |   ├── Web Framework
 |   |   ├── Node.js
-|   |   ├── Flask
+|   |   └── Flask
 |   ├── DB
 |   |   ├── Mysql
 |   |   ├── MariaDB
