@@ -85,12 +85,14 @@ pre {
 .out{
     width: 100%;
     text-align: center;
+    border: 5px solid white;
     padding: 20px;
     margin; 15px
 }
 
 .in{
     display: inline-block;
+    border: 5px solid white;
     width: 50%;
     height: 100%;
 }
