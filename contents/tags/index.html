@@ -42,6 +42,15 @@ comments: false
             
             <h2>NginX</h2>
             
+            <h2>Jekyll</h2>
+            <h4>
+            {% for news in site.categories.jekyll %}
+              <div class="square">
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a>
+              </div><br>
+            {% endfor %}
+            </h4>
+            
             <h2>Node.js</h2>
             
             <h2>Flask</h2>
