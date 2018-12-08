@@ -52,6 +52,13 @@ comments: false
             <h2>Web Framework</h2>
             <h2>DB</h2>
             <h2>Script</h2>
+            <h4>
+            {% for news in site.categories.R %}
+              <div class="square">
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a>
+              </div><br>
+            {% endfor %}
+            </h4>
             
             <h2>Network</h2>
             <h4>
@@ -78,14 +85,6 @@ comments: false
             {% endfor %}
             </h4>
 
-            <h2>R Programming</h2>
-            <h4>
-            {% for news in site.categories.R %}
-              <div class="square">
-                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a>
-              </div><br>
-            {% endfor %}
-            </h4>
           </ul>
             </div>
           </div>
