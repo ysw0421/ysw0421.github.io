@@ -36,8 +36,11 @@
 |   └── Jekyll
 ├── _site
 ├── asset
-├── categories
-|   └── index.html
+├── contents
+|   ├── categories
+|   |    └── index.html
+|   └── tags
+|        └── index.html
 ├── css
 |   ├── categories.css
 |   ├── [1.page.css]
