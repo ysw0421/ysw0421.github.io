@@ -18,16 +18,46 @@ posting한곳: Posting
 ---------------------------
 */
 .Categories{
+  font-family: 'Hanna';
+  font-weight: 600;
+  font-size: 36pt;
+  color: black;
+  display: block;
+  margin: 10px 0;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
 .Posting{
+  letter-spacing: .01rem;
+  font-weight: 400;
+  font-style: italic;
+  padding-bottom: 3px;
+  font-size: 1.2em;
+  line-height: 30px;
+  margin: 0;
+  padding-top: 15px;
+  color: #333;
 }
 .MainTitle{
 }
 .SubTitle{
 }
 .Paragraph{
+  font-weight: 600;
+  font-size: 18px;
 }
 .Contents{
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.2em;
+  line-height: 30px;
+  margin: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #333;
+  font-size: 15px;
 }
 .Imgsize{
 }
@@ -36,4 +66,7 @@ posting한곳: Posting
 .CodeURL{
 }
 .Reference{
+  color: #333;
+  text-decoration: underline;
+  font-family: "Nanum Barun Gothic",Linux Libertine;
 }
