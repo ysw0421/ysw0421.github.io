@@ -5,6 +5,7 @@
 |   ├── 2018-05-13-example-for-post-draft.md
 |   └── README.md
 ├── _includes
+|   ├── analytics.html
 |   └── disqus.html
 ├── _layouts
 |   ├── default.html
