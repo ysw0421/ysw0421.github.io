@@ -39,11 +39,13 @@ comments: false
             <h1>Categories</hr>
             <hr>
             <h2>Comparative analysis</h2>
+            <h4>
             {% for news in site.categories.analysis %}
               <div class="square">
                 <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a>
               </div><br>
             {% endfor %}
+            </h4>
             
             <h2>Web Server</h2>
             
