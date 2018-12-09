@@ -13,33 +13,12 @@ comments: true
     <script>hljs.initHighlightingOnLoad();</script>
     <style>
       @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-      h3{ font-family: 'Hanna'; 
-          font-weight: 600;
-          font-size: 36pt;
-          color:black;
-      }
-      h1{
-        font-weight: 600;
-        color:black;
-      }
-      h2{	
-        font-weight: 600;	
-      }
-      p{	
-        font-size:15px;	
-      }	
-      .p_weight{	
-        font-weight: 600;	
-      }	
-      .p_img{	
-        text-align:center;	
-      }
     </style>
   </head>
   <body>
     <!--#################################################################################################-->
     <h3>TCP/IP network stack</h3>
-    <a class="custom" style="font-size:24px;background-color: transparent;">
+    <a class="custom BasicFontSet">
       </br>
       </br>
       <h1>TCP/IP 네트워크 스택 이해하기</h1></br>
@@ -56,37 +35,37 @@ comments: true
         TCP와 IP</br>
         엄밀히 말해 TCP와 IP는 서로 다른 레이어의 것이라 분리해서 이해하는 것이 옳지만, 이해의 편의상 여기서는이 장에서는 둘을 분리하지 않고 설명한다.</br>
       </p>
-      <p class="p_weight">
+      <p class="Paragraph">
         1. Connection oriented</br>
       </p>
       <p>
         두 개 엔드포인트(로컬, 리모트) 사이에 연결을 먼저 맺고 데이터를 주고받는다. 여기서 'TCP 연결 식별자'는 두 엔드포인트의 주소를 합친 것으로, <로컬 IP 주소, 로컬 포트번호, 리모트 IP 주소, 리모트 포트번호> 형태이다.</br>
       </p>
-      <p class="p_weight">
+      <p class="Paragraph">
         2. Bidirectional byte stream</br>
       </p>
       <p>
         양방향 데이터 통신을 하고, 바이트 스트림을 사용한다.</br>
       </p>
-      <p class="p_weight">
+      <p class="Paragraph">
         3. In-order delivery</br>
       </p>
       <p>
         송신자(sender)가 보낸 순서대로 수신자(receiver)가 데이터를 받는다. 이를 위해서는 데이터의 순서가 필요하다. 순서를 표시하기 위해 32-bit 정수 자료형을 사용한다.</br>
       </p>
-      <p class="p_weight">
+      <p class="Paragraph">
         4. Reliability through ACK</br>
       </p>
       <p>
         데이터를 송신하고 수신자로부터 ACK(데이터 받았음)를 받지 않으면, 송신자 TCP가 데이터를 재전송한다. 따라서 송신자 TCP는 수신자로부터 ACK를 받지 않은 데이터를 보관한다(buffer unacknowledged data).</br>
       </p>
-      <p class="p_weight">
+      <p class="Paragraph">
         5. Flow control</br>
       </p>
       <p>
         송신자는 수신자가 받을 수 있는 만큼 데이터를 전송한다. 수신자가 자신이 받을 수 있는 바이트 수 (사용하지 않은 버퍼 크기, receive window)를 송신자에게 전달한다. 송신자는 수신자 receive window가 허용하는 바이트 수만큼 데이터를 전송한다.</br>
       </p>
-      <p class="p_weight">
+      <p class="Paragraph">
         6. Congestion control</br>
       </p>
       <p>
@@ -100,7 +79,7 @@ comments: true
         여러 레이어가 있지만, 크게 유저(user) 영역, 커널(kernel) 영역, 디바이스로(device) 영역으로 나눌 수 있다. 유저 영역과 커널 영역에서의 작업은 CPU가 수행한다. 이 유저 영역과 커널 영역은 디바이스 영역과 구별하기 위해 호스트(host)라고 부른다. 여기서 디바이스는 패킷을 송수신하는 NIC(Network Interface Card)이다. 흔히 부르는 랜카드보다 더 정확한 용어이다.</br>
         </br>
       </p>
-      <p class="p_img">
+      <p class="Imgtext">
           <img src="/asset/TD_img/TCP_IP_stack_1.JPG"></br>
           <데이터 전송 시 TCP/IP 네트워크 스택의 각 레이어 별 동작 과정></br>
       </p>
@@ -130,7 +109,7 @@ comments: true
         이제 어떻게 데이터를 수신하는지 알아보도록 하자. 패킷이 외부에서 도착했을 때 어떻게 작동하는지에 대한 것이다. 그림 3에서 네트워크 스택이 수신한 패킷을 처리하는 과정을 알 수 있다.</br>
         </br>
       </p>
-      <p class="p_img">
+      <p class="Imgtext">
           <img src="/asset/TD_img/TCP_IP_stack_2.JPG"></br>
           <데이터 수신 시 TCP/IP 네트워크 스택의 각 레이어 별 동작 과정></br>
       </p>
@@ -154,21 +133,21 @@ comments: true
         최신의 네트워크 스택을 목적에 따라 구분해 보면 다음과 같다.</br>
         </br>
       </p>
-      <p class="p_weight">
+      <p class="Paragraph">
         패킷 처리 과정 조작 기능</br>
       </p>
       <p>
         Netfilter(방화벽, NAT 등), traffic control 같은 기능이다. 기본 처리 흐름에 사용자가 제어할 수 있는 코드를 삽입해서 사용자 설정에 따라 다양한 효과를 낸다.</br>
         </br>
       </p>
-      <p class="p_weight">
+      <p class="Paragraph">
         프로토콜 성능</br>
       </p>
       <p>
         주어진 네트워크 환경에서 TCP 프로토콜이 달성할 수 있는 throughput, latency, stability 등의 개선을 목표로 한다. 다양한 congestion control 알고리즘들과 SACK 같은 TCP 추가 기능이 대표적인 예이다. 프로토콜 개선 사항은 이 글의 범위 바깥이라 여기서는 다루지 않겠다.</br>
         </br>
       </p>
-      <p class="p_weight">
+      <p class="Paragraph">
         패킷 처리 효율</br>
       </p>
       <p>
@@ -182,7 +161,7 @@ comments: true
         </br>
         </br>
       </p>
-      <p class="p_img">
+      <p class="Imgtext">
           <img src="/asset/TD_img/TCP_IP_stack_3.JPG"></br>
           <스택 내부 제어 흐름></br>
       </p>
@@ -212,7 +191,7 @@ comments: true
         </br>
         </br>
       </p>
-      <p class="p_img">
+      <p class="Imgtext">
           <img src="/asset/TD_img/TCP_IP_stack_4.JPG"></br>
           <인터럽트, softirq, 그리고 수신 패킷 처리></br>
       </p>
@@ -237,11 +216,11 @@ comments: true
         첫째, 패킷을 의미하는 sk_buff 구조체 혹은 skb 구조체가 있다. 그림 5는 sk_buff 구조체의 일부를 보여준다. 기능이 발전되면서 이보다 더 복잡해졌지만 기본적으로 필요한 기능은 누구나 생각할 수 있는 것들이다.</br>
         </br>
       </p>
-      <p class="p_img">
+      <p class="Imgtext">
           <img src="/asset/TD_img/TCP_IP_stack_5.JPG"></br>
           <패킷 구조체 sk_buff></br>
       </p>
-      <p class="p_weight">
+      <p class="Paragraph">
         패킷 데이터, 메타 데이터 포함</br>
       </p>
       <p>
@@ -250,21 +229,21 @@ comments: true
         메타 데이터 영역에는 헤더, 페이로드 길이 등 필요한 정보를 저장한다. 예를 들어, 그림 5에서 볼 수 있는 mac_header에는 Ethernet 헤더, network_header에는 IP 헤더, transport_header에는 TCP 헤더 시작 위치를 가리키고 있는 포인터 데이터가 있다. 이런 방식은 TCP 프로토콜 매우 편리하게 처리할 수 있게 한다.
         </br>
       </p>
-      <p class="p_weight">
+      <p class="Paragraph">
         헤더 추가, 삭제</br>
       </p>
       <p>
         네트워크 스택의 각 레이어를 왔다갔다하며 헤더를 추가, 삭제한다. 효율적으로 처리하기 위해 포인터들을 사용한다. 예를 들어, Ethernet 헤더를 제거하려면, head 포인터를 증가하면 된다.</br>
         </br>
       </p>
-      <p class="p_weight">
+      <p class="Paragraph">
         패킷 결합, 분리</br>
       </p>
       <p>
         Socket buffer에 패킷 페이로드 데이터를 추가, 삭제, 또는 패킷 체인 같은 작업을 효율적으로 수행하기 위해 linked list를 사용한다. next, prev 포인터가 이 용도로 사용된다.</br>
         </br>
       </p>
-      <p class="p_weight">
+      <p class="Paragraph">
         빠른 할당(allocation)과 반환(free)
       </p>
       <p>
@@ -277,7 +256,7 @@ comments: true
         둘째, TCP 연결을 대표하는 구조체가 있다. 앞서 추상적으로 TCP control block이라 불렀는데, Linux는 tcp_sock을 사용한다. 그림 7에서 file, socket과 tcp_sock 등이 어떤 관계에 있는지 알 수 있다.</br>
         </br>
       </p>
-      <p class="p_img">
+      <p class="Imgtext">
           <img src="/asset/TD_img/TCP_IP_stack_6.JPG"></br>
           <_TCP_연결 구조체></br>
       </p>
