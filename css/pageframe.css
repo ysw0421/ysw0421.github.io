@@ -17,6 +17,9 @@ posting한곳: Posting
 참고자료: Reference
 ---------------------------
 */
+.BasicFontSet{
+  background-color: transparent;
+}
 /*h3*/
 .Categories{
   font-family: 'Hanna';
@@ -68,6 +71,7 @@ posting한곳: Posting
 .Imgsize{
 }
 .Imgtext{
+  text-align:center;
 }
 .CodeURL{
 }
