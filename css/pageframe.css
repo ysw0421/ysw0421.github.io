@@ -17,6 +17,7 @@ posting한곳: Posting
 참고자료: Reference
 ---------------------------
 */
+/*h3*/
 .Categories{
   font-family: 'Hanna';
   font-weight: 600;
@@ -29,6 +30,7 @@ posting한곳: Posting
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
+/*blockquote p*/
 .Posting{
   letter-spacing: .01rem;
   font-weight: 400;
@@ -40,14 +42,18 @@ posting한곳: Posting
   padding-top: 15px;
   color: #333;
 }
+/*h1*/
 .MainTitle{
 }
+/*h2*/
 .SubTitle{
 }
+/*p*/
 .Paragraph{
   font-weight: 600;
   font-size: 18px;
 }
+/*p*/
 .Contents{
   font-weight: 400;
   font-style: normal;
@@ -65,8 +71,11 @@ posting한곳: Posting
 }
 .CodeURL{
 }
+/*a*/
 .Reference{
   color: #333;
   text-decoration: underline;
   font-family: "Nanum Barun Gothic",Linux Libertine;
 }
+
+/*media query*/
