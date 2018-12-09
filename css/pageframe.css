@@ -9,6 +9,8 @@ posting한곳: Posting
 소제: SubTitle
 단락: Paragraph
 내용: Contents
+이미지: Imgsize
+이미지 text: Imgtext
 
 전체 코드 URL: CodeURL
 
@@ -26,6 +28,10 @@ posting한곳: Posting
 .Paragraph{
 }
 .Contents{
+}
+.Imgsize{
+}
+.Imgtext{
 }
 .CodeURL{
 }
