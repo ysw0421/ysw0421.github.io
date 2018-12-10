@@ -43,7 +43,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
   <body>
       <h3 class="Categories BasicFontSet">TCP/IP network stack</h3>
       {% for news in site.categories.Network %}
-        {% if page.title == 'TCP/IP network stack'%}
+        {% if news.title == 'TCP/IP network stack' %}
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
       {% endfor %}
