@@ -33,6 +33,9 @@ posting한곳: Posting
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
+.Categories h3{
+  padding-bottom: 0px;
+}
 /*a*/
 .post-tag {
   display: inline-block;
