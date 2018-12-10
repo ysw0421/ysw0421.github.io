@@ -40,8 +40,10 @@ comments: false
             <div class="in">
           {% if site.front_img %}<img src="{{ site.front_img_path }}" id="fullscreen"> {% endif %} 
           <ul>
-            <h1>Categories</hr>
-            <a class="post-tag">daily</a>
+            <h1>Categories</h1>
+            {% for kinds in site.categories %}
+              <a class="post-tag">{{ kinds }}</a>
+            {% endfor %}
             <hr>
             <h2>Comparative analysis</h2>
             <h4>
