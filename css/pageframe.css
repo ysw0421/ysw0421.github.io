@@ -2,7 +2,7 @@
 ---------------------------
  - 중첩된 부분: BasicFontSet
 카테고리: Categories
-날짜, 태그: Date, Tags: post-tag
+날짜, 태그: Dates: Date, Tags: post-tag
 
 posting한곳: Posting
 
@@ -36,7 +36,7 @@ posting한곳: Posting
 h3{
   padding-bottom: 0px;
 }
-.date{
+.Date{
   display: inline-block;
   margin-top: -.5rem;
   margin-bottom: 1rem;
