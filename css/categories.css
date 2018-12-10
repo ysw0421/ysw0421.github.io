@@ -81,7 +81,13 @@ pre {
 .description {
     display: none;
 }
-
+.date{
+    font-size: 80%;
+    color: #9a9a9a;
+    margin: 0;
+    padding: 0;
+}
+}
 .out{
     width: 100%;
     text-align: center;
