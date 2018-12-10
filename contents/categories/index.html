@@ -41,7 +41,7 @@ comments: false
           {% if site.front_img %}<img src="{{ site.front_img_path }}" id="fullscreen"> {% endif %} 
           <ul>
             <h1>Categories</h1>
-            {% for kinds in site.categories %}
+            {% for kinds in site.posts %}
               <a class="post-tag">{{ kinds }}</a>
             {% endfor %}
             <hr>
