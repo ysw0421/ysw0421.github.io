@@ -42,7 +42,7 @@ comments: false
           <ul>
             <h1>Categories</h1>
             {% for kinds in site.posts %}
-              <a class="post-tag">{{ kinds }}</a>
+              <a class="post-tag">{{ kinds.category }}</a>
             {% endfor %}
             <hr>
             <h2>Comparative analysis</h2>
