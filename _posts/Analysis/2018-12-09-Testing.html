@@ -9,7 +9,7 @@ comments: true
 카테고리: Categories <h3 class="Categories BasicFontSet"></h3>
 날짜: Date 
       {% for news in site.categories.analysis %}
-        {% if page.title == 'Testing css'%}
+        {% if news.title == 'Testing css'%}
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
       {% endfor %}
