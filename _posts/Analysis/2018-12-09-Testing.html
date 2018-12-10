@@ -36,7 +36,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
   </head>
   <body>
       <h3 class="Categories BasicFontSet">TCP/IP network stack</h3>
-      <a class="post-tag">daily</a>
+      <a class="date">{{ news.date | date_to_string }}</a><a class="post-tag" href="{{ site.categories.analysis  }}">{{news.category}}</a>
       </br>
       </br>
       <blockquote><p class="posting">이 글은 "NAVER D2"의 "TCP/IP 네트워크 스택 이해하기"이라는 제목에 기고된 글입니다. 블로그에는 네트워크 기반 공부 목적으로 포스팅합니다. </p></blockquote>
