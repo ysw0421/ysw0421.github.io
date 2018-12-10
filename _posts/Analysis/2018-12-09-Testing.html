@@ -37,9 +37,8 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
   <body>
       <h3 class="Categories BasicFontSet">TCP/IP network stack</h3>
       {% for news in site.categories.analysis %}
-        {{ news.date | date_to_string }}
         {% if page.title == 'Testing css'%}
-        <a class="post-tag">{{ news.date | date_to_string }}</a>
+          <a class="date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
       {% endfor %}
       </br>
