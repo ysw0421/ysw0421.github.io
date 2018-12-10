@@ -79,7 +79,7 @@ posting한곳: Posting
   text-decoration: underline;
   font-family: "Nanum Barun Gothic",Linux Libertine;
 }
-.blockquote{
+blockquote{
     margin: 0 0 30px;
     margin-left: -26px;
     border-left: 3px solid #57ad68;
