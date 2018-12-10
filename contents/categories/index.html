@@ -42,7 +42,7 @@ comments: false
             <h4>
             {% for news in site.categories.analysis %}
               <div class="square">
-                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a>
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}{{ site.time | date_to_string }}</a>
               </div><br>
             {% endfor %}
             </h4>
@@ -57,7 +57,7 @@ comments: false
             <h4>
             {% for news in site.categories.R %}
               <div class="square">
-                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a>
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}{{ site.time | date_to_string }}</a>
               </div><br>
             {% endfor %}
             </h4>
@@ -66,7 +66,7 @@ comments: false
             <h4>
             {% for news in site.categories.tcpdump %}
               <div class="square">
-                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a>
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}{{ site.time | date_to_string }}</a>
               </div><br>
             {% endfor %}
             </h4>
@@ -77,12 +77,12 @@ comments: false
             <h4>
             {% for news in site.categories.Algorithm %}
               <div class="square">
-                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a>
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}{{ site.time | date_to_string }}</a>
               </div><br>            
             {% endfor %}
             {% for news in site.categories.Data_structure %}
               <div class="square">
-                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a>
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}{{ site.time | date_to_string }}</a>
               </div><br>
             {% endfor %}
             </h4>
