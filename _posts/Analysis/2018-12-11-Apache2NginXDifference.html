@@ -1,32 +1,32 @@
 ---
 layout: post
-title: Node.js Django Flask Difference
+title: Apache2 NginX Difference
 meta: Difference
 category: ComparativeAnalysis
 comments: true
 ---
 <!--
-Ä«Å×°í¸®: Categories <h3 class="Categories BasicFontSet"></h3>
-³¯Â¥: Date 
+ì¹´í…Œê³ ë¦¬: Categories <h3 class="Categories BasicFontSet"></h3>
+ë‚ ì§œ: Date 
       {% for news in site.categories.analysis %}
         {% if news.title == 'Testing css'%}
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
       {% endfor %}
-ÅÂ±×: Tags <a class="post-tag">ÅÂ±× ³»¿ë</a>
-postingÇÑ°÷: Posting <blockquote><p class="posting">Æ÷½ºÆÃ </p></blockquote>
-ÁÖÁ¦: MainTitle <h1 class="BasicFontSet"></h1>
-¼ÒÁ¦: SubTitle <h2 class="BasicFontSet"></h2>
-´Ü¶ô: Paragraph <p class="Paragraph"></p>
-³»¿ë: Contents <p class="Contents"></p>
-ÀÌ¹ÌÁö: Imgsize - media query Àû¿ë
-ÀÌ¹ÌÁö text: Imgtext
+íƒœê·¸: Tags <a class="post-tag">íƒœê·¸ ë‚´ìš©</a>
+postingí•œê³³: Posting <blockquote><p class="posting">í¬ìŠ¤íŒ… </p></blockquote>
+ì£¼ì œ: MainTitle <h1 class="BasicFontSet"></h1>
+ì†Œì œ: SubTitle <h2 class="BasicFontSet"></h2>
+ë‹¨ë½: Paragraph <p class="Paragraph"></p>
+ë‚´ìš©: Contents <p class="Contents"></p>
+ì´ë¯¸ì§€: Imgsize - media query ì ìš©
+ì´ë¯¸ì§€ text: Imgtext
       <p class="Imgtext">
-          <img src="ÀÌ¹ÌÁö ÁÖ¼Ò"></br>
-          <³»¿ë></br>
+          <img src="ì´ë¯¸ì§€ ì£¼ì†Œ"></br>
+          <ë‚´ìš©></br>
       </p>
-ÀüÃ¼ ÄÚµå URL: CodeURL
-Âü°íÀÚ·á: Reference <blockquote><p class="Reference">°¡Á®¿Â°÷: <a class="Reference"> URL</a></p>
+ì „ì²´ ì½”ë“œ URL: CodeURL
+ì°¸ê³ ìžë£Œ: Reference <blockquote><p class="Reference">ê°€ì ¸ì˜¨ê³³: <a class="Reference"> URL</a></p>
 -->
 <!doctype html>
 <html>
@@ -43,50 +43,50 @@ postingÇÑ°÷: Posting <blockquote><p class="posting">Æ÷½ºÆÃ </p></blockquote>
   <body>
         <a>
 Apache Nginx
-µÎ À¥¼­¹öÀÇ Â÷ÀÌÁ¡Àº Å¬¶óÀÌ¾ðÆ® ¿¬°á°ú Æ®·¡ÇÈÀ» Ã³¸®ÇÏ´Â ¹æ¹ý¿¡ ÀÖ½À´Ï´Ù.
+ë‘ ì›¹ì„œë²„ì˜ ì°¨ì´ì ì€ í´ë¼ì´ì–¸íŠ¸ ì—°ê²°ê³¼ íŠ¸ëž˜í”½ì„ ì²˜ë¦¬í•˜ëŠ” ë°©ë²•ì— ìžˆìŠµë‹ˆë‹¤.
 
-keyword: ÀÚ½Ä ÇÁ·Î¼¼½º, ºÎ¸ð ÇÁ·Î¼¼½º, ¾²·¹µå
- - Á¤Àû ÄÁÅÙÃ÷, µ¿Àû ÄÁÅÙÃ÷ ¿¹½Ã Ã£±â.
+keyword: ìžì‹ í”„ë¡œì„¸ìŠ¤, ë¶€ëª¨ í”„ë¡œì„¸ìŠ¤, ì“°ë ˆë“œ
+ - ì •ì  ì»¨í…ì¸ , ë™ì  ì»¨í…ì¸  ì˜ˆì‹œ ì°¾ê¸°.
 
 Apache
-1. ¿©·¯ ÇüÅÂÀÇ ¸ÖÆ¼ÇÁ·Î¼¼½º ¸ðµâ(MPM)À» Á¦°ø. ÇÊ¿ä¿¡ µû¶ó ±³Ã¼°¡ °¡´É.
- - Å¬¶óÀÌ¾ðÆ®ÀÇ ¿äÃ» ÇÏ³ª´ç ÀÚ½Ä ÇÁ·Î¼¼½º ÇÏ³ª¸¦ »ý¼º ¿¬°áÀÌ ³¡³¯ ¶§±îÁö ÇØ´ç ÀÚ½Ä ÇÁ·Î¼¼½º°¡ Ã³¸®¸¦ Àü´ã.
-   ¿¬°áÀÇ ¼ö°¡ ÇÁ·Î¼¼½º ¼öº¸´Ù Å©°Ô µÇ´Â °æ¿ì ¼º´ÉÀº ±Þ°ÝÈ÷ ¶³¾îÁü.
-	prefork ¹æ½Ä: ÀÚ½Ä ÇÁ·Î¼¼½º´ç ÇÏ³ªÀÇ ¾²·¹µå¸¦ »ç¿ëÇÏ´Â ¹æ¹ý
-		ÇÁ·Î¼¼½º °£ ¸Þ¸ð¸®¸¦ °øÀ¯ÇÏÁö ¾Ê´Â µ¶¸³ÀûÀÎ ÇüÅÂÀÌ¹Ç·Î ¾ÈÁ¤Àû.
-	worker ¹æ½Ä: ÀÚ½ÄÇÁ·Î¼¼½º´ç ¿©·¯°³ÀÇ ¾²·¹µå¸¦ »ç¿ëÇÏ´Â ¹æ¹ý.
-		¾²·¹µå °£¿¡ ¸Þ¸ð¸®¸¦ ¼­·Î °øÀ¯ - µ¿½Ã Á¢¼ÓÀÚ°¡ ¸¹Àº »çÀÌÆ®¿¡ ÀûÇÕ
-	event ¹æ½Ä: worker¿Í °°Àº ¹æ½ÄÀÇ ¾²·¹µå »ç¿ëÇÏÁö¸¸ keep-alive µ¿ÀÛ¿¡ ÃÖÀûÈ­.
-		±âÁ¸¹æ½Ä: ÇÏ³ªÀÇ ¿¬°áÀÌ ³¡³¯ ¶§±îÁö ÇÏ³ªÀÇ ¾²·¹µå°¡ Àü´ãÇÏ´Â ¹æ½Ä
-		keep-alive: keep-alive¸¸À» Àü´ãÇÏ´Â ¾²·¹µå°¡ º°µµ·Î Á¸ÀçÇÏ°í ´Ù¸¥ ¾²·¹µå´Â Ã³¸®ÇÒ ÀÏÀÌ »ý±æ ¶§¸¸ ¹ÝÀÀÇÏ´Â ÇüÅÂ.
+1. ì—¬ëŸ¬ í˜•íƒœì˜ ë©€í‹°í”„ë¡œì„¸ìŠ¤ ëª¨ë“ˆ(MPM)ì„ ì œê³µ. í•„ìš”ì— ë”°ë¼ êµì²´ê°€ ê°€ëŠ¥.
+ - í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ í•˜ë‚˜ë‹¹ ìžì‹ í”„ë¡œì„¸ìŠ¤ í•˜ë‚˜ë¥¼ ìƒì„± ì—°ê²°ì´ ëë‚  ë•Œê¹Œì§€ í•´ë‹¹ ìžì‹ í”„ë¡œì„¸ìŠ¤ê°€ ì²˜ë¦¬ë¥¼ ì „ë‹´.
+   ì—°ê²°ì˜ ìˆ˜ê°€ í”„ë¡œì„¸ìŠ¤ ìˆ˜ë³´ë‹¤ í¬ê²Œ ë˜ëŠ” ê²½ìš° ì„±ëŠ¥ì€ ê¸‰ê²©ížˆ ë–¨ì–´ì§.
+	prefork ë°©ì‹: ìžì‹ í”„ë¡œì„¸ìŠ¤ë‹¹ í•˜ë‚˜ì˜ ì“°ë ˆë“œë¥¼ ì‚¬ìš©í•˜ëŠ” ë°©ë²•
+		í”„ë¡œì„¸ìŠ¤ ê°„ ë©”ëª¨ë¦¬ë¥¼ ê³µìœ í•˜ì§€ ì•ŠëŠ” ë…ë¦½ì ì¸ í˜•íƒœì´ë¯€ë¡œ ì•ˆì •ì .
+	worker ë°©ì‹: ìžì‹í”„ë¡œì„¸ìŠ¤ë‹¹ ì—¬ëŸ¬ê°œì˜ ì“°ë ˆë“œë¥¼ ì‚¬ìš©í•˜ëŠ” ë°©ë²•.
+		ì“°ë ˆë“œ ê°„ì— ë©”ëª¨ë¦¬ë¥¼ ì„œë¡œ ê³µìœ  - ë™ì‹œ ì ‘ì†ìžê°€ ë§Žì€ ì‚¬ì´íŠ¸ì— ì í•©
+	event ë°©ì‹: workerì™€ ê°™ì€ ë°©ì‹ì˜ ì“°ë ˆë“œ ì‚¬ìš©í•˜ì§€ë§Œ keep-alive ë™ìž‘ì— ìµœì í™”.
+		ê¸°ì¡´ë°©ì‹: í•˜ë‚˜ì˜ ì—°ê²°ì´ ëë‚  ë•Œê¹Œì§€ í•˜ë‚˜ì˜ ì“°ë ˆë“œê°€ ì „ë‹´í•˜ëŠ” ë°©ì‹
+		keep-alive: keep-aliveë§Œì„ ì „ë‹´í•˜ëŠ” ì“°ë ˆë“œê°€ ë³„ë„ë¡œ ì¡´ìž¬í•˜ê³  ë‹¤ë¥¸ ì“°ë ˆë“œëŠ” ì²˜ë¦¬í•  ì¼ì´ ìƒê¸¸ ë•Œë§Œ ë°˜ì‘í•˜ëŠ” í˜•íƒœ.
 
-2. Á¤Àû ÄÁÅÙÃ÷´Â ÆÄÀÏ ±â¹Ý ¹æ¹ý¿¡ ÀÇÁ¸.
- - Á¤Àû ÄÁÅÙÃ÷´Â Æ¯Á¤ ¾ð¾î Ã³¸®±â¸¦ worker ÀÎ½ºÅÏ½º¿¡ ³»ÀåÇÏ´Â ¹æ¹ýÀ¸·Î Ã³¸®ÇÏ¸ç ¸ðµâ·Î½á µ¿ÀûÀ¸·Î ÀûÀç°¡ °¡´É.
- - µ¿Àû ÄÁÅÙÃ÷ Ã³¸®±â°¡ ³»ÀåµÇ´Â ¹æ½ÄÀÌ¹Ç·Î ¿ÜºÎ ÇÁ·Î±×·¥¿¡ ÀÇÁ¸ÇÏÁö ¾Ê°í °á°úÀûÀ¸·Î ¼³Á¤ÀÌ ºñ±³Àû ´Ü¼ø.
+2. ì •ì  ì»¨í…ì¸ ëŠ” íŒŒì¼ ê¸°ë°˜ ë°©ë²•ì— ì˜ì¡´.
+ - ì •ì  ì»¨í…ì¸ ëŠ” íŠ¹ì • ì–¸ì–´ ì²˜ë¦¬ê¸°ë¥¼ worker ì¸ìŠ¤í„´ìŠ¤ì— ë‚´ìž¥í•˜ëŠ” ë°©ë²•ìœ¼ë¡œ ì²˜ë¦¬í•˜ë©° ëª¨ë“ˆë¡œì¨ ë™ì ìœ¼ë¡œ ì ìž¬ê°€ ê°€ëŠ¥.
+ - ë™ì  ì»¨í…ì¸  ì²˜ë¦¬ê¸°ê°€ ë‚´ìž¥ë˜ëŠ” ë°©ì‹ì´ë¯€ë¡œ ì™¸ë¶€ í”„ë¡œê·¸ëž¨ì— ì˜ì¡´í•˜ì§€ ì•Šê³  ê²°ê³¼ì ìœ¼ë¡œ ì„¤ì •ì´ ë¹„êµì  ë‹¨ìˆœ.
 
-3. µð·ºÅä¸® ´ÜÀ§ÀÇ ¼³Á¤ÀÌ °¡´É.
- - ¸ÞÀÎ ¼³Á¤ ÆÄÀÏÀ» ´Ü¼øÇÏ°Ô À¯ÁöÇÒ ¼ö ÀÖ´Â ÀåÁ¡ÀÌ ÀÖ´Ù.
- - µð·ºÅä¸® °æ·Î(route) Á¢±Ù½Ã µ¿ÀûÀ¸·Î ÀÐ¾îÁö±â ¶§¹®¿¡, ÆÄÀÏÀÇ ¼³Á¤ º¯°æ»çÇ×ÀÌ ¼­¹ö Àç½ÃÀÛ ¾øÀÌ Àû¿ëÇÒ ¼ö ÀÖ°Ô µÊ.
- - È£½ºÆÃ°ú °°ÀÌ »ç¿ëÀÚº°·Î Æ¯Á¤±ÇÇÑÀ» °¡Áö´Â »óÈ²¿¡ À¯¿ëÇÏ°Ô »ç¿ëµÉ ¼ö ÀÖ´Ù.
-	´ÜÁ¡: Æ¯Á¤ µð·ºÅä¸®¿¡ Á¢±ÙÇÒ ¶§¸¶´Ù µ¿ÀûÀ¸·Î ÆÄ½Ì  - ¼º´É ÀúÇÏÀÇ ¹ß»ý °¡´É¼º
-	       Æ¯Á¤ µð·ºÅä¸® ±ÇÇÑÀ» °¡Áø ÀÏ¹Ý À¯Àú°¡ À¥¼­¹öÀÇ ¼³Á¤À» º¯°æÇÒ ¼ö ÀÖ´Ù´Â Á¡¿¡¼­ º¸¾È»ó Ãë¾àÁ¡ÀÌ µÉ ¼ö ÀÖÀ½.
+3. ë””ë ‰í† ë¦¬ ë‹¨ìœ„ì˜ ì„¤ì •ì´ ê°€ëŠ¥.
+ - ë©”ì¸ ì„¤ì • íŒŒì¼ì„ ë‹¨ìˆœí•˜ê²Œ ìœ ì§€í•  ìˆ˜ ìžˆëŠ” ìž¥ì ì´ ìžˆë‹¤.
+ - ë””ë ‰í† ë¦¬ ê²½ë¡œ(route) ì ‘ê·¼ì‹œ ë™ì ìœ¼ë¡œ ì½ì–´ì§€ê¸° ë•Œë¬¸ì—, íŒŒì¼ì˜ ì„¤ì • ë³€ê²½ì‚¬í•­ì´ ì„œë²„ ìž¬ì‹œìž‘ ì—†ì´ ì ìš©í•  ìˆ˜ ìžˆê²Œ ë¨.
+ - í˜¸ìŠ¤íŒ…ê³¼ ê°™ì´ ì‚¬ìš©ìžë³„ë¡œ íŠ¹ì •ê¶Œí•œì„ ê°€ì§€ëŠ” ìƒí™©ì— ìœ ìš©í•˜ê²Œ ì‚¬ìš©ë  ìˆ˜ ìžˆë‹¤.
+	ë‹¨ì : íŠ¹ì • ë””ë ‰í† ë¦¬ì— ì ‘ê·¼í•  ë•Œë§ˆë‹¤ ë™ì ìœ¼ë¡œ íŒŒì‹±  - ì„±ëŠ¥ ì €í•˜ì˜ ë°œìƒ ê°€ëŠ¥ì„±
+	       íŠ¹ì • ë””ë ‰í† ë¦¬ ê¶Œí•œì„ ê°€ì§„ ì¼ë°˜ ìœ ì €ê°€ ì›¹ì„œë²„ì˜ ì„¤ì •ì„ ë³€ê²½í•  ìˆ˜ ìžˆë‹¤ëŠ” ì ì—ì„œ ë³´ì•ˆìƒ ì·¨ì•½ì ì´ ë  ìˆ˜ ìžˆìŒ.
 
 
 Nginx
-1. µ¿½Ã¼º ¹®Á¦¸¦ ÇØ°áÇÏ±â À§ÇØ °í¾È, ºñµ¿±â, Non-Blocking, ÀÌº¥Æ®±â¹ÝÀÇ ¿¬°á Ã³¸®
- - worker ÇÁ·Î¼¼½º ¿©·¯ °³¸¦ »ý¼ºÇÏ¸ç, °¢ ÇÁ·Î¼¼½º´Â ¼öÃµ°³ÀÇ ¿¬°áÀ» Ã³¸®ÇÒ ¼ö ÀÖ½À´Ï´Ù.
- - °¢ ÇÁ·Î¼¼½º´Â looping ¹æ½ÄÀ¸·Î  µ¿ÀÛÇÏ¸ç, ÂªÀº ÁÖ±â·Î ÀÌº¥Æ®°¡ ¹ß»ýÇß´ÂÁö È®ÀÎÇÏ°í Ã³¸®ÇÏ´Â °úÁ¤À» ¹Ýº¹ÇÕ´Ï´Ù.
- - ¿¬°á Á¤º¸´Â looping ¾È¿¡ Á¸¼ÓÇÏ°Ô µÇ¸ç, ¿¬°á¿¡ Á¾¼ÓÀûÀÎ ÀÌº¥Æ®µéÀº ºñµ¿±âÀûÀ¸·Î Ã³¸®µË´Ï´Ù.
- - ¿¬°áÀÌ Á¾·áµÇ¸é looping¿¡¼­ Á¤º¸°¡ »èÁ¦ µË´Ï´Ù.
+1. ë™ì‹œì„± ë¬¸ì œë¥¼ í•´ê²°í•˜ê¸° ìœ„í•´ ê³ ì•ˆ, ë¹„ë™ê¸°, Non-Blocking, ì´ë²¤íŠ¸ê¸°ë°˜ì˜ ì—°ê²° ì²˜ë¦¬
+ - worker í”„ë¡œì„¸ìŠ¤ ì—¬ëŸ¬ ê°œë¥¼ ìƒì„±í•˜ë©°, ê° í”„ë¡œì„¸ìŠ¤ëŠ” ìˆ˜ì²œê°œì˜ ì—°ê²°ì„ ì²˜ë¦¬í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+ - ê° í”„ë¡œì„¸ìŠ¤ëŠ” looping ë°©ì‹ìœ¼ë¡œ  ë™ìž‘í•˜ë©°, ì§§ì€ ì£¼ê¸°ë¡œ ì´ë²¤íŠ¸ê°€ ë°œìƒí–ˆëŠ”ì§€ í™•ì¸í•˜ê³  ì²˜ë¦¬í•˜ëŠ” ê³¼ì •ì„ ë°˜ë³µí•©ë‹ˆë‹¤.
+ - ì—°ê²° ì •ë³´ëŠ” looping ì•ˆì— ì¡´ì†í•˜ê²Œ ë˜ë©°, ì—°ê²°ì— ì¢…ì†ì ì¸ ì´ë²¤íŠ¸ë“¤ì€ ë¹„ë™ê¸°ì ìœ¼ë¡œ ì²˜ë¦¬ë©ë‹ˆë‹¤.
+ - ì—°ê²°ì´ ì¢…ë£Œë˜ë©´ loopingì—ì„œ ì •ë³´ê°€ ì‚­ì œ ë©ë‹ˆë‹¤.
 
-2. ±âº»ÀûÀ¸·Î µ¿Àû ÄÁÅÙÃ÷ Ã³¸® ±â´ÉÀÌ ¾ø½À´Ï´Ù. µû¶ó¼­ ¿ÜºÎ ÇÁ·Î±×·¥°ú ¿¬°áÇÏ´Â ÇüÅÂ·Î ¼³Á¤ÀÌ µÊ.
- - µ¿Àû ÄÁÅÙÃ÷ÀÇ Ã³¸®°¡ À¥¼­¹ö ¿ÜºÎ ÇÁ·Î±×·¥¿¡¼­¸¸ ¼öÇàµÇ¹Ç·Î Á¤Àû ÄÁÅÙÃ÷¿¡ ´ëÇÑ Ã³¸® ºÎÇÏ°¡ °¨¼ÒµÇ´Â ÀåÁ¡ÀÌ ÀÖ½À´Ï´Ù.
+2. ê¸°ë³¸ì ìœ¼ë¡œ ë™ì  ì»¨í…ì¸  ì²˜ë¦¬ ê¸°ëŠ¥ì´ ì—†ìŠµë‹ˆë‹¤. ë”°ë¼ì„œ ì™¸ë¶€ í”„ë¡œê·¸ëž¨ê³¼ ì—°ê²°í•˜ëŠ” í˜•íƒœë¡œ ì„¤ì •ì´ ë¨.
+ - ë™ì  ì»¨í…ì¸ ì˜ ì²˜ë¦¬ê°€ ì›¹ì„œë²„ ì™¸ë¶€ í”„ë¡œê·¸ëž¨ì—ì„œë§Œ ìˆ˜í–‰ë˜ë¯€ë¡œ ì •ì  ì»¨í…ì¸ ì— ëŒ€í•œ ì²˜ë¦¬ ë¶€í•˜ê°€ ê°ì†Œë˜ëŠ” ìž¥ì ì´ ìžˆìŠµë‹ˆë‹¤.
 
-3. µð·ºÅä¸® ´ÜÀ§ ¼³Á¤x, Áß¾ÓÁýÁß½Ä ¼³Á¤ ÇüÅÂ. Apacheº¸´Ù À¯¿¬ÇÏÁö ¾ÊÁö¸¸ ³ª¸§ ÀåÁ¡À» °¡Áö°í ÀÖ´Ù.
+3. ë””ë ‰í† ë¦¬ ë‹¨ìœ„ ì„¤ì •x, ì¤‘ì•™ì§‘ì¤‘ì‹ ì„¤ì • í˜•íƒœ. Apacheë³´ë‹¤ ìœ ì—°í•˜ì§€ ì•Šì§€ë§Œ ë‚˜ë¦„ ìž¥ì ì„ ê°€ì§€ê³  ìžˆë‹¤.
 
 
-¼­¹öºñ°¡ ¸¹ÀÌ Áö¿øµÈ´Ù = Apache2
-°¡¼ººñ°¡ ÁÁÀº °ÍÀ» ¼±ÅÃÇØ¾ßÇÑ´Ù = NginX
+ì„œë²„ë¹„ê°€ ë§Žì´ ì§€ì›ëœë‹¤ = Apache2
+ê°€ì„±ë¹„ê°€ ì¢‹ì€ ê²ƒì„ ì„ íƒí•´ì•¼í•œë‹¤ = NginX
       </a>
   </body>
 </html>
