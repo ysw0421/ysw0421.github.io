@@ -43,8 +43,8 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
   <body>
      <a>
 	<h3 class="Categories BasicFontSet">Apache2 NginX Difference</h3>
-      {% for news in site.categories.analysis %}
-        {% if news.title == 'Testing css'%}
+      {% for news in site.categories.ComparativeAnalysis %}
+        {% if news.title == 'Apache2 NginX Difference'%}
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
       {% endfor %}
