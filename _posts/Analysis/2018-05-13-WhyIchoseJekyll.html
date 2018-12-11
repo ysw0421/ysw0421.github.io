@@ -42,8 +42,8 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
   </head>
   <body>
     <a>
-      <h3 class="Categories BasicFontSet">Jekyll Development Environment</h3>
-      {% for news in site.categories.analysis %}
+      <h3 class="Categories BasicFontSet">Why I chose Jekyll?</h3>
+      {% for news in site.categories.ComparativeAnalysis %}
         {% if news.title == 'Why I chose Jekyll?'%}
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
