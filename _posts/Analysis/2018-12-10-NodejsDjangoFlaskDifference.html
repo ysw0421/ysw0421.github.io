@@ -10,7 +10,7 @@ comments: true
 날짜: Date 
       {% for news in site.categories.analysis %}
         {% if news.title == 'Testing css'%}
-          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ news.categories }}</a>
         {% endif %}
       {% endfor %}
 태그: Tags <a class="post-tag">태그 내용</a>
@@ -45,7 +45,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
       <h3 class="Categories BasicFontSet">Node.js Django Flask Difference</h3>
         {% for news in site.categories.ComparativeAnalysis %}
           {% if news.title == 'Node.js Django Flask Difference'%}
-            <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+            <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ news.categories }}</a>
           {% endif %}
         {% endfor %}
       <blockquote><p class="posting">포스팅 </p></blockquote>
