@@ -10,7 +10,7 @@ comments: true
 날짜: Date 
       {% for news in site.categories.analysis %}
         {% if news.title == 'Testing css'%}
-          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ news.categories }}</a>
         {% endif %}
       {% endfor %}
 태그: Tags <a class="post-tag">태그 내용</a>
@@ -45,7 +45,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
       <h3 class="Categories BasicFontSet">Why I chose Jekyll?</h3>
       {% for news in site.categories.ComparativeAnalysis %}
         {% if news.title == 'Why I chose Jekyll'%}
-          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ news.categories }}</a>
         {% endif %}
       {% endfor %}
 페이스북, 트위터, 미디엄, 브런치도 있는데 왜;;? 글을 쓰고, 글과 멀티미디어로 관계맺기를 하는 것이 목표라면, </br>
