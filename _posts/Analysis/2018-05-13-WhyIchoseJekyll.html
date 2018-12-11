@@ -1,8 +1,8 @@
 ﻿---
 layout: post
-title:  Why I chose Jekyll?
+title: Why I chose Jekyll
 meta: Difference
-categories: ComparativeAnalysis
+category: ComparativeAnalysis
 comments: true
 ---
 <!--
@@ -44,7 +44,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
     <a>
       <h3 class="Categories BasicFontSet">Why I chose Jekyll?</h3>
       {% for news in site.categories.ComparativeAnalysis %}
-        {% if news.title == 'Why I chose Jekyll?'%}
+        {% if news.title == 'Why I chose Jekyll'%}
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
       {% endfor %}
