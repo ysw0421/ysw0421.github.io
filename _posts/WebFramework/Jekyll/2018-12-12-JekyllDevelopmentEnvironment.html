@@ -70,7 +70,27 @@ sudo vim /etc/default/locale
 LANG="ko_KR.UTF-8"
 LANGUAGE="ko_KR:ko"
 
-git clone https://github.com/ysw0421/ysw0421.github.io
+# github 저장소 복제
+# 예시
+$git clone https://github.com/ysw0421/ysw0421.github.io
+
+#원격 저장소 등록
+$sudo git remote add origin "저장소 URL"
+$sudo git fetch origin
+
+#변경된 모든 파일 추가(커밋 전에 필수 실행)
+$ sudo git add -A
+
+# 아래의 명령어를 입력후 엔터 치고 변경목록이 보이면 Ctrl+o 그리고 엔터 그리고 Ctrl+x 종료한다.
+$ sudo git commit
+
+커밋 메세지를 입력 (하지 않으면 안됨)
+$ sudo git commit -m "메세지입력"
+
+저장소에 올리기 (계정과 암호 물어보면 입력)
+$ sudo git push
+Username for 'https://github.com': "Username - 나같은 경우 email"
+Password for '':
 </code></pre>
       </br>
       <p class="Paragraph">2. 리눅스 환경 구축:</p>
@@ -87,8 +107,12 @@ jekyll serve
 </code></pre>
       </br>
       </br>
-      <p class="Paragraph">2. GitHub 연동:</p>
-         
+      <p class="Paragraph">3. Jekyll Test:</p>
+      
+
+
+
+
       </br>
       </br>
       <p class="Paragraph">현재 사용하고 있는 디렉토리 구조 : </p>
