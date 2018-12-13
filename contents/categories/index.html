@@ -75,6 +75,20 @@ comments: false
             
             <h2>Script</h2>
             <h4>
+            {% for news in site.categories.Python %}
+              <div class="square">
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a><a class="date">{{ news.date | date_to_string }}</a>
+              </div><br>
+            {% endfor %}
+            </h4>
+            <h4>
+            {% for news in site.categories.JavaScript %}
+              <div class="square">
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a><a class="date">{{ news.date | date_to_string }}</a>
+              </div><br>
+            {% endfor %}
+            </h4>
+            <h4>
             {% for news in site.categories.R %}
               <div class="square">
                 <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a><a class="date">{{ news.date | date_to_string }}</a>

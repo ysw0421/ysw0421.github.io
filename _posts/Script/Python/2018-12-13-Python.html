@@ -2,7 +2,7 @@
 layout: post
 title: Python
 meta: Concept
-category: Script
+category: Python
 comments: true
 ---
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 -->
       <a>
 	<h3 class="Categories BasicFontSet">Python</h3>
-	{% for news in site.categories.Script %}
+	{% for news in site.categories.Python %}
         {% if news.title == 'Python'%}
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
