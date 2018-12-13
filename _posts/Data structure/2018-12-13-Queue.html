@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Pointer
-meta: Difference
+title: Queue
+meta: Concept
 category: DataStructure
 comments: true
 ---
@@ -45,7 +45,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
       <a>
 	<h3 class="Categories BasicFontSet">Pointer</h3>
 	{% for news in site.categories.DataStructure %}
-        {% if news.title == 'Pointer'%}
+        {% if news.title == 'Queue'%}
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
         {% endfor %}
