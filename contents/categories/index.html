@@ -61,6 +61,13 @@ comments: false
             </h4>
             
             <h2>Web Server</h2>
+	    <h4>
+            {% for news in site.categories.WebServer %}
+              <div class="square">
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a><a class="date">{{ news.date | date_to_string }}</a>
+              </div><br>
+            {% endfor %}
+            </h4>
             
             <h2>Web Framework</h2>
             <h4>
@@ -72,7 +79,14 @@ comments: false
             </h4>
             
             <h2>DB</h2>
-            
+            <h4>
+            {% for news in site.categories.DB %}
+              <div class="square">
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a><a class="date">{{ news.date | date_to_string }}</a>
+              </div><br>
+            {% endfor %}
+            </h4>            
+
             <h2>Script</h2>
             <h4>
             {% for news in site.categories.Python %}
