@@ -45,7 +45,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
       <a>
 	<h3 class="Categories BasicFontSet">Node.js Development Environment</h3>
 	{% for news in site.categories.WebFramework %}
-        {% if news.title == 'Node.js'%}
+        {% if news.title == 'Node.js Development Environment'%}
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
         {% endfor %}
