@@ -33,7 +33,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 소제: SubTitle <h2 class="BasicFontSet"></h2>
 단락: Paragraph <p class="Paragraph"></p>
 내용: Contents <p class="Contents"></p>
-이미지: Imgsize - media query 적용
+이미지: concept <img src="/asset/Daily/RoadMap/devops.png" class="concept">
 이미지 text: Imgtext
       <p class="Imgtext">
           <img src="이미지 주소"></br>
@@ -49,9 +49,18 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
         {% endfor %}
+	<blockquote><p class="posting">이글은 "https://github.com/devJang/developer-roadmap"을 읽고 내가공부해야할 커리큘럼을 짰습니다. </p></blockquote>
+	<h1 class="BasicFontSet">Web Developer Roadmap</h1>
+	<h2 class="BasicFontSet">Front End Roadmap</h2>
 	<img src="/asset/Daily/RoadMap/frontend.png" class="concept">
+	<p class="Paragraph"></p>
+	<h2 class="BasicFontSet">Back End Roadmap</h2>
 	<img src="/asset/Daily/RoadMap/backend.png" class="concept">
+	<p class="Paragraph"></p>
+	<h2 class="BasicFontSet">DevOps Roadmap</h2>
 	<img src="/asset/Daily/RoadMap/devops.png" class="concept">
+	<p class="Paragraph"></p>
+	<blockquote><p class="Reference">출처: <a class="Reference"> https://github.com/devJang/developer-roadmap</a></p>
      </a>
   </body>
 </html>
