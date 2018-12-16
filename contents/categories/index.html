@@ -51,6 +51,15 @@ comments: false
             <a class="post-tag">Machine Learning</a>
             <a class="post-tag">Data structure & Algorithm</a>
             <hr>
+	    <h2>Daily</h2>
+            <h4>
+            {% for news in site.categories.Daily %}
+              <div class="square">
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a><a class="date">{{ news.date | date_to_string }}</a>
+              </div><br>
+            {% endfor %}
+            </h4>
+		  
             <h2>Comparative Analysis</h2>
             <h4>
             {% for news in site.categories.ComparativeAnalysis %}
