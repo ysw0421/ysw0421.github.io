@@ -58,7 +58,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 </br>
 <p class="Imgtext">
 	<img src="/asset/Analysis/DOMCSSOM/progressive-rendering.png" class="concept"></br>
-	<브라우저 이미지처리></br>
+	<Progressive Rendering></br>
 </p>
 </br>
 주요 렌더링 경로를 최적화하면 최초페이지 렌더링에 걸리는 시간을 상당히 단축시킬 수 있다.
@@ -99,7 +99,7 @@ html
 </br>
 <p class="Imgtext">
         <img src="/asset/Analysis/DOMCSSOM/full-process.png" class="concept"></br>
-        <브라우저 이미지처리></br>
+        <Full Process></br>
 </p>
 </br>
 1. 변환
@@ -142,11 +142,9 @@ img { float: right }
 </code></pre>
 </br>
 </br>
-HTML 마크업내에 직접 스타일을 선언할 수도 있지만 CSS를 HTML과 별도로 유지하면 콘텐츠와 디자인을
-별도의 항목으로 처리할 수 있습니다. 즉, 디자이너는 CSS를 처리하고, 개발자는 HTML에만 집중할 수 있습니다.
+HTML 마크업내에 직접 스타일을 선언할 수도 있지만 CSS를 HTML과 별도로 유지하면 콘텐츠와 디자인을 별도의 항목으로 처리할 수 있습니다. 즉, 디자이너는 CSS를 처리하고, 개발자는 HTML에만 집중할 수 있습니다.
 
-HTML과 마찬가지로, 수신된 CSS 규칙을 브라우저가 이해하고 처리할 수 잇는 형식으로 변환해야 합니다.
-따라서 HTML 대신 CSS에 대해 HTML프로세스를 반복합니다.
+HTML과 마찬가지로, 수신된 CSS 규칙을 브라우저가 이해하고 처리할 수 잇는 형식으로 변환해야 합니다. 따라서 HTML 대신 CSS에 대해 HTML프로세스를 반복합니다.
 </br>
 <p class="Imgtext">
         <img src="/asset/Analysis/DOMCSSOM/cssom-construction.png" class="concept"></br>
@@ -158,7 +156,7 @@ CSS바이트가 문자로 변환된 후 차례로 토큰과 노드로 변환되�
 </br>
 <p class="Imgtext">
         <img src="/asset/Analysis/DOMCSSOM/cssom-tree.png" class="concept"></br>
-        <CSSOM Construction></br>
+        <Cssom-Tree></br>
 </p>
 </br>
 CSSOM이 트리 구조를 가지는 이유느 페이지에 있는 객체의 최종 스타일을 계산할 때 브라우저는 해당노드에적용 가능한 가장 일반적인 규칙(EX: body요소의 하위인 경우 모든 body 스타일 적용)으로 시작한 후 더욱 구체적인 규칙을 적용하는 방식으로계산된 스타일을 재귀적으로 세분화합니다.
@@ -181,7 +179,7 @@ DOM 및 CSSOM 트리는 결합되어 렌더링 트리를 형성합니다.
 </br>
 <p class="Imgtext">
         <img src="/asset/Analysis/DOMCSSOM/render-tree-construction.png" class="concept"></br>
-        <CSSOM Construction></br>
+        <Render Tree Construction></br>
 </p>
 </br>
 렌더링 트리를 생성하려면 브라우저가 대략적으로 다음 작업을 수행합니다.
