@@ -56,7 +56,9 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 성능을 최적화하려면 HTML, CSS 및 자바스크립트 바이트를 수신한 후 렌더링된 픽셀로 변환하기 위해 필요한 처리까지, 
 그 사이에 포함된 중간 단계에서 어떠한 일이 일어나는지를 파악하기만 하면 됩니다. 
 이러한 단계가 바로 주요 렌더링 경로입니다.
+</br>
 <이미지>
+</br>
 주요 렌더링 경로를 최적화하면 최초페이지 렌더링에 걸리는 시간을 상당히 단축시킬 수 있다.
 또한, 주요 렌더링 경로에 대한 이해를 토대로 뛰어난 성능의 대화형 애플리케이션을 빌드할 수도 있습니다.
 대화형 업데이트 프로세스도 이와 동일합니다. 연속 루프에서 실행되며 이상적인 속도는 초당 60프레임입니다.
@@ -78,6 +80,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 </br>
 </br>
 <pre><code>
+<!--
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="style.css" rel="stylesheet">
@@ -87,12 +90,15 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
     <p>Hello <span>web performance</span> students!</p>
     <div><img src="awesome-photo.jpg"></div>
   </body>
+-->
 </code></pre>
 </br>
 </br>
 가장 단순한 경우인 몇몇 텍스트와 하나의 이미지만 포함하는 일반 HTML 페이지부터 
 살펴보도록 하겠습니다. 브라우저가 이 페이지를 어떻게 처리하나요?
+</br>
 <이미지>
+</br>
 1. 변환
 2. 토큰화
 3. 렉싱
@@ -103,7 +109,9 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 브라우저는 HTML마크업을 처리할 때마다 위의 모든 단계를 수행합니다. 즉, 바이트를 문자로 변환하고,
 토큰을 식별한 후 노드로 변환하고 DOM트리를 빌드합니다. 이 전체 프로세스를 완료하려면 시간이
 약간 걸릴 수 있으며, 특히 처리해야 할 HTML이 많은 경우 그렇습니다.
+</br>
 <이미지>
+</br>
 참고: Chrome DevTools 사용방법에 대해 알아야함. - 네트워크 워터폴을 캡처하거나 타임라인을 기록하는 방법
 Discover DevTools 학습: https://www.pluralsight.com/search?q=chrome%20developer%20tools
 매끄러운 애니메이션을 만드는 경우, 브라우저가 대량의 HTML을 처리해야 한다면 쉽게 병목 현상이 발생할 수 있습니다.
@@ -115,6 +123,7 @@ DOM트리는 문서 마크업의 속성 및 관계를 포함하지만 요소가 
 브라우저는 단순한 페이지의 DOM을 생성하는 동안 외부 CSS 스타일시트인 style.css를 참조하는 문서의
 헤드 섹션에서 링크 태그를 접합니다. 페이지를 렌더링하는데 이 리소스가 필요할 것이라고 판단한 브라우저는
 이 리소스에 대한 요청을 즉시 발송하고 요청의 결과로 다음 콘텐츠가 반환됩니다.
+</br>
 </br>
 </br>
 <pre><code>
@@ -131,10 +140,14 @@ HTML 마크업내에 직접 스타일을 선언할 수도 있지만 CSS를 HTML�
 
 HTML과 마찬가지로, 수신된 CSS 규칙을 브라우저가 이해하고 처리할 수 잇는 형식으로 변환해야 합니다.
 따라서 HTML 대신 CSS에 대해 HTML프로세스를 반복합니다.
+</br>
 <이미지>
+</br>
 CSS바이트가 문자로 변환된 후 차례로 토큰과 노드로 변환되고 마지막으로 'CSS Object Model'(CSSOM)이라는
 트리 구조에 링크됩니다.
+</br>
 <이미지>
+</br>
 CSSOM이 트리 구조를 가지는 이유느 페이지에 있는 객체의 최종 스타일을 계산할 때 브라우저는 해당노드에
 적용 가능한 가장 일반적인 규칙(EX: body요소의 하위인 경우 모든 body 스타일 적용)으로 시작한 후 더욱 구체적인 규칙을 적용하는 방식으로
 계산된 스타일을 재귀적으로 세분화합니다.
@@ -159,7 +172,9 @@ DOM 및 CSSOM 트리는 결합되어 렌더링 트리를 형성합니다.
 
 먼저, 브라우저가 DOM 및 CSSOM을 '렌더링 트리'에 결합합니다. 이 트리는 페이지에 표시되는 
 모든 DOM 콘텐츠와 각 노드에 대한 모든 CSSOM 스타일 정보를 캡처합니다.
+</br>
 <이미지>
+</br>
 렌더링 트리를 생성하려면 브라우저가 대략적으로 다음 작업을 수행합니다.
 1. DOM 트리의 q루트에서 시작하여 표시되는 노드 각각을 트래버스합니다.
 	일부 노드는 표시되지 않으며, 렌더링된 출력에 반영되지 않으므로 생략됩니다.
