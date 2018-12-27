@@ -51,6 +51,6 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
         {% endfor %}
      </a>
 	<blockquote><p class="posting">포스팅 </p></blockquote>
-	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p>
+	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
   </body>
 </html>
