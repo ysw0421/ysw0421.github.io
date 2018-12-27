@@ -2,7 +2,7 @@
 layout: post
 title: DOM, CSSOM, JavaScript Optimization
 meta: Compare
-category: ComparativeAnalysis
+category: WebFrontProgramming
 comments: true
 ---
 <!DOCTYPE html>
@@ -44,14 +44,14 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 -->
       <a>
 	<h3 class="Categories BasicFontSet">DOM, CSSOM, JavaScript Optimization</h3>
-	{% for news in site.categories.ComparativeAnalysis %}
+	{% for news in site.categories.WebFrontProgramming %}
         {% if news.title == 'DOM, CSSOM Optimization'%}
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
         {% endfor %}
 <blockquote><p class="posting">이 글은 "https://developers.google.com/web/fundamentals/performance/critical-rendering-path/"에 기고된 글입니다. HTML, CSS, JavaScript를 제대로 짜는 법, 최적화하는 법에 대해 고민을 해봤다. 뿐만아니라 코드 만드는데 급급해 이해하지 못하고 넘어간 DOM, CSSOM, JavaScript가 어떤식으로 돌아가는지 이해하기 위해 포스팅합니다.</p></blockquote>
 <p class="Imgtext">
-	<img src="/asset/Analysis/DOMCSSOM/browser.png" class="concept"></br>
+	<img src="/asset/WebFront/DOMCSSOM/browser.png" class="concept"></br>
 	<How to work in browser></br>
 </p>
 <h1 class="BasicFontSet">주요 렌더링 경로</h1>
@@ -61,7 +61,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 이러한 단계가 바로 주요 렌더링 경로입니다.
 </br>
 <p class="Imgtext">
-	<img src="/asset/Analysis/DOMCSSOM/progressive-rendering.png" class="concept"></br>
+	<img src="/asset/WebFront/DOMCSSOM/progressive-rendering.png" class="concept"></br>
 	<Progressive Rendering></br>
 </p>
 </br>
@@ -101,7 +101,7 @@ html
 가장 단순한 경우인 몇몇 텍스트와 하나의 이미지만 포함하는 일반 HTML 페이지부터 살펴보도록 하겠습니다. 브라우저가 이 페이지를 어떻게 처리하나요?
 </br>
 <p class="Imgtext">
-        <img src="/asset/Analysis/DOMCSSOM/full-process.png" class="concept"></br>
+        <img src="/asset/WebFront/DOMCSSOM/full-process.png" class="concept"></br>
         <Full Process></br>
 </p>
 </br>
@@ -117,14 +117,14 @@ html
 약간 걸릴 수 있으며, 특히 처리해야 할 HTML이 많은 경우 그렇습니다.
 </br>
 <p class="Imgtext">
-        <img src="/asset/Analysis/DOMCSSOM/dom-tree.png" class="concept"></br>
+        <img src="/asset/WebFront/DOMCSSOM/dom-tree.png" class="concept"></br>
         <DOM(Document Object Model)></br>
 </p>
 </br>
 참고: Chrome DevTools 사용방법에 대해 알아야함. - 네트워크 워터폴을 캡처하거나 타임라인을 기록하는 방법
 </br>
 <p class="Imgtext">
-        <img src="/asset/Analysis/DOMCSSOM/dom-timeline.png" class="concept"></br>
+        <img src="/asset/WebFront/DOMCSSOM/dom-timeline.png" class="concept"></br>
         <Chrome DevTools></br>
 </p>
 </br>
@@ -152,14 +152,14 @@ HTML 마크업내에 직접 스타일을 선언할 수도 있지만 CSS를 HTML�
 HTML과 마찬가지로, 수신된 CSS 규칙을 브라우저가 이해하고 처리할 수 잇는 형식으로 변환해야 합니다. 따라서 HTML 대신 CSS에 대해 HTML프로세스를 반복합니다.
 </br>
 <p class="Imgtext">
-        <img src="/asset/Analysis/DOMCSSOM/cssom-construction.png" class="concept"></br>
+        <img src="/asset/WebFront/DOMCSSOM/cssom-construction.png" class="concept"></br>
         <CSSOM Construction></br>
 </p>
 </br>
 CSS바이트가 문자로 변환된 후 차례로 토큰과 노드로 변환되고 마지막으로 'CSS Object Model'(CSSOM)이라는 트리 구조에 링크됩니다.
 </br>
 <p class="Imgtext">
-        <img src="/asset/Analysis/DOMCSSOM/cssom-tree.png" class="concept"></br>
+        <img src="/asset/WebFront/DOMCSSOM/cssom-tree.png" class="concept"></br>
         <Cssom-Tree></br>
 </p>
 </br>
@@ -181,7 +181,7 @@ CSSOM 및 DOM트리는 결합하여 렌더링 트리를 형성합니다. 이 렌
 먼저, 브라우저가 DOM 및 CSSOM을 '렌더링 트리'에 결합합니다. 이 트리는 페이지에 표시되는 모든 DOM 콘텐츠와 각 노드에 대한 모든 CSSOM 스타일 정보를 캡처합니다.
 </br>
 <p class="Imgtext">
-        <img src="/asset/Analysis/DOMCSSOM/render-tree-construction.png" class="concept"></br>
+        <img src="/asset/WebFront/DOMCSSOM/render-tree-construction.png" class="concept"></br>
         <Render Tree Construction></br>
 </p>
 </br>
