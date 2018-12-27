@@ -43,8 +43,8 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 참고자료: Reference <blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p>
 -->
       <a>
-	<h3 class="Categories BasicFontSet">JavaScript Engine Asynchronous Processing</h3>
-	{% for news in site.categories.JavaScript %}
+	<h3 class="Categories BasicFontSet">How the browser works</h3>
+	{% for news in site.categories.WebFront %}
         {% if news.title == 'How the browser works'%}
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
