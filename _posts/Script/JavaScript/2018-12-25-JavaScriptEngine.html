@@ -36,7 +36,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 이미지: Imgsize - media query 적용
 이미지 text: Imgtext
       <p class="Imgtext">
-          <img src="이미지 주소"></br>
+          <img src="이미지 주소" class="concept"></br>
           <내용></br>
       </p>
 전체 코드 URL: CodeURL
@@ -90,10 +90,10 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <내용></br>
       </p>
 	</br>
-인터프리터(interpreter)
+<p class="Paragraph">인터프리터(interpreter)</p>
 : 최적화되지 않은 바이트코드(bytecode)를 빠르게 생성합니다.
 	</br>
-최적화 컴파일러(optimizing compiler)
+<p class="Paragraph">최적화 컴파일러(optimizing compiler)</p>
 : 매우 최적화된 기계어 코드(machine code)를 약간 시간을 들여서 생성합니다.
 	</br>
 	이 과정에서 바이트코드는 중간 언어(IR, intermediate representation)입니다. 
@@ -143,7 +143,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	결국, 자바스크립트 엔진마다 구체적인 최적화 과정은 차이가 있으나, 파서와 인터프리터/컴파일러가 포함된 동일한 아키텍쳐로 구성된 것을 알 수 있습니다.
 	</br>
 	</br>
-<h2 class="BasicFontSet">JS 엔진이 객체 모델을 구현하는 방법</h2>
+<h1 class="BasicFontSet">JS 엔진이 객체 모델을 구현하는 방법</h1>
 <h2 class="BasicFontSet">객체의 정의</h2>
 	객체는 JS 명세에 따르면 String으로 된 키와 이것으로 접근할 수 있는 값들을 가지고 있는 딕셔너리입니다. 
 	이 키는 단순히 [[value]]에 맵핑되는 것 뿐만 아니라 속성 값(property attributes) 이라고 하는 스펙에도 매핑됩니다.
