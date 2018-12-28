@@ -66,7 +66,6 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 <h2 class="BasicFontSet">자바스크립트 엔진 파이프라인</h2>
 	자바스크립트 엔진들이 소스 코드를 기계어로 만들기까지 공통적으로 수행하는 과정을 살펴봅시다.
 	</br>
-[그림 1.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/engine1.PNG" class="concept"></br>
           <내용></br>
@@ -86,7 +85,6 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	인터프리터가 코드를 해석하고, 최적화 할 때 주요 자바스크립트 엔진들 사이에 어떤 차이가 있는지 알아봅시다. 
 	일반적으로는 다음과 같은 공통된 파이프라인을 가집니다.
 	</br>
-[그림 2.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/engine2.PNG" class="concept"></br>
           <내용></br>
@@ -110,7 +108,6 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	</br>
 <h2 class="BasicFontSet">V8에서 처리하는 방법</h2>
 	</br>
-[그림 3.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/engine3.PNG" class="concept"></br>
           <내용></br>
@@ -151,7 +148,6 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	객체는 JS 명세에 따르면 String으로 된 키와 이것으로 접근할 수 있는 값들을 가지고 있는 딕셔너리입니다. 
 	이 키는 단순히 [[value]]에 맵핑되는 것 뿐만 아니라 속성 값(property attributes) 이라고 하는 스펙에도 매핑됩니다.
 	</br>
-[객체 1.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object1.PNG" class="concept"></br>
           <내용></br>
@@ -162,7 +158,6 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 <h2 class="BasicFontSet">속성 값(property attributes)</h2>
 	객체는 기본적인 속성 값으로 [[Writable]], [[Enumerable]], [[Configurable]] 상태를 가집니다.
 	</br>
-[객체 2.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object2.PNG" class="concept"></br>
           <내용></br>
@@ -206,14 +201,12 @@ Object.getOwnPropertyDescriptor(object, 'foo');
 	아래 그림을 보면 인덱스인 '0' 은 'a'라는 값을 가지며, 값을 바꿀 수 있고(Writable), 열거 가능하고(Enumerable), 삭제 가능(Configurable) 합니다. 
 	또 다른 프로퍼티인 length 의 값은 1이며, 값을 바꿀 수 있지만 열거와 삭제가 불가능 합니다.
 	</br>
-[객체 3.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object3.PNG" class="concept"></br>
           <내용></br>
       </p>
 	배열에 새로운 아이템을 추가하게 되면, JS엔진은 length의 속성 값 중 [[value]]를 자동으로 증가시킵니다.
 	</br>
-[객체 4.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object4.PNG" class="concept"></br>
           <내용></br>
@@ -239,7 +232,6 @@ logX(obj2);
 	함수 logX를 통해 두 객체 각각에서 같은 프로퍼티 x 에 접근한다고 합시다.
 	JS 엔진은 프로퍼티 접근 시에 모양이 같은 점을 이용하여 최적화를 합니다.
 	</br>
-[객체 5.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object5.PNG" class="concept"></br>
           <내용></br>
@@ -255,7 +247,6 @@ logX(obj2);
 	</br>
 	그래서 JS 엔진은 직접 값을 저장하는 방법 대신 다음 방법을 사용합니다.
 	</br>
-[객체 6.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object6.PNG" class="concept"></br>
           <내용></br>
@@ -264,7 +255,6 @@ logX(obj2);
 	우선 엔진은 따로 Shape라는 곳에 프로퍼티 이름과 속성 값들을 저장합니다. 
 	하지만 여기에 [[value]] 값 대신 JSObject의 어디에 값이 저장되어 있는지에 대한 정보인 Offset 을 Property information으로 가집니다.
 	</br>
-[객체 7.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object7.PNG" class="concept"></br>
           <내용></br>
@@ -293,7 +283,6 @@ o.y = 6;
 	</br>
 	먼저, 비어있는 객체인 o가 있으며, 이는 비어있는 Shape를 가리키고 있습니다.
 	</br>
-[객체 8.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object8.PNG"></br>
           <내용></br>
@@ -301,7 +290,6 @@ o.y = 6;
 	</br>
 	여기에 5라는 값을 가진 x라는 프로퍼티를 추가하게 되면, 비어있던 Shape에서 x를 프로퍼티로 갖고 있는 새로운 Shape로 이동(transition)하게 됩니다. 다음과 같이 JSObject의 값이 추가되고, offset은 0입니다.
 	</br>
-[객체 9.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object9.PNG" class="concept"></br>
           <내용></br>
@@ -310,7 +298,6 @@ o.y = 6;
 	새로운 프로퍼티 y를 추가해도 비슷하게 동작합니다. 
 	Shape(x,y)로 이동한 다음 값을 추가합니다.
 	</br>
-[객체 10.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object10.PNG" class="concept"></br>
           <내용></br>
@@ -323,7 +310,6 @@ o.y = 6;
 	엔진은 추가되는 새로운 프로퍼티 정보를 저장하고, 이전 Shape로 가는 링크를 제공합니다. 
 	만약 o.x를 찾을 때 값이 Shape(x,y) 에 없다면 이전의 Shape(x)에 가서 찾는 겁니다.
 	</br>
-[객체 11.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object11.PNG" class="concept"></br>
           <내용></br>
@@ -333,7 +319,6 @@ o.y = 6;
 	만약에 두 객체에서 동일한 Shape 를 사용한다면 어떻게 될까요?
 	먼저 하나의 객체 a 에 x = 5 라는 값을 가진 프로퍼티가 있다고 합시다.
 	</br>
-[객체 12.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object12.PNG" class="concept"></br>
           <내용></br>
@@ -342,7 +327,6 @@ o.y = 6;
 	이번엔 객체 b에서 y라는 프로퍼티를 추가할 경우 Shape(empty)에서 가지를 뻗어 새로운 Shape(y) 를 만들게 됩니다. 
 	결국 2개의 체인에 3개의 Shape를 가진 트리 체인이 생성됩니다.
 	</br>
-[객체 13.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object13.PNG" class="concept"></br>
           <내용></br>
@@ -359,7 +343,6 @@ const ob2 = {x: 6};
 	ojb2 와 같이, JS에서는 Object Literal을 사용하여 시작부터 프로퍼티를 갖고 생성하도록 할 수 있기 때문입니다. 
 	따라서 Shape(empty)가 아닌, 서로 다른 Root Shape가 생성됩니다.
 	</br>
-[객체 14.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object14.PNG" class="concept"></br>
           <내용></br>
@@ -376,7 +359,6 @@ point.z = 6;
 	</br>
 	앞서 배운 것에 따르면, 총 3개의 Shape가 메모리에 생성 될 것입니다. (empty Shape 제외)
 	</br>
-[객체 15.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object15.PNG" class="concept"></br>
           <내용></br>
@@ -388,7 +370,6 @@ point.z = 6;
 	</br>
 	그래서 JS 엔진은 탐색 속도를 높이기 위해 내부적으로 ShapeTable 이라는 자료구조를 추가합니다. 이는 딕셔너리 형태로, 각각의 Shape를 가리키는 프로퍼티 키를 저장하고 있습니다.
 	</br>
-[객체 16.]
       <p class="Imgtext">
           <img src="/asset/Script/JavaScript/JavaScriptEngine/Object16.PNG" class="concept"></br>
           <내용></br>
