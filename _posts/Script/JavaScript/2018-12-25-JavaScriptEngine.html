@@ -51,19 +51,19 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
         {% endfor %}
      </a>
 	<blockquote><p class="posting">이 글은 https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf에서 발췌한 내용이고 고급 개발자가 되기 위해서는 엔진이 어떻게 돌아가는지를 이해해야하기 때문에 자바스크립트 엔진이 어떤식으로 돌아가는지 공부하기위해 가져오고 정리하였습니다.</p></blockquote>
-자바스크립트 엔진이란?
+<h2 class="BasicFontSet">자바스크립트 엔진이란?</h2>
 	  JS 코드를 실행하는 프로그램 또는 인터프리터를 말합니다.
 	</br>
 	</br>
-자바스크립트 엔진의 종류
+<h2 class="BasicFontSet">자바스크립트 엔진의 종류</h2>
 	자바스크립트는 웹 브라우저뿐만 아니라 Node.js, Electron, React Native 등의 프로젝트와 그 밖의 다양한 곳에서 동작합니다. 
 	</br>
 	</br>
-V8
+<h2 class="BasicFontSet">V8</h2>
 	C++로 작성되었으며, 구글이 개발한 오픈소스입니다. Google Chrome, Electron, Node.js에서 사용합니다.
 	</br>
 	</br>
-자바스크립트 엔진 파이프라인
+<h2 class="BasicFontSet">자바스크립트 엔진 파이프라인</h2>
 	자바스크립트 엔진들이 소스 코드를 기계어로 만들기까지 공통적으로 수행하는 과정을 살펴봅시다.
 [그림 1.]
 	먼저, 자신이 작성한 자바스크립트 소스 코드에서부터 시작합니다.
@@ -76,7 +76,7 @@ V8
 	만약 정확하지 않은 결과가 나왔다면 다시 deoptimizes하여 바이트 코드로 되돌립니다.
 	</br>
 	</br>
-인터프리터/컴파일러 파이프라인
+<h2 class="BasicFontSet">인터프리터/컴파일러 파이프라인</h2>
 	인터프리터가 코드를 해석하고, 최적화 할 때 주요 자바스크립트 엔진들 사이에 어떤 차이가 있는지 알아봅시다. 
 	일반적으로는 다음과 같은 공통된 파이프라인을 가집니다.
 [그림 2.]
@@ -96,7 +96,7 @@ V8
 	이 기법은 프로그램의 실행 속도를 빠르게 하기 위해 사용된다.
 	</br>
 	</br>
-V8에서 처리하는 방법
+<h2 class="BasicFontSet">V8에서 처리하는 방법</h2>
 [그림 3.]
 	V8의 세부 파트는 이름 그대로 8기통 자동차 엔진이 떠오르는 네이밍을 하고 있습니다.
 	과정은 위의 공통 파이프라인과 거의 흡사합니다. 
@@ -108,7 +108,7 @@ V8에서 처리하는 방법
 	그리고 이곳에서 프로파일링 된 데이터를 기반으로 매우 최적화된 기계어 코드를 만들어냅니다.
 	</br>
 	</br>
-뜨거워진다(getting hot)의 의미?
+<h2 class="BasicFontSet">뜨거워진다(getting hot)의 의미?</h2>
 	자주 반복돼서 수행된다는 뜻입니다.
 	</br>
 	최근의 JS 엔진들은 일괄적으로 최적화를 적용하는 JITC가 아닌 Adaptive Compilation 방식을 택하고 있습니다. 
@@ -117,7 +117,7 @@ V8에서 처리하는 방법
 	자주 반복되는 부분이 발견되면 여기에 대해서만 JITC를 적용하는 식입니다.
 	</br>
 	</br>
-처리 방법의 차이점과 공통점
+<h2 class="BasicFontSet">처리 방법의 차이점과 공통점</h2>
 	왜 어떤 엔진은 더 많은 최적화 컴파일러를 갖고 있을까요?
 	</br>
 	바로 트레이드 오프(trade-offs) 때문입니다. 
@@ -128,14 +128,14 @@ V8에서 처리하는 방법
 	결국, 자바스크립트 엔진마다 구체적인 최적화 과정은 차이가 있으나, 파서와 인터프리터/컴파일러가 포함된 동일한 아키텍쳐로 구성된 것을 알 수 있습니다.
 	</br>
 	</br>
-JS 엔진이 객체 모델을 구현하는 방법
-객체의 정의
+<h2 class="BasicFontSet">JS 엔진이 객체 모델을 구현하는 방법</h2>
+<h2 class="BasicFontSet">객체의 정의</h2>
 	객체는 JS 명세에 따르면 String으로 된 키와 이것으로 접근할 수 있는 값들을 가지고 있는 딕셔너리입니다. 
 	이 키는 단순히 [[value]]에 맵핑되는 것 뿐만 아니라 속성 값(property attributes) 이라고 하는 스펙에도 매핑됩니다.
 [객체 1.]
 	</br>
 	</br>
-속성 값(property attributes)
+<h2 class="BasicFontSet">속성 값(property attributes)</h2>
 	객체는 기본적인 속성 값으로 [[Writable]], [[Enumerable]], [[Configurable]] 상태를 가집니다.
 [객체 2.]
 	Writable: 할당연산자를 통해 값을 바꿀 수 있는지를 기술합니다.</br>
@@ -149,7 +149,7 @@ Object.getOwnPropertyDescriptor(object, 'foo');
 	</br>
 	</br>
 	</br>
-JS의 배열
+<h2 class="BasicFontSet">JS의 배열</h2>
 	배열은 조금 다르게 처리하는 특별한 객체라고 생각하면 됩니다.
 	객체와 다른 배열만의 특징은 다음과 같습니다.
 	</br>
@@ -170,7 +170,7 @@ JS의 배열
 	</br>
 	</br>
 	</br>
-JS 엔진에서 배열을 다루는 방법
+<h2 class="BasicFontSet">JS 엔진에서 배열을 다루는 방법</h2>
 	기본적으로 객체와 비슷합니다. 배열은 인덱스를 포함하여 모두 string 키를 가집니다.
 	</br>
 	아래 그림을 보면 인덱스인 '0' 은 'a'라는 값을 가지며, 값을 바꿀 수 있고(Writable), 열거 가능하고(Enumerable), 삭제 가능(Configurable) 합니다. 
@@ -180,7 +180,7 @@ JS 엔진에서 배열을 다루는 방법
 [객체 4.]
 	</br>
 	</br>
-엔진의 프로퍼티 접근 최적화
+<h2 class="BasicFontSet">엔진의 프로퍼티 접근 최적화</h2>
 	Shape == Hidden Class
 	</br>
 function logX(obj){
