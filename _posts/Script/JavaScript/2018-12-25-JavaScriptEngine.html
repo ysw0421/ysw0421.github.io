@@ -163,9 +163,9 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <내용></br>
       </p>
 	</br>
-	<p class="Paragraph">Writable:</p> 할당연산자를 통해 값을 바꿀 수 있는지를 기술합니다.</br>
-	<p class="Paragraph">Configurable:</p> 이 속성 기술자는 해당 객체로부터 그 속성을 제거할 수 있는지를 기술합니다.</br>
-	<p class="Paragraph">Enumerable:</p> 해당 객체의 키가 열거 가능한지를 기술합니다.</br>
+	<b>Writable:</b> 할당연산자를 통해 값을 바꿀 수 있는지를 기술합니다.</br>
+	<b>Configurable:</b> 이 속성 기술자는 해당 객체로부터 그 속성을 제거할 수 있는지를 기술합니다.</br>
+	<b>Enumerable:</b> 해당 객체의 키가 열거 가능한지를 기술합니다.</br>
 	어떤 객체나 속성이든 Object.getOwnPropertyDescriptor API를 이용해 이 값들에 접근할 수 있습니다.</br>
 	</br>
 const object = { foo: 42 };
@@ -178,12 +178,12 @@ Object.getOwnPropertyDescriptor(object, 'foo');
 	배열은 조금 다르게 처리하는 특별한 객체라고 생각하면 됩니다.
 	객체와 다른 배열만의 특징은 다음과 같습니다.
 	</br>
-	인덱스(index)가 존재한다.
+	<p class="Paragraph">인덱스(index)가 존재한다.</p>
 	배열 인덱스는 무엇일까요? 그것은 제한된 범위가 있는 정수입니다.
 	JS 명세에 따르면, 배열은 2³²-1 개 까지의 아이템을 가질 수 있습니다.
 	따라서 배열 인덱스는 0 부터 2³²-2 까지의 범위에서만 인덱스로 유효한 정수 값입니다.
 	</br>
-	길이(length) 정보를 가집니다.
+	<p class="Paragraph">길이(length) 정보를 가집니다.</p>
 	length property는 마치 마법 같은 것이라고 할 수 있습니다.
 	배열에 아이템을 추가하면 length property는 저절로 늘어나기 때문입니다!
 	이 작업은 사실 엔진에서 자동으로 해주는 겁니다.
