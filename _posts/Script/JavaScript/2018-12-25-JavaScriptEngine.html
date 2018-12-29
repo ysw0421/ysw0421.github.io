@@ -72,11 +72,11 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
       </p>
 	</br>
 	먼저, 자신이 작성한 자바스크립트 소스 코드에서부터 시작합니다.
-	자바스크립트 엔진은 소스 코드를 파싱해서 Abstract Syntax Tree(AST) 로 만듭니다. 
+	자바스크립트 엔진은 소스 코드를 파싱해서 <a href="https://ko.wikipedia.org/wiki/%EC%B6%94%EC%83%81_%EA%B5%AC%EB%AC%B8_%ED%8A%B8%EB%A6%AC">Abstract Syntax Tree(AST)</a>로 만듭니다. 
 	그리고 AST를 바탕으로, 인터프리터는 바이트 코드를 생성합니다. 
 	여기까지가 자바스크립트로 작성된 코드를 실제로 엔진이 실행하는 부분입니다.
 	</br>
-	코드를 더 빠르게 실행하기 위해, 바이트코드는 프로파일링 된 데이터와 함께 최적화 컴파일러(optimizing compiler)로 보내집니다. 
+	코드를 더 빠르게 실행하기 위해, 바이트코드는 프로파일링된 데이터와 함께 최적화 컴파일러(optimizing compiler)로 보내집니다. 
 	이곳에서는 프로파일링 데이터를 기반으로 매우 최적화 된 기계어를 생성합니다. 
 	만약 정확하지 않은 결과가 나왔다면 다시 deoptimizes하여 바이트 코드로 되돌립니다.
 	</br>
@@ -126,7 +126,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 <h2 class="BasicFontSet">뜨거워진다(getting hot)의 의미?</h2>
 	자주 반복돼서 수행된다는 뜻입니다.
 	</br>
-	최근의 JS 엔진들은 일괄적으로 최적화를 적용하는 JITC가 아닌 Adaptive Compilation 방식을 택하고 있습니다. 
+	최근의 JS 엔진들은 일괄적으로 최적화를 적용하는 JITC가 아닌 <a href="https://en.wikipedia.org/wiki/Adaptive_optimization">Adaptive Compilation</a>방식을 택하고 있습니다. 
 	이는 반복 수행되는 정도에 따라 서로 다른 최적화를 적용하는 것입니다. 
 	처음에 모든 코드는 인터프리터에 의해 바이트 코드로 변환되지만, 
 	자주 반복되는 부분이 발견되면 여기에 대해서만 JITC를 적용하는 식입니다.
