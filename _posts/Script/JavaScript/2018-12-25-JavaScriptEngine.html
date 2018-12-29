@@ -168,9 +168,11 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	<b>Enumerable:</b> 해당 객체의 키가 열거 가능한지를 기술합니다.</br>
 	어떤 객체나 속성이든 Object.getOwnPropertyDescriptor API를 이용해 이 값들에 접근할 수 있습니다.</br>
 	</br>
+<pre><code>
 const object = { foo: 42 };
 Object.getOwnPropertyDescriptor(object, 'foo');
 // => {value: 42, writable: true, enumerable: true, configurable: true}
+</code></pre>
 	</br>
 	</br>
 	</br>
@@ -188,10 +190,12 @@ Object.getOwnPropertyDescriptor(object, 'foo');
 	배열에 아이템을 추가하면 length property는 저절로 늘어나기 때문입니다!
 	이 작업은 사실 엔진에서 자동으로 해주는 겁니다.
 	</br>
+<pre><code>
  const array = ['a', 'b'];
  array.length; // 2
  array[2] = 'c';
  array.length; // 3
+ </code></pre>
 	</br>
 	</br>
 	</br>
@@ -216,6 +220,7 @@ Object.getOwnPropertyDescriptor(object, 'foo');
 <h2 class="BasicFontSet">엔진의 프로퍼티 접근 최적화</h2>
 	<b>Shape == Hidden Class</b>
 	</br>
+<pre><code>
 function logX(obj){
       console.log(obj.x);
 }
@@ -225,6 +230,7 @@ const obj2 = { x:3, y:4 };
 
 logX(obj1);
 logX(obj2);
+</code></pre>
 	</br>
 	동일한 프로퍼티 x와 y를 string 키로 가지는 두 객체가 있습니다.
 	이를 객체의 모양(shapes)이 똑같다고 합니다.
@@ -274,9 +280,11 @@ logX(obj2);
 	Shape에 새로운 객체를 추가하기 (Transition chains)
 	이런 Shape가 있다고 합시다.
 	</br>
+<pre><code>
 const o = {};
 o.x = 5;
 o.y = 6;
+</code></pre>
 	</br>
 	새로운 프로퍼티를 추가할 때, JS 엔진은 어떻게 새로운 Shape를 찾을까요?
 	JS 엔진은 내부에 transition chains라고 하는 Shape를 만듭니다.
@@ -335,10 +343,12 @@ o.y = 6;
 	그렇다면 마치 java의 Object처럼 모든 객체의 트리를 거슬러 올라가면 무조건 Shape(empty)에 도달하는 걸까요?
 	꼭 그렇지는 않습니다.
 	</br>
+<pre><code>
 const obj1 = {};
 obj1.x = 6;
 
 const ob2 = {x: 6};
+</code></pre>
 	</br>
 	ojb2 와 같이, JS에서는 Object Literal을 사용하여 시작부터 프로퍼티를 갖고 생성하도록 할 수 있기 때문입니다. 
 	따라서 Shape(empty)가 아닌, 서로 다른 Root Shape가 생성됩니다.
@@ -352,10 +362,12 @@ const ob2 = {x: 6};
 	</br>
 	이번엔 이런 상황을 한번 봅시다. point는 x,y,z를 3차원 공간의 좌표로 가지는 객체입니다.
 	</br>
+<pre><code>
 const point = {};
 point.x = 4;
 point.y = 5;
 point.z = 6;
+</code></pre>
 	</br>
 	앞서 배운 것에 따르면, 총 3개의 Shape가 메모리에 생성 될 것입니다. (empty Shape 제외)
 	</br>
