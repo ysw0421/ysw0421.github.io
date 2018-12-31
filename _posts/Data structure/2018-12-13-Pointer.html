@@ -49,6 +49,22 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
         {% endfor %}
+	      개념
+포인터란 다른 변수의 메모리 공간주소를 가리키는 변수를 가리킵니다. 포인터는 C, C++등과 같은 언어에서는 프로그래머가 직접 제어할 수 있고, 파이썬 등과 같은 언어에서는 완전히 숨겨져 사용할 수 없습니다.
+하지만 프로그래머가 사용할 수 없다고해서 해당 언어에서 포인터가 전혀 쓰이지 않는 건 아니어서 그 개념을 알고 있을 필요가 있습니다.
+
+예시
+포인터를 명시적으로 다룰 수 있는 C언어에서 아래와 같은 코드로 예시를 듭니다.
+int i, *pi, **ppi;
+i = 5;
+pi = &i;
+ppi = &pi;
+위 코드를 그림으로 나타내면 다음과 같습니다.
+<그림 1.>
+i, pi, ppi가 가리키는 메모리 주소와 그 실제값은 다음과 같습니다.
+<표 1.>
+각 notation의 의미와 그 notation이 가리키는 값은 다음과 같습니다.
+<표 2.>
      </a>
   </body>
 </html>
