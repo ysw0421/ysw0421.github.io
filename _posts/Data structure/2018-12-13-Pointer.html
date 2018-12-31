@@ -73,9 +73,74 @@ ppi = &'pi';
           <내용></br>
       </p>
 	i, Pi, PPi가 가리키는 메모리 주소와 그 실제값은 다음과 같습니다.</br>
-<표 1.>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Variable</th>
+      <th style="text-align: center">Address</th>
+      <th style="text-align: center">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">$i$</td>
+      <td style="text-align: center">100</td>
+      <td style="text-align: center">5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$pi$</td>
+      <td style="text-align: center">104</td>
+      <td style="text-align: center">100</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$ppi$</td>
+      <td style="text-align: center">108</td>
+      <td style="text-align: center">104</td>
+    </tr>
+  </tbody>
+</table>
 	각 notation의 의미와 그 notation이 가리키는 값은 다음과 같습니다.</br>
-<표 2.>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Usage</th>
+      <th style="text-align: center">Meaning</th>
+      <th style="text-align: center">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">$pi$</td>
+      <td style="text-align: center">$i$의 주소</td>
+      <td style="text-align: center">100</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$*pi$</td>
+      <td style="text-align: center">$i$의 실제값</td>
+      <td style="text-align: center">5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$\&amp;pi$</td>
+      <td style="text-align: center">$pi$의 주소</td>
+      <td style="text-align: center">104</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$ppi$</td>
+      <td style="text-align: center">$pi$의 주소</td>
+      <td style="text-align: center">104</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$*ppi$</td>
+      <td style="text-align: center">$pi$의 실제값=$i$의 주소</td>
+      <td style="text-align: center">100</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$**ppi$</td>
+      <td style="text-align: center">$i$의 실제값</td>
+      <td style="text-align: center">5</td>
+    </tr>
+  </tbody>
+</table>
      </a>
   </body>
 </html>
