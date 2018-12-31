@@ -54,6 +54,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <img src="/asset/OperatingSystem/Memory/Memory1.png" class="concept"></br>
           <내용></br>
       </p>
+	<blockquote><p class="posting">포스팅 </p></blockquote>
 	<p class="Paragraph">RAM이란?</p>
 	컴퓨터의 시스템 메모리는 실제 메모리인 RAM(random Access Memory)과 가상 메모리로 구성되어 있습니다. 
 	시스템 메모리는 시스템을 끄면 해당 내용을 저장하는 하드 디스크 드라이브와 같은 영구 저장소가 아닙니다.
@@ -105,27 +106,25 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
       </p>
 	</br>
 	</br>
-	<p class="Paragraph"></p>
-	1) code(text), data, stack 영역은 컴파일러가 알아서 메모리영역을 결정한다. 즉 컴파일 할 때 data영역과 stack영역의 크기를 계산해서 필요한 메모리 공간을 가지고 된다.  heap 영역은 개발자에 의해 프로그램 동작시 결정된다.
+	<p class="Paragraph">요약</p>
+	1. code(text), data, stack 영역은 컴파일러가 알아서 메모리영역을 결정한다. 즉 컴파일 할 때 data영역과 stack영역의 크기를 계산해서 필요한 메모리 공간을 가지고 된다.  heap 영역은 개발자에 의해 프로그램 동작시 결정된다.</br>
 	ex) C언어에서 배열 선언시 incomplete type으로 사용하면 컴파일 할 때 에러가 발생하게 된다.
 	</br>
-	2) code, data, heap 영역은 하위 메모리부터 할당되고, stack 영역은 상위 메모리부터 할당 된다.
+	2. code, data, heap 영역은 하위 메모리부터 할당되고, stack 영역은 상위 메모리부터 할당 된다.
 	</br>
-	3) SMA (Static Memory Allocation) : 정적 메모리, 메모리의 data 영역, stack 영역을 사용한다.</br>
+	3. SMA (Static Memory Allocation) : 정적 메모리, 메모리의 data 영역, stack 영역을 사용한다.</br>
 	     - Data 영역 : 프로그램 시작과 동시에 할당된 영역이 잡히고 끝나면 OS 에 반환한다.</br>
 	     - Stack 영역 : 함수 시작과 동시에 할당된 영역이 잡히고 끝나면 OS에 반환한다.</br>
 	</br>
-	4) DMA (Dynamic Memory Allocation) : 동적 메모리, 메모리의 heap 영역을 사용한다.</br>
+	4. DMA (Dynamic Memory Allocation) : 동적 메모리, 메모리의 heap 영역을 사용한다.</br>
 	     - Heap 영역 : stack에서 pointer 변수를 할당하고, 그 pointer가 가리키는 heap 영역의 임의의 공간부터 원하는 크기 만큼 할당해 사용한다.</br>
 	</br>
-
       <p class="Imgtext">
           <img src="/asset/OperatingSystem/Memory/Memory2.png" class="concept"></br>
           <내용></br>
       </p>
 
      </a>
-	<blockquote><p class="posting">포스팅 </p></blockquote>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
   </body>
 </html>
