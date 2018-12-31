@@ -1,5 +1,54 @@
-Memory Area Structure
-
+---
+layout: post
+title: Memory Area Structure
+meta: Concept
+category: OperatingSystem
+comments: true
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pageframe.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+    </style>
+  </head>
+  <body>	  
+<!--
+카테고리: Categories <h3 class="Categories BasicFontSet"></h3>
+날짜: Date 
+      {% for news in site.categories.analysis %}
+        {% if news.title == 'Testing css'%}
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+        {% endif %}
+      {% endfor %}
+태그: Tags <a class="post-tag">태그 내용</a>
+posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote>
+주제: MainTitle <h1 class="BasicFontSet"></h1>
+소제: SubTitle <h2 class="BasicFontSet"></h2>
+단락: Paragraph <p class="Paragraph"></p>
+내용: Contents <p class="Contents"></p>
+이미지: Imgsize - media query 적용
+이미지 text: Imgtext
+      <p class="Imgtext">
+          <img src="이미지 주소"></br>
+          <내용></br>
+      </p>
+전체 코드 URL: CodeURL
+참고자료: Reference <blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p>
+-->
+      <a>
+	<h3 class="Categories BasicFontSet">Memory Area Structure</h3>
+	{% for news in site.categories.JavaScript %}
+        {% if news.title == 'Memory Area Structure'%}
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+        {% endif %}
+        {% endfor %}
 <그림 1.>
 
 1) code 영역
@@ -38,3 +87,9 @@ ex) C언어에서 배열 선언시 incomplete type으로 사용하면 컴파일 
 
 4) DMA (Dynamic Memory Allocation) : 동적 메모리, 메모리의 heap 영역을 사용한다.
      - Heap 영역 : stack에서 pointer 변수를 할당하고, 그 pointer가 가리키는 heap 영역의 임의의 공간부터 원하는 크기 만큼 할당해 사용한다.-
+
+     </a>
+	<blockquote><p class="posting">포스팅 </p></blockquote>
+	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
+  </body>
+</html>
