@@ -36,7 +36,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 이미지: Imgsize - media query 적용
 이미지 text: Imgtext
       <p class="Imgtext">
-          <img src="이미지 주소"></br>
+          <img src="이미지 주소" class="concept"></br>
           <내용></br>
       </p>
 전체 코드 URL: CodeURL
