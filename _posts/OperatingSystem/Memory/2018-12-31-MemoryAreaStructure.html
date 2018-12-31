@@ -54,23 +54,45 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <img src="/asset/OperatingSystem/Memory/Memory1.png" class="concept"></br>
           <내용></br>
       </p>
+	<p class="Paragraph">RAM이란?</p>
+	컴퓨터의 시스템 메모리는 실제 메모리인 RAM(random Access Memory)과 가상 메모리로 구성되어 있습니다. 
+	시스템 메모리는 시스템을 끄면 해당 내용을 저장하는 하드 디스크 드라이브와 같은 영구 저장소가 아닙니다.
 	</br>
-	1) code 영역
+	</br>
+	프로그램을 시작하면, 프로세서에서 하드 드라이브의 프로그램을 가져오라는 명령을 내립니다. 
+	파일을 가져오면 시스템에는 데이터를 조작하고 조작된 데이터와 상호 작용할 수 있는 작업 영역이 필요합니다. 
+	이 작업대의 갑판이 RAM입니다. 프로그램으로 작업할 경우 시스템에서는 프로그램을 임시로 디지털 작업대 갑판인 RAM에 둡니다. 
+	그러면 프로세서에서 빠르고 쉽게 정보에 액세스할 수 있습니다.
+
+	<p class="Paragraph">RAM 이해</p>
+	일반적으로 시스템에 RAM이 많을수록 작업하기 위한 디지털 작업대 갑판이 커지면서 프로그램이 빠르게 실행됩니다. 
+	RAM이 부족하여 시스템 실행 속도가 느려지면 저렴하다는 이유로 가상 메모리를 구매하고 싶은 마음이 들지도 모릅니다. 
+	그러나, RAM을 추가하면 프로세서가 하드 드라이브의 데이터보다 RAM의 데이터를 더 빨리 읽어내므로 RAM을 구매하는 것이 훨씬 좋은 해결책입니다.
+	</br>
+	</br>
+	RAM에는 시스템 성능에 영향을 주는 2가지 주요 속성이 있습니다. 
+	바로 메모리 용량과 메모리 속도입니다.
+      <p class="Imgtext">
+          <img src="/asset/OperatingSystem/Memory/Memory3.jpg" class="concept"></br>
+          <내용></br>
+      </p>
+	</br>
+	<p class="Paragraph">1. Code Segment</p>
 	코드 자체를 구성하는 메모리 영역으로 Hex파일이나 BIN파일 메모리다.
 	프로그램 명령이 위치하는 곳으로 기계어로 제어되는 메모리 영역이다.
 	</br>
-	2) data 영역
+	<p class="Paragraph">2. Data Segment(DATA + BSS)</p>
 	전역 변수(global), 정적변수(static), 배열(array), 구조체(structure) 등이 저장된다.</br>
 	가) 초기화 된 데이터는 data 영역에 저장되고,</br>
 	나) 초기화 되지 않은 데이터는 BSS(Block Stated Symbol)영역에 저장된다.</br>
 	프로그램이 실행될 때 생성되고 프로그램이 종료되면 시스템에 반환된다.
 	함수 내부에 선언된 Static변수는 프로그램이 실행될 때 공간만 할당되고, 그 함수가 실행될 때 초기화 된다.
 	</br>
-	3) heap 영역
+	<p class="Paragraph">3. Heap Segment</p>
 	필요에 의해 동적으로 메모리를 할당 하고자 할 때 위치는 메모리 영역으로 동적 데이터 영역이라고 부르며, 메모리 주소 값에 의해서만  참조되고 사용되는 영역이다.
 	이 영역에 데이터를 저장하기 위해서는 C는 malloc(), C++은 new() 함수를 사용한다.
 	</br>
-	4) stack 영역
+	<p class="Paragraph">4. Stack Segment</p>
 	프로그램이 자동으로 사용하는 임시 메모리 영역이다.
 	지역(local)변수, 매개변수(Parameter), 리턴 값 등 잠시 사용되었다가 사라지는 데이터를 저장하는 영역이다.
 	함수 호출 시 생성되고, 함수가 끝나면 시스템에 반환된다.
@@ -78,11 +100,12 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	명령 실행시 자동 증가/감소하기 때문에 보통 메모리의 마지막 번지에 지정한다.
 	</br>
       <p class="Imgtext">
-          <img src="/asset/OperatingSystem/Memory/Memory2.png" class="concept"></br>
+          <img src="/asset/OperatingSystem/Memory/Memory4.jpg" class="concept"></br>
           <내용></br>
       </p>
 	</br>
 	</br>
+	<p class="Paragraph"></p>
 	1) code(text), data, stack 영역은 컴파일러가 알아서 메모리영역을 결정한다. 즉 컴파일 할 때 data영역과 stack영역의 크기를 계산해서 필요한 메모리 공간을 가지고 된다.  heap 영역은 개발자에 의해 프로그램 동작시 결정된다.
 	ex) C언어에서 배열 선언시 incomplete type으로 사용하면 컴파일 할 때 에러가 발생하게 된다.
 	</br>
@@ -95,10 +118,12 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	4) DMA (Dynamic Memory Allocation) : 동적 메모리, 메모리의 heap 영역을 사용한다.</br>
 	     - Heap 영역 : stack에서 pointer 변수를 할당하고, 그 pointer가 가리키는 heap 영역의 임의의 공간부터 원하는 크기 만큼 할당해 사용한다.</br>
 	</br>
+
       <p class="Imgtext">
-          <img src="/asset/OperatingSystem/Memory/Memory3.jpg" class="concept"></br>
+          <img src="/asset/OperatingSystem/Memory/Memory2.png" class="concept"></br>
           <내용></br>
       </p>
+
      </a>
 	<blockquote><p class="posting">포스팅 </p></blockquote>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
