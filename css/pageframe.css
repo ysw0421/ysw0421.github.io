@@ -19,6 +19,9 @@ posting한곳: Posting
 ---------------------------
 */
 /*table*/
+.TableFont{
+    font-family: "PT Sans",Helvetica,Arial,sans-serif;
+}
 th {
     font-weight: bold;
 }
