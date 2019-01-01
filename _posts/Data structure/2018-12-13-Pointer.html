@@ -16,7 +16,25 @@ comments: true
     <script>hljs.initHighlightingOnLoad();</script>
     <style>
       @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-    </style>
+	  </style>
+  <!--
+  수식용 스크립트 MathJax
+  -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      //jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
   </head>
   <body>	  
 <!--
@@ -110,33 +128,33 @@ ppi = &'pi';
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">$pi$</td>
-      <td style="text-align: center">$i$의 주소</td>
+      <td style="text-align: center">$$pi$$</td>
+      <td style="text-align: center">$$i$$의 주소</td>
       <td style="text-align: center">100</td>
     </tr>
     <tr>
-      <td style="text-align: center">$*pi$</td>
-      <td style="text-align: center">$i$의 실제값</td>
+      <td style="text-align: center">$$*pi$$</td>
+      <td style="text-align: center">$$i$$의 실제값</td>
       <td style="text-align: center">5</td>
     </tr>
     <tr>
-      <td style="text-align: center">$\&amp;pi$</td>
-      <td style="text-align: center">$pi$의 주소</td>
+      <td style="text-align: center">$$\&amp;pi$$</td>
+      <td style="text-align: center">$$pi$$의 주소</td>
       <td style="text-align: center">104</td>
     </tr>
     <tr>
-      <td style="text-align: center">$ppi$</td>
-      <td style="text-align: center">$pi$의 주소</td>
+      <td style="text-align: center">$$ppi$$</td>
+      <td style="text-align: center">$$pi$$의 주소</td>
       <td style="text-align: center">104</td>
     </tr>
     <tr>
-      <td style="text-align: center">$*ppi$</td>
-      <td style="text-align: center">$pi$의 실제값=$i$의 주소</td>
+      <td style="text-align: center">$$*ppi$$</td>
+      <td style="text-align: center">$$pi$$의 실제값=$i$의 주소</td>
       <td style="text-align: center">100</td>
     </tr>
     <tr>
-      <td style="text-align: center">$**ppi$</td>
-      <td style="text-align: center">$i$의 실제값</td>
+      <td style="text-align: center">$$**ppi$$</td>
+      <td style="text-align: center">$$i$$의 실제값</td>
       <td style="text-align: center">5</td>
     </tr>
   </tbody>
