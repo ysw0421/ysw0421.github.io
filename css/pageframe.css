@@ -18,6 +18,27 @@ posting한곳: Posting
 참고자료: Reference
 ---------------------------
 */
+/*table*/
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+    padding: .25rem .5rem;
+    border: 1px solid #e5e5e5;
+    display: table-cell;
+    vertical-align: inherit;
+}
+table {
+    margin-bottom: 1rem;
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-sizing: border-box;
+}
+/*Basic*/
 .BasicFontSet{
   background-color: transparent;
   color:black;
