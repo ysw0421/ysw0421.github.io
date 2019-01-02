@@ -136,19 +136,42 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	</br>
 	</br>
 <h2 class="BasicFontSet">컴파일러의 실행 단계</h2>
-	많은 수의 컴파일러는 다음과 같은 순서를 거쳐 소스 코드를 번역한다.
-	컴파일러나 프로그래밍 언어의 특성에 따라 일부 단계를 생략되거나 더 세부적인 단계로 나뉠 수도 있다.</br>
-<p class="Paragraph">1. 구문 분석</p>
-	소스 코드 파일을 읽어 개별 문법요소(연산자, 괄호, 식별자 등) 단위로 자른후, 이 문법요소들을 해석하여 추상 구문 트리를 생성한다. 
-	이 과정에서 문법에 맞지 않는 소스 코드는 사용자에게 알려준다.</br>
-<p class="Paragraph">2. 최적화</p>
-	추상 구문 트리를 분석하여 최적화를 수행한다. 도달할 수 없는 코드를 식별하거나, 상수 표현식을 미리 계산해 두거나, 루프 풀기 등의 대부분의 최적화가 이 단계에서 수행된다.</br>
-<p class="Paragraph">3. 코드 생성</p>
-	최적화된 구문 트리로부터 목적 코드를 생성한다. 목표 언어가 기계어일 경우, 레지스터 할당, 연산 순서 바꾸기 등 하드웨어에 맞는 최적화가 이 단계에서 수행된다. </br>
-	대부분의 하드웨어 최적화 알고리즘은 NP 복잡도를 갖지만, 휴리스틱을 통해 많은 최적화가 수행된다.</br>
-<p class="Paragraph">4. 링킹</p>
-	목적 코드가 기계어일 경우, 여러 라이브러리 목적 코드를 묶어 하나의 실행 파일을 생성하게 된다. </br>
-	이 과정은 링커에 의해 수행되며, 어떤 사람들은 링커를 컴파일러의 일부로 간주하지 않기도 한다.</br>
+      <p class="Imgtext">
+          <img src="/asset/Script/C/Compiler/Compiler3.png" class="concept"></br>
+          <컴파일 과정></br>
+      </p>
+ 1. 어휘 분석(lexical analyze) or 스캔(scan)</br>
+   - 모듈 : 어휘 분석기(lexical analyzer) or 스캐너(scanner)</br>
+   - 내용 : 문자열을 의미있는 토큰(token)으로 변환</br>
+   - 결과물 : 토큰(token)</br>
+	</br>
+ 2. 구분 분석(syntax analyzing)</br>
+  - 모듈 : 파서(parser) or 구문 분석기(syntax analyzer)</br>
+  - 내용 : 토큰(token)을 구조를 가진 구문트리(syntax tree)로 변환</br>
+  - 결과물 : 구문 트리(syntax tree), parser 에 따라 추상 구문 트리(abstract syntax tree)를 바로 생성하기도 함</br>
+    ※ 구문트리(syntax tree) 와 추상구문트리(abstract syntax tree)의 차이는, 구문트리에는 세미콜론(;)이나 괄호 등이 모두 포함된다. 하지만 추상구문트리에는 이러한 불필요한(의미가 없는) 것들이 생략된다.</br>
+	</br>
+ 3. 의미 분석(semantic analysis)</br>
+  - 모듈 : 의미 분석기(semantic analyzer)</br>
+  - 내용 : 프로그램의 의미(semantic)에 따라 필요한 정보를 유추/분석</br>
+  - 결과물 : 추상 구문 트리(abstract syntax tree) / 장식구문(decoration syntax tree)</br>
+	</br>
+ 4. 중간 표현의 생성(intermediate representation)</br>
+   - 내용 : 좀 더 코드 생성이 편하고, 여러 종류의 언어나 기계어(CPU 종속)에 대응하기 위해서, 중간에 공통의 중간표현으로 변환</br>
+	</br>
+ 5. 코드 생성(code generation)</br>
+  - 모듈 : 코드 제너레이터(code generator)</br>
+  - 내용 : 어셈블리어나 기계가 이해하기 쉬운 명령으로 변환</br>
+  - 결과물 : 어셈블리어</br>
+	</br>
+ 6. 최적화(optimization)</br>
+  - 내용 : 좀더 질 좋은 프로그램으로 변환</br>
+	</br>
+ 7. 어셈블러</br>
+  - 내용 : 기계어로 변환</br>
+  - 결과물 : 기계어</br>
+	</br>
+위 컴파일 단계에서 구문 분석(syntax analyzing) ~ 중간표현(intermediate representation) 생성까지를 컴파일러의 프론트-엔드(front end) 라고 합니다. 나머지 과정을 백-엔드(back end)라고 합니다.</br>
 	</br>
 	</br>
 	</br>
@@ -159,7 +182,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	</br>
       <p class="Imgtext">
           <img src="/asset/Script/C/Compiler/Compiler2.PNG" class="concept"></br>
-          <일반적인 컴파일러의 ></br>
+          <일반적인 컴파일러의 구조></br>
       </p>
 	</br>
 <p class="Paragraph">1. 어휘 분석</p>
