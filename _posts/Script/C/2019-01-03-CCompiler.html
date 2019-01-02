@@ -179,7 +179,60 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <img src="/asset/Script/C/Compiler/Compiler3.jpg" class="concept"></br>
           <실행파일 생성></br>
       </p>
-
+컴파일러를 만들때, 어휘분석을 위해서 스캐너(scanner)가 필요하고, 어휘분석을 통해 만들어진 토큰(token)열을 구문분석 하기 위해서는 파서(parser)가 필요합니다.
+이러한 스캐너와 파서를 일일이 직접 작성하는 일은 만만치가 않습니다. 아마도 정규표현식으로 도배가 되어, 나중에는 어디가 어딘지 분간이 안되겠지요. "여긴 어딘가. 나는 누구인가?"</br>
+</br>
+이런 이유로 스캐너(scanner)와 파서(parser)를 자동으로 생성해 주는 제너레이터(generator)가 있으면 참 편리할 것입니다.
+그리고 예상하셨겠지만, 이런 제너레이터(generator)가 이미 존재합니다.
+각각을 스캐너 제너레이터(scanner generator), 파서 제너레이터(parser generator)라고 부릅니다.</br>
+</br>
+그런데, 실제로 스캐너 제너레이터(scanner generator) 라는 말 대신 어휘 분석기 제너레이터(lexical analyzer generator) 라고 더 많이 쓰는 것 같습니다.
+그리고 이 어휘분석기 제너레이터는 줄여서 렉서 제너레이터(lexer generator)라고 합니다.
+어찌되었건, 렉서 제너레이터(lexer generator)는 일반적으로 대부분 비슷합니다. 이에 반해, 파서 제너레이터(parser generator)는 몇 가지 타입으로 나누어 집니다.</br>
+</br>
+</br>
+</br>
+LL 파서 제너레이터 (지원문법이 비교적 적음 / 속도 비교적 빠름)</br>
+http://en.wikipedia.org/wiki/LL_parser#Concrete_example</br>
+</br>
+LR 파서 제너레이터 (지원문법이 넓음 / 속도 느림)</br>
+http://en.wikipedia.org/wiki/LR_parser#Concrete_example</br>
+</br>
+Canonical LR 파서 제너레이터 (지원문법이 넓음 / 속도 느림)</br>
+http://en.wikipedia.org/wiki/Canonical_LR_parser</br>
+</br>
+LALR 파서 제너레이터 (지원문법이 비교적 넓음 / 속도는 평균적)</br>
+http://en.wikipedia.org/wiki/LALR_parser</br>
+</br>
+</br>
+</br>
+각 파서(parser)마다 파싱하는 방식이 다르기 때문에, 취급할 수 있는 문법의 범위와 속도가 달라집니다.
+자세한 내용은 아래에서 다시 설명하도록 하겠습니다.</br>
+</br>
+렉서 제너레이터(lexer generator)와 파서 제너레이터(parser generator)의 종류는 많이 있습니다.
+각 렉서 제너레이터(lexer generator), 파서 제너레이터(parser generator)마다 생성하는 파서의 언어와 취급하는 파서 제너레이터 타입이 다르므로,  자신의 상황에 맞게 적절히 사용하면 될 것 같습니다.</br>
+</br>
+개인적으로 제가 학교 다닐때, 컴파일러 수업에서 사용했던 렉서 제너레이터(lexer generator)로는 렉스(Lex)라는 녀석을 사용했습니다.
+그리고 파서 제너레이터(parser generator)로는 YACC(Yet Another Compiler Compiler)였던걸로 기억합니다.
+YACC 는 생성하는 파서의 언어는 C 이고, 취급문법은 LALR(1) 이라고 하네요.</br>
+</br>
+이쯤되면, 어휘 분석기 제너레이터(lexical analyzer generator)는 뭐고 파서 제너레이터(parser generator)는 뭐고 파서랑 무슨관계고, 정신이 없으신 분들이 게실것 같습니다.
+정리를 해 드리면 간단합니다.</br>
+</br>
+우리가 정의한 언어의 어휘분석(lexical analysis)과 구문분석(syntax analysis)을 해야 합니다.
+그러기 위해서는 어휘분석을 해 주는 어휘분석기가 필요합니다.
+이를 스캐너(scanner) 라고 부릅니다.
+그리고 구문분석을 해 주는 구문분석기가 필요합니다.
+이를 파서(parser)라고 부릅니다.</br>
+</br>
+그런데, 문제는 이런 렉서(lexer)와 파서(parser)를 일일이 직접 코딩해서 만드는건 너무나 힘이 듭니다.
+양이 방대하고 복잡합니다. 실수가 생길수 밖에 없지요.</br>
+</br>
+그렇기 때문에, 이 스캐너(scanner)와 파서(parser) 소스코드를 자동으로 생성해 주는 제너레이터(generator)라는 녀석을 사용하는 것입니다.
+이를 각각 렉서 제너레이터(lexer generator)와 파서 제너레이터(parser generator) 라고 합니다.
+즉, 스캐너(scanner)와 파서(parser)의 소스코드를 자동으로 만들어 주는 프로그램인 것입니다.
+참고로 왜 스캐너 제너레이터(scanner generator) 라고 안하고 렉서 제너레이터(lexer generator)라고 하는지는 저도 모르겠습니다. </br>
+</br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
   </body>
 </html>
