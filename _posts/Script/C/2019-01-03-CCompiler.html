@@ -140,95 +140,41 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <img src="/asset/Script/C/Compiler/Compiler3.png" class="concept"></br>
           <컴파일 과정></br>
       </p>
- 1. 어휘 분석(lexical analyze) or 스캔(scan)</br>
+<p class="Paragraph">1. 어휘 분석(lexical analyze) or 스캔(scan)</p>
    - 모듈 : 어휘 분석기(lexical analyzer) or 스캐너(scanner)</br>
    - 내용 : 문자열을 의미있는 토큰(token)으로 변환</br>
    - 결과물 : 토큰(token)</br>
 	</br>
- 2. 구분 분석(syntax analyzing)</br>
+<p class="Paragraph">2. 구분 분석(syntax analyzing)</p>
   - 모듈 : 파서(parser) or 구문 분석기(syntax analyzer)</br>
   - 내용 : 토큰(token)을 구조를 가진 구문트리(syntax tree)로 변환</br>
   - 결과물 : 구문 트리(syntax tree), parser 에 따라 추상 구문 트리(abstract syntax tree)를 바로 생성하기도 함</br>
     ※ 구문트리(syntax tree) 와 추상구문트리(abstract syntax tree)의 차이는, 구문트리에는 세미콜론(;)이나 괄호 등이 모두 포함된다. 하지만 추상구문트리에는 이러한 불필요한(의미가 없는) 것들이 생략된다.</br>
 	</br>
- 3. 의미 분석(semantic analysis)</br>
+<p class="Paragraph">3. 의미 분석(semantic analysis)</p>
   - 모듈 : 의미 분석기(semantic analyzer)</br>
   - 내용 : 프로그램의 의미(semantic)에 따라 필요한 정보를 유추/분석</br>
   - 결과물 : 추상 구문 트리(abstract syntax tree) / 장식구문(decoration syntax tree)</br>
 	</br>
- 4. 중간 표현의 생성(intermediate representation)</br>
+<p class="Paragraph">4. 중간 표현의 생성(intermediate representation)</p>
    - 내용 : 좀 더 코드 생성이 편하고, 여러 종류의 언어나 기계어(CPU 종속)에 대응하기 위해서, 중간에 공통의 중간표현으로 변환</br>
 	</br>
- 5. 코드 생성(code generation)</br>
+<p class="Paragraph">5. 코드 생성(code generation)</p>
   - 모듈 : 코드 제너레이터(code generator)</br>
   - 내용 : 어셈블리어나 기계가 이해하기 쉬운 명령으로 변환</br>
   - 결과물 : 어셈블리어</br>
 	</br>
- 6. 최적화(optimization)</br>
+<p class="Paragraph">6. 최적화(optimization)</p>
   - 내용 : 좀더 질 좋은 프로그램으로 변환</br>
 	</br>
- 7. 어셈블러</br>
+<p class="Paragraph">7. 어셈블러</p>
   - 내용 : 기계어로 변환</br>
   - 결과물 : 기계어</br>
 	</br>
 위 컴파일 단계에서 구문 분석(syntax analyzing) ~ 중간표현(intermediate representation) 생성까지를 컴파일러의 프론트-엔드(front end) 라고 합니다. 나머지 과정을 백-엔드(back end)라고 합니다.</br>
 	</br>
 	</br>
-	</br>
-<h2 class="BasicFontSet">컴파일러의 구조</h2>
-	컴파일러는 크게 어휘 분석과 구문 및 의미 분석, 코드 생성 단계로 나뉜다.
-	컴파일러에 따라서는 선택적으로 구문 및 의미 분석과 코드 생성 단계 사이에 중간 코드를 생성하거나 코드를 최적화하기도 한다.
-	일반적인 컨파일러의 구조는 아래와 같다.</br>
-	</br>
-      <p class="Imgtext">
-          <img src="/asset/Script/C/Compiler/Compiler2.PNG" class="concept"></br>
-          <일반적인 컴파일러의 구조></br>
-      </p>
-	</br>
-<p class="Paragraph">1. 어휘 분석</p>
-	컴파일러의 첫 번째 단계는 소스 코드를 정규 문법 (regular grammar)에 따라 토큰(token)의 집합으로 변환하는 어휘 분석 또는 스캐닝(scanning)이다. 
-	예를 들어, "Lexical analysis is the first step of compiler"라는 문장에서 'f', 'i', 'r', 's', 't'를 따로 놓으면 어떠한 의미도 없지만, "first"라는 하나의 문자열로 보면 "첫번째"라는 의미를 갖게 된다.
-	어휘 분석은 문자열로 표현된 소스 코드에서 "first"와 같이 의미 있는 조각을 검출하는 단계이다. 
-	어휘 분석 단계에서 검출되는 의미 있는 조각을 어휘항목(lexeme)이라고 하며, 어휘 분석기는 검출된 어휘항목을 참조하여 토큰을 생성한다.
-	어휘 분석기가 출력하는 토큰은 토큰이름과 속성값으로 구성된다. 
-	하나의 토큰은 토큰이름, 속성값과 같은 구조를 갖는다.
-	예를 들어, 아래와 같은 코드가 어휘 분석기로 입력되었다고 가정하자. </br>
-	</br>
-	$value = threshold + distance$</br>
-	</br>
-	이 코드에서 "value"라는 문자열은 <id, 1>토큰으로 사상되는 어휘항목이다. 
-	<id, 1>토큰에서 id는 토큰이름으로써 식별자를 의미하는 추상 기호이며, 속성값 1은 심볼 테이블 내에서 해당 토큰의 위치를 가리킨다. 
-	토큰의 이름이나 속성값은 컴파일러 설계자에 따라 달라질 수 있다. 그 다음에 있는 '='라는 문자열은 토큰 <assign, NULL>로 사상된다. 
-	이 토큰은 연산자 =를 가리키는 assign이라는 추상 기호를 토큰이름으로 갖으며, 심볼 테이블에 입력될 필요가 없기 때문에 속성값은 NULL을 갖는다. 
-	어휘 분석기가 위의 코드를 모두 토큰으로 사상하면, 아래와 같은 토큰 스트림이 생성된다.</br>
-	</br>
-	$<'id', 1>, <'assign', 'NULL'>, <'id', 2>, <'plus', 'NULL'>, <'id', 3>$</br>
-	</br>
-<p class="Paragraph">2. 구문 분석</p>
-	어휘 분석 다음 단계는 소스 코드의 문법을 검사하는 구문 분석 또는 파싱 (parsing)이라 한다. 
-	구문 분석기는 어휘 분석기에서 출력한 토큰들을 이용하여 소스 코드의 문법 구조를 서술하는 구문 트리(syntax tree)를 생성한다. 
-	구문 트리는 어휘 분석기에서 생성한 토큰들을 노드로 갖는 트리로써, 토큰 간의 우선순위 및 토큰간의 결합 관계 등과 같은 속성을 나타낸다.
-	구문 분석의 목적은 토큰 간의 관계가 올바르게 생성되었는지를 검사하는 것이다.
-	예를 들어, "I is a student"라는 문장이 입력되었을 때, 어휘 분석기는 <1인칭 주어,1>과 <3인칭 동사, 2>라는 토큰을 생성하고, 구문 분석기에 전달한다. 
-	구문 분석기에서는 1인칭 주어와 3인칭 동사가 사용된 것이 잘못되었음을 인식하여 구문 에러를 출력한다. 
-	토큰 간의 관계를 서술하고, 소스 코드에 잘못된 토큰 간의 관계가 있는지를 검사하는 것이 구문 분석의 목적이다.</br>
-	</br>
-<p class="Paragraph">3. 의미 분석</p>
-	의미 분석 단계에서는 구문 트리와 심볼 테이블에 있는 정보를 이용하여 소스 코드가 언어 정의에 의미적으로 부합하는지를 검사한다. 
-	의미 분석의 중요한 기능은 타입 검사 (type checking)이다. 
-	컴파일러는 타입 검사를 수행하면서 피연산자가 연산자에 부합하는지를 검사한다. 
-	의미 분석기는 정수와 문자열의 덧셈, 값을 0으로 나누는 행동 등과 같이 의미적으로 올바르지 않은 코드의 존재 유무를 검사한다.
-	예를 들어, "The earth revolves around the moon"라는 문장은 영어라는 인간언어에 존재하는 어휘항목만을 사용하였고, 주어와 동사가 일치하며 "revolve" 다음에 올 수 있는 "around"라는 부사까지 올바르게 사용하였지만, 의미적으로는 "지구가 달을 공전한다"는 틀린 문장이다.
-	의미 분석의 어려운 점은 의미 분석이라는 연산이 수학적으로 완벽하지 않다는 것 때문에 발생한다. 
-	위의 "The earth revolves around the moon"이라는 문장도 의미적으로는 틀린 문장이지만, 저 문장이 사용되는 배경이 소설이나 영화라면 무조건 틀렸다고 할 수도 없다. 
-	이러한 경우와 같이 의미 분석은 어휘 분석이나 구문 분석과는 다르게 수학적으로 일정한 규칙을 갖지 않고, 의미를 해석한다는 연산 자체에 모호한 부분이 있기 때문에 의미 분석에는 많은 어려움이 존재한다. 
-	이전의 어휘 분석기나 구문 분석기는 독립적으로 실행되어 출력을 만들어냈지만, 의미 분석기는 이러한 난해함 때문에 이전 단계에서 생성한 구문 트리와 심볼 테이블을 참조하면서 의미 분석을 수행해야 한다.</br>
-	</br>
-<p class="Paragraph">4. 코드 생성</p>
-	이전 단계를 통해 분석된 소스 코드를 목표 기계에 맞는 어셈블리어나 기계어로 변환하는 단계이다. 
-	컴파일 타임 바인딩을 이용하는 시스템의 경우에는 코드 생성 단계에서 프로그램의 기억 장소 할당이 이루어진다. 
-	상용 컴파일러에서는 의미 분석 단계와 코드 생성 단계 중간에 코드 최적화 단계가 추가되는데, 코드 최적화 단계는 해당 언어의 성능이나 자원 소모를 결정짓는 중요한 단계이다. 
-	그러나 코드 최적화 단계는 컴파일러보다는 컴퓨터 구조에 대한 지식을 요구하는 단계로써, 컴파일러의 원리를 배우는 입장에서는 코드 최적화 단계라는 것의 중요성과 이것이 의미 분석 단계와 코드 생성 단계 사이에 있다는 사실 정도만 인지하고 있어도 충분하다.</br>
+	</br>단계라는 것의 중요성과 이것이 의미 분석 단계와 코드 생성 단계 사이에 있다는 사실 정도만 인지하고 있어도 충분하다.</br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
   </body>
 </html>
