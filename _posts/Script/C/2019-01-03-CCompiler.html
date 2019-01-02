@@ -179,7 +179,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	이 토큰은 연산자 =를 가리키는 assign이라는 추상 기호를 토큰이름으로 갖으며, 심볼 테이블에 입력될 필요가 없기 때문에 속성값은 NULL을 갖는다. 
 	어휘 분석기가 위의 코드를 모두 토큰으로 사상하면, 아래와 같은 토큰 스트림이 생성된다.</br>
 	</br>
-	$<id, 1>, <assign, NULL>, <id, 2>, <plus, NULL>, <id, 3>$</br>
+	$<'id', 1>, <'assign', 'NULL'>, <'id', 2>, <'plus', 'NULL'>, <'id', 3>$</br>
 	</br>
 <p class="Paragraph">2. 구문 분석</p>
 	어휘 분석 다음 단계는 소스 코드의 문법을 검사하는 구문 분석 또는 파싱 (parsing)이라 한다. 
