@@ -1,0 +1,74 @@
+---
+layout: post
+title: Common Software Architectural 10 Patterns
+meta: Concept
+category: Daily
+comments: true
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pageframe.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+    </style>
+  <!--
+  수식용 스크립트 MathJax
+  -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      //jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  </head>
+  <body>	  
+<!--
+카테고리: Categories <h3 class="Categories BasicFontSet"></h3>
+날짜: Date 
+      {% for news in site.categories.analysis %}
+        {% if news.title == 'Testing css'%}
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+        {% endif %}
+      {% endfor %}
+태그: Tags <a class="post-tag">태그 내용</a>
+posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote>
+주제: MainTitle <h1 class="BasicFontSet"></h1>
+소제: SubTitle <h2 class="BasicFontSet"></h2>
+단락: Paragraph <p class="Paragraph"></p>
+내용: Contents <p class="Contents"></p>
+이미지: Imgsize - media query 적용
+이미지 text: Imgtext
+      <p class="Imgtext">
+          <img src="이미지 주소" class="concept"></br>
+          <내용></br>
+      </p>
+전체 코드 URL: CodeURL
+참고자료: Reference <blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p>
+-->
+      <a>
+	<h3 class="Categories BasicFontSet">Common Software Architectural 10 Patterns</h3>
+	{% for news in site.categories.Daily %}
+        {% if news.title == 'Common Software Architectural 10 Patterns'%}
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+        {% endif %}
+        {% endfor %}
+     </a>
+	<blockquote><p class="posting">포스팅 </p></blockquote>
+	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
+  </body>
+</html>
