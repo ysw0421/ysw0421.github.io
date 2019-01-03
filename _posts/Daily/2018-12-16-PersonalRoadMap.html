@@ -1,0 +1,89 @@
+---
+layout: post
+title: 2018 Roadmap - Personal Roadmap
+meta: Daily
+category: Daily
+comments: true
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pageframe.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+    </style>
+  </head>
+  <body>	  
+<!--
+카테고리: Categories <h3 class="Categories BasicFontSet"></h3>
+날짜: Date 
+      {% for news in site.categories.analysis %}
+        {% if news.title == 'Testing css'%}
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+        {% endif %}
+      {% endfor %}
+태그: Tags <a class="post-tag">태그 내용</a>
+posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote>
+주제: MainTitle <h1 class="BasicFontSet"></h1>
+소제: SubTitle <h2 class="BasicFontSet"></h2>
+단락: Paragraph <p class="Paragraph"></p>
+내용: Contents <p class="Contents"></p>
+이미지: concept <img src="/asset/Daily/RoadMap/devops.png" class="concept">
+이미지 text: Imgtext
+      <p class="Imgtext">
+          <img src="이미지 주소"></br>
+          <내용></br>
+      </p>
+전체 코드 URL: CodeURL
+참고자료: Reference <blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p>
+-->
+      <a>
+	<h3 class="Categories BasicFontSet">2018 Roadmap - Personal Roadmap</h3>
+	{% for news in site.categories.Daily %}
+        {% if news.title == '2018 Roadmap - Personal Roadmap'%}
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+        {% endif %}
+        {% endfor %}
+	<blockquote><p class="posting">이글은 "https://github.com/devJang/developer-roadmap"을 읽고 내가공부해야할 커리큘럼을 짰습니다. </p></blockquote>
+	<h1 class="BasicFontSet">Web Developer Roadmap</h1>
+	<h2 class="BasicFontSet">Front End Roadmap</h2>
+	<img src="/asset/Daily/RoadMap/frontend.png" class="concept">
+	<p class="Paragraph">내가 선택한 Front-end</p>
+	HTML -> CSS -> JavaScript -> 반응형 웹 사이트 -> Sass,PostCSS -> Bootstrap -> BEM(CSS 아키텍쳐) -> NPM Script, Webpack -> React, Angular, Vue(프레임워크)
+	<h2 class="BasicFontSet">Back End Roadmap</h2>
+	<img src="/asset/Daily/RoadMap/backend.png" class="concept">
+	<p class="Paragraph">내가 선택한 Back-end</p>
+	Python, Nodejs -> JSON 활용 -> 패키지 매니저 -> Standard 및 Practice -> 패키지와 라이브러리를 만들어 배포-> 관계형 데이터베이스 배우기(MySQL, MariaDB, PostgreSQL) -> 간단한 애플리케이션(가입, 로그인, CRUD) 게시물 작성, 업데이트 및 삭제-> NoSQL(MongoDB) -> 캐싱 -> RESTful APIs -> Authentication/Authorization 방법론 -> Kafka(메세지 브로커)-> ElasticSearch(검색엔진) -> Docker -> Apache,NginX(앱 서버) -> 웹 소켓 -> GraphQL
+	<h2 class="BasicFontSet">DevOps Roadmap</h2>
+	<img src="/asset/Daily/RoadMap/devops.png" class="concept">
+	<p class="Paragraph">내가 선택한 Dev-Ops</p>
+운영체제: Linux, FreeBSD</br>
+클라우드: AWS</br>
+자동화: AWS Cloud</br>
+지속적인 배포/통합(???): Jenkins, Travis, CircleCI</br>
+모니터링과 경보(???): AppDymamics</br>
+Log Management, Analysis: ELIK</br>
+컨테이너: Docker</br>
+웹 서버: Apache, NginX</br>
+클러스터 매니저: Kubernetes Docker Swarm</br>
+터미널:</br>
+	소스에서 앱 컴파일하기 (gcc, make)</br>
+	Bash Script</br>
+	Vim</br>
+OSI Model. TCP/IP/UDP 공통 포트</br>
+다른 파일 시스템에 대한 지식</br>
+역방향 프록시 설정(NginX)</br>
+캐시 서버 설정 (NginX)</br>
+로드 밸런서 서버 설정 (HAProxy, NginX)</br>
+방화벽 설정</br>
+SSL, HTTPS</br>
+좋지 않은 문제 발생시의 사후 분석</br>
+	<blockquote><p class="Reference">출처: <a class="Reference"> https://github.com/devJang/developer-roadmap</a></p></blockquote>
+     </a>
+  </body>
+</html>
