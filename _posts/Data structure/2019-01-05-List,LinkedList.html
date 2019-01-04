@@ -78,12 +78,12 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 </br>
 </br>
 <p class="Paragraph">Insert</p>
-</br>
 주어진 리스트의 첫번째 위치에 한 요소를 추가하는 연산의 계산복잡성은 리스트가 n개 요소로 구성돼 있을 때 O(n)이 됩니다. 
 n개 요소 각각의 위치를 오른쪽으로 한 칸씩 모두 옮겨야 하기 때문입니다. 
 k번째 위치에 새로운 요소를 추가할 경우 계산복잡성은 O(n−k)=O(n)입니다. 
 한편 주어진 리스트 마지막 위치에 요소를 추가하는 연산은 O(1)입니다. 
 파이썬은 내장함수로 리스트 추가 연산을 제공하는데요. 다음과 같습니다.</br>
+</br>
 </br>
 <pre><code>
 a = [1, 2, 3]
@@ -93,14 +93,13 @@ a.insert(0, 4)
 </br>
 </br>
 </br>
-</br>
 <p class="Paragraph">Delete</p>
-</br>
 주어진 리스트의 첫번째 위치에 한 요소를 삭제하는 연산의 계산복잡성은 리스트가 n개 요소로 구성돼 있을 때 O(n)이 됩니다. 
 n−1개 요소 각각의 위치를 왼쪽으로 한 칸씩 모두 옮겨야 하기 때문입니다. 
 k번째 위치에 있는 요소를 삭제할 경우 계산복잡성은 O(n−k)=O(n)입니다. 
 한편 주어진 리스트 마지막 위치의 요소를 삭제하는 연산은 O(1)입니다. 
 파이썬은 내장함수로 리스트 삭제 연산을 제공하는데요. 다음과 같습니다.</br>
+</br>
 </br>
 <pre><code>
 a = [1, 2, 3]
@@ -110,11 +109,10 @@ del a[0]
 </br>
 </br>
 </br>
-</br>
 <p class="Paragraph">Access</p>
-</br>
 주어진 리스트의 특정 위치에 있는 요소값을 읽거나 바꾸는 Access 연산의 계산복잡성은 O(1)입니다. 
 파이썬은 내장함수로 리스트 Access 연산을 제공하는데요. 다음과 같습니다.</br>
+</br>
 </br>
 <pre><code>
 a = [1, 2, 3]
@@ -124,19 +122,16 @@ a[1] = 4 # [1, 4, 3]
 </br>
 </br>
 </br>
-</br>
 <p class="Paragraph">Scalability issue</p>
-</br>
 리스트라는 자료형의 단점은 요소의 최대 개수를 사전에 정해야 하고, 그 개수를 넘어서는 요소들을 입력할 수 없다는 점입니다. 
 이를 scalability issue라고 합니다. 실제로 파이썬에서 다음과 같은 명령어를 입력했을 때 에러가 납니다. 
 앞으로 설명할 연결리스트는 이 단점을 극복한 자료구조입니다.</br>
+</br>
 </br>
 <pre><code>
 a = [1, 2, 3]
 a[3] = 1 # IndexError: list assignment index out of range
 </code></pre>
-</br>
-</br>
 </br>
 </br>
 </br>
@@ -154,6 +149,7 @@ a[3] = 1 # IndexError: list assignment index out of range
 위의 각 노드를 파이썬으로 구현한 코드는 다음과 같습니다. 
 각 노드는 개별 클래스로 구성되며 각 노드(클래스)는 실제값(변수명 data에 저장)과 포인터(변수명 next_node에 저장)로 구성됩니다.</br>
 </br>
+</br>
 <pre><code>
 class Node(object):
     def __init__(self, data=None, next_node=None):
@@ -165,12 +161,12 @@ class Node(object):
 </br>
 </br>
 </br>
-</br>
 <p class="Paragraph">Insert</p>
 주어진 연결리스트의 첫번째 위치에 한 요소를 추가하는 연산의 계산복잡성은 리스트가 n개 요소로 구성돼 있을 때 O(1)이 됩니다. 
 전체 요소의 인덱스를 변경할 필요 없이 추가할 노드가 가리키는 다음 위치(포인터)를 기존 연결리스트의 첫번째 요소(head)에 연결하고, 
 추가할 새로운 노드를 기존 연결리스트의 첫번째 요소로 정의하기만 하면 되기 때문입니다. 
 다음과 같습니다.</br>
+</br>
 </br>
 <pre><code>
 class LinkedList(object):
@@ -188,12 +184,12 @@ class LinkedList(object):
 </br>
 </br>
 </br>
-</br>
 <p class="Paragraph">Delete</p>
 주어진 연결리스트의 첫번째 위치의 요소(head)를 삭제하는 연산의 계산복잡성은 리스트가 n개 요소로 구성돼 있을 때 O(1)이 됩니다. 
 전체 요소의 인덱스를 변경할 필요 없이 기존 head의 다음 다음번 노드의 위치를 저장해 두었다가(new_head_next_node), 
 기존 head의 다음 노드의 값을 새로운 head의 값으로 하고 new_head_next_node를 새로운 head의 포인터로 하는 새로운 head를 재정의해주기만 하면 되기 때문입니다. 
 다음과 같습니다.</br>
+</br>
 </br>
 <pre><code>
     def delete(self):
@@ -204,11 +200,11 @@ class LinkedList(object):
 </br>
 </br>
 </br>
-</br>
 <p class="Paragraph">Access</p>
 주어진 연결리스트의 특정 위치에 있는 요소값을 읽거나 바꾸는 Access 연산의 계산복잡성은 O(n)입니다. 
 예컨대 k번째 위치에 있는 값을 읽으려면 k개의 요소를 읽어들여야 하기 때문입니다. 
 idx번째 요소에 Access하는 파이썬 코드는 다음과 같습니다.</br>
+</br>
 </br>
 <pre><code>
     def access(self, idx):
@@ -222,9 +218,9 @@ idx번째 요소에 Access하는 파이썬 코드는 다음과 같습니다.</br
 </br>
 </br>
 </br>
-</br>
 <p class="Paragraph">실행</p>
 구체적인 실행 결과는 다음과 같습니다.</br>
+</br>
 </br>
 <pre><code>
 a = LinkedList()
@@ -235,7 +231,6 @@ a.access(0) # 3
 a.delete()
 a.access(0) # 2
 </code></pre>
-</br>
 </br>
 </br>
 </br>
