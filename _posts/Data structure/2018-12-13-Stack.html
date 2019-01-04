@@ -17,6 +17,24 @@ comments: true
     <style>
       @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
     </style>
+  <!--
+  수식용 스크립트 MathJax
+  -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      //jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
   </head>
   <body>	  
 <!--
@@ -36,7 +54,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 이미지: Imgsize - media query 적용
 이미지 text: Imgtext
       <p class="Imgtext">
-          <img src="이미지 주소"></br>
+          <img src="이미지 주소" class="concept"></br>
           <내용></br>
       </p>
 전체 코드 URL: CodeURL
@@ -49,6 +67,8 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
         {% endfor %}
+     </a>
+	<blockquote><p class="posting">포스팅 </p></blockquote>
 </br>
 	스택은 책더미 속에서 가장 나중에 올려놓은 책부터 꺼낼 수 있는 것과 같은 이치입니다.</br>
 <그림 1.></br>
@@ -57,7 +77,8 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	</br>
 	</br>
 	</br>
-operation
+<p class="Paragraph">operation</p>
+	</br>
 	스택의 핵심 연산(operation)은 푸시와 팝입니다. 푸쉬를 구현한 파이썬 코드는 다음과 같습니다.</br>
 	</br>
 	</br>
@@ -136,7 +157,7 @@ class Stack(object):
 	</br>
 	</br>
 	</br>
-활용 : 재귀함수
+<p class="Paragraph">활용 : 재귀함수</p>
 	</br>
 	스택은 프로그래머도 모르는 사이에 여러 곳에서 쓰이고 있습니다. 재귀함수 호출이 모두 스택 형태로 이뤄지게 됩니다. 이와 관련해 다음 그림을 보겠습니다.</br>
 	<그림 3.></br>
@@ -150,21 +171,21 @@ class Stack(object):
 	</br>
 	</br>
 	</br>
-	활용 : 사칙연산
+<p class="Paragraph">활용 : 사칙연산</p>
 	</br>
 	숫자와 숫자 사이에 연산자를 넣어 표기하는 방법을 중위표기법(infix notation)이라 합니다. 
 	예컨대 아래의 표기는 2와 3을 ‘더한다’는 뜻이 됩니다.</br>
-	2 + 3
+	$2 + 3$
 	중위표기법은 괄호 연산자가 필요없는 전위표기법(+ 2 3)이나 후위표기법(2 3 +)과는 다르게 괄호가 매우 중요합니다. 
 	연산 수행 순서를 명시적으로 나타내야 할 때가 발생하기 때문이죠. 
 	예컨대 아래의 표기에서는 2와 3을 더하는 연산이 먼저 수행됩니다.
-	(2 + 3) × 4
+	$(2 + 3) × 4$
 	그런데 후위표기법에서는 위와 같은 식을 아래와 같이 쓰게 돼 괄호가 필요 없습니다.
-	2 3 + 4 ×
+	$2 3 + 4 ×$
 	연산의 우선순위(the priority of operands, precednece rule)은 모호하게 해석할 수 있는 수식에서 어느 연산을 먼저 계산할 것인가를 결정하는 명시적인 규칙입니다. 
 	중위표기법에서는 다음과 같은 순위가 표준적으로 쓰입니다. 
 	자세한 내용은 위키 백과를 참고하시면 좋을 것 같습니다.
-	(, ) > ×, / > +, -
+	$(, ) > ×, / > +, -$
 	중위표기법은 사람에게는 친숙하지만 컴퓨터로 구문분석하기가 어렵습니다. 
 	이 때문에 프로그램 내부에서는 연산자를 연산 대상의 뒤에 쓰는 후위표기법(postfix notation)이 쓰인다고 합니다. 
 	후위표기법은 괄호가 없고 수식 계산시 식을 앞에서 읽어 나가면서 차례대로 처리를 하면 됩니다. 
@@ -175,7 +196,7 @@ class Stack(object):
 	</br>
 	중위표기법으로 쓰인 다음 식을 계산한다고 칩시다. 이를 후위표기법으로 변환하면 다음과 같습니다.</br>
 	</br>
-	A+B×C+(D×E+F)×G ⇒ ABC×+DE×F+G×+</br>
+	$A+B×C+(D×E+F)×G ⇒ ABC×+DE×F+G×+$</br>
 	</br>
 	1번 과정의 일반적 절차는 다음과 같습니다.</br>
 	</br>
@@ -194,12 +215,13 @@ class Stack(object):
 	</br>
 	예컨대 다음과 같은 식을 계산한다고 칩시다. (답은 40)</br>
 	</br>
-	중위표기법 : 5×4+6+7×2</br>
-	후위표기법 : 54×6+72×+</br>
+	중위표기법 : $5×4+6+7×2$</br>
+	후위표기법 : $54×6+72×+$</br>
 	</br>
 <표 2.></br>
-	1번 작업의 계산복잡성은 O(n), 2번 작업 역시 O(n)이 됩니다. 
+	1번 작업의 계산복잡성은 $O(n)$, 2번 작업 역시 $O(n)$이 됩니다. 
 	연산자와 숫자 개수를 모두 합쳐 n개일 경우 모든 요소를 한번씩은 다 훑어야 하기 때문입니다.</br>
+	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
      </a>
   </body>
 </html>
