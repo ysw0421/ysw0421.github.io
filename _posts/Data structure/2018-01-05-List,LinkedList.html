@@ -70,13 +70,13 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
      </a>
 	<blockquote><p class="posting">포스팅 </p></blockquote>
 
-리스트
+<h2 class="BasicFontSet">리스트</h2>
 리스트란 같은 값이 한번 이상 존재할 수 있고 순서가 있는 일련의 값이 모여있는 추상적 자료형(Abstract Data Type)입니다. 
 예컨대 리스트 (C, Y, R)은 (Y, C, R)과 다릅니다. 리스트에는 Add, Delete, Access(read/change) 연산이 있습니다.
 
 
 
-Insert
+<p class="Paragraph">Insert</p>
 주어진 리스트의 첫번째 위치에 한 요소를 추가하는 연산의 계산복잡성은 리스트가 n개 요소로 구성돼 있을 때 O(n)이 됩니다. 
 n개 요소 각각의 위치를 오른쪽으로 한 칸씩 모두 옮겨야 하기 때문입니다. 
 k번째 위치에 새로운 요소를 추가할 경우 계산복잡성은 O(n−k)=O(n)입니다. 
@@ -92,7 +92,7 @@ a.insert(0, 4)
 
 
 
-Delete
+<p class="Paragraph">Delete</p>
 주어진 리스트의 첫번째 위치에 한 요소를 삭제하는 연산의 계산복잡성은 리스트가 n개 요소로 구성돼 있을 때 O(n)이 됩니다. 
 n−1개 요소 각각의 위치를 왼쪽으로 한 칸씩 모두 옮겨야 하기 때문입니다. 
 k번째 위치에 있는 요소를 삭제할 경우 계산복잡성은 O(n−k)=O(n)입니다. 
@@ -108,7 +108,7 @@ del a[0]
 
 
 
-Access
+<p class="Paragraph">Access</p>
 주어진 리스트의 특정 위치에 있는 요소값을 읽거나 바꾸는 Access 연산의 계산복잡성은 O(1)입니다. 
 파이썬은 내장함수로 리스트 Access 연산을 제공하는데요. 다음과 같습니다.
 
@@ -121,7 +121,7 @@ a[1] = 4 # [1, 4, 3]
 
 
 
-Scalability issue
+<p class="Paragraph">Scalability issue</p>
 리스트라는 자료형의 단점은 요소의 최대 개수를 사전에 정해야 하고, 그 개수를 넘어서는 요소들을 입력할 수 없다는 점입니다. 
 이를 scalability issue라고 합니다. 실제로 파이썬에서 다음과 같은 명령어를 입력했을 때 에러가 납니다. 
 앞으로 설명할 연결리스트는 이 단점을 극복한 자료구조입니다.
@@ -137,7 +137,7 @@ a[3] = 1 # IndexError: list assignment index out of range
 
 
 
-연결리스트
+<h2 class="BasicFontSet">연결리스트</h2>
 연결리스트란 각 노드가 연결되어 있는 방식으로 데이터가 저장돼 있는 추상적 자료형입니다. 
 한 노드는 해당 노드의 실제값(value)과 다음 노드의 주소값이 담긴 포인터(pointer)로 구성돼 있습니다. 
 마지막 노드의 포인터는 Null값을 갖습니다. 다음과 같습니다.
@@ -160,7 +160,7 @@ class Node(object):
 
 
 
-Insert
+<p class="Paragraph">Insert</p>
 주어진 연결리스트의 첫번째 위치에 한 요소를 추가하는 연산의 계산복잡성은 리스트가 n개 요소로 구성돼 있을 때 O(1)이 됩니다. 
 전체 요소의 인덱스를 변경할 필요 없이 추가할 노드가 가리키는 다음 위치(포인터)를 기존 연결리스트의 첫번째 요소(head)에 연결하고, 
 추가할 새로운 노드를 기존 연결리스트의 첫번째 요소로 정의하기만 하면 되기 때문입니다. 
@@ -183,7 +183,7 @@ class LinkedList(object):
 
 
 
-Delete
+<p class="Paragraph">Delete</p>
 주어진 연결리스트의 첫번째 위치의 요소(head)를 삭제하는 연산의 계산복잡성은 리스트가 n개 요소로 구성돼 있을 때 O(1)이 됩니다. 
 전체 요소의 인덱스를 변경할 필요 없이 기존 head의 다음 다음번 노드의 위치를 저장해 두었다가(new_head_next_node), 
 기존 head의 다음 노드의 값을 새로운 head의 값으로 하고 new_head_next_node를 새로운 head의 포인터로 하는 새로운 head를 재정의해주기만 하면 되기 때문입니다. 
@@ -199,7 +199,7 @@ Delete
 
 
 
-Access
+<p class="Paragraph">Access</p>
 주어진 연결리스트의 특정 위치에 있는 요소값을 읽거나 바꾸는 Access 연산의 계산복잡성은 O(n)입니다. 
 예컨대 k번째 위치에 있는 값을 읽으려면 k개의 요소를 읽어들여야 하기 때문입니다. 
 idx번째 요소에 Access하는 파이썬 코드는 다음과 같습니다.
@@ -217,7 +217,7 @@ idx번째 요소에 Access하는 파이썬 코드는 다음과 같습니다.
 
 
 
-실행
+<p class="Paragraph">실행</p>
 구체적인 실행 결과는 다음과 같습니다.
 
 <pre><code>
@@ -233,7 +233,7 @@ a.access(0) # 2
 
 
 
-여러 가지 연결리스트
+<p class="Paragraph">여러 가지 연결리스트</p>
 지금까지 설명해드린 연결리스트는 엄밀히 말해 단일연결리스트(singly linked list)입니다. 
 그런데 다음과 같은 변형이 존재합니다. 각각 이중연결리스트(doubly linked list), 원형연결리스트(circular linked list)입니다.
 
