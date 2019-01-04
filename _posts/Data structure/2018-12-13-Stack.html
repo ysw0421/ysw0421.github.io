@@ -150,7 +150,7 @@ class Stack(object):
 위 파이썬 코드의 경우 리스트를 활용해 스택이 구현됐습니다. 
 리스트를 활용할 경우 푸쉬 연산은 리스트에 새 자료를 붙이는(append) 형태로, 팝 연산은 파이썬 자체의 팝(pop) 연산이 적용됐습니다. 
 그런데 스택의 정의에만 맞다면 위 형태 말고도 다양하게 구현할 수 있습니다. 
-리스트든 연결리스트든 팝, 푸쉬, 픽 연산의 계산복잡성은 O(1)입니다.
+리스트든 연결리스트든 팝, 푸쉬, 픽 연산의 계산복잡성은 $O(1)$입니다.
 	</br>
 	</br>
 	</br>
@@ -173,17 +173,17 @@ class Stack(object):
 	</br>
 	숫자와 숫자 사이에 연산자를 넣어 표기하는 방법을 중위표기법(infix notation)이라 합니다. 
 	예컨대 아래의 표기는 2와 3을 ‘더한다’는 뜻이 됩니다.</br>
-	$2 + 3$</br>
+	<a style="text-align: center">$2 + 3$</a></br>
 	중위표기법은 괄호 연산자가 필요없는 전위표기법(+ 2 3)이나 후위표기법(2 3 +)과는 다르게 괄호가 매우 중요합니다. 
 	연산 수행 순서를 명시적으로 나타내야 할 때가 발생하기 때문이죠. 
 	예컨대 아래의 표기에서는 2와 3을 더하는 연산이 먼저 수행됩니다.</br>
-	$(2 + 3) × 4$</br>
+	<a style="text-align: center">$(2 + 3) × 4$</a></br>
 	그런데 후위표기법에서는 위와 같은 식을 아래와 같이 쓰게 돼 괄호가 필요 없습니다.</br>
-	$2 3 + 4 ×$</br>
+	<a style="text-align: center">$2 3 + 4 ×$</a></br>
 	연산의 우선순위(the priority of operands, precednece rule)은 모호하게 해석할 수 있는 수식에서 어느 연산을 먼저 계산할 것인가를 결정하는 명시적인 규칙입니다. 
 	중위표기법에서는 다음과 같은 순위가 표준적으로 쓰입니다. 
 	자세한 내용은 위키 백과를 참고하시면 좋을 것 같습니다.</br>
-	$(, ) > ×, / > +, -$</br>
+	<a style="text-align: center">$(, ) > ×, / > +, -$</a></br>
 	중위표기법은 사람에게는 친숙하지만 컴퓨터로 구문분석하기가 어렵습니다. 
 	이 때문에 프로그램 내부에서는 연산자를 연산 대상의 뒤에 쓰는 후위표기법(postfix notation)이 쓰인다고 합니다. 
 	후위표기법은 괄호가 없고 수식 계산시 식을 앞에서 읽어 나가면서 차례대로 처리를 하면 됩니다. 
@@ -194,7 +194,7 @@ class Stack(object):
 	</br>
 	중위표기법으로 쓰인 다음 식을 계산한다고 칩시다. 이를 후위표기법으로 변환하면 다음과 같습니다.</br>
 	</br>
-	$A+B×C+(D×E+F)×G ⇒ ABC×+DE×F+G×+$</br>
+	<a style="text-align: center">$A+B×C+(D×E+F)×G ⇒ ABC×+DE×F+G×+$</a></br>
 	</br>
 	1번 과정의 일반적 절차는 다음과 같습니다.</br>
 	</br>
@@ -205,7 +205,97 @@ class Stack(object):
 	식의 끝에 다다르면 스택에 있는 모든 요소를 팝을 한다.</br>
 	</br>
 	위 절차에 따라 위 식을 후위표기법으로 변환해 보겠습니다. 아래 표와 같습니다.</br>
-<표 1.></br>
+<table>
+  <thead>
+    <tr>
+      <th class="TableFont" style="text-align: center">현재 위치</th>
+      <th class="TableFont" style="text-align: center">Output</th>
+      <th class="TableFont" style="text-align: center">Stack</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">A</td>
+      <td style="text-align: center"></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">A</td>
+      <td style="text-align: center">+</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G$</td>
+      <td style="text-align: center">AB</td>
+      <td style="text-align: center">+</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">AB</td>
+      <td style="text-align: center">+×</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">ABC</td>
+      <td style="text-align: center">+×</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">ABC×+</td>
+      <td style="text-align: center">+</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">ABC×+</td>
+      <td style="text-align: center">+(</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">ABC×+D</td>
+      <td style="text-align: center">+(</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">ABC×+D</td>
+      <td style="text-align: center">+(×</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">ABC×+DE</td>
+      <td style="text-align: center">+(×</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">ABC×+DE×</td>
+      <td style="text-align: center">+(+</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">ABC×+DE×F</td>
+      <td style="text-align: center">+(+</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">ABC×+DE×F+</td>
+      <td style="text-align: center">+</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">ABC×+DE×F+</td>
+      <td style="text-align: center">+×</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">ABC×+DE×F+G</td>
+      <td style="text-align: center">+×</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">A+B×C+(D×E+F)×G</td>
+      <td style="text-align: center">ABC×+DE×F+G+×</td>
+      <td style="text-align: center"></td>
+    </tr>
+  </tbody>
+</table>
 	후위표기법으로 표현된 수식을 계산하는 2번 과정의 일반적 절차는 다음과 같습니다.</br>
 	</br>
 	숫자를 만나면 스택에 푸쉬한다.
@@ -216,7 +306,56 @@ class Stack(object):
 	중위표기법 : $5×4+6+7×2$</br>
 	후위표기법 : $54×6+72×+$</br>
 	</br>
-<표 2.></br>
+<table>
+  <thead>
+    <tr>
+      <th class="TableFont" style="text-align: center">현재 위치</th>
+      <th class="TableFont" style="text-align: center">Stack</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">5,4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">20</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">20,6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">100</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">26</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">26,7</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">26,7,2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">26,14</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">40</td>
+    </tr>
+  </tbody>
+</table>
 	1번 작업의 계산복잡성은 $O(n)$, 2번 작업 역시 $O(n)$이 됩니다. 
 	연산자와 숫자 개수를 모두 합쳐 n개일 경우 모든 요소를 한번씩은 다 훑어야 하기 때문입니다.</br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
