@@ -171,7 +171,7 @@ class Stack(object):
 	</br>
 <p class="Paragraph">활용 : 사칙연산</p>
 	</br>
-	<bold>숫자와 숫자 사이에 연산자를 넣어 표기하는 방법을 중위표기법(infix notation)이라 합니다. </bold>
+	숫자와 숫자 사이에 연산자를 넣어 표기하는 방법을 중위표기법(infix notation)이라 합니다. 
 	예컨대 아래의 표기는 2와 3을 ‘더한다’는 뜻이 됩니다.</br>
 	<a style="text-align: center">$2 + 3$</a></br>
 	중위표기법은 괄호 연산자가 필요없는 전위표기법(+ 2 3)이나 후위표기법(2 3 +)과는 다르게 괄호가 매우 중요합니다. 
@@ -215,77 +215,77 @@ class Stack(object):
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><bold>A</bold>+B×C+(D×E+F)×G</td>
+      <td style="text-align: center"><b>A</b>+B×C+(D×E+F)×G</td>
       <td style="text-align: center">A</td>
       <td style="text-align: center"></td>
     </tr>
     <tr>
-      <td style="text-align: center">A<bold>+</bold>B×C+(D×E+F)×G</td>
+      <td style="text-align: center">A<b>+</b>B×C+(D×E+F)×G</td>
       <td style="text-align: center">A</td>
       <td style="text-align: center">+</td>
     </tr>
     <tr>
-      <td style="text-align: center">A+<bold>B</bold>×C+(D×E+F)×G</td>
+      <td style="text-align: center">A+<b>B</b>×C+(D×E+F)×G</td>
       <td style="text-align: center">AB</td>
       <td style="text-align: center">+</td>
     </tr>
     <tr>
-      <td style="text-align: center">A+B<bold>×</bold>C+(D×E+F)×G</td>
+      <td style="text-align: center">A+B<b>×</b>C+(D×E+F)×G</td>
       <td style="text-align: center">AB</td>
       <td style="text-align: center">+×</td>
     </tr>
     <tr>
-      <td style="text-align: center">A+B×<bold>C</bold>+(D×E+F)×G</td>
+      <td style="text-align: center">A+B×<b>C</b>+(D×E+F)×G</td>
       <td style="text-align: center">ABC</td>
       <td style="text-align: center">+×</td>
     </tr>
     <tr>
-      <td style="text-align: center">A+B×C<bold>+</bold>(D×E+F)×G</td>
+      <td style="text-align: center">A+B×C<b>+</b>(D×E+F)×G</td>
       <td style="text-align: center">ABC×+</td>
       <td style="text-align: center">+</td>
     </tr>
     <tr>
-      <td style="text-align: center">A+B×C+<bold>(</bold>D×E+F)×G</td>
+      <td style="text-align: center">A+B×C+<b>(</b>D×E+F)×G</td>
       <td style="text-align: center">ABC×+</td>
       <td style="text-align: center">+(</td>
     </tr>
     <tr>
-      <td style="text-align: center">A+B×C+(<bold>D</bold>×E+F)×G</td>
+      <td style="text-align: center">A+B×C+(<b>D</b>×E+F)×G</td>
       <td style="text-align: center">ABC×+D</td>
       <td style="text-align: center">+(</td>
     </tr>
     <tr>
-      <td style="text-align: center">A+B×C+(D<bold>×</bold>E+F)×G</td>
+      <td style="text-align: center">A+B×C+(D<b>×</b>E+F)×G</td>
       <td style="text-align: center">ABC×+D</td>
       <td style="text-align: center">+(×</td>
     </tr>
     <tr>
-      <td style="text-align: center">A+B×C+(D×<bold>E</bold>+F)×G</td>
+      <td style="text-align: center">A+B×C+(D×<b>E</b>+F)×G</td>
       <td style="text-align: center">ABC×+DE</td>
       <td style="text-align: center">+(×</td>
     </tr>
     <tr>
-      <td style="text-align: center">A+B×C+(D×E<bold>+</bold>F)×G</td>
+      <td style="text-align: center">A+B×C+(D×E<b>+</b>F)×G</td>
       <td style="text-align: center">ABC×+DE×</td>
       <td style="text-align: center">+(+</td>
     </tr>
     <tr>
-      <td style="text-align: center">A+B×C+(D×E+<bold>F</bold>)×G</td>
+      <td style="text-align: center">A+B×C+(D×E+<b>F</b>)×G</td>
       <td style="text-align: center">ABC×+DE×F</td>
       <td style="text-align: center">+(+</td>
     </tr>
     <tr>
-      <td style="text-align: center">A+B×C+(D×E+F<bold>)</bold>×G</td>
+      <td style="text-align: center">A+B×C+(D×E+F<b>)</b>×G</td>
       <td style="text-align: center">ABC×+DE×F+</td>
       <td style="text-align: center">+</td>
     </tr>
     <tr>
-      <td style="text-align: center">A+B×C+(D×E+F)<bold>×</bold>G</td>
+      <td style="text-align: center">A+B×C+(D×E+F)<b>×</b>G</td>
       <td style="text-align: center">ABC×+DE×F+</td>
       <td style="text-align: center">+×</td>
     </tr>
     <tr>
-      <td style="text-align: center">A+B×C+(D×E+F)×<bold>G</bold></td>
+      <td style="text-align: center">A+B×C+(D×E+F)×<b>G</b></td>
       <td style="text-align: center">ABC×+DE×F+G</td>
       <td style="text-align: center">+×</td>
     </tr>
@@ -315,43 +315,39 @@ class Stack(object):
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center"><b>54×6+72×+</td>
       <td style="text-align: center">5</td>
     </tr>
     <tr>
-      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">5<b>4×6+72×+</td>
       <td style="text-align: center">5,4</td>
     </tr>
     <tr>
-      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">54<b>×6+72×+</td>
       <td style="text-align: center">20</td>
     </tr>
     <tr>
-      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">54×<b>6+72×+</td>
       <td style="text-align: center">20,6</td>
     </tr>
     <tr>
-      <td style="text-align: center">54×6+72×+</td>
-      <td style="text-align: center">100</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">54×6<b>+72×+</td>
       <td style="text-align: center">26</td>
     </tr>
     <tr>
-      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">54×6+<b>72×+</td>
       <td style="text-align: center">26,7</td>
     </tr>
     <tr>
-      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">54×6+7<b>2×+</td>
       <td style="text-align: center">26,7,2</td>
     </tr>
     <tr>
-      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">54×6+72<b>×+</td>
       <td style="text-align: center">26,14</td>
     </tr>
     <tr>
-      <td style="text-align: center">54×6+72×+</td>
+      <td style="text-align: center">54×6+72×<b>+</td>
       <td style="text-align: center">40</td>
     </tr>
   </tbody>
