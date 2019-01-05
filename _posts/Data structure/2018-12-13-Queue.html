@@ -81,19 +81,19 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
       </p>
 	큐에 새로운 데이터가 들어오면 큐의 끝 위치(tail)에 저장이 됩니다. 
 	반대로 삭제할 때는 첫번째 위치(head)의 요소가 지워지게 됩니다. 
-	전자를 enqueue, 후자를 dequeue라고 합니다.</br>
+	전자를 $enqueue$, 후자를 $dequeue$라고 합니다.</br>
 	</br>
 	</br>
 	</br>
 <p class="Paragraph">operation</p>
-	큐의 핵심 연산은 enqueue와 dequeue입니다. 
+	큐의 핵심 연산은 $enqueue$와 $dequeue$입니다. 
 	연결리스트(linked list) 형태로 큐를 구현했을 때 예시는 다음과 같습니다.</br>
 $enqueue5 -> enqueue3 -> enqueue1 -> dequeue -> dequeue -> enqueue7$
       <p class="Imgtext">
           <img src="/asset/DataStructure/Queue/Queue2.png" class="concept"></br>
           <내용></br>
       </p>
-	연결리스트로 큐를 구현했을 때 enqueue와 dequeue의 계산복잡성은 모두 O(1)입니다. 
+	연결리스트로 큐를 구현했을 때 $enqueue$와 $dequeue$의 계산복잡성은 모두 $O(1)$입니다. 
 	추가, 삭제 연산이 각각 큐의 시작(head)과 끝(tail)에서만 일어나기 때문입니다.</br>
 	</br>
 	큐를 array로 구현할 수도 있습니다. 다음과 같습니다.</br>
@@ -101,12 +101,12 @@ $enqueue5 -> enqueue3 -> enqueue1 -> dequeue -> dequeue -> enqueue7$
           <img src="/asset/DataStructure/Queue/Queue3.png" class="concept"></br>
           <내용></br>
       </p>
-	array로 큐를 구현했을 때 enqueue의 계산복잡성은 O(1)입니다. 추가 연산이 큐의 끝(tail)에서만 일어나기 때문입니다. 
-	그러나 dequeue의 계산복잡성은 O(n)이 됩니다. 
+	array로 큐를 구현했을 때 $enqueue$의 계산복잡성은 $O(1)$입니다. 추가 연산이 큐의 끝(tail)에서만 일어나기 때문입니다. 
+	그러나 $dequeue$의 계산복잡성은 $O(n)$이 됩니다. 
 	큐의 시작(head) 요소를 지우게 되면 두번째 요소부터 끝에 이르는 모든 요소들의 위치를 왼쪽으로 한 칸씩 옮겨주어야 하기 때문입니다.</br>
 	</br>
 	Circular Array로 큐를 구현하면 이러한 문제를 해결할 수 있습니다. 그 개념도는 다음과 같습니다. 
-	Circular Array를 쓰면 enqueue, dequeue가 각각 큐의 시작(head)과 끝(tail)에서만 일어나게 돼 둘 모두 계산복잡성이 O(1)이 됩니다.</br>
+	Circular Array를 쓰면 enqueue, dequeue가 각각 큐의 시작(head)과 끝(tail)에서만 일어나게 돼 둘 모두 계산복잡성이 $O(1)$이 됩니다.</br>
       <p class="Imgtext">
           <img src="/asset/DataStructure/Queue/Queue4.png" class="concept"></br>
           <내용></br>
