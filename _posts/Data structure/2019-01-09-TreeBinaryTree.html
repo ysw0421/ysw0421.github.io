@@ -98,11 +98,20 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	엣지(edge)의 수 |E| 는 노드의 수 |V|에서 1을 뺀 것과 같다.</br>
 	</br>
 	다음 두 예시는 트리가 아닙니다. 회로가 존재하기 때문입니다.</br>
-<그림 2.></br>
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Tree/Tree2.png" class="concept"></br>
+          <내용></br>
+      </p>
 	다음 예시는 트리가 아닙니다. 회로가 존재하지는 않지만 1에서 4로 가는 경로가 유일하지 않아서입니다.</br>
-<그림 3.></br>
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Tree/Tree3.png" class="concept"></br>
+          <내용></br>
+      </p>
 	다음 예시 또한 트리가 아닙니다. 연결되지 않은 노드가 존재하기 때문입니다.</br>
-<그림 4.></br>
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Tree/Tree4.png" class="concept"></br>
+          <내용></br>
+      </p>
 	</br>
 	</br>
 	</br>
@@ -114,7 +123,10 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 </br>
 	정이진트리는 다음 그림과 같습니다. 
 	모든 레벨에서 노드들이 꽉 채워진(=잎새노드를 제외한 모든 노드가 자식노드를 2개 가짐) 이진트리입니다.</br>
-<그림 5.></br>
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Tree/Tree5.png" class="concept"></br>
+          <내용></br>
+      </p>
 	위 정이진트리에서 레벨에 따른 노드의 숫자는 다음 표와 같습니다.</br>
 <표 1.></br>
 	정이진트리의 노드수가 n개라면 잎새노드의 수는 n/2를 올림한 숫자가 됩니다. 
@@ -122,9 +134,15 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	</br>
 	완전이진트리는 다음 그림과 같습니다. 
 	마지막 레벨을 제외한 모든 레벨에서 노드들이 꽉 채워진 이진트리입니다.</br>
-<그림 6.></br>
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Tree/Tree6.png" class="concept"></br>
+          <내용></br>
+      </p>
 	정이진트리와 완전이진트리는 다음처럼 1차원 배열(array)로도 표현이 가능합니다.</br>
-<그림 7.></br>
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Tree/Tree7.png" class="concept"></br>
+          <내용></br>
+      </p>
 	어떤 노드의 인덱스를 index, 왼쪽 자식노드의 인덱스를 left_index, 오른쪽 자식노드의 인덱스를 right_index로 선언하면 다음과 같은 관계를 지닙니다. 
 	이를 파이썬 코드로 구현하면 다음과 같습니다.</br>
 	</br>
@@ -139,7 +157,10 @@ right_index = 2 * index + 2
 	균형이진트리는 다음 그림과 같습니다. 
 	모든 잎새노드의 깊이 차이가 많아야 1인 트리를 가리킵니다. 
 	균형이진트리는 예측 가능한 깊이(predictable depth)를 가지며, 노드가 n개인 균형이진트리의 깊이는 logn을 내림한 값이 됩니다.</br>
-<그림 8.></br>
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Tree/Tree8.png" class="concept"></br>
+          <내용></br>
+      </p>
 	깊이 말고 left subtree와 right subtree의 노드 수를 기준으로 균형이진트리를 정의하는 경우도 있다고 합니다. 
 	힙 정렬과 이진탐색트리는 모두 이진트리를 기반으로 만들어진 기법입니다. 
 	힙 정렬은 이곳, 이진탐색트리는 이곳을 참고하시면 좋을 것 같습니다.</br>
@@ -153,7 +174,10 @@ right_index = 2 * index + 2
 	하나도 빠뜨리지 않고, 정확히 한번만 중복없이 방문해야 하는데요. 
 	노드를 방문하는 순서에 따라 전위순회(preorder), 중위순회(inorder), 후위순회(postorder) 세 가지로 나뉩니다. 
 	아래 트리를 예시로 각 방법 간 차이를 비교해 보겠습니다.</br>
-<그림 9.></br>
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Tree/Tree9.png" class="concept"></br>
+          <내용></br>
+      </p>
 <p class="Paragraph">preorder</p>
 	루트 노드에서 시작해서 노드-왼쪽 서브트리-오른쪽 서브트리 순으로 순회하는 방식입니다. 
 	깊이우선순회(depth-first traversal)라고도 합니다. 
