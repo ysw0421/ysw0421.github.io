@@ -88,7 +88,7 @@ MVC 패턴 (Model-view-controller pattern)</br>
 </br>  
 </br>	 
 </br>
-1. 계층화 패턴 (Layered pattern)</br>
+<h2 class="BasicFontSet">1. 계층화 패턴 (Layered pattern)
 이 패턴은 n-티어 아키텍쳐 패턴이라고도 불린다. 이는 하위 모듈들의 그룹으로 나눌 수 있는 구조화된 프로그램에서 사용할 수 있다. 
 각 하위 모듈들은 특정한 수준의 추상화를 제공한다. 
 각 계층은 다음 상위 계층에 서비스를 제공한다.</br>
@@ -100,7 +100,7 @@ MVC 패턴 (Model-view-controller pattern)</br>
 비즈니스 논리 계층 (Business logic layer) - 도메인 계층 (Domain layer) 이라고도 함</br>
 데이터 접근 계층 (Data access layer) - 영속 계층 (Persistence layer) 이라고도 함</br>
 </br>
-활용</br>
+<p class="Paragraph">활용</p>
 일반적인 데스크톱 애플리케이션</br>
 E-commerce 웹 애플리케이션</br>
       <p class="Imgtext">
@@ -110,13 +110,13 @@ E-commerce 웹 애플리케이션</br>
 </br>	
 </br>	
 </br>	
-2. 클라이언트-서버 패턴 (Client-server pattern)</br>
+<h2 class="BasicFontSet">2. 클라이언트-서버 패턴 (Client-server pattern)</h2>
 이 패턴은 하나의 서버와 다수의 클라이언트, 두 부분으로 구성된다.
 서버 컴포넌트는 다수의 클라이언트 컴포넌트로 서비스를 제공한다. 
 클라이언트가 서버에 서비스를 요청하면 서버는 클라이언트에게 적절한 서비스를 제공한다. 
 또한 서버는 계속 클라이언트로부터의 요청을 대기한다.</br>
 </br>
-활용</br>
+<p class="Paragraph">활용</p>
 이메일, 문서 공유 및 은행 등의 온라인 애플리케이션</br>
       <p class="Imgtext">
           <img src="/asset/Daily/SoftwareArchitecturalPatterns/SoftwareArchitecturalPatterns3.png" style="width:30%" class="concept"></br>
@@ -125,11 +125,11 @@ E-commerce 웹 애플리케이션</br>
 </br>	
 </br>	
 </br>	
-3. 마스터-슬레이브 패턴 (Master-slave pattern)</br>
+<h2 class="BasicFontSet">3. 마스터-슬레이브 패턴 (Master-slave pattern)</h2>
 이 패턴은 마스터와 슬레이브, 두 부분으로 구성된다. 
 마스터 컴포넌트는 동등한 구조를 지닌 슬레이브 컴포넌트들로 작업을 분산하고, 슬레이브가 반환한 결과값으로부터 최종 결과값을 계산한다.</br>
 </br>
-활용</br>
+<p class="Paragraph">활용</p>
 데이터베이스 복제에서, 마스터 데이터베이스는 신뢰할 수 있는 데이터 소스로 간주되며 슬레이브 데이터베이스는 마스터 데이터베이스와 동기화된다.</br>
 컴퓨터 시스템에서 버스와 연결된 주변장치 (마스터 드라이버와 슬레이브 드라이버)</br>
       <p class="Imgtext">
@@ -139,12 +139,12 @@ E-commerce 웹 애플리케이션</br>
 </br>	
 </br>
 </br>
-4. 파이프-필터 패턴 (Pipe-filter pattern)</br>
+<h2 class="BasicFontSet"4. 파이프-필터 패턴 (Pipe-filter pattern)></h2>
 이 패턴은 데이터 스트림을 생성하고 처리하는 시스템에서 사용할 수 있다.
 각 처리 과정은 필터 (filter) 컴포넌트에서 이루어지며, 처리되는 데이터는 파이프 (pipes)를 통해 흐른다. 
 이 파이프는 버퍼링 또는 동기화 목적으로 사용될 수 있다.</br>
 </br>
-활용</br>
+<p class="Paragraph">활용</p>
 컴파일러. 연속한 필터들은 어휘 분석, 파싱, 의미 분석 그리고 코드 생성을 수행한다.</br>
 생물정보학에서의 워크플로우</br>
       <p class="Imgtext">
@@ -154,14 +154,14 @@ E-commerce 웹 애플리케이션</br>
 </br>	
 </br>	
 </br>	
-5. 브로커 패턴 (Broker pattern)</br>
+<h2 class="BasicFontSet">5. 브로커 패턴 (Broker pattern)</h2>
 이 패턴은 분리된 컴포넌트들로 이루어진 분산 시스템에서 사용된다. 
 이 컴포넌트들은 원격 서비스 실행을 통해 서로 상호 작용을 할 수 있다. 
 브로커 (broker) 컴포넌트는 컴포넌트 (components) 간의 통신을 조정하는 역할을 한다.</br>
 </br>
 서버는 자신의 기능들(서비스 및 특성)을 브로커에 넘겨주며(publish), 클라이언트가 브로커에 서비스를 요청하면 브로커는 클라이언트를 자신의 레지스트리에 있는 적합한 서비스로 리디렉션한다.</br>
 </br>
-활용</br>
+<p class="Paragraph">활용</p>
 Apache ActiveMQ, Apache Kafka, RabbitMQ 및 JBoss Messaging와 같은 메시지 브로커 소프트웨어</br>	
       <p class="Imgtext">
           <img src="/asset/Daily/SoftwareArchitecturalPatterns/SoftwareArchitecturalPatterns6.png" class="concept"></br>
@@ -170,12 +170,12 @@ Apache ActiveMQ, Apache Kafka, RabbitMQ 및 JBoss Messaging와 같은 메시지 
 </br>
 </br>	
 </br>	
-6. 피어 투 피어 패턴 (Peer-to-peer pattern)</br>
+<h2 class="BasicFontSet">6. 피어 투 피어 패턴 (Peer-to-peer pattern)</h2>
 이 패턴에서는, 각 컴포넌트를 피어 (peers)라고 부른다. 
 피어는 클라이언트로서 피어에게 서비스를 요청할 수도 있고, 서버로서 각 피어에게 서비스를 제공할 수도 있다. 
 피어는 클라이언트 또는 서버 혹은 둘 모두로서 동작할 수 있으며, 시간이 지남에 따라 역할이 유동적으로 바뀔 수 있다.</br>
 </br>
-활용</br>
+<p class="Paragraph">활용</p>
 Gnutella나 G2와 같은 파일 공유 네트워크</br>
 P2PTV나 PDTP와 같은 멀티미디어 프로토콜</br>
 Spotify와 같은 독점적 멀티미디어 애플리케이션</br>
@@ -186,12 +186,12 @@ Spotify와 같은 독점적 멀티미디어 애플리케이션</br>
 	
 	
 	
-7. 이벤트-버스 패턴 (Event-bus pattern)</br>
+<h2 class="BasicFontSet">7. 이벤트-버스 패턴 (Event-bus pattern)</h2>
 이 패턴은 주로 이벤트를 처리하며 이벤트 소스 (event source), 이벤트 리스너 (event listener), 채널 (channel) 그리고 이벤트 버스 (event bus)의 4가지 주요 컴포넌트들을 갖는다. 
 소스는 이벤트 버스를 통해 특정 채널로 메시지를 발행하며 (publish), 리스너는 특정 채널에서 메시지를 구독한다 (subscribe).
 리스너는 이전에 구독한 채널에 발행된 메시지에 대해 알림을 받는다.</br>
 </br>
-활용</br>
+<p class="Paragraph">활용</p>
 안드로이드 개발</br>
 알림 서비스</br>
       <p class="Imgtext">
@@ -201,7 +201,7 @@ Spotify와 같은 독점적 멀티미디어 애플리케이션</br>
 </br>	
 </br>	
 </br>	
-8. 모델-뷰-컨트롤러 패턴 (Model-view-controller pattern)</br>
+<h2 class="BasicFontSet">8. 모델-뷰-컨트롤러 패턴 (Model-view-controller pattern)</h2>
 MVC 패턴이라고도 하는 이 패턴은 대화형 애플리케이션 (interactive application)을 다음의 3 부분으로 나눈다.</br>
 </br>
 모델 (model) — 핵심 기능과 데이터를 포함한다</br>
@@ -210,7 +210,7 @@ MVC 패턴이라고도 하는 이 패턴은 대화형 애플리케이션 (intera
 이는 정보가 사용자에게 제공되는 방식과 사용자로부터 받아 들여지는 방식에서 정보의 내부적인 표현을 분리하기 위해 나뉘어진다. 
 이는 컴포넌트를 분리하며 코드의 효율적인 재사용을 가능케한다.</br>
 </br>
-활용</br>
+<p class="Paragraph">활용</p>
 일반적인 웹 애플리케이션 설계 아키텍쳐</br>
 Django나 Rails와 같은 웹 프레임워크</br>
       <p class="Imgtext">
@@ -220,7 +220,7 @@ Django나 Rails와 같은 웹 프레임워크</br>
 </br>	
 </br>	
 </br>	
-9. 블랙보드 패턴 (Blackboard pattern)</br>
+<h2 class="BasicFontSet">9. 블랙보드 패턴 (Blackboard pattern)</h2>
 이 패턴은 결정 가능한 해결 전략이 알려지지 않은 문제에 유용하다. 
 이 패턴은 3가지 주요 컴포넌트로 구성된다.</br>
 </br>
@@ -230,7 +230,7 @@ Django나 Rails와 같은 웹 프레임워크</br>
 모든 컴포넌트는 블랙보드에 접근한다. 컴포넌트는 블랙보드에 추가되는 새로운 데이터 객체를 생성할 수 있다. 
 컴포넌트는 블랙보드에서 특정 종류의 데이터를 찾으며, 기존의 지식 소스와의 패턴 매칭으로 데이터를 찾는다.</br>
 </br>
-활용</br>
+<p class="Paragraph">활용</p>
 음성 인식</br>
 차량 식별 및 추적</br>
 단백질 구조 식별</br>
@@ -242,12 +242,12 @@ Django나 Rails와 같은 웹 프레임워크</br>
 </br>	
 </br>	
 </br>	
-10. 인터프리터 패턴 (Interpreter pattern)</br>
+<h2 class="BasicFontSet">10. 인터프리터 패턴 (Interpreter pattern)</h2>
 이 패턴은 특정 언어로 작성된 프로그램을 해석하는 컴포넌트를 설계할 때 사용된다. 
 이는 주로 특정 언어로 작성된 문장 혹은 표현식이라고 하는 프로그램의 각 라인을 수행하는 방법을 지정한다. 
 기본 아이디어는 언어의 각 기호에 대해 클래스를 만드는 것이다.</br>
 </br>
-활용</br>
+<p class="Paragraph">활용</p>
 SQL과 같은 데이터베이스 쿼리 언어</br>
 통신 프로토콜을 정의하기 위한 언어</br>
       <p class="Imgtext">
@@ -255,7 +255,7 @@ SQL과 같은 데이터베이스 쿼리 언어</br>
           <내용></br>
       </p>
 </br>	
-아키텍쳐 패턴 비교</br>
+<h2 class="BasicFontSet">아키텍쳐 패턴 비교</h2>
 다음은 각 아키텍쳐 패턴의 장단점을 요약한 테이블이다.</br>
 <표 1.></br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
