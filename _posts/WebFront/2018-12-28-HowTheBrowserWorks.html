@@ -44,7 +44,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 -->
       <a>
 	<h3 class="Categories BasicFontSet">How the browser works</h3>
-	{% for news in site.categories.WebFront %}
+	{% for news in site.categories.WebFrontProgramming %}
         {% if news.title == 'How the browser works'%}
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
