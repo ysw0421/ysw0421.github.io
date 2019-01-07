@@ -102,7 +102,7 @@ HTML5 명세는 주소 표시줄, 상태 표시줄, 도구 모음과 같은 일�
 6. 자바스크립트 해석기 - 자바스크립트 코드를 해석하고 실행.
 7. 자료 저장소 - 이 부분은 자료를 저장하는 계층이다. 쿠키를 저장하는 것과 같이 모든 종류의 자원을 하드 디스크에 저장할 필요가 있다. HTML5 명세에는 브라우저가 지원하는 '웹 데이터 베이스'가 정의되어 있다.
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser1.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser1.png" class="concept"></br>
           <브라우저의 주요 구성 요소></br>
       </p>
 크롬은 대부분의 브라우저와 달리 각 탭마다 별도의 렌더링 엔진 인스턴스를 유지하는 것이 주목할만하다. 
@@ -130,7 +130,7 @@ HTML5 명세는 주소 표시줄, 상태 표시줄, 도구 모음과 같은 일�
 
 다음은 렌더링 엔진의 기본적인 동작 과정이다.
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser2.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser2.png" class="concept"></br>
           <렌더링 엔진의 동작 과정></br>
       </p>
 
@@ -148,11 +148,11 @@ HTML5 명세는 주소 표시줄, 상태 표시줄, 도구 모음과 같은 일�
 
 동작 과정 예
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser3.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser3.png" class="concept"></br>
           <웹킷 동작 과정></br>
       </p>
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser4.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser4.png" class="concept"></br>
           <모질라의 게코 렌더링 엔진 동작 과정(3.6)></br>
       </p>
 웹킷과 게코가 용어를 약간 다르게 사용하고 있지만 동작 과정은 기본적으로 동일하다는 것을 그림 3과 그림 4에서 알 수 있다.
@@ -170,7 +170,7 @@ HTML5 명세는 주소 표시줄, 상태 표시줄, 도구 모음과 같은 일�
 
 예를 들면 2+3-1과 같은 표현식은 다음과 같은 트리가 된다.
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser5.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser5.png" class="concept"></br>
           <수학 표현식을 파싱한 트리 노드></br>
       </p>
 
@@ -189,7 +189,7 @@ HTML5 명세는 주소 표시줄, 상태 표시줄, 도구 모음과 같은 일�
 파서는 보통 두 가지 일을 하는데 자료를 유효한 토큰으로 분해하는 어휘 분석기(토큰 변환기 라고도 부름)가 있고 언어 구문 규칙에 따라 문서 구조를 분석함으로써 파싱 트리를 생성하는 파서가 있다. 어휘 분석기는 공백과 줄 바꿈 같은 의미 없는 문자를 제거한다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser6.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser6.png" class="concept"></br>
           <문서 소스로부터 파싱 트리를 만드는 과정></br>
       </p>
 
@@ -202,7 +202,7 @@ HTML5 명세는 주소 표시줄, 상태 표시줄, 도구 모음과 같은 일�
 파서 트리는 최종 결과물이 아니다. 파싱은 보통 문서를 다른 양식으로 변환하는데 컴파일이 하나의 예가 된다. 소스 코드를 기계 코드로 만드는 컴파일러는 파싱 트리 생성 후 이를 기계 코드 문서로 변환한다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser7.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser7.png" class="concept"></br>
           <컴파일 과정></br>
       </p>	
 
@@ -328,7 +328,7 @@ DOM은 마크업과 1:1의 관계를 맺는다. 예를 들면 이런 마크업�
 이것은 아래와 같은 DOM 트리로 변환할 수 있다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser8.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser8.png" class="concept"></br>
           <예제 마크업의 DOM 트리></br>
       </p>
 
@@ -352,7 +352,7 @@ HTML과 마찬가지로 DOM은 W3C에 의해 명세(www.w3.org/DOM/DOMTR)가 정
 토큰화는 토큰을 인지해서 트리 생성자로 넘기고 다름 토큰을 확인하기 위해 다음 문자를 확인한다. 그리고 입력의 마지막까지 이 과정을 반복한다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser9.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser9.png" class="concept"></br>
           <HTML 파싱 과정(HTML5 명세에서 가져옴)></br>
       </p>
 
@@ -380,7 +380,7 @@ HTML과 마찬가지로 DOM은 W3C에 의해 명세(www.w3.org/DOM/DOMTR)가 정
 다시 "태그 열림 상태"가 되었다. / 문자는 종료 태그 토큰을 생성하고 "태그 이름 상태"로 변경 될 것이다. 이 상태는 > 문자를 만날 때까지 유지된다. 그리고 새로운 태그 토큰이 발행되고 다시 "자료 상태"가 된다. 또한 동일하게 처리될 것이다.
 	
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser10.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser10.png" class="concept"></br>
           <입력 예제의 토큰화></br>
       </p>
 
@@ -412,7 +412,7 @@ HTML과 마찬가지로 DOM은 W3C에 의해 명세(www.w3.org/DOM/DOMTR)가 정
 body 종료 토큰을 받으면 "body 다음" 모드가 된다. html 종료 태그를 만나면 "body 다음 다음" 모드로 바뀐다. 마지막 파일 토큰을 받으면 파싱을 종료한다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser11.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser11.png" class="concept"></br>
           <예제 html 트리 구축></br>
       </p>
 
@@ -664,7 +664,7 @@ Ruleset
 웹킷은 CSS 문법 파일로부터 자동으로 파서를 생성하기 위해 플렉스와 바이슨 파서 생성기를 사용한다. 파서 소개에서 언급했던 것처럼 바이슨은 상향식 이동 감소 파서를 생성한다. 파이어폭스는 직접 작성한 하향식 파서를 사용한다. 두 경우 모두 각 CSS 파일은 스타일 시트 객체로 파싱되고 각 객체는 CSS 규칙을 포함한다. CSS 규칙 객체는 선택자와 선언 객체 그리고 CSS 문법과 일치하는 다른 객체를 포함한다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser12.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser12.png" class="concept"></br>
           <CSS 파싱></br>
       </p>
 
@@ -756,7 +756,7 @@ DOM 트리와 렌더 트리의 관계
 어떤 렌더 객체는 DOM 노드에 대응하지만 트리의 동일한 위치에 있지 않다. float 처리된 요소 또는 position 속성 값이 absolute로 처리된 요소는 흐름에서 벗어나 트리의 다른 곳에 배치된 상태로 형상이 그려진다. 대신 자리 표시자가 원래 있어야 할 곳에 배치된다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser13.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser13.png" class="concept"></br>
           <렌더 트리와 DOM 트리 대응(3.1). "뷰포트"는 최초의 블록이다. 웹킷에서는 "RenderView" 객체가 이 역할을 한다.></br>
       </p>
 
@@ -814,7 +814,7 @@ div div div div { … }
 파이어폭스는 스타일 계산을 쉽게 처리하기 위해 규칙 트리와 스타일 문맥 트리라고 하는 두 개의 트리를 더 가지고 있다. 웹킷도 스타일 객체를 가지고 있지만 스타일 문맥 트리처럼 저장되지 않고 오직 DOM 노드로 관련 스타일을 처리한다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser14.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser14.png" class="concept"></br>
           <파이어폭스 스타일 문맥 트리(2.2)></br>
       </p>
 
@@ -825,7 +825,7 @@ div div div div { … }
 트리 경로를 어휘 목록 속에 있는 단어라고 생각하고 이미 규칙 트리를 계산했다고 가정해 보자.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser15.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser15.png" class="concept"></br>
       </p>
 
 내용 트리에서 또 다른 요소에 부합하는 규칙이 필요하다고 가정하고 부합하는 규칙이 순서에 따라 B - E - I 라고 치자. 브라우저는 이미 A - B - E - I - L 경로를 계산했기 때문에 트리 안에 이 경로가 있고 할 일이 줄었다. 
@@ -881,14 +881,14 @@ div span   margin-bottom:4px
 결과적으로 규칙 트리는 아래처럼 보일 것이다. 노드는 노드 이름과 노드가 가리키는 규칙의 번호로 표시되어 있다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser16.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser16.png" class="concept"></br>
           <규칙 트리></br>
       </p>
 
 문맥 트리는 아래처럼 보일 것이다. 노드는 노드 이름과 노드가 가리키는 규칙 노드로 표시되어 있다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser17.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser17.png" class="concept"></br>
           <문맥 트리></br>
       </p>
 
@@ -1094,7 +1094,7 @@ HTML은 흐름 기반의 배치 모델을 사용하는데 이것은 보통 단�
 점증 배치는 렌더러가 더티일 때 비동기적으로 일어난다. 예를 들면 네트워크로부터 추가 내용을 받아서 DOM 트리에 더해진 다음 새로운 렌더러가 렌더 트리에 붙을 때이다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser18.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser18.png" class="concept"></br>
           <점증 배치 - 오직 더티 렌더러와 그 자식만 배치된다(3.6).></br>
       </p>
 
@@ -1218,7 +1218,7 @@ CSS 박스 모델은 문서 트리에 있는 요소를 위해 생성되고 시�
 각 박스는 콘텐츠 영역(문자, 이미지 등)과 선택적인 패딩과 테두리, 여백이 있다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser19.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser19.png" class="concept"></br>
           <CSS2 박스 모델></br>
       </p>
 
@@ -1255,28 +1255,28 @@ position 속성을 정의하지 않으면 static이 기본 값이 되며 일반�
 블록 박스: 브라우저 창에서 사각형 블록을 형성한다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser20.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser20.png" class="concept"></br>
           <블록 박스></br>
       </p>
 
 인라인 박스: 블록이 되지 않고 블록 내부에 포함된다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser21.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser21.png" class="concept"></br>
           <인라인 박스></br>
       </p>
 
 블록은 다른 블록 아래 수직으로 배치되고 인라인은 수평으로 배치된다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser22.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser22.png" class="concept"></br>
           <블록과 인라인 배치></br>
       </p>
 
 인라인 박스는 라인 또는 "라인 박스" 안쪽에 놓인다. 라인은 적어도 가장 큰 박스만큼 크지만 "baseline" 정렬일 때 더 커질 수 있다. 이것은 요소의 하단이 다른 상자의 하단이 아닌 곳에 배치된 경우를 의미한다. 포함하는 너비가 충분하지 않으면 인라인은 몇 줄의 라인으로 배치되는데 이것은 보통 문단 안에서 발생한다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser23.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser23.png" class="concept"></br>
           <라인></br>
       </p>
 
@@ -1285,7 +1285,7 @@ position 속성을 정의하지 않으면 static이 기본 값이 되며 일반�
 상대적인 위치 잡기는 일반적인 흐름에 따라 위치를 결정한 다음 필요한 만큼 이동한다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser24.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser24.png" class="concept"></br>
           <상대적인 위치 잡기></br>
       </p>
 
@@ -1308,7 +1308,7 @@ Lorem ipsum dolor sit amet, consectetuer...
 아래와 같이 보일 것이다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser25.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser25.png" class="concept"></br>
           <플로트></br>
       </p>
 
@@ -1316,7 +1316,7 @@ Lorem ipsum dolor sit amet, consectetuer...
 절대와 고정 배치는 일반적인 흐름과 무관하게 결정되고, 일반적인 흐름에 관여하지 않으며, 면적은 부모에 따라 상대적이다. 고정인 경우 뷰포트로부터 위치를 결정한다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser26.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser26.png" class="concept"></br>
           <고정된 위치 잡기></br>
       </p>
 
@@ -1353,7 +1353,7 @@ p
 이 코드는 다음과 같이 보일 것이다.
 
       <p class="Imgtext">
-          <img src="/asset/WebFront/HowTheBrowserWork/Browser27.png"></br>
+          <img src="/asset/WebFront/HowTheBrowserWork/Browser27.png" class="concept"></br>
           <고정 위치 잡기></br>
       </p>
 
