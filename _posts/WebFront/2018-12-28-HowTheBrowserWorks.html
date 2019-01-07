@@ -280,14 +280,14 @@ DOM
 "파싱 트리"는 DOM 요소와 속성 노드의 트리로서 출력 트리가 된다. DOM은 문서 객체 모델(Document Object Model)의 준말이다. 이것은 HTML 문서의 객체 표현이고 외부를 향하는 자바스크립트와 같은 HTML 요소의 연결 지점이다. 트리의 최상위 객체는 문서이다.
 
 DOM은 마크업과 1:1의 관계를 맺는다. 예를 들면 이런 마크업이 있다.
-<pre><code>
- html
-  body
-   p Hello World /p
-   div  img src="example.png" / /div
-  /body
-/html
-</code></pre>
+<pre>
+ <html>
+  <body>
+   <p>Hello World</p>
+   <div><img src="example.png" /></div>
+  </body>
+</html>  
+</pre>
 이것은 아래와 같은 DOM 트리로 변환할 수 있다.
 
 <그림 8.> 예제 마크업의 DOM 트리
@@ -318,13 +318,13 @@ HTML과 마찬가지로 DOM은 W3C에 의해 명세(www.w3.org/DOM/DOMTR)가 정
 알고리즘의 결과물은 HTML 토큰이다. 알고리즘은 상태 기계(State Machine)라고 볼 수 있다.  각 상태는 하나 이상의 연속된 문자를 입력받아 이 문자에 따라 다음 상태를 갱신한다. 그러나 결과는 현재의 토큰화 상태와 트리 구축 상태의 영향을 받는데. 이것은 같은 문자를 읽어 들여도 현재 상태에 따라 다음 상태의 결과가 다르게 나온다는 것을 의미한다. 알고리즘은 전체를 설명하기에 너무 복잡하니 원리 이해를 도울만한 간단한 예제를 한번 보자.
 
 다음은 HTML 토큰화를 설명하기 위한 기본적인 예제이다.
-<pre><code>
- html
-   body
+<pre>
+ <html>
+   <body>
       Hello world
-   /body
-/html  
-</code></pre>
+   </body>
+</html>  
+</pre>
 초기 상태는 "자료 상태" 이다. < 문자를 만나면 상태는 "태그 열림 상태"로 변한다. a 부터 z까지의 문자를 만나면 "시작 태그 토큰"을 생성하고 상태는 "태그 이름 상태"로 변하는데 이 상태는 > 문자를 만날 때까지 유지한다. 각 문자에는 새로운 토큰 이름이 붙는데 이 경우 생성된 토큰은 html 토큰이다.
 
 >문자에 도달하면 현재 토큰이 발행되고 상태는 다시 "자료 상태"로 바뀐다. 태그는 동일한 절차에 따라 처리된다. 지금까지 html 태그와 body 태그를 발행했고 다시 "자료 상태"로 돌아왔다.  Hello World의 H 문자를 만나면 문자 토큰이 생성되고 발행될 것이다. 이것은 종료 태그의 < 문자를 만날 때까지 진행된다. Hello World의 각 문자를 위한 문자 토큰을 발행할 것이다.
@@ -338,13 +338,13 @@ HTML과 마찬가지로 DOM은 W3C에 의해 명세(www.w3.org/DOM/DOMTR)가 정
 파서가 생성되면 문서 객체가 생성된다. 트리 구축이 진행되는 동안 문서 최상단에서는 DOM 트리가 수정되고 요소가 추가된다. 토큰화에 의해 발행된 각 노드는 트리 생성자에 의해 처리된다. 각 토큰을 위한 DOM 요소의 명세는 정의되어 있다. DOM 트리에 요소를 추가하는 것이 아니라면 열린 요소는 스택(임시 버퍼 저장소)에 추가된다. 이 스택은 부정확한 중첩과 종료되지 않은 태그를 교정한다. 알고리즘은 상태 기계라고 설명할 수 있고 상태는 "삽입 모드" 라고 부른다.
 
 아래 입력 예제의 트리 생성 과정을 보자.
-<pre><code>
- html
-   body
+<pre>
+ <html>
+   <body>
       Hello world
-   /body
-/html
-</code></pre>
+   </body>
+</html>  
+</pre>
 트리 구축 단계의 입력 값은 토큰화 단계에서 만들어지는 일련의 토큰이다. 받은 html 토큰은 "html 이전" 모드가 되고 토큰은 이 모드에서 처리된다. 이것은 HTMLHtmlElement 요소를 생성하고 문서 객체의 최상단에 추가된다.
 
 상태는 "head 이전" 모드로 바뀌었고 "body" 토큰을 받았다. "head" 토큰이 없더라도 HTMLHeadElement는 묵시적으로 생성되어 트리에 추가될 것이다.
@@ -364,16 +364,16 @@ body 종료 토큰을 받으면 "body 다음" 모드가 된다. html 종료 태�
 
 브라우저의 오류 처리
 HTML 페이지에서 "유효하지 않은 구문" 이라는 오류를 본 적이 없을 것이다. 이는 브라우저가 모든 오류 구문을 교정하기 때문이다. 아래 오류가 포함된 HTML 예제를 보자.
-<pre><code>
-html  
-   mytag/mytag
-   div
-     p
-   /div
+<pre>
+<html>  
+   <mytag></mytag>
+   <div>
+     <p>
+   </div>
    Really lousy HTML
-   /p
-/html
-</code></pre>
+   </p>
+</html>  
+</pre>
 나는 일부러 여러 가지 규칙을 위반 했다. "mytag"는 표준 태그가 아니고 "p" 태그와 "div" 태그는 중첩 오류가 있다. 그러나 브라우저는 투덜거리지 않고 올바르게 표시하는데 이는 파서가 HTML 제작자의 실수를 수정했기 때문이다.
 
 이런 오류 처리 행태는 브라우저에서 꽤나 일반적임에도 불구하고 HTML의 현재 명세가 아니라는 점이 놀라울 뿐이다. 북마크와 이전/다음 버튼처럼 수 년간 브라우저 안에서 구현된 것이다. 잘 알려진 HTML 오류를 많은 사이트에서 발견할 수 있지만 브라우저는 다른 브라우저들이 했던 것처럼 관습적으로 오류를 고치고 있다.
@@ -402,33 +402,33 @@ if(t->isCloseTag(brTag) && m_document->inCompatMode()) {
 
 어긋난 표
 어긋난 표는 표 안에 또 다른 표가 th 또는 td 셀 내부에 있지 않은 것을 의미한다. 아래 예제와 같은 경우를 말한다.
-<pre><code>
-table
+<pre>
+<table>
 
-    table
+    <table>
 
-    tr  td inner table /td  /tr
+    <tr><td>inner table</td></tr>
 
-     /table
+    </table>
 
-     tr  td outer table /td  /tr 
+    <tr><td>outer table</td></tr>
 
-/table
-</code></pre>
+</table>  
+</pre>
 이런 경우 웹킷은 표의 중첩을 분해하여 형제 요소가 되도록 처리한다.
-<pre><code>
- table
+<pre>
+<table>
 
-     tr  td outer table /td  /tr
+    <tr><td>outer table</td></tr>
 
- /table
+</table>
 
- table
+<table>
 
-     tr td inner table /td  /tr
+    <tr><td>inner table</td></tr>
 
- /table
-</code></pre>
+</table>  
+</pre>
 코드는 다음과 같다.
 <pre><code>
 if(m_inStrayTableContent && localName == tableTag)  
@@ -697,13 +697,13 @@ brouser15
 이런 HTML이 있다고 가정해 보자.
 
 <pre>
- div class="err" id="div1" 
-    p
+<div class="err" id="div1">  
+    <p>
     this is a <span class="big"> big error </span>
     this is also a <span class="big"> very big error</span> error
-    /p
- /div  
- div class="err" id="div2" another error /div 
+    </p>
+</div>  
+<div class="err" id="div2">another error</div>  
 </pre>
 그리고 다음과 같은 규칙이 있다.
 <pre>
@@ -1031,12 +1031,12 @@ position 속성을 정의하지 않으면 static이 기본 값이 되며 일반�
 플로트 박스는 라인의 왼쪽 또는 오른쪽으로 이동한다. 흥미로운 점은 다른 박스가 이 주변을 흐른다는 것이다.
 
 HTML을 다음과 같이 작성하면.
-<pre><code>
+<pre>
 <p>  
 <img src="http://helloworld.naver.com/image.gif" alt="image.gif" width="100" height="100" style="float:right">  
 Lorem ipsum dolor sit amet, consectetuer...  
 </p>  
-</code></pre>
+</pre>
 아래와 같이 보일 것이다.
 
 <그림 24.> 플로트
@@ -1056,7 +1056,7 @@ Lorem ipsum dolor sit amet, consectetuer...
 스택은 z-index 속성에 따라 순서를 결정한다. z-index 속성이 있는 박스는 지역 스택(local stack)을 형성한다. 뷰포트는 바깥쪽의 스택(outer stack)이다.
 
 다음 예제를 보자.
-<pre><code>
+<pre>
 <style type="text/css">  
 div {  
     position: absolute;
@@ -1068,7 +1068,7 @@ div {
     <div style="z-index:3;background-color:red;width:1in;height:1in"></div>
     <div style="z-index:1;background-color:green;width:2in;height:2in"></div>
 </p>
-</code></pre>
+</pre>
 
   
 이 코드는 다음과 같이 보일 것이다.
