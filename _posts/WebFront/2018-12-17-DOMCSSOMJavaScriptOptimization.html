@@ -45,7 +45,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
       <a>
 	<h3 class="Categories BasicFontSet">DOM, CSSOM, JavaScript Optimization</h3>
 	{% for news in site.categories.WebFrontProgramming %}
-        {% if news.title == 'DOM, CSSOM Optimization'%}
+        {% if news.title == 'DOM, CSSOM, JavaScript Optimization'%}
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
         {% endif %}
         {% endfor %}
