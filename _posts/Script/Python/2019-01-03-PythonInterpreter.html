@@ -69,77 +69,71 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
         {% endfor %}
      </a>
 	<blockquote><p class="posting">포스팅 </p></blockquote>
-##파이썬
-
-파이썬은 가장 인간의 언어와 유사한 문법으로 프로그래밍할 수 있고 우리가 지금 당장은 몰라도 되는 컴파일(Compile)이라는 과정도 거치지 않는다. 
-이는 파이썬은 그 외 프로그래밍 언어에 비해 비교적 배우기 쉽고 편하게 접근할 수 있다는 의미이다.
-
-	  
-	  
-	  
-	  
-#모듈과 패키지
-<그림 2.>
-모듈(Module)은 파이썬에서 재사용이 가능한 기본 단위이다. 
-.py라는 확장자를 갖는 단일 파일에 작성되며 여러 모듈들은 다시 패키지(Package)라는 단위로 관리된다. 
-우리가 지금까지 작성한 결과를 구조적으로 표현하면 다음과 같은 프로젝트의 형태를 가진다.
-
-파이썬은 인터프리터 언어이기 때문에 여기서 말하는 빌드는 컴파일 과정은 아니며 저장소에 배포하기 위해 패키징하는 단계를 말한다.
-
-
-
-
-#pip
-PyPI, Python Package Index에 등록된 패키지를 설치하자
-PyPI는 파이썬으로 작성된 프로그램을 위한 일종의 저장소이다. 
-2017년 6월을 기준으로 현재 PyPI에는 111003개의 패지지가 등록된 상태이다. 
-우리는 HTTP 요청을 위한 requests라는 패키지를 설치하는 예제를 살펴보도록 하겠다.
-
-
-	
-	
-#Anaconda
-현재 가장 널리 사용되는 파이썬 배포판은 컨티눔(Continuum)사가 제작한 '아나콘다(Anaconda)'이다. 
-아나콘다는 가장 늦게 발표되었음에도 완성도가 뛰어나서 사실상 표준(de facto standard) 파이썬 배포판이 되었다.
-<그림 3.>
-아나콘다 배포판은 모든 패키지가 컴파일이 필요 없는 바이너리(binary) 형태로 제공된다. 
-따라서 설치 속도가 빠르고 패키지 의존성을 관리해주므로 관리가 편리하다.
-<그림 4.>
-
-
-
-
-#인터프리터 언어 (Interpreted Language)
-런타임중에 프로그램 한줄한줄을 해석하며 실행한다.
-<그림 5.>
-파이썬의 경우 런타임중의 컴파일 과정에 렉서(lexer), 파서(parser) 를 거쳐서 바이트 코드를 만들어낸다. 
-(렉서 : 요소를 하나하나 쪼갠다. / 파서 : abstract syntax tree, 구문분석)
-
-어셈블리어는 cpu에 의존적이나, (예: 인텔 계열의 어셈블리어) 바이트코드는 그렇지 않다.
-바이트코드는 가상머신(virtual machine) 위에서 돌아가기 때문에 어떤 cpu 위에서도 돌아갈 수 있다.
-파이썬 초기 설치시 window용, mac용, linux용을 따로 받는 이유는 바이트코드에서 어떤 기계어로 바꿀지를 결정하기 위해서이다.
-Java, python 모두 바이트코드를 사용하기 때문에 vm(virtual machine)이 필요하다.
-
-인터프리티드 언어는 특별한 플랫폼 의존성을 가질 필요가 없다. 
-실행중에 ‘interpreted’ 되므로, 적절한 interpreter만 있다면 어떤 기종에서도 잘 실행될 수 있는 것이다. 
-이런 이유로 인터프리티드 언어는 보다 더 크로스플랫폼적 성격을 갖게 된다.
-
-	
-	
-	
-	
-#인터프리터 패턴
+	파이썬은 가장 인간의 언어와 유사한 문법으로 프로그래밍할 수 있고 우리가 지금 당장은 몰라도 되는 컴파일(Compile)이라는 과정도 거치지 않는다. 
+	이는 파이썬은 그 외 프로그래밍 언어에 비해 비교적 배우기 쉽고 편하게 접근할 수 있다는 의미이다.	</br>
+	</br>
+	</br>
+<h2 class="BasicFontSet">모듈과 패키지</h2>
+	<그림 2.></br>
+	모듈(Module)은 파이썬에서 재사용이 가능한 기본 단위이다. 
+	.py라는 확장자를 갖는 단일 파일에 작성되며 여러 모듈들은 다시 패키지(Package)라는 단위로 관리된다. 
+	우리가 지금까지 작성한 결과를 구조적으로 표현하면 다음과 같은 프로젝트의 형태를 가진다.</br>
+	</br>
+	파이썬은 인터프리터 언어이기 때문에 여기서 말하는 빌드는 컴파일 과정은 아니며 저장소에 배포하기 위해 패키징하는 단계를 말한다.</br>
+	</br>
+	</br>
+	</br>
+	</br>
+<h2 class="BasicFontSet">pip</h2>
+	PyPI, Python Package Index에 등록된 패키지를 설치하자
+	PyPI는 파이썬으로 작성된 프로그램을 위한 일종의 저장소이다. 
+	2017년 6월을 기준으로 현재 PyPI에는 111003개의 패지지가 등록된 상태이다. 
+	우리는 HTTP 요청을 위한 requests라는 패키지를 설치하는 예제를 살펴보도록 하겠다.</br>
+	</br>
+	</br>
+	</br>	
+	</br>	
+<h2 class="BasicFontSet">Anaconda</h2>
+	현재 가장 널리 사용되는 파이썬 배포판은 컨티눔(Continuum)사가 제작한 '아나콘다(Anaconda)'이다. 
+	아나콘다는 가장 늦게 발표되었음에도 완성도가 뛰어나서 사실상 표준(de facto standard) 파이썬 배포판이 되었다.</br>
+	<그림 3.></br>
+	아나콘다 배포판은 모든 패키지가 컴파일이 필요 없는 바이너리(binary) 형태로 제공된다. 
+	따라서 설치 속도가 빠르고 패키지 의존성을 관리해주므로 관리가 편리하다.</br>
+	<그림 4.></br>
+	</br>
+	</br>
+	</br>
+	</br>
+<h2 class="BasicFontSet">인터프리터 언어 (Interpreted Language)</h2>
+	런타임중에 프로그램 한줄한줄을 해석하며 실행한다.</br>
+	<그림 5.></br>
+	파이썬의 경우 런타임중의 컴파일 과정에 렉서(lexer), 파서(parser) 를 거쳐서 바이트 코드를 만들어낸다. 
+	(렉서 : 요소를 하나하나 쪼갠다. / 파서 : abstract syntax tree, 구문분석)</br>
+	</br>
+	어셈블리어는 cpu에 의존적이나, (예: 인텔 계열의 어셈블리어) 바이트코드는 그렇지 않다.
+	바이트코드는 가상머신(virtual machine) 위에서 돌아가기 때문에 어떤 cpu 위에서도 돌아갈 수 있다.
+	파이썬 초기 설치시 window용, mac용, linux용을 따로 받는 이유는 바이트코드에서 어떤 기계어로 바꿀지를 결정하기 위해서이다.
+	Java, python 모두 바이트코드를 사용하기 때문에 vm(virtual machine)이 필요하다.</br>
+	</br>
+	인터프리티드 언어는 특별한 플랫폼 의존성을 가질 필요가 없다. 
+	실행중에 ‘interpreted’ 되므로, 적절한 interpreter만 있다면 어떤 기종에서도 잘 실행될 수 있는 것이다. 
+	이런 이유로 인터프리티드 언어는 보다 더 크로스플랫폼적 성격을 갖게 된다.</br>
+	</br>
+	</br>	
+	</br>	
+	</br>		
+<h2 class="BasicFontSet">인터프리터 패턴</h2>
 컴퓨터 프로그래밍에서 인터프리터 패턴(interpreter pattern)은 한 언어에서 문들을 평가하는 방법을 규정하는 디자인 패턴이다. 
 기본 개념은 특화된 컴퓨터 언어에서 각 기호(종단 또는 비종단)마다 클래스를 갖는 것이다. 
-언어 내 한 문의 구문 트리는 컴포지트 패턴의 인스턴스이며 클라이언트의 문을 평가(해석)하기 위해 사용된다.
-<그림 1.>
-AbstractExpression (Expression) : AST의 모든 노드(터미널 및 비 터미널)가 재정의하는 interpret() 작업을 선언합니다.
-TerminalExpression (NumberExpression) : 터미널 식에 대해 interpret() 연산을 구현합니다.
-NonterminalExpression (AdditionExpression, SubtractionExpression, 및 MultiplicationExpression) : 모든 비 터미널 식에 대해 interpret() 연산을 구현합니다.
-Context (String) : 인터프리터에 대한 전역 정보를 포함합니다. 해석되고 해석되어야하는 것은 Postfix 표기법을 가진이 String 표현식입니다.
-Client (ExpressionParser) : TerminalExpression과 NonTerminalExpression에서 어셈블 된 AST를 빌드합니다. 클라이언트는 interpret() 작업을 호출합니다.
-
-	
+언어 내 한 문의 구문 트리는 컴포지트 패턴의 인스턴스이며 클라이언트의 문을 평가(해석)하기 위해 사용된다.</br>
+<그림 1.></br>
+AbstractExpression (Expression) : AST의 모든 노드(터미널 및 비 터미널)가 재정의하는 interpret() 작업을 선언합니다.</br>
+TerminalExpression (NumberExpression) : 터미널 식에 대해 interpret() 연산을 구현합니다.</br>
+NonterminalExpression (AdditionExpression, SubtractionExpression, 및 MultiplicationExpression) : 모든 비 터미널 식에 대해 interpret() 연산을 구현합니다.</br>
+Context (String) : 인터프리터에 대한 전역 정보를 포함합니다. 해석되고 해석되어야하는 것은 Postfix 표기법을 가진이 String 표현식입니다.</br>
+Client (ExpressionParser) : TerminalExpression과 NonTerminalExpression에서 어셈블 된 AST를 빌드합니다. 클라이언트는 interpret() 작업을 호출합니다.</br>
+	</br>
+	</br>
 자바를 통한 구현.
 // Expression interface used to 
 // check the interpreter. 
@@ -236,73 +230,77 @@ class InterpreterPattern
   
     } 
 } 
-	
-	
-	
+	</br>
+	</br>
+	</br>
 Output:
 true
 true
 false
 true
 false
-
-
+	</br>
+	</br>
+	</br>
 장점
-
-문법을 변경하고 확장하는 것은 쉽습니다. 
-패턴은 클래스를 사용하여 문법 규칙을 나타 내기 때문에 상속을 사용하여 문법을 변경하거나 확장 할 수 있습니다. 
-기존 표현식은 점진적으로 수정할 수 있으며 새로운 표현식은 이전 표현식의 변형으로 정의 할 수 있습니다.
-문법을 구현하는 것도 쉽습니다. 추상 구문 트리의 노드를 정의하는 클래스도 비슷한 구현을합니다. 
-이러한 클래스는 작성하기 쉽고 컴파일러 나 파서 생성기를 사용하여 생성을 자동화 할 수 있습니다.
-
-
+	</br>
+	문법을 변경하고 확장하는 것은 쉽습니다. 
+	패턴은 클래스를 사용하여 문법 규칙을 나타 내기 때문에 상속을 사용하여 문법을 변경하거나 확장 할 수 있습니다. 
+	기존 표현식은 점진적으로 수정할 수 있으며 새로운 표현식은 이전 표현식의 변형으로 정의 할 수 있습니다.
+	문법을 구현하는 것도 쉽습니다. 추상 구문 트리의 노드를 정의하는 클래스도 비슷한 구현을합니다. 
+	이러한 클래스는 작성하기 쉽고 컴파일러 나 파서 생성기를 사용하여 생성을 자동화 할 수 있습니다.</br>
+	</br>
+	</br>
 단점
-
-복잡한 문법은 유지하기 어렵습니다. 
-인터프리터 패턴은 문법의 모든 규칙에 대해 최소한 하나의 클래스를 정의합니다. 
-따라서 많은 규칙을 포함하는 문법은 관리 및 유지가 어려울 수 있습니다.
-	
-
-#인터프리터 종류
+	</br>
+	복잡한 문법은 유지하기 어렵습니다. 
+	인터프리터 패턴은 문법의 모든 규칙에 대해 최소한 하나의 클래스를 정의합니다. 
+	따라서 많은 규칙을 포함하는 문법은 관리 및 유지가 어려울 수 있습니다.</br>
+	</br>
+	</br>
+	</br>
+	</br>
+<h2 class="BasicFontSet">인터프리터 종류</h2>
 CPython	
-가장 널리 사용되는 “기본” 인터프리터로, 32비트 및 64비트 버전으로 사용 가능합니다(32비트 권장). 
-최신 언어 기능, 최대 Python 패키지 호환성, 완전한 디버깅 지원 및 IPython과 상호 interop을 포함합니다. 
-참고 항목: Python 2 또는 Python 3을 사용해야 하나요?. 
-Visual Studio 2015 이전 버전은 Python 3.6+를 지원하지 않으며 Python 버전 3.6이 지원되지 않음과 같은 오류를 표시할 수 있습니다. 
-대신 Python 3.5 또는 이전을 사용합니다.
-
+	가장 널리 사용되는 “기본” 인터프리터로, 32비트 및 64비트 버전으로 사용 가능합니다(32비트 권장). 
+	최신 언어 기능, 최대 Python 패키지 호환성, 완전한 디버깅 지원 및 IPython과 상호 interop을 포함합니다. 
+	참고 항목: Python 2 또는 Python 3을 사용해야 하나요?. 
+	Visual Studio 2015 이전 버전은 Python 3.6+를 지원하지 않으며 Python 버전 3.6이 지원되지 않음과 같은 오류를 표시할 수 있습니다. 
+	대신 Python 3.5 또는 이전을 사용합니다.</br>
+	</br>
 IronPython	
-Python의 .NET 구현으로, 32비트 및 64비트 버전으로 사용 가능하며 C#/F#/Visual Basic interop, .NET API에 대한 액세스, 표준 Python 디버깅(그러나 C++ 혼합 모드 디버깅은 제외) 및 혼합 IronPython/C# 디버깅을 제공합니다. 
-하지만 IronPython에서는 가상 환경을 지원하지 않습니다.
-
+	Python의 .NET 구현으로, 32비트 및 64비트 버전으로 사용 가능하며 C#/F#/Visual Basic interop, .NET API에 대한 액세스, 표준 Python 디버깅(그러나 C++ 혼합 모드 디버깅은 제외) 및 혼합 IronPython/C# 디버깅을 제공합니다. 
+	하지만 IronPython에서는 가상 환경을 지원하지 않습니다.</br>
+	</br>
 Anaconda	
-Python에서 제공하는 개방형 데이터 과학 플랫폼으로, 최신 버전의 CPython과 설치하기 어려운 대부분의 패키지를 포함합니다. 
-달리 결정할 수 없는 경우 권장됩니다.
-
+	Python에서 제공하는 개방형 데이터 과학 플랫폼으로, 최신 버전의 CPython과 설치하기 어려운 대부분의 패키지를 포함합니다. 
+	달리 결정할 수 없는 경우 권장됩니다.</br>
+	</br>
 PyPy(중요)
-Python의 고성능 추적 JIT 구현으로, 장기적으로 실행되는 프로그램과 성능 문제를 확인했으나 다른 해결 방법을 찾을 수 없는 상황에 적절합니다. 
-Visual Studio에서 작동하지만 고급 디버깅 기능은 제한적으로 지원됩니다.
-
+	Python의 고성능 추적 JIT 구현으로, 장기적으로 실행되는 프로그램과 성능 문제를 확인했으나 다른 해결 방법을 찾을 수 없는 상황에 적절합니다. 
+	Visual Studio에서 작동하지만 고급 디버깅 기능은 제한적으로 지원됩니다.</br>
+	</br>
 Jython	
-JVM(Java Virtual Machine)에서 Python 구현. 
-IronPython과 마찬가지로, Jython에서 실행되는 코드는 Java 클래스 및 라이브러리와 상호 작용할 수 있지만 CPython용으로 작성된 많은 라이브러리는 사용할 수 없습니다. 
-Visual Studio에서 작동하지만 고급 디버깅 기능은 제한적으로 지원됩니다.
-
-
-
-+추가 설명
+	JVM(Java Virtual Machine)에서 Python 구현. 
+	IronPython과 마찬가지로, Jython에서 실행되는 코드는 Java 클래스 및 라이브러리와 상호 작용할 수 있지만 CPython용으로 작성된 많은 라이브러리는 사용할 수 없습니다. 
+	Visual Studio에서 작동하지만 고급 디버깅 기능은 제한적으로 지원됩니다.</br>
+	</br>
+	</br>
+	</br>
+	</br>
+<h2 class="BasicFontSet">+추가 설명</h2>
 PyPy
-PyPy는 유연함과 쉬운 실험을 위해 파이썬 프로그래밍 언어 자체로 작성된 파이썬 구현체이다. 
-이 프로젝트의 목적 중 하나는 최적화된 PyPy의 파이썬 구현이 현재의 C 구현보다 빠르도록 하는 것이다. 
-PyPy 자체는 파이썬 언어의 부분집합인 RPython으로 구현되어 있다.
-
-PyPy는 파이썬 코드를 기계어나 다른 저급 언어로 자동 번역하는 저스트 인 타임 컴파일러 기능을 포함하고 있는데, 
-특이한 점은 JIT 컴파일러 자체가 JIT 컴파일러 생성기로부터 — PyPy RPython 코드를 분석하여 — 자동생성된다는 점이다.
-
-벤치마크 대상에 따라 다르긴 하지만 PyPy 1.4 버전부터 CPython보다 나은 성능을 보인다.
-
-예를 들어, PyPy 1.4는 PyPy 자체를 컴파일 하는 코드가 CPython보다 PyPy에서 더 빠르게 돌아가는 첫 번째 버전이다.
-
+	PyPy는 유연함과 쉬운 실험을 위해 파이썬 프로그래밍 언어 자체로 작성된 파이썬 구현체이다. 
+	이 프로젝트의 목적 중 하나는 최적화된 PyPy의 파이썬 구현이 현재의 C 구현보다 빠르도록 하는 것이다. 
+	PyPy 자체는 파이썬 언어의 부분집합인 RPython으로 구현되어 있다.</br>
+	</br>
+	PyPy는 파이썬 코드를 기계어나 다른 저급 언어로 자동 번역하는 저스트 인 타임 컴파일러 기능을 포함하고 있는데, 
+	특이한 점은 JIT 컴파일러 자체가 JIT 컴파일러 생성기로부터 — PyPy RPython 코드를 분석하여 — 자동생성된다는 점이다.</br>
+	</br>
+	벤치마크 대상에 따라 다르긴 하지만 PyPy 1.4 버전부터 CPython보다 나은 성능을 보인다.</br>
+	</br>
+	예를 들어, PyPy 1.4는 PyPy 자체를 컴파일 하는 코드가 CPython보다 PyPy에서 더 빠르게 돌아가는 첫 번째 버전이다.</br>
+	</br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
   </body>
 </html>
