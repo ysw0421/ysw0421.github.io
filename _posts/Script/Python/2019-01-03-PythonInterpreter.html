@@ -74,8 +74,12 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 파이썬은 가장 인간의 언어와 유사한 문법으로 프로그래밍할 수 있고 우리가 지금 당장은 몰라도 되는 컴파일(Compile)이라는 과정도 거치지 않는다. 
 이는 파이썬은 그 외 프로그래밍 언어에 비해 비교적 배우기 쉽고 편하게 접근할 수 있다는 의미이다.
 
+	  
+	  
+	  
+	  
 #모듈과 패키지
-<그림 1.>
+<그림 2.>
 모듈(Module)은 파이썬에서 재사용이 가능한 기본 단위이다. 
 .py라는 확장자를 갖는 단일 파일에 작성되며 여러 모듈들은 다시 패키지(Package)라는 단위로 관리된다. 
 우리가 지금까지 작성한 결과를 구조적으로 표현하면 다음과 같은 프로젝트의 형태를 가진다.
@@ -92,20 +96,22 @@ PyPI는 파이썬으로 작성된 프로그램을 위한 일종의 저장소이�
 우리는 HTTP 요청을 위한 requests라는 패키지를 설치하는 예제를 살펴보도록 하겠다.
 
 
+	
+	
 #Anaconda
 현재 가장 널리 사용되는 파이썬 배포판은 컨티눔(Continuum)사가 제작한 '아나콘다(Anaconda)'이다. 
 아나콘다는 가장 늦게 발표되었음에도 완성도가 뛰어나서 사실상 표준(de facto standard) 파이썬 배포판이 되었다.
-<그림 2.>
+<그림 3.>
 아나콘다 배포판은 모든 패키지가 컴파일이 필요 없는 바이너리(binary) 형태로 제공된다. 
 따라서 설치 속도가 빠르고 패키지 의존성을 관리해주므로 관리가 편리하다.
-<그림 3.>
-
-
-
-
-#인터프린터 언어 (Interpreted Language)
-런타임중에 프로그램 한줄한줄을 해석하며 실행한다.
 <그림 4.>
+
+
+
+
+#인터프리터 언어 (Interpreted Language)
+런타임중에 프로그램 한줄한줄을 해석하며 실행한다.
+<그림 5.>
 파이썬의 경우 런타임중의 컴파일 과정에 렉서(lexer), 파서(parser) 를 거쳐서 바이트 코드를 만들어낸다. 
 (렉서 : 요소를 하나하나 쪼갠다. / 파서 : abstract syntax tree, 구문분석)
 
@@ -118,9 +124,144 @@ Java, python 모두 바이트코드를 사용하기 때문에 vm(virtual machine
 실행중에 ‘interpreted’ 되므로, 적절한 interpreter만 있다면 어떤 기종에서도 잘 실행될 수 있는 것이다. 
 이런 이유로 인터프리티드 언어는 보다 더 크로스플랫폼적 성격을 갖게 된다.
 
+	
+	
+	
+	
+#인터프리터 패턴
+컴퓨터 프로그래밍에서 인터프리터 패턴(interpreter pattern)은 한 언어에서 문들을 평가하는 방법을 규정하는 디자인 패턴이다. 
+기본 개념은 특화된 컴퓨터 언어에서 각 기호(종단 또는 비종단)마다 클래스를 갖는 것이다. 
+언어 내 한 문의 구문 트리는 컴포지트 패턴의 인스턴스이며 클라이언트의 문을 평가(해석)하기 위해 사용된다.
+<그림 1.>
+AbstractExpression (Expression) : AST의 모든 노드(터미널 및 비 터미널)가 재정의하는 interpret() 작업을 선언합니다.
+TerminalExpression (NumberExpression) : 터미널 식에 대해 interpret() 연산을 구현합니다.
+NonterminalExpression (AdditionExpression, SubtractionExpression, 및 MultiplicationExpression) : 모든 비 터미널 식에 대해 interpret() 연산을 구현합니다.
+Context (String) : 인터프리터에 대한 전역 정보를 포함합니다. 해석되고 해석되어야하는 것은 Postfix 표기법을 가진이 String 표현식입니다.
+Client (ExpressionParser) : TerminalExpression과 NonTerminalExpression에서 어셈블 된 AST를 빌드합니다. 클라이언트는 interpret() 작업을 호출합니다.
+
+	
+자바를 통한 구현.
+// Expression interface used to 
+// check the interpreter. 
+interface Expression 
+{ 
+    boolean interpreter(String con); 
+} 
+  
+// TerminalExpression class implementing 
+// the above interface. This interpreter  
+// just check if the data is same as the  
+// interpreter data. 
+class TerminalExpression implements Expression  
+{ 
+    String data; 
+  
+    public TerminalExpression(String data) 
+    { 
+        this.data = data;  
+    } 
+  
+    public boolean interpreter(String con)  
+    { 
+        if(con.contains(data)) 
+        { 
+            return true; 
+        } 
+        else
+        { 
+            return false;   
+        } 
+    } 
+} 
+// OrExpression class implementing 
+// the above interface. This interpreter  
+// just returns the or condition of the  
+// data is same as the interpreter data. 
+class OrExpression implements Expression  
+{ 
+    Expression expr1; 
+    Expression expr2; 
+  
+    public OrExpression(Expression expr1, Expression expr2)  
+    { 
+        this.expr1 = expr1; 
+        this.expr2 = expr2; 
+    } 
+    public boolean interpreter(String con)  
+    {         
+        return expr1.interpreter(con) || expr2.interpreter(con); 
+    } 
+} 
+  
+// AndExpression class implementing 
+// the above interface. This interpreter  
+// just returns the And condition of the  
+// data is same as the interpreter data. 
+class AndExpression implements Expression  
+{ 
+    Expression expr1; 
+    Expression expr2; 
+  
+    public AndExpression(Expression expr1, Expression expr2)  
+    {  
+        this.expr1 = expr1; 
+        this.expr2 = expr2; 
+    } 
+    public boolean interpreter(String con)  
+    {         
+        return expr1.interpreter(con) && expr2.interpreter(con); 
+    } 
+} 
+  
+// Driver class 
+class InterpreterPattern 
+{ 
+  
+    public static void main(String[] args)  
+    { 
+        Expression person1 = new TerminalExpression("Kushagra"); 
+        Expression person2 = new TerminalExpression("Lokesh"); 
+        Expression isSingle = new OrExpression(person1, person2); 
+          
+        Expression vikram = new TerminalExpression("Vikram"); 
+        Expression committed = new TerminalExpression("Committed"); 
+        Expression isCommitted = new AndExpression(vikram, committed);     
+  
+        System.out.println(isSingle.interpreter("Kushagra")); 
+        System.out.println(isSingle.interpreter("Lokesh")); 
+        System.out.println(isSingle.interpreter("Achint")); 
+          
+        System.out.println(isCommitted.interpreter("Committed, Vikram")); 
+        System.out.println(isCommitted.interpreter("Single, Vikram")); 
+  
+    } 
+} 
+	
+	
+	
+Output:
+true
+true
+false
+true
+false
 
 
+장점
 
+문법을 변경하고 확장하는 것은 쉽습니다. 
+패턴은 클래스를 사용하여 문법 규칙을 나타 내기 때문에 상속을 사용하여 문법을 변경하거나 확장 할 수 있습니다. 
+기존 표현식은 점진적으로 수정할 수 있으며 새로운 표현식은 이전 표현식의 변형으로 정의 할 수 있습니다.
+문법을 구현하는 것도 쉽습니다. 추상 구문 트리의 노드를 정의하는 클래스도 비슷한 구현을합니다. 
+이러한 클래스는 작성하기 쉽고 컴파일러 나 파서 생성기를 사용하여 생성을 자동화 할 수 있습니다.
+
+
+단점
+
+복잡한 문법은 유지하기 어렵습니다. 
+인터프리터 패턴은 문법의 모든 규칙에 대해 최소한 하나의 클래스를 정의합니다. 
+따라서 많은 규칙을 포함하는 문법은 관리 및 유지가 어려울 수 있습니다.
+	
 
 #인터프리터 종류
 CPython	
