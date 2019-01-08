@@ -74,7 +74,10 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	</br>
 	</br>
 <h2 class="BasicFontSet">모듈과 패키지</h2>
-<그림 2.></br>
+      <p class="Imgtext">
+          <img src="/asset/Script/Python/Interpreter/Interpreter2.png" class="concept"></br>
+          <내용></br>
+      </p>
 	모듈(Module)은 파이썬에서 재사용이 가능한 기본 단위이다. 
 	.py라는 확장자를 갖는 단일 파일에 작성되며 여러 모듈들은 다시 패키지(Package)라는 단위로 관리된다. 
 	우리가 지금까지 작성한 결과를 구조적으로 표현하면 다음과 같은 프로젝트의 형태를 가진다.</br>
@@ -95,17 +98,26 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 <h2 class="BasicFontSet">Anaconda</h2>
 	현재 가장 널리 사용되는 파이썬 배포판은 컨티눔(Continuum)사가 제작한 '아나콘다(Anaconda)'이다. 
 	아나콘다는 가장 늦게 발표되었음에도 완성도가 뛰어나서 사실상 표준(de facto standard) 파이썬 배포판이 되었다.</br>
-<그림 3.></br>
+      <p class="Imgtext">
+          <img src="/asset/Script/Python/Interpreter/Interpreter3.png" class="concept"></br>
+          <내용></br>
+      </p>
 	아나콘다 배포판은 모든 패키지가 컴파일이 필요 없는 바이너리(binary) 형태로 제공된다. 
 	따라서 설치 속도가 빠르고 패키지 의존성을 관리해주므로 관리가 편리하다.</br>
-<그림 4.></br>
+      <p class="Imgtext">
+          <img src="/asset/Script/Python/Interpreter/Interpreter4.png" class="concept"></br>
+          <내용></br>
+      </p>
 	</br>
 	</br>
 	</br>
 	</br>
 <h2 class="BasicFontSet">인터프리터 언어 (Interpreted Language)</h2>
 	런타임중에 프로그램 한줄한줄을 해석하며 실행한다.</br>
-<그림 5.></br>
+      <p class="Imgtext">
+          <img src="/asset/Script/Python/Interpreter/Interpreter5.PNG" class="concept"></br>
+          <내용></br>
+      </p>
 	파이썬의 경우 런타임중의 컴파일 과정에 렉서(lexer), 파서(parser) 를 거쳐서 바이트 코드를 만들어낸다. 
 	(렉서 : 요소를 하나하나 쪼갠다. / 파서 : abstract syntax tree, 구문분석)</br>
 	</br>
@@ -125,7 +137,10 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	컴퓨터 프로그래밍에서 인터프리터 패턴(interpreter pattern)은 한 언어에서 문들을 평가하는 방법을 규정하는 디자인 패턴이다. 
 	기본 개념은 특화된 컴퓨터 언어에서 각 기호(종단 또는 비종단)마다 클래스를 갖는 것이다. 
 	언어 내 한 문의 구문 트리는 컴포지트 패턴의 인스턴스이며 클라이언트의 문을 평가(해석)하기 위해 사용된다.</br>
-<그림 1.></br>
+      <p class="Imgtext">
+          <img src="/asset/Script/Python/Interpreter/Interpreter1.jpg" class="concept"></br>
+          <내용></br>
+      </p>
 	<b>AbstractExpression (Expression) : </b>AST의 모든 노드(터미널 및 비 터미널)가 재정의하는 interpret() 작업을 선언합니다.</br>
 	<b>TerminalExpression (NumberExpression) : </b>터미널 식에 대해 interpret() 연산을 구현합니다.</br>
 	<b>NonterminalExpression (AdditionExpression, SubtractionExpression, 및 MultiplicationExpression) : </b>모든 비 터미널 식에 대해 interpret() 연산을 구현합니다.</br>
