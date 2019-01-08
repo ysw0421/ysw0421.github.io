@@ -179,8 +179,7 @@ class TerminalExpression implements Expression{
 // the above interface. This interpreter  
 // just returns the or condition of the  
 // data is same as the interpreter data. 
-class OrExpression implements Expression  
-{ 
+class OrExpression implements Expression{ 
     Expression expr1; 
     Expression expr2; 
   
@@ -197,8 +196,7 @@ class OrExpression implements Expression
 // the above interface. This interpreter  
 // just returns the And condition of the  
 // data is same as the interpreter data. 
-class AndExpression implements Expression  
-{ 
+class AndExpression implements Expression{ 
     Expression expr1; 
     Expression expr2; 
   
@@ -212,11 +210,8 @@ class AndExpression implements Expression
 } 
   
 // Driver class 
-class InterpreterPattern 
-{ 
-  
-    public static void main(String[] args)  
-    { 
+class InterpreterPattern { 
+    public static void main(String[] args){ 
         Expression person1 = new TerminalExpression("Kushagra"); 
         Expression person2 = new TerminalExpression("Lokesh"); 
         Expression isSingle = new OrExpression(person1, person2); 
@@ -230,8 +225,7 @@ class InterpreterPattern
         System.out.println(isSingle.interpreter("Achint")); 
           
         System.out.println(isCommitted.interpreter("Committed, Vikram")); 
-        System.out.println(isCommitted.interpreter("Single, Vikram")); 
-  
+        System.out.println(isCommitted.interpreter("Single, Vikram"));  
     } 
 } 
 </code></pre>
