@@ -1,0 +1,353 @@
+---
+layout: post
+title: Graph
+meta: Concept
+category: DataStructure
+comments: true
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pageframe.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+    </style>
+  <!--
+  수식용 스크립트 MathJax
+  -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      //jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  </head>
+  <body>	  
+<!--
+카테고리: Categories <h3 class="Categories BasicFontSet"></h3>
+날짜: Date 
+      {% for news in site.categories.analysis %}
+        {% if news.title == 'Testing css'%}
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+        {% endif %}
+      {% endfor %}
+태그: Tags <a class="post-tag">태그 내용</a>
+posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote>
+주제: MainTitle <h1 class="BasicFontSet"></h1>
+소제: SubTitle <h2 class="BasicFontSet"></h2>
+단락: Paragraph <p class="Paragraph"></p>
+내용: Contents <p class="Contents"></p>
+이미지: Imgsize - media query 적용
+이미지 text: Imgtext
+      <p class="Imgtext">
+          <img src="이미지 주소" class="concept"></br>
+          <내용></br>
+      </p>
+전체 코드 URL: CodeURL
+참고자료: Reference <blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p>
+-->
+      <a>
+	<h3 class="Categories BasicFontSet">Graph</h3>
+	{% for news in site.categories.DataStructure %}
+        {% if news.title == 'Graph'%}
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+        {% endif %}
+        {% endfor %}
+     </a>
+	<blockquote><p class="posting">포스팅 </p></blockquote>	  
+그래프란 일련의 노드(node, vertex, 정점, 꼭지점) 집합 V와 엣지(edge, 간선, 변) 집합 E로 구성된 자료구조의 일종입니다. 
+일반적으로 노드엔 데이터, 엣지엔 노드와 노드 사이의 관계 정보가 포함되어 있습니다. 
+이를 그림으로 나타내면 다음과 같습니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph1.png" class="concept"></br>
+          <내용></br>
+      </p>
+
+
+<p class="Paragraph">sparse/dense graph</p>
+sparse graph란 하단 좌측 그림처럼 노드의 수보다 엣지 수가 적은 그래프를 가리킵니다. 
+반대로 dense graph란 하단 우측 그림처럼 노드 수보다 엣지 수가 큰 그래프입니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph2.png" class="concept"></br>
+          <내용></br>
+      </p>
+
+
+<p class="Paragraph">incident/adjacent</p>
+임의의 두 노드가 하나의 엣지로 연결돼 있을 경우, 이 노드들은 서로 인접(adjacent)해 있다고 합니다. 
+같은 경우에 이 엣지는 두 노드에 부속(incident)한다고 합니다.
+
+	
+<p class="Paragraph">degree</p>
+한 노드의 차수(degree)란 해당 노드에 연결된 엣지의 수(혹은 엣지 가중치의 합)를 가리킵니다.
+
+	
+<p class="Paragraph">loop/isolated</p>
+다음 그림과 같이 한 엣지가 같은 노드에 부속해 있을 때 loop이라고 합니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph3.png" class="concept"></br>
+          <내용></br>
+      </p>
+이와 반대로 임의의 한 노드에 부속해 있는 엣지가 전혀 없을 때 해당 노드를 isolated vertex라고 합니다.
+
+	
+<p class="Paragraph">isomorphic</p>
+한 그래프의 두 노드를 연결하는 엣지가 하나이고, 다른 그래프에서 그에 대응하는 노드를 연결하는 엣지가 하나뿐일 때 두 그래프는 동형(同型, isomorphic)이라고 합니다. 
+쉽게 말해 두 그래프는 생김새만 다르게 생길 뿐 본질적으로는 구조가 같다는 이야기입니다. 
+다음 그림과 같습니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph4.png" class="concept"></br>
+          <내용></br>
+      </p>
+
+	
+<p class="Paragraph">subgraph</p>
+임의의 그래프 G=(V,E)가 주어졌을 때 다음을 만족하는 G′=(V′,E′)는 G의 부분그래프(subgraph)라고 합니다.
+
+E′는 V′에만 부속(=V′에 속한 모든 엣지가 G′에 있어야 함)되어 있으며 E의 부분집합이다.
+V′는 V의 부분집합이다.
+이 가운데 V=V′를 만족하는 부분그래프를 spanning subgraph라고 합니다. 
+쉽게 말해 원 그래프와 노드는 같고 일부 엣지만 포함된 부분그래프를 가리킵니다. 
+이 부분그래프가 트리을 만족할 경우 spanning tree라고 합니다. 
+하단 좌측과 우측의 그림이 원 그래프와 spanning subgraph를 예로 든 것입니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph5.png" class="concept"></br>
+          <내용></br>
+      </p>
+원 그래프를 spanning subgraph로 표현하면 노드 간 불필요한 관계 정보 처리를 생략할 수 있게 돼 효율성을 도모할 수 있다고 합니다.
+
+	
+<p class="Paragraph">complete graph/multigraph</p>
+모든 노드들이 엣지로 연결돼 있어, 엣지의 수가 최대인 그래프(하단 좌측)를 완전그래프(complete graph)라고 합니다. 
+노드 수가 4개라면 기호로 K4라고 표시합니다. 
+반면 노드 사이를 잇는 엣지가 하나 이상일 경우 해당 엣지를 transitive하다고 하며, 이 그래프를 multigraph라고 합니다(하단 우측).
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph6.png" class="concept"></br>
+          <내용></br>
+      </p>
+모든 노드들이 엣지로 연결된 부분그래프를 클리크(clique)라고 합니다. 아래 예시의 경우 클리크는 다음 여섯가지입니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph7.png" class="concept"></br>
+          <내용></br>
+      </p>
+a,b
+a,c,d
+b,g
+c,d,e,f
+c,f,h
+f,g
+이 가운데 노드의 수가 가장 많은 클리크(c,d,e,f)를 maximum clique라고 합니다.
+
+	
+<p class="Paragraph">directed graph</p>
+방향그래프(directed graph, digraph)란 엣지가 순서가 있는 쌍으로 표현된 그래프의 일종입니다. 다시 말해 엣지가 방향성을 가집니다. 
+아래 그림처럼 V2에서 V1으로 향하는 엣지 e1가 있다면, V2를 predecessor/source, V1을 successor/sink라고 부릅니다. 
+이 때 e1을 V2의 outgoing edge, V1의 incoming edge라고 합니다.
+
+방향그래프에서 한 노드의 차수(degree)는 incoming degree와 outgoing degree로 나뉩니다. 
+다시 말해 어떤 한 노드를 기준으로 들어오는 엣지 수(혹은 가중치의 합), 나가는 엣지 수(혹은 가중치의 합)이 바로 그것입니다. 
+아래 방향그래프에서 V1의 incoming degree는 e1, outgoing degree는 e2, e3가 됩니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph8.png" class="concept"></br>
+          <내용></br>
+      </p>
+V1에서 V2, V2에서 V3으로 각각 outgoing edge가 존재한다면, V1,V2,V3를 체인(chain)이라고 합니다.
+
+	
+<p class="Paragraph">weighted graph</p>
+가중치그래프(weighted graph)란 엣지에 가중치 내지 우선순위 정보가 추가된 형태의 그래프입니다. 
+이 때 함수 g는 엣지를 가중치로 매핑하는 역할을 합니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph9.png" class="concept"></br>
+          <내용></br>
+      </p>
+물론 방향그래프 또한 가중치를 가질 수 있습니다. 이글 방향가중치그래프(directed weighted graph)라고 합니다.
+
+	
+<p class="Paragraph">path</p>
+그래프에서 경로(path)란 인접한 노드들로 구성된 시퀀스(1개 이상)를 가리킵니다. 엣지가 겹치지 않는 경로를 simple하다고 하고, 노드가 겹치지 않는 경로를 elementary하다고 합니다. 
+경로의 길이(length)는 경로 내 존재하는 엣지의 수를 나타냅니다. 다음과 같은 그래프의 노드 시퀀스가 있다고 칩시다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph10.png" class="concept"></br>
+          <내용></br>
+      </p>
+[v1,v2,v3,v4,v5,v3,v4,v5]
+[v1,v2,v3,v4,v5,v8,v6,v4,v7]
+위 예시에서 첫번째 노드 시퀀스는 인접한 노드들로 구성돼 있기 때문에 경로라고 할 수 있습니다. 
+그러나 엣지도, 노드도 겹치기 때문에 simple하지도, elementary하지도 않습니다.
+
+두번째 노드 시퀀스는 인접한 노드들로 구성돼 있기 때문에 경로라고 할 수 있습니다. 
+엣지가 겹치지 않기 때문에 simple하다고 말할 수 있습니다. 하지만 노드가 겹치기 때문에 elementary하지는 않습니다.
+
+	
+<p class="Paragraph">cycle</p>
+사이클(cycle)이란 한 노드에서 시작해 해당 노드에서 끝나는 경로를 가리킵니다. 
+사이클(cycle) 또한 엣지가 겹치지 않는 경우 simple하다고 하고, 노드가 겹치지 않을 경우 elementary하다고 합니다. 
+위 그래프를 기준으로 아래의 두 개 노드 시퀀스를 보겠습니다.
+
+[v1,v2,v3,v4,v5,v8,v6,v5,v9,v1]
+[v1,v2,v3,v4,v5,v9,v1]
+첫번째 노드 시퀀스는 인접한 노드들로 구성돼 있고 v1으로 시작해 v1으로 끝났으므로 사이클입니다.
+엣지가 겹치지 않기 때문에 simple하다고 말할 수 있습니다. 하지만 노드가 겹치기 때문에 elementary하지는 않습니다.
+
+두번째 노드 시퀀스는 인접한 노드들로 구성돼 있고 v1으로 시작해 v1으로 끝났으므로 사이클입니다. 
+엣지도, 노드도 겹치지 않기 때문에 각각 simple하고, elementary하다고 말할 수 있습니다.
+
+만약 n개의 노드가 사이클을 이루고 있을 경우 이를 기호로 Cn이라고 표시합니다. 
+다음 그림과 같이 사이클이 없는 그래프를 acyclic하다고 합니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph11.png" class="concept"></br>
+          <내용></br>
+      </p>
+	
+	
+<p class="Paragraph">connected</p>
+임의의 두 노드가 연결되었다(connected)는 것은 두 노드 사이에 경로가 존재한다는 이야기입니다. 
+이와 관련해 다음과 같이 정의됩니다.
+
+모든 노드쌍 사이에 경로가 존재하는 무방향그래프는 연결되었다고 말한다.
+임의의 방향그래프에서 방향을 무시하고 보면 연결되어 있을 경우, 해당 방향 그래프는 연결되었다고 말한다.
+방향그래프의 임의의 노드쌍 a, b에 대해 a에서 b로 가는 경로, b에서 a로 가는 경로가 존재한다면, 해당 방향그래프는 강연결(strongly connected)되었다고 말한다.
+아래 방향그래프에서 방향을 무시하고 보면 이 그래프 내 임의의 노드쌍 사이에 모두 경로가 존재함을 알 수 있습니다. 
+따라서 아래 방향그래프는 connected graph입니다. 
+하지만 v1에서 v3로 가는 경로는 존재(v1,v2,v3,v9,v3)하나, 반대로 v3에서 v1으로 가는 경로는 존재하지 않는다는 점에서 strongly conntected graph는 아닙니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph12.png" class="concept"></br>
+          <내용></br>
+      </p>
+	
+	
+<p class="Paragraph">connected component</p>
+원 그래프 G에서 노드와 엣지가 서로 겹치지 않는(independent) 부그래프를 G의 요소(component)라고 합니다. 
+이들 요소 가운데 요소 내 모든 노드쌍에 대해 경로가 존재하는 부그래프 S를 G의 연결요소(connected component)라고 합니다. 
+그 정의상 연결그래프(connected graph)는 하나의 연결요소만을 가집니다.
+
+원 그래프의 부분그래프들 사이에 겹치는 요소가 없고, 부분그래프의 합집합이 원 그래프를 이룰 때 이들 부분그래프를 파티션(partition)이라고 합니다. 
+아래 그림에서 15개 노드와 모든 엣지를 G로 본다면 G의 연결요소는 두 개이며, 이 연결요소는 G의 파티션입니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph13.png" class="concept"></br>
+          <내용></br>
+      </p>
+연결요소 가운데 노드 수가 가장 많은 연결요소를 최대연결요소(maximal connected component)라고 합니다.
+
+	
+<p class="Paragraph">Vertex/edge-cut</p>
+원그래프에서 어떤 노드를 제거해 부분그래프로 나누는 것을 vertex-cut이라고 합니다. 엣지를 제거해 부분그래프로 나누는 과정을 edge-cut이라고 합니다. 
+아래 예시에서 노드 e를 제거하면 vetex-cut, 노드 e와 노드 x를 잇는 엣지를 제거하면 원그래프가 두 개 부분그래프로 분리되면서 각각 vetex-cut, edge-cut이 됩니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph14.png" class="concept"></br>
+          <내용></br>
+      </p>
+가중치무방향그래프에서 제거 대상 엣지의 가중치가 최대가 되도록 하는 edge-cut 기법을 MaxCut, 최소로 하는 기법을 MinCut이라고 합니다.
+
+	
+<p class="Paragraph">Join</p>
+새로운 노드 X가 추가돼 기존 그래프 V의 모든 노드와 연결될 경우 조인(Join)이라고 합니다. 
+이때 기호로는 V+X라고 표기합니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph15.png" class="concept"></br>
+          <내용></br>
+      </p>
+
+	
+<p class="Paragraph">edge complement</p>
+다음과 같은 관계를 지니는 두 그래프를 edge complement라고 합니다. 
+노드는 서로 같고 엣지 존재 양상이 정반대인 경우에 해당합니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph16.png" class="concept"></br>
+          <내용></br>
+      </p>
+
+	
+<p class="Paragraph">releative complement</p>
+아래 그림과 같이 H는 G의 부그래프이고, H에 속한 모든 엣지를 제거한 그래프를 relative complement라고 합니다. 
+기호로는 G−H라고 씁니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph17.png" class="concept"></br>
+          <내용></br>
+      </p>
+
+	
+<p class="Paragraph">graph representation</p>
+그래프를 컴퓨터가 처리하게 만드려면, 그래프를 적절한 자료구조로 변환해 주어야 합니다. 크게 두 가지 방식이 있는데요. 
+인접행렬(adjacency matrix)과 인접리스트(adjacency list)입니다. 
+각각 행렬과 연결리스트(linked list)로 구현합니다.
+
+가중치가 없는 방향그래프를 인접행렬로 표현하는 방식을 도식화한 그림은 다음과 같습니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph18.png" class="concept"></br>
+          <내용></br>
+      </p>
+가중치가 없는 방향그래프를 인접리스트로 표현하는 방식을 도식화한 그림은 다음과 같습니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph19.png" class="concept"></br>
+          <내용></br>
+      </p>
+가중치가 있는 무방향그래프를 인접행렬로 표현하는 방식을 도식화한 그림은 다음과 같습니다. 
+∞는 두 노드 사이에 엣지가 있고 가중치가 0인 경우와 대비하기 위해 만든 표지입니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph20.png" class="concept"></br>
+          <내용></br>
+      </p>
+가중치가 있는 무방향그래프를 인접리스트로 표현하는 방식을 도식화한 그림은 다음과 같습니다.
+      <p class="Imgtext">
+          <img src="/asset/DataStructure/Graph/Graph21.png" class="concept"></br>
+          <내용></br>
+      </p>
+
+	
+
+<h2 class="BasicFontSet">시간복잡성</h2>
+우선 전체 노드 수가 V개, 엣지 수가 E개일 때 시간복잡성을 따져보겠습니다. 
+분석 대상 연산은 (1) 임의의 두 노드(i,j)가 주어졌을 때 인접해 있는지 여부(operation 1) (2) 임의의 한 노드(i)가 주어졌을 때 인접해 있는 모든 노드를 찾기(operation 2) 등 두 가지입니다.
+
+먼저 인접행렬의 경우입니다.
+
+<b>operation 1 : </b>
+인접행렬에서 i행, i열을 참조하면 됩니다. 행렬의 한 원소를 액세스하는 데엔 O(1)의 시간복잡성이 듭니다.
+<b>operation 2 : </b>
+인접행렬에서 i행 전체에 대해 조사하면 됩니다. 노드 전체를 따져봐야 하므로 O(|V|)만큼의 시간복잡성이 듭니다.
+인접리스트의 경우입니다.
+
+<b>operation 1 : </b>
+인접리스트(연결리스트)에서 i번째 버킷에 속한 요소 가운데 j가 있는지 탐색(search)하려면 우선 전체 버킷 가운데 i번째 버킷을 찾은 뒤 이 버켓 내에 j가 있는지 따져야 합니다.
+i번째 노드의 차수를 d라고 할 때 O(d)의 시간복잡성이 듭니다. 참고로 전체 노드의 평균 차수는 |E|/|V|입니다.
+<b>operation 2 : </b>
+인접리스트에서 i번째 버킷에 속한 모든 요소를 순회(traverse)하면서 출력합니다.
+따라서 operation 1과 본질적으로 다르지 않습니다. O(d)만큼의 시간복잡성이 듭니다.
+
+	
+
+<h2 class="BasicFontSet">공간복잡성</h2>
+이번엔 두 연산의 공간복잡성을 따져보겠습니다. 먼저 인접행렬의 경우입니다.
+
+<b>operation 1 : </b>
+노드 수 × 노드 수만큼의 행렬이 필요합니다. 따라서 O(|V|2)만큼의 공간복잡성이 듭니다.
+<b>operation 2 : </b>
+버킷은 전체 노드 수만큼 필요합니다. 
+각 노드를 잇는 포인터는 전체 엣지의 수만큼(무방향그래프의 경우 전체 엣지의 두 배) 필요합니다. 
+따라서 O(|V|+|E|)만큼의 공간복잡성이 듭니다.
+
+	
+	
+<h2 class="BasicFontSet">자료구조의 선택</h2>
+‘노드와 엣지가 어떻게 구성되어 있는가’가 인접행렬 혹은 인접리스트를 택하는 데 중요한 요인이 됩니다. 
+예컨대 노드 수보다 엣지 수가 많은 dense graph의 경우 인접행렬을 쓰는 것이 좋습니다. 
+반대로 노드 수보다 엣지 수가 적은 sparse graph의 경우 인접리스트를 쓰는 것이 좋습니다.
+	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
+  </body>
+</html>
