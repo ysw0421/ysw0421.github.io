@@ -42,18 +42,19 @@ comments: false
           <ul>
             <!-- 태그를 코드상으로 변경 필요-->
             <h1>Categories</h1>
-            <a class="post-tag">Comparative Analysis</a>
-	    <a class="post-tag">Web Front Programming</a>
-            <a class="post-tag">Web Server</a>
-            <a class="post-tag">Web Framework</a>
-            <a class="post-tag">DB</a>
-            <a class="post-tag">Script</a>
-	    <a class="post-tag">Operating System</a>
-            <a class="post-tag">Network</a>
-            <a class="post-tag">Machine Learning</a>
-            <a class="post-tag">Data structure & Algorithm</a>
+	    <a class="post-tag" href="#Daily">Daily</a>
+            <a class="post-tag" href="#ComparativeAnalysis">Comparative Analysis</a>
+	    <a class="post-tag" href="#WebFrontProgramming">Web Front Programming</a>
+            <a class="post-tag" href="#WebServer">Web Server</a>
+            <a class="post-tag" href="#WebFramework">Web Framework</a>
+            <a class="post-tag" href="#DB">DB</a>
+            <a class="post-tag" href="#Script">Script</a>
+	    <a class="post-tag" href="#OperatingSystem">Operating System</a>
+            <a class="post-tag" href="#Network">Network</a>
+            <a class="post-tag" href="#MachineLearning">Machine Learning</a>
+            <a class="post-tag" href="#DatastructureAlgorithm">Data structure & Algorithm</a>
             <hr>
-	    <h2>Daily</h2>
+	    <h2 id="Daily">Daily</h2>
             <h4>
             {% for news in site.categories.Daily %}
               <div class="square">
@@ -62,7 +63,7 @@ comments: false
             {% endfor %}
             </h4>
 		  
-            <h2>Comparative Analysis</h2>
+            <h2 id="ComparativeAnalysis">Comparative Analysis</h2>
             <h4>
             {% for news in site.categories.ComparativeAnalysis %}
               <div class="square">
@@ -71,7 +72,7 @@ comments: false
             {% endfor %}
             </h4>
 		  
-            <h2>Web Front Programming</h2>
+            <h2 id="WebFrontProgramming">Web Front Programming</h2>
 	    <h4>
             {% for news in site.categories.WebFrontProgramming %}
               <div class="square">
@@ -80,7 +81,7 @@ comments: false
             {% endfor %}
             </h4>
 		  
-            <h2>Web Server</h2>
+            <h2 id="WebServer">Web Server</h2>
 	    <h4>
             {% for news in site.categories.WebServer %}
               <div class="square">
@@ -89,7 +90,7 @@ comments: false
             {% endfor %}
             </h4>
             
-            <h2>Web Framework</h2>
+            <h2 id="WebFramework">Web Framework</h2>
             <h4>
             {% for news in site.categories.WebFramework %}
               <div class="square">
@@ -98,7 +99,7 @@ comments: false
             {% endfor %}
             </h4>
             
-            <h2>DB</h2>
+            <h2 id="DB">DB</h2>
             <h4>
             {% for news in site.categories.DB %}
               <div class="square">
@@ -107,7 +108,7 @@ comments: false
             {% endfor %}
             </h4>            
 
-            <h2>Script</h2>
+            <h2 id="Script">Script</h2>
 	    <h4>
             {% for news in site.categories.C %}
               <div class="square">
@@ -137,7 +138,7 @@ comments: false
             {% endfor %}
             </h4>
             
-	    <h2>Operating System</h2>
+	    <h2 id="OperatingSystem">Operating System</h2>
             <h4>
             {% for news in site.categories.OperatingSystem %}
               <div class="square">
@@ -146,7 +147,7 @@ comments: false
             {% endfor %}
             </h4>
 		  
-            <h2>Network</h2>
+            <h2 id="Network">Network</h2>
             <h4>
             {% for news in site.categories.Network %}
               <div class="square">
@@ -155,9 +156,9 @@ comments: false
             {% endfor %}
             </h4>
             
-            <h2>Machine Learning</h2>
+            <h2 id="MachineLearning">Machine Learning</h2>
             
-            <h2>Data structure & Algorithm</h2>
+            <h2 id="DatastructureAlgorithm">Data structure & Algorithm</h2>
             <h4>
             {% for news in site.categories.Algorithm %}
               <div class="square">
