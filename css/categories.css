@@ -117,6 +117,7 @@ ul:hover {
 
 .square:hover {
   transform: translate(20px, 0px);
+  position: absolute; 
 }
 
 .circle {
