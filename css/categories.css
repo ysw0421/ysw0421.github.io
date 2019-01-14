@@ -112,12 +112,10 @@ ul:hover {
 
 .square {
   transition: transform 0.8s;
-  position: absolute;
 }
 
 .square:hover {
   transform: translate(20px, 0px);
-  position: absolute; 
 }
 
 .circle {
