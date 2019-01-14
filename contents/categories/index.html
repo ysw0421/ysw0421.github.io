@@ -57,7 +57,7 @@ comments: false
             <h4>
             {% for news in site.categories.Daily %}
               <div class="square">
-                <p><div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a><a class="date">{{ news.date | date_to_string }}</a></p>
+                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a><a class="date">{{ news.date | date_to_string }}</a>
               </div><br>
             {% endfor %}
             </h4>
