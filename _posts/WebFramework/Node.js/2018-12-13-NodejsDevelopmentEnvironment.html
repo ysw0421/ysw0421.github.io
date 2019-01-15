@@ -74,13 +74,22 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <img src="/asset/WebFramework/Nodejs/NodejsEngine.PNG" class="concept" style="width:50%"></br>
           <내용></br>
       </p>
+Javascript 기반이고, 개발 구조가 매우 단순화 되어 있어서 빠르게 개발이 가능하다. 
+즉 클라이언트에서 front end를 자바스크립트를 통해서 개발하던 FE(front end) 개발자들도 손쉽게 서버 프로그래밍이 가능하다는 것이고, 
+조직의 입장에서도 FE와 BE(BackEnd) 엔지니어의 기술셋을 나눌 필요가 없다는 것이다. 
+node.js가 빠르다고는 하지만, 실제 성능보다는 이러한 Learning curve나, 조직내의 FE/BE 기술 통합에서 오는 장점이 더 큰 이유가 아닐까 싶다.
+
+다음으로는 socket.io를 이용한 웹 push 구현이 매우 쉽게 구현이 가능하다. 
+여타 플랫폼도 WebSocket을 이용한 Push 를 지원하기는 하지만, WebSocket은 브라우져 종류나 버전에 따라서 제한적으로 동작한다. 
+node.js의 경우 웹브라우져의 종류에 따라서 WebSocket뿐만 아니라, Long Polling등 다른 push 메커니즘을 브라우져 종류에 따라서 자동으로 선택하여 사용하고 있으며, 
+이러한 push 메커니즘은 socket.io API 내에 추상화 되어 있기 때문에, 어떤 기술로 구현이 되어 있던간에 개발자 입장에서는 socket.io만 쓰면 간단하게 웹 기반의 push 서비스가 구현이 가능하다.
+
+마지막으로, non-blocking IO 모델을 지원하는데, 뒤에서 자세하게 설명하겠지만, 일반적인 서버들은 io 요청을 보낸후, 요청을 보낸 thread나 process가 io 요청이 끝날 때 까지 io wait 상태로 응답을 기다리고 있다. 
+이로 인해서, 동시에 서비스할 수 있는 클라이언트 수 (thread가 계속 기다리기 때문에)에 제약이 있고, CPU 사용 효율에도 제약을 갖는다. 
+이러한 문제를 해결하기 위해서 node.js는 non-blocking io 컨셉을 사용하는데, io 요청이 있으면, io 처리를 던져 놓고, thread나 process는 다른 일을 하고 있다가, io 처리가 끝나면 이에 대한 이벤트를 받아서, 응답을 처리하는 형태가 된다.
+
       <p class="Imgtext">
           <img src="/asset/WebFramework/Nodejs/NodejsSystem.PNG" class="concept"></br>
-          <내용></br>
-      </p>
-<h2 class="BasicFontSet">Event Loop</h2>
-      <p class="Imgtext">
-          <img src="/asset/WebFramework/Nodejs/NodejsArchitecture.PNG" class="concept"></br>
           <내용></br>
       </p>
 <h2 class="BasicFontSet">V8 Engine</h2>
@@ -92,17 +101,34 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <img src="/asset/WebFramework/Nodejs/NodejsCallStack.png" class="concept"></br>
           <내용></br>
       </p>
+<h2 class="BasicFontSet">Async / Non blocking IO</h2>
+      <p class="Imgtext">
+          <img src="/asset/WebFramework/Nodejs/SynchronousIO.PNG" class="concept"></br>
+          <내용></br>
+      </p>
+      <p class="Imgtext">
+          <img src="/asset/WebFramework/Nodejs/AsynchronousIO.PNG" class="concept"></br>
+          <내용></br>
+      </p>
 <h2 class="BasicFontSet">Thread pool</h2>
       <p class="Imgtext">
           <img src="/asset/WebFramework/Nodejs/NodejsArchitecture2.png" class="concept"></br>
           <내용></br>
       </p>
-<h2 class="BasicFontSet">Async / Non blocking IO</h2>
+
       <p class="Imgtext">
           <img src="/asset/WebFramework/Nodejs/NodejsEngine2.png" class="concept"></br>
           <내용></br>
       </p>
 <h2 class="BasicFontSet">Single Thread Model</h2>
+
+<h2 class="BasicFontSet">Event Loop</h2>
+      <p class="Imgtext">
+          <img src="/asset/WebFramework/Nodejs/NodejsArchitecture.PNG" class="concept"></br>
+          <내용></br>
+      </p>
+
+
 
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> http://bcho.tistory.com/881</a></p></blockquote>
   </body>
