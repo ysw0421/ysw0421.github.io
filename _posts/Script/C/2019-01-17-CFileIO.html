@@ -82,10 +82,16 @@ C언어에서는 stdin 표준 스트림을 통해 입력 장치를 다루며, st
 C 프로그램은 파일이나 콘솔의 입출력을 직접 다루지 않고, 스트림(stream)이라는 것을 통해 다룹니다.
 스트림(stream)이란 실제의 입력이나 출력이 표현된 데이터의 이상화된 흐름을 의미합니다.
 즉, 스트림은 운영체제의 의해 생성되는 가상의 연결 고리를 의미합니다.
-<그림 1.>
+      <p class="Imgtext">
+          <img src="/asset/Script/C/FileIO/FileIO1.png" class="concept"></br>
+          <내용></br>
+      </p>
 C 언어에서 파일과의 연결을 위한 스트림은 사용자가 직접 생성하고 소멸시켜야 합니다.
 하지만 콘솔 장치에 대한 스트림은 프로그램 실행 시 자동으로 생성되며, 프로그램 종료 시 자동으로 소멸합니다.
-<그림 2.>
+      <p class="Imgtext">
+          <img src="/asset/Script/C/FileIO/FileIO2.png" class="concept"></br>
+          <내용></br>
+      </p>
 C언어에서 기본적으로 제공되는 표준 스트림(standard stream)은 다음과 같습니다.
 
 stdin 표준 입력 스트림
@@ -117,7 +123,10 @@ stderr 표준 오류 스트림
 
 지금까지 우리가 사용한 printf(), scanf(), puts() 함수 등은 C언어의 표준 입출력 함수입니다.
 이러한 표준 입출력 함수를 사용할 때에는 버퍼(buffer)라는 임시 메모리 공간을 사용하게 됩니다.
-<그림 3.>
+      <p class="Imgtext">
+          <img src="/asset/Script/C/FileIO/FileIO3.png" class="concept"></br>
+          <내용></br>
+      </p>
 버퍼를 사용하면서 얻을 수 있는 장점은 다음과 같습니다.
 
 1. 문자를 하나씩 전달하는 것이 아닌 묶어서 한 번에 전달하므로, 전송 시간이 적게 걸려 성능이 향상합니다.
