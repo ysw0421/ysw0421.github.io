@@ -79,31 +79,65 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <img src="/asset/Network/IOModel/BlockingIO.png" class="concept"></br>
           <내용></br>
       </p>
+	가장 기본적인 I/O 모델로 linux에서는 모든 소켓 통신이 특별한 설정 없이는 blocking으로 동작한다. 
+	어플리케이션에서 패킷을 수신하기 위해 recvfrom을 호출하면 데이터가 도착하여 패킷을 사용자 버퍼에 복사하기 전까지는 리턴이 되지 않고 멈춰 있는다. 
+	이를 프로세스가 block이 되어 있다고 표현한다.</br>
+	</br>
+	block이 된 상태에서는 어플리케이션에서 다른 작업을 수행하지 못하고 대기하게 되므로 자원이 낭비된다.
 <h2 class="BasicFontSet">Non-blocking I/O</h2>
       <p class="Imgtext">
           <img src="/asset/Network/IOModel/NonBlockingIO.png" class="concept"></br>
           <내용></br>
       </p>
+	소켓에다가 nonblocking을 세팅하면 데이터가 없을 경우에는 즉시 리턴을 하면서 EWOULDBLOCK 에러를 리턴한다. 
+	데이터가 있을 경우에는 커널에 있는 데이터를 어플리케이션 버퍼에 복사를 하고 리턴을 하게된다.</br>
+	</br>
+	이와 같은 모델에서는 소켓에 nonblock으로 설정을 하고 loop에서 recvfrom()을 호출하도록 하는데 이를 polling이라고 한다. 
+	이 경우에는 반복적으로 system 호출이 일어나기 때문에 이를 처리하기 위한 CPU 자원이 낭비 된다.
 <h2 class="BasicFontSet">I/O multiplexing</h2>
       <p class="Imgtext">
           <img src="/asset/Network/IOModel/MultiplexingIO.png" class="concept"></br>
           <내용></br>
       </p>
+	select나 poll과 같은 시스템 콜을 이용하여 I/O를 다중화하기 위한 목적으로 사용된다. 
+	select 시스템 콜을 수행하여 데이터가 올때까지 기다리며 데이터가 도착하면 리턴이 된다. 
+	그리고 recvfrom()을 이용하여 어플리케이션 버퍼로 패킷 복사를 수행한다.</br>
+	</br>
+	이는 blocking I/O와 비교하였을 때 별 차이점이 없는 것으로 보인다. 
+	하지만 select() 시스템 콜은 여러개의 descriptor에서 데이터가 준비되었는지 검사를 수행하여 준비가 된 descriptor가 발견될 경우 리턴을 수행하게 되므로 여러개의 I/O를 처리할 수 있다.
 <h2 class="BasicFontSet">Signal-driven I/O</h2>
       <p class="Imgtext">
           <img src="/asset/Network/IOModel/SignalDrivenIO.png" class="concept"></br>
           <내용></br>
       </p>
+	커널에 데이터가 준비 되었을 경우에 SIGIO 라는 시그널을 발생시켜서 데이터의 도착을 알려주는 모델이다. 
+	미리 sigaction() 시스템 콜을 수행하여 시그널 핸들러를 미리 등록해두면 커널이 데이터가 도착할 경우 SIGIO를 어플리케이션으로 발생시킨다. 
+	어플리케이션에서는 등록된 시그널 핸들러가 수행되어 버퍼로 데이터를 복사한다.</br>
+	</br>
+	이 모델은 데이터가 준비 되기전까지 어플리케이션이 block이 되지 않는다는 것이다. 
+	메인 loop에서는 다른 작업을 처리하거나 대기하면 된다.
 <h2 class="BasicFontSet">Asynchronous I/O</h2>
       <p class="Imgtext">
           <img src="/asset/Network/IOModel/AsynchronousIO.png" class="concept" style="width:70%"></br>
           <내용></br>
       </p>
+	Asynchronous I/O 모델은 POSIX 스펙에 정의되어 있으며 aio_ 접두어로 작성된 함수들로 지원된다. 
+	보기에는 signal driven과 유사하게 동작하는 것 같지만 패킷의 복사까지 모두 처리해 주는것이 차이점이다. 
+	aio_read() 시스템 콜을 호출하여 descriptor와 buffer의 포인터, buffer의 크기를 커널에 전달하고 즉시 리턴한다. 
+	커널은 패킷이 도착하고 데이터가 준비되면 해당 어플리케이션 buffer에 복사를 수행한 후 시그널을 발생하여 완료를 알려준다.
 <h2 class="BasicFontSet">Comparison of the I/O Models</h2>
       <p class="Imgtext">
           <img src="/asset/Network/IOModel/ComparisonIOModel.png" class="concept"></br>
           <내용></br>
       </p>
+	Asynchronous I/O를 제외하고는 첫번째 단계에서는 block이 되기도 하고 안되기도 하지만 
+	두번째 단계에서는 모두 block이 되며 Asynchronous I/O의 경우에는 block이 발생하지 않는다.</br>
+	</br>
+	POSIX 표준에는  asynchronous의 경우 다음과 같이 정의되어 있다.</br>
+	</br>
+	1. A synchronous I/O operation causes the requesting process to be blocked until that I/O operation completes.</br>
+	2. An asynchronous I/O operation does not cause the requesting process to be blocked.</br>
+	이에 따르면 asynchronous I/O를 제외한 나머지는 synchronous I/O이다.</br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
   </body>
 </html>
