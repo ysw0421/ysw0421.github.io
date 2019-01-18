@@ -145,7 +145,13 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	이 경우 single thread로 구현된 event loop thread가 정지되기 때문에 이러한 문제를 해결 하기 위해서 내부적으로 thread pool을 별도로 운영하면서 
 	blocking function call의 경우에는 thread pool의 thread를 이용하여 IO 처리를 하여 event loop thread가 io에 의해서 block되지 않게 한다.
 
-      <p class="Imgtext">
+<p class="Paragraph">Thread pooling 배경</p>
+	기본적인 쓰레드프로그래밍 기법은 쓰레드를 생성시켜야 될 필요가 있을때 새로운 작업쓰레드를 생성시키는 방식을 사용했다.
+	보통 쓰레드프로그래밍은 네트웍 프로그래밍시 주로 사용된다.
+	쓰레드 프로그래밍기법은 대부분의 작업을 처리하기에 충분히 효율적이며, 빠르긴하지만 클라이언트로 부터의 연결과 종료가 매우 바쁘게 일어나는 서버의 경우, 
+	계속적으로 쓰레드를 생성하고 종료해야 하는 비용을 무시할수 없게 된다.
+	Thread Pooling 은 이러한 반복적인 쓰레드의 생성/소멸에 의한 비효율적인 측면을 없애고자 하는 목적으로 만들어진 프로그래밍 기법이다.
+	<p class="Imgtext">
           <img src="/asset/WebFramework/Nodejs/NodejsEngine2.png" class="concept"></br>
           <내용></br>
       </p>
