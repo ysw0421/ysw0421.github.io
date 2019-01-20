@@ -39,24 +39,17 @@ comments: false
             <div class="in">
           {% if site.front_img %}<img src="{{ site.front_img_path }}" id="fullscreen"> {% endif %} 
           <ul>
-            <h1>Tags</h1>
-            <a class="post-tag">Apache</a>
-            <a class="post-tag">NginX</a>
-            <a class="post-tag">Jekyll</a>
-            <a class="post-tag">Node.js</a>
-            <a class="post-tag">Flask</a>
-            <a class="post-tag">Mysql & MariaDB</a>
-            <a class="post-tag">InfluxDBg</a>
-            <a class="post-tag">Python</a>
-            <a class="post-tag">JavaScript</a>
-            <a class="post-tag">C#</a>
-            <a class="post-tag">R Programming</a>
+            <h1>Projects</h1>
+            <a class="post-tag">Web Project</a>
+            <a class="post-tag">Big Data</a>
+            <a class="post-tag">IoT</a>
+            <a class="post-tag">Machine Learning</a>
             <hr>
-            <h2>Apache</h2>
+            <h2>Web Projec</h2>
             
-            <h2>NginX</h2>
+            <h2>Big Data</h2>
             
-            <h2>Jekyll</h2>
+            <h2>IoT</h2>
             <h4>
             {% for news in site.categories.jekyll %}
               <div class="square">
@@ -65,28 +58,7 @@ comments: false
             {% endfor %}
             </h4>
             
-            <h2>Node.js</h2>
-            
-            <h2>Flask</h2>
-            
-            <h2>Mysql & MariaDB</h2>
-            
-            <h2>InfluxDB</h2>
-            
-            <h2>Python</h2>
-            
-            <h2>JavaScript</h2>
-            
-            <h2>C#</h2>
-            
-            <h2>R Programming</h2>
-            <h4>
-            {% for news in site.categories.R %}
-              <div class="square">
-                <div class="circle"></div><a class="custom2" href="{{ news.url }}">{{ news.title }}</a>
-              </div><br>
-            {% endfor %}
-            </h4>
+            <h2>Machine Learning</h2>
 
           </ul>
             </div>
