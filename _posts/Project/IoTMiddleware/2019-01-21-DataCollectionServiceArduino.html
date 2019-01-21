@@ -168,7 +168,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
     </tr>
   </tbody>
 </table>
-<p class="Paragraph">Arduino 센서 회로</p>
+<h2 class="BasicFontSet">Arduino 센서 회로</h2>
 	상기 센서들을 포함하는 Arduino 회로는 다음과 같이 구성된다.
       <p class="Imgtext">
           <img src="/asset/Project/IoTMiddleware/DataCollectionService/Arduino/Temperature.jpg" class="concept"></br>
@@ -176,9 +176,11 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
       </p>
 	구성된 Arduino 회로의 각 센서들을 값을 주기적으로 읽어오고 시리얼 통신으로 값을 노내기 위해 다음과 같은 코드를 작성하였다. 
 	아두이노쪽 코드는 다음과 같다.
-<p class="Paragraph">Arduino 센서 Code</p>
+<h2 class="BasicFontSet">Arduino 센서 Code</h2>
 
-<p class="Paragraph">Arduino 센서 Example</p>
+<h2 class="BasicFontSet">Arduino 센서 Example</h2>
+
+<p class="Paragraph">온도 센서 Example</p>
 <b>Thermistor :</b> NTC-10KD-5J</br>
 <b>Resistor :</b> 10K 옴</br>
 $$ \dfrac{1}T = A + B\ln(x+1)+C(\ln(x+1))^3$$
@@ -214,6 +216,10 @@ void loop() {
 }
 </code></pre>
 </br>
+
+
+
+<p class="Paragraph">조도 센서 Example</p>
       <p class="Imgtext">
           <img src="/asset/Project/IoTMiddleware/DataCollectionService/Arduino/LightSensor.jpg" class="concept"></br>
           <내용></br>
@@ -234,6 +240,10 @@ void loop() {
 
 </code></pre>
 </br>
+
+
+
+<p class="Paragraph">AlcoholMQ-3 센서 Example</p>
       <p class="Imgtext">
           <img src="/asset/Project/IoTMiddleware/DataCollectionService/Arduino/AlcoholMQ-3.jpg" class="concept"></br>
           <내용></br>
