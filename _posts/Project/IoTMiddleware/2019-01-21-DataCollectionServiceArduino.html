@@ -171,7 +171,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 <p class="Paragraph">Arduino 센서 회로</p>
 	상기 센서들을 포함하는 Arduino 회로는 다음과 같이 구성된다.
       <p class="Imgtext">
-          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Architecture.PNG" class="concept"></br>
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Arduino/Temperature.jpg" class="concept"></br>
           <내용></br>
       </p>
 	구성된 Arduino 회로의 각 센서들을 값을 주기적으로 읽어오고 시리얼 통신으로 값을 노내기 위해 다음과 같은 코드를 작성하였다. 
@@ -211,6 +211,49 @@ void loop() {
 
 	Serial.println(temperature);
 	delay(1000);
+}
+</code></pre>
+</br>
+      <p class="Imgtext">
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Arduino/Light.jpg" class="concept"></br>
+          <내용></br>
+      </p>
+</br>
+</br>
+</br>
+<pre><code>
+void setup() {
+    Serial.begin(9600);
+}
+
+void loop() {
+    int data = analogRead(A0);
+    Serial.println(data);
+    delay(1000);
+}
+
+</code></pre>
+</br>
+      <p class="Imgtext">
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Arduino/AlcoholMQ-3.jpg" class="concept"></br>
+          <내용></br>
+      </p>
+</br>
+</br>
+</br>
+<pre><code>
+int mq3_analogPin = A0; // connected to the output pin of MQ3
+
+void setup(){
+Serial.begin(9600); // open serial at 9600 bps
+}
+
+void loop()
+{
+// give ample warmup time for readings to stabilize
+int mq3_value = analogRead(mq3_analogPin);
+Serial.println(mq3_value);
+delay(1000); //Just here to slow down the output.
 }
 </code></pre>
 </br>
