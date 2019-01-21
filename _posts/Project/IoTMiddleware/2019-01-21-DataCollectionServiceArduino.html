@@ -106,7 +106,11 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
       <td style="text-align: center"></td>
       <td style="text-align: center"></td>
       <td style="text-align: center">$m$</td>
-      <td style="text-align: center">디바이스 고유 id</td>
+      <td style="text-align: center">
+	  0: Success</br>
+	  1: Sensing Error(일부에서 에러나 누락 발생시에도 1로 표시하고, 해당 센서 측정치에 Error Value )</br>
+	  2: Comm, Error
+	</td>
     </tr>
     <tr>
       <td style="text-align: center">$3$</td>
@@ -115,43 +119,43 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
       <td style="text-align: center"></td>
       <td style="text-align: center"></td>
       <td style="text-align: center">$m$</td>
-      <td style="text-align: center">디바이스 고유 id</td>
+      <td style="text-align: center">저장된 시간</td>
     </tr>
     <tr>
       <td style="text-align: center">$4$</td>
       <td style="text-align: center">$AlcoholGas$</td>
       <td style="text-align: center">$Integer$</td>
       <td style="text-align: center"></td>
-      <td style="text-align: center"></td>
+      <td style="text-align: center">$-1$</td>
       <td style="text-align: center">$O$</td>
-      <td style="text-align: center">디바이스 고유 id</td>
+      <td style="text-align: center">알코올 가스량(ppm)</td>
     </tr>
     <tr>
       <td style="text-align: center">$5$</td>
       <td style="text-align: center">$CoGas$</td>
       <td style="text-align: center">$Integer$</td>
       <td style="text-align: center"></td>
-      <td style="text-align: center"></td>
+      <td style="text-align: center">$-1$</td>
       <td style="text-align: center">$O$</td>
-      <td style="text-align: center">디바이스 고유 id</td>
+      <td style="text-align: center">일산화탄소량 (ppm)</td>
     </tr>
     <tr>
       <td style="text-align: center">$6$</td>
       <td style="text-align: center">$Temp$</td>
       <td style="text-align: center">$Float$</td>
       <td style="text-align: center"></td>
-      <td style="text-align: center"></td>
+      <td style="text-align: center">$-999$</td>
       <td style="text-align: center">$O$</td>
-      <td style="text-align: center">디바이스 고유 id</td>
+      <td style="text-align: center">온도</td>
     </tr>
     <tr>
       <td style="text-align: center">$7$</td>
       <td style="text-align: center">$Light$</td>
       <td style="text-align: center">$Integer$</td>
       <td style="text-align: center"></td>
-      <td style="text-align: center"></td>
+      <td style="text-align: center">$-1$</td>
       <td style="text-align: center">$O$</td>
-      <td style="text-align: center">디바이스 고유 id</td>
+      <td style="text-align: center">조도</td>
     </tr>
     <tr>
       <td style="text-align: center">$8$</td>
@@ -160,7 +164,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
       <td style="text-align: center"></td>
       <td style="text-align: center"></td>
       <td style="text-align: center">$O$</td>
-      <td style="text-align: center">디바이스 고유 id</td>
+      <td style="text-align: center">먼지(ug/m3)</td>
     </tr>
   </tbody>
 </table>
