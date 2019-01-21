@@ -70,13 +70,13 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
      </a>
 	<blockquote><p class="posting">이 프로젝트는 전남대학교 김경백 교수님 주관하에 만들어졌던 프로잭트임을 알립니다. </p></blockquote>
 <h2 class="BasicFontSet">1.1 아두이노와 라즈베리파이에서 센싱 및 수집</h2>
-아두이노에서 수집되는 센서 값들을 라즈베리파이의 Flume을 통해 InfluxDB로 보내려면 우선 라즈베리파이와 아두이노 간의 $Serial Communication$이 필요하다.
+	아두이노에서 수집되는 센서 값들을 라즈베리파이의 Flume을 통해 InfluxDB로 보내려면 우선 라즈베리파이와 아두이노 간의 $Serial Communication$이 필요하다.
 <p class="Paragraph">Arduino 센서 Matrix</p>
-알코올가스 센서에서의 $Alcohol Gas$ 값, 
-일산화탄소가스 센서에서의 $Carbon Oxide Gas$ 값, 
-온도센서에서 나오는 $Temperature$ 값, 
-조도센서에서 나오는 $Light$ 값, 
-먼지센서에서 나오는 $Dust$값 
+	알코올가스 센서에서의 $Alcohol Gas$ 값, 
+	일산화탄소가스 센서에서의 $Carbon Oxide Gas$ 값, 
+	온도센서에서 나오는 $Temperature$ 값, 
+	조도센서에서 나오는 $Light$ 값, 
+	먼지센서에서 나오는 $Dust$값 
 <table>
   <thead>
     <tr>
@@ -169,17 +169,49 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
   </tbody>
 </table>
 <p class="Paragraph">Arduino 센서 회로</p>
-상기 센서들을 포함하는 Arduino 회로는 다음과 같이 구성된다.
+	상기 센서들을 포함하는 Arduino 회로는 다음과 같이 구성된다.
       <p class="Imgtext">
           <img src="/asset/Project/IoTMiddleware/DataCollectionService/Architecture.PNG" class="concept"></br>
           <내용></br>
       </p>
-구성된 Arduino 회로의 각 센서들을 값을 주기적으로 읽어오고 시리얼 통신으로 값을 노내기 위해 다음과 같은 코드를 작성하였다. 
-아두이노쪽 코드는 다음과 같다.
+	구성된 Arduino 회로의 각 센서들을 값을 주기적으로 읽어오고 시리얼 통신으로 값을 노내기 위해 다음과 같은 코드를 작성하였다. 
+	아두이노쪽 코드는 다음과 같다.
 <p class="Paragraph">Arduino 센서 Code</p>
 
-<p class="Paragraph">Arduino 센서 example</p>
+<p class="Paragraph">Arduino 센서 Example</p>
+$$ \dfrac{1}T = A + B\log{R}+C(\log{R})$$
+ $\ln(x+1)$
+</br>
+</br>
+<pre><code>
+#define R0 10000
+#define T0 25 //room temperature
+#define B 4200 //the coefficient of the thermistor
+#define SERISR 10000 //seris resistor 10K
+//float thermistorRValue = 0.0f;
 
+void setup() {
+	Serial.begin(9600);
+}
+
+void loop() {
+	float thermistorRValue;
+	thermistorRValue = 1023.0 / analogRead(0) - 1;
+	thermistorRValue = SERISR / thermistorRValue;
+	
+	float temperature;
+	temperature = thermistorRValue / R0; // R/R0
+	temperature = log(temperature);
+	temperature = temperature / B;
+	temperature = temperature + 1.0 / (T0 + 273.15);
+	temperature = 1.0 / temperature;
+	temperature -= 273.15 ;// kelvins to C
+
+	Serial.println(temperature);
+	delay(1000);
+}
+</code></pre>
+</br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
   </body>
 </html>
