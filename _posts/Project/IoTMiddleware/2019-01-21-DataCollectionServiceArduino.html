@@ -1,1 +1,91 @@
-
+---
+layout: post
+title: Data Collection Service Arduino & Ras
+meta: Concept
+category: IoT
+comments: true
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pageframe.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+    </style>
+  <!--
+  수식용 스크립트 MathJax
+  -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      //jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  </head>
+  <body>	  
+<!--
+카테고리: Categories <h3 class="Categories BasicFontSet"></h3>
+날짜: Date 
+      {% for news in site.categories.analysis %}
+        {% if news.title == 'Testing css'%}
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+        {% endif %}
+      {% endfor %}
+태그: Tags <a class="post-tag">태그 내용</a>
+posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote>
+주제: MainTitle <h1 class="BasicFontSet"></h1>
+소제: SubTitle <h2 class="BasicFontSet"></h2>
+단락: Paragraph <p class="Paragraph"></p>
+내용: Contents <p class="Contents"></p>
+이미지: Imgsize - media query 적용
+이미지 text: Imgtext
+      <p class="Imgtext">
+          <img src="이미지 주소" class="concept"></br>
+          <내용></br>
+      </p>
+전체 코드 URL: CodeURL
+참고자료: Reference <blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p>
+-->
+      <a>
+	<h3 class="Categories BasicFontSet">Data Collection Service Arduino</h3>
+	{% for news in site.categories.IoT %}
+        {% if news.title == 'Data Collection Service Arduino'%}
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag" href="https://ysw0421.github.io/contents/projects/#IoT">{{ page.category }}</a>
+        {% endif %}
+        {% endfor %}
+     </a>
+	<blockquote><p class="posting">이 프로젝트는 전남대학교 김경백 교수님 주관하에 만들어졌던 프로잭트임을 알립니다. </p></blockquote>
+<h1 class="BasicFontSet">Flume Kafka 기반 센서데이터 수집 서비스</h1>
+<h2 class="BasicFontSet">3.1 아두이노와 라즈베리파이에서 센싱 및 수집</h2>
+아두이노에서 수집되는 센서 값들을 라즈베리파이의 Flume을 통해 InfluxDB로 보내려면 우선 라즈베리파이와 아두이노 간의 $Serial Communication$이 필요하다.
+<p class="Paragraph">Arduino 센서 Matrix</p>
+알코올가스 센서에서의 $Alcohol Gas$ 값, 
+일산화탄소가스 센서에서의 $Carbon Oxide Gas$ 값, 
+온도센서에서 나오는 $Temperature$ 값, 
+조도센서에서 나오는 $Light$ 값, 
+먼지센서에서 나오는 $Dust$값 
+<표 1.>
+상기 센서들을 포함하는 Arduino 회로는 다음과 같이 구성된다.
+      <p class="Imgtext">
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Architecture.PNG" class="concept"></br>
+          <내용></br>
+      </p>
+구성된 Arduino 회로의 각 센서들을 값을 주기적으로 읽어오고 시리얼 통신으로 값을 노내기 위해 다음과 같은 코드를 작성하였다. 
+아두이노쪽 코드는 다음과 같다.
+	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
+  </body>
+</html>
