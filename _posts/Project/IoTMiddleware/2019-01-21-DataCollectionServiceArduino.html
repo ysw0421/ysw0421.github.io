@@ -257,7 +257,7 @@ void loop() {
 	</br>
 <pre><code>
 int mq3_analogPin = A0; // connected to the output pin of MQ3
-
+// int mq7_analogPin = A0;  connected to the output pin of MQ7
 void setup(){
 Serial.begin(9600); // open serial at 9600 bps
 }
@@ -266,7 +266,9 @@ void loop()
 {
 // give ample warmup time for readings to stabilize
 int mq3_value = analogRead(mq3_analogPin);
-Serial.println(mq3_value);
+//int mq7_value = analogRead(mq7_analogPin);
+
+Serial.println(mq3_value); //mq7_value
 delay(1000); //Just here to slow down the output.
 }
 </code></pre>
