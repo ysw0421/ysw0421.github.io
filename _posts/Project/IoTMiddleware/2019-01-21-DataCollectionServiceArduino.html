@@ -73,7 +73,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	아두이노에서 수집되는 센서 값들을 라즈베리파이의 Flume을 통해 InfluxDB로 보내려면 우선 라즈베리파이와 아두이노 간의 $Serial Communication$이 필요하다.
 <p class="Paragraph">Arduino 센서 Matrix</p>
 	알코올가스 센서에서의 $Alcohol Gas$ 값, 
-	일산화탄소가스 센서에서의 $Carbon Oxide Gas$ 값, 
+	일산화탄소가스 센서에서의 $Carbon Monoxide Gas$ 값, 
 	온도센서에서 나오는 $Temperature$ 값, 
 	조도센서에서 나오는 $Light$ 값, 
 	먼지센서에서 나오는 $Dust$값 
@@ -219,8 +219,8 @@ void loop() {
 	</br>
 	</br>
 <p class="Paragraph">조도 센서 Example</p>
-<b>Light Sensor :</b> CDS(GL10537-1)</br>
-<b>Resistor :</b> 10K 옴</br>
+	<b>Light Sensor :</b> CDS(GL10537-1)</br>
+	<b>Resistor :</b> 10K 옴</br>
 
       <p class="Imgtext">
           <img src="/asset/Project/IoTMiddleware/DataCollectionService/Arduino/LightSensor.jpg" class="concept"></br>
@@ -244,8 +244,9 @@ void loop() {
 	</br>
 	</br>
 	</br>
-<p class="Paragraph">AlcoholMQ-3 센서 Example</p>
+<p class="Paragraph">알코올 MQ-3 센서 & 일산화탄소 MQ-7 센서 Example</p>
 	<b>Alcohol Sensor :</b>MQ-3 + Breakout Board</br>
+	<b>Carbon monoxide Sensor :</b>MQ-7 + Breakout Board</br>
 	<b>Resistor :</b> 10K 옴</br>
       <p class="Imgtext">
           <img src="/asset/Project/IoTMiddleware/DataCollectionService/Arduino/AlcoholMQ-3.jpg" class="concept"></br>
