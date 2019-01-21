@@ -181,12 +181,12 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 <h2 class="BasicFontSet">Arduino 센서 Example</h2>
 
 <p class="Paragraph">온도 센서 Example</p>
-<b>Thermistor :</b> NTC-10KD-5J</br>
-<b>Resistor :</b> 10K 옴</br>
-$$ \dfrac{1}T = A + B\ln(x+1)+C(\ln(x+1))^3$$
-</br>
-</br>
-</br>
+	<b>Thermistor :</b> NTC-10KD-5J</br>
+	<b>Resistor :</b> 10K 옴</br>
+	$$ \dfrac{1}T = A + B\ln(x+1)+C(\ln(x+1))^3$$
+	</br>
+	</br>
+	</br>
 <pre><code>
 #define R0 10000
 #define T0 25 //room temperature
@@ -215,9 +215,9 @@ void loop() {
 	delay(1000);
 }
 </code></pre>
-</br>
-</br>
-</br>
+	</br>
+	</br>
+	</br>
 <p class="Paragraph">조도 센서 Example</p>
 <b>Light Sensor :</b> CDS(GL10537-1)</br>
 <b>Resistor :</b> 10K 옴</br>
@@ -226,9 +226,9 @@ void loop() {
           <img src="/asset/Project/IoTMiddleware/DataCollectionService/Arduino/LightSensor.jpg" class="concept"></br>
           <내용></br>
       </p>
-</br>
-</br>
-</br>
+	</br>
+	</br>
+	</br>
 <pre><code>
 void setup() {
     Serial.begin(9600);
@@ -241,17 +241,19 @@ void loop() {
 }
 
 </code></pre>
-</br>
-</br>
-</br>
+	</br>
+	</br>
+	</br>
 <p class="Paragraph">AlcoholMQ-3 센서 Example</p>
+	<b>Alcohol Sensor :</b>MQ-3 + Breakout Board</br>
+	<b>Resistor :</b> 10K 옴</br>
       <p class="Imgtext">
           <img src="/asset/Project/IoTMiddleware/DataCollectionService/Arduino/AlcoholMQ-3.jpg" class="concept"></br>
           <내용></br>
       </p>
-</br>
-</br>
-</br>
+	</br>
+	</br>
+	</br>
 <pre><code>
 int mq3_analogPin = A0; // connected to the output pin of MQ3
 
@@ -267,7 +269,7 @@ Serial.println(mq3_value);
 delay(1000); //Just here to slow down the output.
 }
 </code></pre>
-</br>
+	</br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
   </body>
 </html>
