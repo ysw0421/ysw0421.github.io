@@ -79,6 +79,8 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
   </br>
   </br>
 <pre><code>
+long previousMillis = 0;   
+long interval = 1000; 
 void loop()
 {
 unsigned long currentMillis = millis();
@@ -99,7 +101,9 @@ unsigned long currentMillis = millis();
   </br>
   </br>
 <pre><code>
-int State = LOW; 
+int State = LOW;
+long previousMillis = 0;   
+long interval = 1000; 
 void loop()
 {
       unsigned long currentMillis = millis();
