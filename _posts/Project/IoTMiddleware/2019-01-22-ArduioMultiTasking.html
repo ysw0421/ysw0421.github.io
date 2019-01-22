@@ -78,7 +78,6 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
   우리는 이것을 Blink without delay라고 부르자.</br>
   </br>
   </br>
-  </br>
 <pre><code>
 void loop()
 {
@@ -89,7 +88,8 @@ unsigned long currentMillis = millis();
      }
 }
 </code></pre>
-</br> 
+</br>
+</br>
   interval에 시간을 주어 원하는 시간마다 원하는 기능을 체크하는 코드이다.</br>
   </br>
   이번에는 On time 과 Off time 이 다르게 성정되어 동작하는 프로그래밍을 해보자.
@@ -116,6 +116,7 @@ void loop()
       }
 }
 </code></pre>
+</br>
 </br>
   $State + Machine = State Machine$
   LOW 인지 HIGH 인지를 추적하는 변수($State$)가 있다. 
