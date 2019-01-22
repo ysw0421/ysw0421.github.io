@@ -1,0 +1,129 @@
+---
+layout: post
+title: Arduino Multi-tasking
+meta: Concept
+category: IoT
+comments: true
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pageframe.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+    </style>
+  <!--
+  수식용 스크립트 MathJax
+  -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      //jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  </head>
+  <body>	  
+<!--
+카테고리: Categories <h3 class="Categories BasicFontSet"></h3>
+날짜: Date 
+      {% for news in site.categories.analysis %}
+        {% if news.title == 'Testing css'%}
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+        {% endif %}
+      {% endfor %}
+태그: Tags <a class="post-tag">태그 내용</a>
+posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote>
+주제: MainTitle <h1 class="BasicFontSet"></h1>
+소제: SubTitle <h2 class="BasicFontSet"></h2>
+단락: Paragraph <p class="Paragraph"></p>
+내용: Contents <p class="Contents"></p>
+이미지: Imgsize - media query 적용
+이미지 text: Imgtext
+      <p class="Imgtext">
+          <img src="이미지 주소" class="concept"></br>
+          <내용></br>
+      </p>
+전체 코드 URL: CodeURL
+참고자료: Reference <blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p>
+-->
+      <a>
+	<h3 class="Categories BasicFontSet">Arduino Multi-tasking</h3>
+	{% for news in site.categories.IoT %}
+        {% if news.title == 'Arduino Multi-tasking'%}
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag" href="https://ysw0421.github.io/contents/categories/#IoT">{{ page.category }}</a>
+        {% endif %}
+        {% endfor %}
+     </a>
+	<blockquote><p class="posting">포스팅 </p></blockquote>
+  아두이노는 운영체제가 없고 한법에 하나의 일만 처리한다.
+  보통 delay() 함수를 사용해 프로그램을 잠시 기다리는 방법을 사용한다.
+  하지만, delay()를 사용하는 것은 함수가 수행되는 동안에는 어떤 입력도 받을 수 없고, 출력도 할 수 없다.
+  100% 프로세서에 물려있다고 할 수 있다.
+  해결책으로 delay()대신 millis()함수를 사용하여 시간을 감시해보자. 구현이 복잡해 보이겠지만 $State Machine$이라는 중요한 개념을 알게된다.</br>
+  </br>
+  우리는 이것을 Blink without delay라고 부르자.</br>
+  </br>
+  </br>
+  </br>
+<pre><code>
+void loop()
+{
+unsigned long currentMillis = millis();
+     if(currentMillis - previousMillis > interval) 
+    {
+        previousMillis = currentMillis;   
+     }
+}
+</code></pre>
+</br> 
+  interval에 시간을 주어 원하는 시간마다 원하는 기능을 체크하는 코드이다.</br>
+  </br>
+  이번에는 On time 과 Off time 이 다르게 성정되어 동작하는 프로그래밍을 해보자.
+  우리는 이것을 FlashWithoutDelay 라고 부르자.</br>
+  </br>
+  </br>
+  </br>
+<pre><code>
+int State = LOW; 
+void loop()
+{
+      unsigned long currentMillis = millis();
+      if((State == HIGH) && (currentMillis - previousMillis >= OnTime))
+      {
+        State = LOW;  // Turn it off
+        previousMillis = currentMillis;
+        원하는 기능 함수
+      }
+      else if ((State == LOW) && (currentMillis - previousMillis >= OffTime))
+      {
+        State = HIGH;  // turn it on
+        previousMillis = currentMillis;
+        원하는 기능 함수
+      }
+}
+</code></pre>
+</br>
+  $State + Machine = State Machine$
+  LOW 인지 HIGH 인지를 추적하는 변수($State$)가 있다. 
+  그리고 마지막 변경이 언제 일어 났는지를 추적하는 변수($previousMillis$)가 있다. 
+  이 두가지 변수가 $State Machine$의 주요 부분이다. 
+  추가로 2가지의 기능을 만든다고 하면 추가의 시간 간격 관리를 해줘 프로그래밍하면 된다.
+  코드를 반복해서 쓰는 것이 반복처럼 보이니 클래스를 만들어 반복해서 쓰도록 하자.</br>
+<코드 1.></br>
+	<blockquote><p class="Reference">가져온곳: <a class="Reference"> https://fishpoint.tistory.com/2095?category=626454</a></p></blockquote>
+  </body>
+</html>
