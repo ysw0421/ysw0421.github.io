@@ -140,19 +140,30 @@ void loop()
 #define SERISR 10000 //seris resistor 10K
 
 int LledPin = 13;
-int LState = LOW;
 int TledPin = 9;
-int TState = LOW;
 int CledPin = 7;
-int CState = LOW;
 int AledPin = 2;
-int AState = LOW;
 
 long previousMillis1 = 0;
 long previousMillis2 = 0;
 long previousMillis3 = 0;
 long previousMillis4 = 0;
 long interval = 1000;  
+
+void CheckOut(long currentMillis, int ledPin, long previousMillis, float data, int value)
+{
+  if((data > value) && ((currentMillis - previousMillis) > interval))
+  {
+    previousMillis = currentMillis;
+    digitalWrite(ledPin, HIGH);
+  }
+  else if((data <= value) && ((currentMillis - previousMillis) > interval))
+  {
+    previousMillis = currentMillis;
+    digitalWrite(ledPin, LOW);
+  }
+}
+
 void setup() {
   Serial.begin(9600);
   // 9번 핀을 출력으로 설정
@@ -186,70 +197,12 @@ void loop() {
   
   // MQ-3 알코올 센서 값
   int MQ3data = analogRead(A3);
-  Serial.println(MQ3data); 
   
   unsigned long currentMillis = millis();
-  if((Ldata > 800) && ((currentMillis - previousMillis1) > interval))
-  {
-    LState = HIGH;
-    previousMillis1 = currentMillis;
-    // 13번 핀을 HIGH(5V)로 출력
-    digitalWrite(LledPin, LState);
-  }
-  else if((Ldata <= 800) && ((currentMillis - previousMillis1) > interval))
-  {
-    LState = LOW;
-    previousMillis1 = currentMillis;
-    // 13번 핀을 LOW(GND)로 출력
-    digitalWrite(LledPin, LState);
-  }
-  
-  
-  if((Tdata > 27) && ((currentMillis - previousMillis2) > interval))
-  {
-    TState = HIGH;
-    previousMillis2 = currentMillis;
-    // 9번 핀을 HIGH(5V)로 출력
-    digitalWrite(TledPin, TState);
-  }
-  else if((Tdata <= 27) && ((currentMillis - previousMillis2) > interval))
-  {
-    TState = LOW;
-    previousMillis2 = currentMillis;
-    // 9번 핀을 LOW(GND)로 출력
-    digitalWrite(TledPin, TState);
-  }
-  
-  
-  if((MQ7data > 2) && ((currentMillis - previousMillis3) > interval))
-  {
-    CState = HIGH;
-    previousMillis3 = currentMillis;
-    // 13번 핀을 HIGH(5V)로 출력
-    digitalWrite(CledPin, CState);
-  }
-  else if((MQ7data <= 2) && ((currentMillis - previousMillis3) > interval))
-  {
-    CState = LOW;
-    previousMillis3 = currentMillis;
-    // 13번 핀을 LOW(GND)로 출력
-    digitalWrite(CledPin, CState);
-  }
-  
-  if((MQ3data > 0) && ((currentMillis - previousMillis4) > interval))
-  {
-    AState = HIGH;
-    previousMillis4 = currentMillis;
-    // 2번 핀을 HIGH(5V)로 출력
-    digitalWrite(AledPin, AState);
-  }
-  else if((MQ3data <= 0) && ((currentMillis - previousMillis4) > interval))
-  {
-    AState = LOW;
-    previousMillis4 = currentMillis;
-    // 2번 핀을 LOW(GND)로 출력
-    digitalWrite(AledPin, AState);
-  }
+  CheckOut(currentMillis,LledPin,previousMillis1,Ldata,800);
+  CheckOut(currentMillis,TledPin,previousMillis2,Tdata,27);
+  CheckOut(currentMillis,CledPin,previousMillis3,MQ7data,2);
+  CheckOut(currentMillis,AledPin,previousMillis4,MQ3data,-1);
 }
 </code></pre>
 </br>
