@@ -143,7 +143,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	Google 검색을 통해 Flume 관련 정보를 검색하면 아직까지도 Flume OG에 대한 내용이 훨씬 많이 조회되지만 프로젝트를 시작할 당시에 비해
 	지금은 Flume NG 관련 정보가 많이 확인이 된다.</br>
       <p class="Imgtext">
-          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Flume/Flume1.png" class="concept" style="80%"></br>
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Flume/Flume1.png" class="concept" style="50%"></br>
           <Flume NG 기본 아키텍쳐></br>
       </p>
 	Flume NG는 하나의 Agent로 구성되는데 Agent는 내부적으로 Source와 Sink 그리고 Channel로 구성된다.</br>
@@ -199,7 +199,7 @@ $ sudo mv apache-flume-1.8.0 flume
 	</br>
 	</br>
 	Flume 설치 디렉터리 /usr/local/lib/flume로 가정합니다.
-	이 디렉터리는 아래에서 {FLUME_HOME}으로 참조하겠습니다.</br>
+	이 디렉터리는 아래에서 <b>{FLUME_HOME}</b>으로 참조하겠습니다.</br>
 	</br>
 	</br>
 <h2 class="BasicFontSet">Flume 기본 설정과 실행 방법</h2>
@@ -215,24 +215,24 @@ $ sudo mv apache-flume-1.8.0 flume
 	Avro Source : Server A로부터 Avro통신을 통해 로그 수집하여 메모리 채널에 전달</br>
 	HDFS Sink : 수집된 이벤트를 HDFS에 저장</br>
 <p class="Paragraph">Agent 노드 Flume 설정 및 실행</p>
-로그를 수집하는 에이전트 노드에 다음과 같은 Flume 설정을 추가합니다. 
-파일명은 flume.conf입니다. 
-다음 예제는 /data/waslogs에 추가되는 로그 파일을 컬렉트 노드에 전송하는 설정입니다. 
-전송 포맷은 avro입니다.
-
-이 설정 파일은 /usr/local/lib/flume/conf에 하는 것으로 가정합니다.
-<코드 1.>
-에이전트 노드의 flume은 다음과 같은 명령으로 실행됩니다.
-<코드 2.>
+	로그를 수집하는 에이전트 노드에 다음과 같은 Flume 설정을 추가합니다. 
+	파일명은 flume.conf입니다. 
+	다음 예제는 /data/waslogs에 추가되는 로그 파일을 컬렉트 노드에 전송하는 설정입니다. 
+	전송 포맷은 avro입니다.</br>
+	</br>
+	이 설정 파일은 /usr/local/lib/flume/conf에 하는 것으로 가정합니다.</br>
+<코드 1.></br>
+	에이전트 노드의 flume은 다음과 같은 명령으로 실행됩니다.</br>
+<코드 2.></br>
 	</br>
 	</br>
 <p class="Paragraph">Collecting 노드 Flume 설정 및 실행</p>
 	다음은 컬렉트 노드의 flume 설정입니다. 
 	avro 포멧으로 유입되는 로그를 수집항 hadoop에 저장하는 구성입니다. 
-	파일명은 flume.conf입니다. 이 설정 파일은 /usr/local/lib/flume/conf에 하는 것으로 가정합니다.
-	<코드 3.>
-	에이전트 노드의 flume은 다음과 같은 명령으로 실행됩니다.
-	<코드 4.>
+	파일명은 flume.conf입니다. 이 설정 파일은 /usr/local/lib/flume/conf에 하는 것으로 가정합니다.</br>
+	<코드 3.></br>
+	에이전트 노드의 flume은 다음과 같은 명령으로 실행됩니다.</br>
+	<코드 4.></br>
 <h2 class="BasicFontSet">Flume의 유연한 구성 그리고 Kafka </h2>
 <h2 class="BasicFontSet">Flume 모니터링</h2>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> http://www.nextree.co.kr/p2704/
