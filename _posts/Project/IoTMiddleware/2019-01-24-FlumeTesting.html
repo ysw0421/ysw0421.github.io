@@ -143,7 +143,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	Google 검색을 통해 Flume 관련 정보를 검색하면 아직까지도 Flume OG에 대한 내용이 훨씬 많이 조회되지만 프로젝트를 시작할 당시에 비해
 	지금은 Flume NG 관련 정보가 많이 확인이 된다.</br>
       <p class="Imgtext">
-          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Flume/Flume1.png" class="concept"></br>
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Flume/Flume1.png" class="concept" style="80%"></br>
           <Flume NG 기본 아키텍쳐></br>
       </p>
 	Flume NG는 하나의 Agent로 구성되는데 Agent는 내부적으로 Source와 Sink 그리고 Channel로 구성된다.</br>
@@ -184,6 +184,23 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	하지만, 각 시스템 상황에 맞춰 Flume Agent의 Tier를 구성할 필요가 있다.</br>
 
 <h2 class="BasicFontSet">Flume 설치</h2>
+	Flume 설치 파일은 다음 URL에서 다운로드 할 수 있습니다. 2019.01 현재 최신버전은 1.9.0입니다. 설치 파일은 gz파일 형태로 배포됩니다.</br>
+	https://flume.apache.org/download.html</br>
+	설치는 압축을 푸는 것으로 완료됩니다.
+	</br>
+	</br>
+	</br>
+<pre><code>
+$ cd /usr/local/lib
+$ sudo tar -zxvf apache-flume-1.8.0-bin.tar.gz
+$ sudo mv apache-flume-1.8.0 flume
+</code></pre>
+	</br>
+	</br>
+	Flume 설치 디렉터리 /usr/local/lib/flume로 가정합니다.
+	이 디렉터리는 아래에서 {FLUME_HOME}으로 참조하겠습니다.</br>
+	</br>
+	</br>
 <h2 class="BasicFontSet">Flume 기본 설정과 실행 방법</h2>
 <p class="Paragraph">Agent 노드 Flume 설정 및 실행</p>
 <p class="Paragraph">Collecting 노드 Flume 설정 및 실행</p>
