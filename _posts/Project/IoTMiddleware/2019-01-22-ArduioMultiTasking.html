@@ -70,11 +70,13 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
      </a>
 	<blockquote><p class="posting">포스팅 </p></blockquote>
 <h2 class="BasicFontSet">다중 작업 처리(Multi-tasking)</h2>
-	아두이노는 운영체제가 없고 한법에 하나의 일만 처리한다.
+	아두이노는 운영체제가 없고 강력한 프로세스 하나의 일만 처리한다.
 	보통 delay() 함수를 사용해 프로그램을 잠시 기다리는 방법을 사용한다.
 	하지만, delay()를 사용하는 것은 함수가 수행되는 동안에는 어떤 입력도 받을 수 없고, 출력도 할 수 없다.
 	100% 프로세서에 물려있다고 할 수 있다.
-	해결책으로 delay()대신 millis()함수를 사용하여 시간을 감시해보자. 구현이 복잡해 보이겠지만 $State Machine$이라는 중요한 개념을 알게된다.</br>
+	그래서 우리는 첫번째로 delay()를 사용하지 않는 프로그램을 만들어 보려고한다.
+	해결책으로 delay()대신 millis()함수를 사용하여 시간을 감시해보자.
+	구현이 복잡해 보이겠지만 $State Machine$이라는 중요한 개념을 알게된다.</br>
 	</br>
 	우리는 이것을 Blink without delay라고 부르자.</br>
 	</br>
