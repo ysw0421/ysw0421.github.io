@@ -156,19 +156,19 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 
 <h2 class="BasicFontSet">Flume Converging Flow</h2>
       <p class="Imgtext">
-          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Flume/Flume2.jpg" class="concept"></br>
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Flume/Flume2.jpg" class="concept" style="width:50%"></br>
           <HDFS Direct 연동></br>
       </p>
 	각 서버의 로그를 수집하기 위해 HDFS로 직접 연결시 각 서버마다 연동을 위해 복잡한 코드들과 지속적인 관리가 필요하다.
 	유지보수 비용 측면이나 확장성 관점에 추천할 수 없는 구조이다.</br>
       <p class="Imgtext">
-          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Flume/Flume3.png" class="concept"></br>
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Flume/Flume3.png" class="concept" style="width:50%"></br>
           <Single Flume Agent 연동></br>
       </p>
 	로그 수집의 권한을 Flume으로 위임함으로써 각 서버들은 고객들에게 기존보다 빠른 서비스를 제공할 수 있다.
 	하나의 Flume Agent가 로그를 수집함으로써 Flume Agent의 장애 발생시 로그수집이 중단될 수 있는 문제가 존재한다.</br>
       <p class="Imgtext">
-          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Flume/Flume4.png" class="concept"></br>
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Flume/Flume4.png" class="concept" style="width:50%"></br>
           <Multi Flume Agent 연동></br>
       </p>
 	장애 발생시 최소한의 투자비용으로 가용성을 확보할 수 있다.
