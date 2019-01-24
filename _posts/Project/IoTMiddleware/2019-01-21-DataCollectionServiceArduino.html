@@ -170,102 +170,79 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 </table>
 
 <h2 class="BasicFontSet">Arduino 센서 Example</h2>
-	구성된 Arduino 회로의 각 센서들을 값을 주기적으로 읽어오고 시리얼 통신으로 값을 노내기 위해 다음과 같은 코드를 작성하였다. 
-	아두이노쪽 코드는 다음과 같다.
-<p class="Paragraph">온도 센서 Example</p>
-	<b>Thermistor :</b> NTC-10KD-5J</br>
-	<b>Resistor :</b> 10K 옴</br>
-	$$ \dfrac{1}T = A + B\ln(x+1)+C(\ln(x+1))^3$$
-      <p class="Imgtext">
-          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Arduino/Temperature.jpg" class="concept"></br>
-          <내용></br>
-      </p>
-	</br>
-	</br>
-	</br>
+</br>
+</br>
+</br>
 <pre><code>
 #define R0 10000
 #define T0 25 //room temperature
 #define B 4200 //the coefficient of the thermistor
 #define SERISR 10000 //seris resistor 10K
-//float thermistorRValue = 0.0f;
 
-void setup() {
-	Serial.begin(9600);
+int LledPin = 13;
+int TledPin = 9;
+int CledPin = 7;
+int AledPin = 2;
+
+long previousMillis1 = 0;
+long previousMillis2 = 0;
+long previousMillis3 = 0;
+long previousMillis4 = 0;
+long interval = 1000;  
+
+void CheckOut(long currentMillis, int ledPin, long previousMillis, float data, int value)
+{
+  if((data > value) && ((currentMillis - previousMillis) > interval))
+  {
+    previousMillis = currentMillis;
+    digitalWrite(ledPin, HIGH);
+  }
+  else if((data <= value) && ((currentMillis - previousMillis) > interval))
+  {
+    previousMillis = currentMillis;
+    digitalWrite(ledPin, LOW);
+  }
 }
 
+void setup() {
+  Serial.begin(9600);
+  // 9번 핀을 출력으로 설정
+	pinMode(LledPin, OUTPUT);
+	pinMode(TledPin, OUTPUT);
+	pinMode(CledPin, OUTPUT);
+	pinMode(AledPin, OUTPUT);
+}
 void loop() {
-	float thermistorRValue;
-	thermistorRValue = 1023.0 / analogRead(0) - 1;
+  // 조도 센서 값
+  int Ldata = analogRead(A0);
+  
+  
+  // 온도 센서 값
+  float thermistorRValue = 0;
+	thermistorRValue = 1023.0 / analogRead(A1) - 1;
 	thermistorRValue = SERISR / thermistorRValue;
 	
-	float temperature;
+	float temperature = 0;
 	temperature = thermistorRValue / R0; // R/R0
 	temperature = log(temperature);
 	temperature = temperature / B;
 	temperature = temperature + 1.0 / (T0 + 273.15);
 	temperature = 1.0 / temperature;
 	temperature -= 273.15 ;// kelvins to C
+  float Tdata = temperature;
 
-	Serial.println(temperature);
-	delay(1000);
-}
-</code></pre>
-	</br>
-	</br>
-	</br>
-<p class="Paragraph">조도 센서 Example</p>
-	<b>Light Sensor :</b> CDS(GL10537-1)</br>
-	<b>Resistor :</b> 10K 옴</br>
 
-      <p class="Imgtext">
-          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Arduino/LightSensor.jpg" class="concept"></br>
-          <내용></br>
-      </p>
-	</br>
-	</br>
-	</br>
-<pre><code>
-void setup() {
-    Serial.begin(9600);
-}
-
-void loop() {
-    int data = analogRead(A0);
-    Serial.println(data);
-    delay(1000);
-}
-
-</code></pre>
-	</br>
-	</br>
-	</br>
-<p class="Paragraph">알코올 MQ-3 센서 & 일산화탄소 MQ-7 센서 Example</p>
-	<b>Alcohol Sensor : </b>MQ-3 + Breakout Board</br>
-	<b>Carbon monoxide Sensor : </b>MQ-7 + Breakout Board</br>
-	<b>Resistor :</b> 10K 옴</br>
-      <p class="Imgtext">
-          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Arduino/AlcoholMQ-3.jpg" class="concept"></br>
-          <내용></br>
-      </p>
-	</br>
-	</br>
-	</br>
-<pre><code>
-int mq3_analogPin = A0; // connected to the output pin of MQ3
-// int mq7_analogPin = A0;  connected to the output pin of MQ7
-void setup(){
-Serial.begin(9600); // open serial at 9600 bps
-}
-
-void loop()
-{
-// give ample warmup time for readings to stabilize
-int mq3_value = analogRead(mq3_analogPin);
-//int mq7_value = analogRead(mq7_analogPin);
-
-Serial.println(mq3_value); //mq7_value
-delay(1000); //Just here to slow down the output.
+  // MQ-7 일산화 탄소 센서 값
+	int MQ7data = analogRead(A2);
+  
+  // MQ-3 알코올 센서 값
+  int MQ3data = analogRead(A3);
+  
+  unsigned long currentMillis = millis();
+  CheckOut(currentMillis,LledPin,previousMillis1,Ldata,800);
+  CheckOut(currentMillis,TledPin,previousMillis2,Tdata,27);
+  CheckOut(currentMillis,CledPin,previousMillis3,MQ7data,2);
+  CheckOut(currentMillis,AledPin,previousMillis4,MQ3data,-1);
 }
 </code></pre>
 	</br>
