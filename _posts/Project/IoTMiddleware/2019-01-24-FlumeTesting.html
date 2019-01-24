@@ -208,6 +208,19 @@ $ echo $PATH  // 패스 제대로 됬는지 확인
 	이 디렉터리는 아래에서 <b>{FLUME_HOME}</b>으로 참조하겠습니다.</br>
 	</br>
 	</br>
+	</br>
+<pre><code>
+export FLUME_HOME="/usr/local/lib/flume"
+export FLUME_CONF_DIR="$FLUME_HOME/conf"
+export FLUME_CLASSPATH="$FLUME_CONF_DIR"
+export PATH="$FLUME_HOME/bin:$PATH"
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+</code></pre>
+	</br>
+	</br>
+	</br>
+	</br>
 <h2 class="BasicFontSet">Flume 기본 설정과 실행 방법</h2>
 	Flume으로 서버로그를 Hadoop에 수집하는 예제를 소개합니다. 
 	Flume은 에이전트 노드와 컬렉트 노드에 설치되었음을 가정합니다.</br>
@@ -227,9 +240,43 @@ $ echo $PATH  // 패스 제대로 됬는지 확인
 	전송 포맷은 avro입니다.</br>
 	</br>
 	이 설정 파일은 /usr/local/lib/flume/conf에 하는 것으로 가정합니다.</br>
-<코드 1.></br>
+	</br>
+	</br>
+	</br>
+<pre><code>
+sudo vim flume.conf
+agentDataSource.sources = logsrc
+agentDataSource.channels = logChannel
+agentDataSource.sinks = avroSink
+
+# Source : Log
+agentDataSource.sources.logsrc.type = spooldir
+agentDataSource.sources.logsrc.channels = logChannel
+agentDataSource.sources.logsrc.spoolDir = /data/waslogs
+
+# Sink : Avro
+agentDataSource.sinks.avroSink.type = avro
+agentDataSource.sinks.avroSink.channel = logChannel
+agentDataSource.sinks.avroSink.hostname = 142.3.3.1
+agentDataSource.sinks.avroSink.port = 4545
+
+# Channel : Memory Channel
+agentDataSource.channels.logChannel.type = memory
+agentDataSource.channels.logChannel.capacity = 100
+################################################
+</code></pre>
+	</br>
+	</br>
 	에이전트 노드의 flume은 다음과 같은 명령으로 실행됩니다.</br>
-<코드 2.></br>
+	</br>
+	</br>
+	</br>
+<pre><code>
+cd /usr/local/lib/flume
+ ./bin/flume-ng agent --conf /usr/local/flume/conf --conf-file ./conf/flume.conf --name agent01
+</code></pre>
+	</br>
+	</br>
 	</br>
 	</br>
 <p class="Paragraph">Collecting 노드 Flume 설정 및 실행</p>
