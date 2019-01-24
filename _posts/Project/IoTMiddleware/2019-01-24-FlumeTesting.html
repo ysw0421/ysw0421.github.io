@@ -206,16 +206,25 @@ $ echo $PATH  // 패스 제대로 됬는지 확인
 	</br>
 	Flume 설치 디렉터리 /usr/local/lib/flume로 가정합니다.
 	이 디렉터리는 아래에서 <b>{FLUME_HOME}</b>으로 참조하겠습니다.</br>
+	그전에 자바가 미리 설치되어 있어야합니다.
+	아래와 같은 셋팅을 해줍니다.
 	</br>
 	</br>
 	</br>
 <pre><code>
-export FLUME_HOME="/usr/local/lib/flume"
-export FLUME_CONF_DIR="$FLUME_HOME/conf"
-export FLUME_CLASSPATH="$FLUME_CONF_DIR"
-export PATH="$FLUME_HOME/bin:$PATH"
+$ sudo add-apt-repository ppa:openjdk-r/ppa
+$ sudo apt update
+$ sudo apt install openjdk-8-jre openjdk-8-jdk
+$ sudo update-alternatives --config java
+$ sudo update-alternatives --config javac
+$ sudo update-alternatives --get-selections | grep openjdk
 
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+$ export FLUME_HOME="/usr/local/lib/flume"
+$ export FLUME_CONF_DIR="$FLUME_HOME/conf"
+$ export FLUME_CLASSPATH="$FLUME_CONF_DIR"
+$ export PATH="$FLUME_HOME/bin:$PATH"
+
+$ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 </code></pre>
 	</br>
 	</br>
@@ -244,7 +253,7 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 	</br>
 	</br>
 <pre><code>
-sudo vim flume.conf
+sudo vim AgentFlume.conf
 agentDataSource.sources = logsrc
 agentDataSource.channels = logChannel
 agentDataSource.sinks = avroSink
@@ -273,7 +282,7 @@ agentDataSource.channels.logChannel.capacity = 100
 	</br>
 <pre><code>
 cd /usr/local/lib/flume
- ./bin/flume-ng agent --conf /usr/local/flume/conf --conf-file ./conf/flume.conf --name agent01
+ ./bin/flume-ng agent --conf /usr/local/flume/conf --conf-file ./conf/AgentFlume.conf --name agent01
 </code></pre>
 	</br>
 	</br>
@@ -283,9 +292,52 @@ cd /usr/local/lib/flume
 	다음은 컬렉트 노드의 flume 설정입니다. 
 	avro 포멧으로 유입되는 로그를 수집항 hadoop에 저장하는 구성입니다. 
 	파일명은 flume.conf입니다. 이 설정 파일은 /usr/local/lib/flume/conf에 하는 것으로 가정합니다.</br>
-	<코드 3.></br>
+	</br>
+	</br>
+	</br>
+<pre><code>
+sudo vim CollectingFlume.conf
+agentDataCollector.sources = targetSource
+agentDataCollector.channels = targetChannel
+agentDataCollector.sinks = targetSink
+
+# Source : Avro
+agentDataCollector.sources.targetSource.type = avro
+agentDataCollector.sources.targetSource.channels = targetChannel
+agentDataCollector.sources.targetSource.bind = 142.3.3.1
+agentDataCollector.sources.targetSource.port = 4545
+
+# Sink : HDFS
+agentDataCollector.sinks.targetSink.type  = hdfs
+agentDataCollector.sinks.targetSink.channel = memoryChannel
+agentDataCollector.sinks.targetSink.hdfs.path = hdfs://142.3.3.5:9000/data/stats/%Y-%m-%d/%H
+agentDataCollector.sinks.targetSink.hdfs.fileType = DataStream
+agentDataCollector.sinks.targetSink.writeFormat = Text
+agentDataCollector.sinks.targetSink.hdfs.filePrefix = access_log
+agentDataCollector.sinks.targetSink.hdfs.fileSuffix = .log
+agentDataCollector.sinks.targetSink.hdfs.threadsPoolSize = 10
+agentDataCollector.sinks.targetSink.hdfs.rollInterval = 30
+agentDataCollector.sinks.targetSink.hdfs.round = false
+local_agent.sinks.localHdfsSink.hdfs.roundValue = 5
+local_agent.sinks.localHdfsSink.hdfs.roundUnit = minute
+
+# Channel : Memory
+agentDataCollector.channels.targetChannel.type = memory
+agentDataCollector.channels.targetChannel.capacity = 100
+################################################
+</code></pre>
+	</br>
+	</br>
 	에이전트 노드의 flume은 다음과 같은 명령으로 실행됩니다.</br>
-	<코드 4.></br>
+	</br>
+	</br>
+	</br>
+<pre><code>
+cd /usr/local/lib/flume
+./bin/flume-ng agent --conf /usr/local/flume/conf --conf-file ./conf/CollectingFlume.conf --name agent02
+</code></pre>
+	</br>
+	</br>
 <h2 class="BasicFontSet">Flume의 유연한 구성 그리고 Kafka </h2>
 <h2 class="BasicFontSet">Flume 모니터링</h2>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> http://www.nextree.co.kr/p2704/
