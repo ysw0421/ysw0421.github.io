@@ -80,10 +80,10 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	지정된 모든 서버로부터 로그를 수집한 후 하둡 HDFS와 같은 중앙 저장소에 적재하여 분석하는 시스템을 구축해야할 때 적합하다.
 	Flume은 아래 4가지 사항에 대한 핵심사항을 만족시키도록 설계되었으며 이를 바탕으로 최신 아파치 오픈소스 버전을 제공하고 있다.</br>
 	</br>
-	시스템 신뢰성(Reliability) - 장애가 발생시 로그의 유실없이 전송할 수 있는 기능</br>
-	시스템 확장성(Scalability) - Agent의 추가 및 제거가 용이</br>
-	관리 용이성(Manageability) - 간결한 구조로 관리가 용이</br>
-	기능 확장성(Extensibility) - 새로운 기능을 쉽게 추가할 수 있음</br>
+	$시스템 신뢰성(Reliability)$ - 장애가 발생시 로그의 유실없이 전송할 수 있는 기능</br>
+	$시스템 확장성(Scalability)$ - Agent의 추가 및 제거가 용이</br>
+	$관리 용이성(Manageability)$ - 간결한 구조로 관리가 용이</br>
+	$기능 확장성(Extensibility)$ - 새로운 기능을 쉽게 추가할 수 있음</br>
 	</br>
 	클라우데라에서 개발하던 0.x 버전을 Flume OG 라고 지칭하며 
 	아파치 오픈소스로 이관된 이후의 1.X 버전을 Flume NG라고 부른다.
@@ -96,12 +96,13 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <Flume NG 기본 아키텍쳐></br>
       </p>
 	Flume NG는 하나의 Agent로 구성되는데 Agent는 내부적으로 Source와 Sink 그리고 Channel로 구성된다.</br>
+	</br>
 	$1. Source$ - Event를 받아 입력된 정보를 Sink로 전달한다.</br>
 	$2. Channel$ - Source와 Sink의 Dependency를 제거하고 장애에 대비하기 위해 중간 채널을 제공하며 
 	   Source는 Channel에 Event 정보를 저장하며 Sink는 채널로부터 정보를 전달받아 처리한다.</br>
 	$3. Sink$ - 채널로부터 Source가 전달한 Event 정보를 하둡 HDFS에 저장하거나 다음 Tier의 Agent 또는 DB로 전달한다.
 	   지정된 프로토콜의 Type에 따른 처리를 진행한다.</br>
-</br>
+	</br>
 <h2 class="BasicFontSet">Flume Converging Flow</h2>
       <p class="Imgtext">
           <img src="/asset/Project/IoTMiddleware/DataCollectionService/Flume/Flume2.jpg" class="concept"></br>
