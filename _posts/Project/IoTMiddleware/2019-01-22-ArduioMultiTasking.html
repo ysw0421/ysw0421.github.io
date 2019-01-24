@@ -78,8 +78,6 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	해결책으로 delay()대신 millis()함수를 사용하여 시간을 감시해보자.
 	그래서 우리는 첫번째로 delay()를 사용하지 않는 프로그램을 만들어 보려고한다.
 	우리는 이것을 Blink without delay라고 부르자.</br>
-	구현이 복잡해 보이겠지만 $State Machine$이라는 중요한 개념을 알게된다.</br>
-	$State + Machine = State Machine$</br>
 	</br>
 	</br>
 <pre><code>
@@ -127,6 +125,8 @@ void loop()
 </code></pre>
 </br>
 </br>
+	구현이 복잡해 보이겠지만 위의 코드를 통해 $State Machine$이라는 중요한 개념을 알게된다.</br>
+	$State + Machine = State Machine$</br>
 	LOW 인지 HIGH 인지를 추적하는 변수($State$)가 있다. 
 	그리고 마지막 변경이 언제 일어 났는지를 추적하는 변수($previousMillis$)가 있다. 
 	이 두가지 변수가 $State Machine$의 주요 부분이다. 
