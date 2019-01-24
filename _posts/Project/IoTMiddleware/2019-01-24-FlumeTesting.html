@@ -191,6 +191,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	</br>
 	</br>
 <pre><code>
+$ sudo wget http://www.apache.org/dyn/closer.lua/flume/1.9.0/apache-flume-1.9.0-bin.tar.gz
 $ cd /usr/local/lib
 $ sudo tar -zxvf apache-flume-1.8.0-bin.tar.gz
 $ sudo mv apache-flume-1.8.0 flume
@@ -202,6 +203,17 @@ $ sudo mv apache-flume-1.8.0 flume
 	</br>
 	</br>
 <h2 class="BasicFontSet">Flume 기본 설정과 실행 방법</h2>
+	Flume으로 서버로그를 Hadoop에 수집하는 예제를 소개합니다. 
+	Flume은 에이전트 노드와 컬렉트 노드에 설치되었음을 가정합니다.</br>
+<그림 1.>
+<b>Agent Node</b></br>
+	로그가 발생하는 서버</br>
+	WAS 로그가 저장되는 디렉터리를 spooling 하여 로그 메모리 채널에 전송</br>
+	Avro Sink가 채널의 로그를 Collecting node로 전송</br>
+	port: 4545</br>
+<b>Collecting node</b></br>
+	Avro Source : Server A로부터 Avro통신을 통해 로그 수집하여 메모리 채널에 전달</br>
+	HDFS Sink : 수집된 이벤트를 HDFS에 저장</br>
 <p class="Paragraph">Agent 노드 Flume 설정 및 실행</p>
 <p class="Paragraph">Collecting 노드 Flume 설정 및 실행</p>
 <h2 class="BasicFontSet">Flume의 유연한 구성 그리고 Kafka </h2>
