@@ -195,6 +195,12 @@ $ wget http://apache.mirror.cdnetworks.com/flume/1.9.0/apache-flume-1.9.0-bin.ta
 $ sudo cp apache-flume-1.9.0-bin.tar.gz /usr/local/lib/apache-flume-1.9.0-bin.tar.gz
 $ sudo tar -xvf apache-flume-1.9.0-bin.tar.gz
 $ sudo mv apache-flume-1.9.0-bin/ flume/
+$ cd ~
+$ vi ~/.bashrc
+$ export FLUME_HOME=/home/test_admin/flume
+$ export PATH=$PATH:$FLUME_HOME/bin:$JAVA_HOME/bin
+$ source ~/.bashrc
+$ echo $PATH  // 패스 제대로 됬는지 확인
 </code></pre>
 	</br>
 	</br>
