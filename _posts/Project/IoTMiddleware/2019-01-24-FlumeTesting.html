@@ -336,14 +336,46 @@ cd /usr/local/lib/flume
 	</br>
 	</br>
 <h2 class="BasicFontSet">Flume의 유연한 구성 그리고 Kafka </h2>
+Flume은 다양한 Source와 Sink 타입을 제공합니다. 
+이런 구현체를 이용하여 다양한 형태의 Data Flow를 디자인할 수 있습니다. 
+아래의 그림은 일반적인 Flume 데이터 흐름 모델입니다.
       <p class="Imgtext">
           <img src="/asset/Project/IoTMiddleware/DataCollectionService/Flume/Flume7.jpg" class="concept"></br>
-          <Flume 구성 요소의 구현 컴포넌트></br>
+          <Flume 데이터 흐름 모델></br>
       </p>
+A 모델: Consolidation Model</br>
+여러 서버로부터 로그를 통합하여 수집하고 저장하는 모델</br>
+각 서버에 Flume Agent가 설치되어 로그를 통합 Flume에 저장</br>
+통합 Flume은 지정된 목적지에 저장</br>
+B 모델: HA 모델</br>
+A 모델에서 통합 Flume 장애의 SPOF(단일 장애 포인트)에 대한 보완</br>
+고가용성을 위해서 통합 Flume을 이중화</br>
+C 모델: Multi-Target Model</br>
+A 모델으 목적지를 복수로 지정</br>
+D 모델: Flafka Model</br>
+	Flume이 Kafka의 Producer와 Consumer 역할 수행
+	통합 Flume을 Kafka로 대체하여 고가용성 및 확장성, 유연성을 확보
+	Flume을 이용하여 Kafka 개발 요소 제거
+	Flume의 가장 큰 취약점은 데이터의 안정성입니다. 
+	Flume은 Channel로 메모리와 파일 그리고 JDBC를 제공합니다. 
+	메모리 타입은 처리 성능은 좋지만, Flume 장애 발생 시 데이터가 유실의 문제가 있습니다. 
+	반면 파일 타입을 사용하면 데이터 안정성은 향상되지만, 성능이 크게 떨어집니다. 
+	그리고 고가용성 모드로 관리하기 어렵다는 것입니다. 
+	이러한 문제는 Flume과 Kafka를 결합함으로써 해결할 수 있습니다. 
+	최근에 로그/이벤트 수집 환경을 구성 시 Flume만으로 구성하는 경우는 거의 없습니다. 
+	<그림 10-D>와 같이 Flafka Model을 사용합니다.</br>
       <p class="Imgtext">
           <img src="/asset/Project/IoTMiddleware/DataCollectionService/Flume/Flume8.jpg" class="concept"></br>
-          <Flume 구성 요소의 구현 컴포넌트></br>
+          <Flajka = Flume + kafka></br>
       </p>
+	Flume의 장점은 다양한 소스와 목적지에 대한 컴포넌트가 이미 구현되어 있다는 것입니다. 
+	일반적으로 Flume 설치 및 설정만으로 작업을 완료할 수 있습니다. (물론 기능 확장 가능합니다.) 
+	Flume의 단점은 데이터를 저장하는 부분에서 장애가 발생할 경우, 데이터 유실의 가능성이 있고 확장 구성이 복잡하다는 것입니다. 
+	Kafka의 장점은 저장된 데이터를 안전하게 관리할 수 있고, 구성이 간단하고 확장성이 좋다는 것입니다. 
+	Kafka의 단점은 데이터 수집기(producer)와 데이터 처리기(Consumer)를 대부분 사용자가 구현해야 한다는 것입니다.</br>
+	</br>
+	이 구 컴포넌트를 함께 사용하면 각자의 취약점을 보완하고 강점을 부각할 수 있습니다. 
+	Kafka의 확장성과 관리 편의성 그리고 데이터 안정성을 확보하면서, Flume 컴포넌트 구성을 통해서 사용 편의성을 높일 수 있습니다.</br>
 <h2 class="BasicFontSet">Flume 모니터링</h2>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> http://www.nextree.co.kr/p2704/
 		http://taewan.kim/post/flume_images/</a></p></blockquote>
