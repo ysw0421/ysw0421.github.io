@@ -69,6 +69,51 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
         {% endfor %}
      </a>
 	<blockquote><p class="posting">포스팅 </p></blockquote>
-	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
+1. Apache Flume
+	</br>
+	데이터 소스는 사용자 정의가 가능하기 때문에 Flume은 네트워크 트래픽 데이터, 소셜 미디어 생성 데이터, 전자 메일 메시지 및 거의 모든 데이터 소스를 포함하여 
+	대량의 이벤트 데이터를 전송하는 데 사용할 수 있습니다.</br>
+	</br>
+	Flume은 인공수로, 용수로 등의 사전적의미를 가진다.
+	여러 서비스 제공 서버에 산재해 있는 로그들을 하나의 로그 수집서버로 모으는 역할을 수행해야하는 수집기로서 어울리는 이름이다.
+	전형적인 Converging Flow(??)의 구조로 구성되는 Flume은 스트림 지향의 데이터 플로우를 기반으로 하며 
+	지정된 모든 서버로부터 로그를 수집한 후 하둡 HDFS와 같은 중앙 저장소에 적재하여 분석하는 시스템을 구축해야할 때 적합하다.
+	Flume은 아래 4가지 사항에 대한 핵심사항을 만족시키도록 설계되었으며 이를 바탕으로 최신 아파치 오픈소스 버전을 제공하고 있다.</br>
+	</br>
+	시스템 신뢰성(Reliability) - 장애가 발생시 로그의 유실없이 전송할 수 있는 기능</br>
+	시스템 확장성(Scalability) - Agent의 추가 및 제거가 용이</br>
+	관리 용이성(Manageability) - 간결한 구조로 관리가 용이</br>
+	기능 확장성(Extensibility) - 새로운 기능을 쉽게 추가할 수 있음</br>
+	</br>
+	클라우데라에서 개발하던 0.x 버전을 Flume OG 라고 지칭하며 
+	아파치 오픈소스로 이관된 이후의 1.X 버전을 Flume NG라고 부른다.
+	Flume OG에서 Agent, Collector, Master로 구분되어지던 아키텍쳐 구조가 
+	Flume NG에서 하나의 Agent로 통합되어 단순해졌으며 이전 버전보다 기능은 줄어들었지만 단순한 구조로 인해 확장성과 자유도가 높아서 훨씬 유연하게 업무에 적용 가능해졌다.
+	Google 검색을 통해 Flume 관련 정보를 검색하면 아직까지도 Flume OG에 대한 내용이 훨씬 많이 조회되지만 프로젝트를 시작할 당시에 비해
+	지금은 Flume NG 관련 정보가 많이 확인이 된다.</br>
+<그림 1.></br>
+	Flume NG는 하나의 Agent로 구성되는데 Agent는 내부적으로 Source와 Sink 그리고 Channel로 구성된다.</br>
+	$1. Source$ - Event를 받아 입력된 정보를 Sink로 전달한다.</br>
+	$2. Channel$ - Source와 Sink의 Dependency를 제거하고 장애에 대비하기 위해 중간 채널을 제공하며 
+	   Source는 Channel에 Event 정보를 저장하며 Sink는 채널로부터 정보를 전달받아 처리한다.</br>
+	$3. Sink$ - 채널로부터 Source가 전달한 Event 정보를 하둡 HDFS에 저장하거나 다음 Tier의 Agent 또는 DB로 전달한다.
+	   지정된 프로토콜의 Type에 따른 처리를 진행한다.</br>
+</br>
+2. Flume Converging Flow
+<그림 2.></br>
+	각 서버의 로그를 수집하기 위해 HDFS로 직접 연결시 각 서버마다 연동을 위해 복잡한 코드들과 지속적인 관리가 필요하다.
+	유지보수 비용 측면이나 확장성 관점에 추천할 수 없는 구조이다.</br>
+<그림 3.></br>
+	로그 수집의 권한을 Flume으로 위임함으로써 각 서버들은 고객들에게 기존보다 빠른 서비스를 제공할 수 있다.
+	하나의 Flume Agent가 로그를 수집함으로써 Flume Agent의 장애 발생시 로그수집이 중단될 수 있는 문제가 존재한다.</br>
+<그림 4.></br>
+	장애 발생시 최소한의 투자비용으로 가용성을 확보할 수 있다.
+	장애로 인해 Flume Agent가 중지되더라도 백업 Agent를 통해 계속 로그 수집을 진행할 수 있다.
+	장애 대응을 위한 Failover나 로그 Event 정보를 분산하기 위한 Load balance 기능등 상황에 맞게 적용하면 된다.</br>
+<그림 5.></br>
+	100개 이상의 서버로부터 대량의 로그를 수집할 경우 여러 단계의 Tier를 구성하여 로그를 수집한다.
+	하나의 Flume Agent로 로그가 집중됨으로서 서버 부하 발생 및 러리 지연을 방지하기 위해 Tier별로 구성하여 처리한다.
+	하지만, 각 시스템 상황에 맞춰 Flume Agent의 Tier를 구성할 필요가 있다.</br>
+	<blockquote><p class="Reference">가져온곳: <a class="Reference"> http://www.nextree.co.kr/p2704/</a></p></blockquote>
   </body>
 </html>
