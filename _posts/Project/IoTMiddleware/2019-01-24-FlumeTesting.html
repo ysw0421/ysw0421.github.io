@@ -205,7 +205,7 @@ $ sudo mv apache-flume-1.8.0 flume
 <h2 class="BasicFontSet">Flume 기본 설정과 실행 방법</h2>
 	Flume으로 서버로그를 Hadoop에 수집하는 예제를 소개합니다. 
 	Flume은 에이전트 노드와 컬렉트 노드에 설치되었음을 가정합니다.</br>
-<그림 1.>
+<그림 1.></br>
 <b>Agent Node</b></br>
 	로그가 발생하는 서버</br>
 	WAS 로그가 저장되는 디렉터리를 spooling 하여 로그 메모리 채널에 전송</br>
@@ -215,8 +215,26 @@ $ sudo mv apache-flume-1.8.0 flume
 	Avro Source : Server A로부터 Avro통신을 통해 로그 수집하여 메모리 채널에 전달</br>
 	HDFS Sink : 수집된 이벤트를 HDFS에 저장</br>
 <p class="Paragraph">Agent 노드 Flume 설정 및 실행</p>
+로그를 수집하는 에이전트 노드에 다음과 같은 Flume 설정을 추가합니다. 
+파일명은 flume.conf입니다. 
+다음 예제는 /data/waslogs에 추가되는 로그 파일을 컬렉트 노드에 전송하는 설정입니다. 
+전송 포맷은 avro입니다.
+
+이 설정 파일은 /usr/local/lib/flume/conf에 하는 것으로 가정합니다.
+<코드 1.>
+에이전트 노드의 flume은 다음과 같은 명령으로 실행됩니다.
+<코드 2.>
+	</br>
+	</br>
 <p class="Paragraph">Collecting 노드 Flume 설정 및 실행</p>
+	다음은 컬렉트 노드의 flume 설정입니다. 
+	avro 포멧으로 유입되는 로그를 수집항 hadoop에 저장하는 구성입니다. 
+	파일명은 flume.conf입니다. 이 설정 파일은 /usr/local/lib/flume/conf에 하는 것으로 가정합니다.
+	<코드 3.>
+	에이전트 노드의 flume은 다음과 같은 명령으로 실행됩니다.
+	<코드 4.>
 <h2 class="BasicFontSet">Flume의 유연한 구성 그리고 Kafka </h2>
+<h2 class="BasicFontSet">Flume 모니터링</h2>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> http://www.nextree.co.kr/p2704/
 		http://taewan.kim/post/flume_images/</a></p></blockquote>
   </body>
