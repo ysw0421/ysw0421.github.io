@@ -103,7 +103,7 @@ RUN ln -s /opt/jdk1.8.0_131/bin/java /usr/bin/java
 
 #Install Flume
 RUN sudo wget --no-check-certificate http://www.apache.org/dist/flume/1.9.0/apache-flume-1.9.0-bin.tar.gz -O - | tar -zxv
-RUN sudo mv apache-flume-1.6.0-bin /flume
+RUN sudo mv apache-flume-1.9.0-bin /flume
 
 ADD plugins.d /flume/plugins.d
 ADD flume-conf.properties /flume/conf/
