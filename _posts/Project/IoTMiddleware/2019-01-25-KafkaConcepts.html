@@ -70,7 +70,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
      </a>
 	<blockquote><p class="posting">포스팅 </p></blockquote>
 	Apache Kafka(아파치 카프카)는 LinkedIn에서 개발된 분산 메시징 시스템으로써 2011년에 오픈소스로 공개되었다. 
-	대용량의 실시간 로그처리에 특화된 아키텍처 설계를 통하여 기존 메시징 시스템보다 우수한 TPS를 보여주고 있다.</br>
+	대용량의 실시간 Log처리에 특화된 아키텍처 설계를 통하여 기존 메시징 시스템보다 우수한 TPS를 보여주고 있다.</br>
 	</br>
 	카프카는 비동기 처리를 위한 메시징 큐의 한 종류이며, 프로듀서와 컨슈머가 있습니다. 
 	대표적인 비동기 메시징 시스템인 메일과 비교하면 이해가 쉽게 될 것 같습니다.</br>
@@ -120,7 +120,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <내용></br>
       </p>
 	각 Partition은 순서화되고 변하지 않는 레코드의 순서이고 이 레코드 순서는 계속해서 추가되는 구조화된 커밋 Log입니다.
-	Partition의 레코드에는 파티션 내의 각 레코드를 고유하게 식별하는 Offset이라는 순차적인 ID 번호가 각각 할당 됩니다.</br>
+	Partition의 레코드에는 Partition 내의 각 레코드를 고유하게 식별하는 Offset이라는 순차적인 ID 번호가 각각 할당 됩니다.</br>
 	</br>
 	Kafka 클러스터는 설정가능한 보존 기간을 사용하여 게시된 모든 레코드를 영구히 유지합니다.
 	예를 들어 보존 정책을 2일로 설정하면 레코드를 게시한 후 2일 동안 소비정책을 사용할 수 있으며 
@@ -130,17 +130,17 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
           <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka4.png" class="concept" style="width:60%"></br>
           <내용></br>
       </p>
-	사실, Consumer당 기준으로 유지되는 메타 데이터는 로그에서 해당 Consumer의 Offset 또는 위치입니다.
+	사실, Consumer당 기준으로 유지되는 메타 데이터는 Log에서 해당 Consumer의 Offset 또는 위치입니다.
 	이 Offset은 Consumer에 의해 제어됩니다. 
-	일반적으로 소비자는 레코드를 읽을 때 선형적으로 Offset을 진행하지만, 
-	실제로는 위치가 소비자에 의해 제어되므로 원하는 순서대로 레코드를 소비할 수 있습니다.
+	일반적으로 Consumer는 레코드를 읽을 때 선형적으로 Offset을 진행하지만, 
+	실제로는 위치가 Consumer에 의해 제어되므로 원하는 순서대로 레코드를 소비할 수 있습니다.
 	예를 들어 Consumer는 과거의 데이터를 다시 처리하는 하기 위해 이전의 Offset을 재설정하거나 가장 최근의 레코드로 건너 뛰고 현재 소비를 시작할 수 있다.</br>
 	</br>
 	이러한 기능의 결합은 Kafka Consumer가 비용이 매우 저렴하다는 것을 의미합니다.
 	클러스터 또는 다른 Consumer에게 큰 영향을 미치지 않고 출입할 수 있습니다.
 	예를 들어, 우리의 Command line Tools처럼 기존 Consumer들로부터 소비되어진 어떤 Topic의 내용을 변경없이 사용할 수 있다.</br>
 	</br>
-	Log의 Partition은 여러 가지 용도로 사용됩니다. 첫째, 로그를 단일 서버에 맞는 크기 이상으로 확장할 수 있습니다.
+	Log의 Partition은 여러 가지 용도로 사용됩니다. 첫째, Log를 단일 서버에 맞는 크기 이상으로 확장할 수 있습니다.
 	각 개별 Partition은 호스트하는 서버에 적합해야하지만 Topic에 많은 Partion이 있어 임의의 양의 데이터를 처리할 수 있습니다.
 	두번째는 병렬 처리 단위로 작동합니다.</br>
 	</br>
@@ -171,7 +171,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	</br>
 	모든 Consumer 인스턴스가 동일한 Consumer 그룹을 갖는 경우 레코드는 Consumer 인스턴스보다 효과적으로 로드 밸런싱됩니다.</br>
 	</br>
-	모든 Consumer 인스턴스가 서로 다른 소비자 그룹을 갖고 있으면 각 레코드가 모든 Consumer 프로세스에 브로드 캐스팅됩니다.</br>
+	모든 Consumer 인스턴스가 서로 다른 Consumer 그룹을 갖고 있으면 각 레코드가 모든 Consumer 프로세스에 브로드 캐스팅됩니다.</br>
       <p class="Imgtext">
           <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka5.png" class="concept" style="width:60%"></br>
           <내용></br>
@@ -180,9 +180,9 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	</br>
 	그러나 더 일반적으로, 우리는 Topic이 각각의 "Logical Subscriber"에 대해 하나씩 적은 수의 Consumer 그룹을 가지고 있음을 발견했습니다.
 	각 그룹의 확장성과 내결함성을 위한 많은 Consumer 인스턴스로 구성됩니다.
-	Subscriber가 단일 프로세스 대신 소비자 클러스터인 publish-subscribe 의미론에 불과합니다.</br>
+	Subscriber가 단일 프로세스 대신 Consumer 클러스터인 publish-subscribe 의미론에 불과합니다.</br>
 	</br>
-	카프카에서 소비가 구현되는 방식은 로그의 파티션을 Consumer 인스턴스로 나누어 각 인스턴스가 어느 시점에서든 Partition의 "Fair Share"를 독점적으로 사용하는 것입니다.
+	카프카에서 소비가 구현되는 방식은 Log의 Partition을 Consumer 인스턴스로 나누어 각 인스턴스가 어느 시점에서든 Partition의 "Fair Share"를 독점적으로 사용하는 것입니다.
 	이 그룹 구성원을 유지하는 이 프로세스는 Kafka 프로토콜에 의해 동적으로 처리됩니다.
 	새 인스턴스가 그룹에 참여하면 그룹의 다른 구성원으로부터 일부 Partition을 인계받습니다.
 	인스턴스가 종료되면 해당 Partition이 나머지 인스턴스에 배포됩니다.</br>
@@ -190,7 +190,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	카프카는 한 Topic의 다른 Partition 사이가 아니라 한 Partition 내의 레코드에 대해서만 전체 주문을 제공합니다.
 	대부분의 응용 프로그램에서는 Key단위로 데이터를 분할하는 기능과 함께 Partition 단위의 순서만으로 충분합니다.
 	그러나 레코드에 대한 전체 순서가 필요한 경우 이는 하나의 Partition만 있는 항목으로 달성할 수 있습니다.
-	단, 이는 소비자 그룹당 하나의 Consumer 프로세스를 의미합니다.</br>
+	단, 이는 Consumer 그룹당 하나의 Consumer 프로세스를 의미합니다.</br>
 
 
 
@@ -211,19 +211,19 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	대기열에서와 마찬가지로 Consumer 그룹은 프로세스 모음 (Consumer 그룹의 구성원)을 통해 처리를 나눌 수 있습니다. 
 	Publish-Subscribe와 마찬가지로 Kafka를 사용하면 여러 Consumer 그룹에 메시지를 브로드 캐스트 할 수 있습니다.</br>
 	</br>
-	카프카의 모델의 장점은 모든 주제가 이러한 속성을 모두 갖추고 있다는 것입니다. 
+	카프카의 모델의 장점은 모든 Topic이 이러한 속성을 모두 갖추고 있다는 것입니다. 
 	즉, 처리 규모를 조정할 수 있고 Multi-Subscriber이기도합니다. 하나 또는 둘 다를 선택할 필요가 없습니다.</br>
 	</br>
 	Kafka는 전통적인 메시징 시스템보다 더 강력한 주문 보증을 제공합니다.</br>
 	</br>
-	전통적인 대기열은 서버에서 순서대로 레코드를 보유하고, 여러 소비자가 대기열에서 소모하는 경우 서버는 저장된 순서대로 레코드를 전달합니다. 
-	그러나 서버가 레코드를 순서대로 전달하더라도 레코드는 비동기적으로 소비자에게 전달되므로 서로 다른 소비자에게 순서가 잘못될 수 있습니다. 
+	전통적인 대기열은 서버에서 순서대로 레코드를 보유하고, 여러 Consumer가 대기열에서 소모하는 경우 서버는 저장된 순서대로 레코드를 전달합니다. 
+	그러나 서버가 레코드를 순서대로 전달하더라도 레코드는 비동기적으로 Consumer에게 전달되므로 서로 다른 Consumer에게 순서가 잘못될 수 있습니다. 
 	이것은 실제로 병렬 소비가 발생하면 레코드의 순서가 손실된다는 것을 의미합니다. 
 	메시징 시스템은 대기열에서 하나의 프로세스만 사용할 수 있는 "Exclusive Consumer"라는 개념을 사용하여 이 문제를 해결하기도하지만 처리 과정에서 병렬 처리가 없다는 것을 의미합니다.</br>
 	</br>
-	Topic내에서 병렬 처리 개념 (파티션)을 가짐으로써 카프카는 Consumer 프로세스 풀에 대해 주문 보증과 로드 밸런싱을 모두 제공할 수 있습니다. 
+	Topic내에서 병렬 처리 개념(Partition)을 가짐으로써 카프카는 Consumer 프로세스 풀에 대해 주문 보증과 로드 밸런싱을 모두 제공할 수 있습니다. 
 	이는 Topic의 Partition을 Consumer 그룹의 Consumer에게 할당하여 각 Partition이 그룹의 정확히 한 Consumer에 의해 소비되도록하여 수행됩니다. 
-	이렇게함으로써 우리는 Consumer가 해당 파티션의 유일한 Subscriber임을 확인하고 순서대로 데이터를 소비합니다. 
+	이렇게함으로써 우리는 Consumer가 해당 Partition의 유일한 Subscriber임을 확인하고 순서대로 데이터를 소비합니다. 
 	Partition이 많으므로 많은 Consumer 인스턴스에서로드의 균형을 유지합니다. 
 	그러나 Consumer 그룹에는 Partition보다 더 많은 Consumer 인스턴스가 있을 수 없습니다.</br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference">https://epicdevs.com/17</br>
