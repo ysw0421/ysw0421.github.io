@@ -82,6 +82,10 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	프로듀서는 카프카로 메시지를 보내게 되고, 해당 메시지는 카프카에 저장되어 보관중입니다. 
 	그리고 컨슈머는 카프카에 저장되어 있는 메시지를 필요로 할때, 가져갈 수 있습니다.</br>
 	</br>
+      <p class="Imgtext">
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka1.png" class="concept"></br>
+          <내용></br>
+      </p>
 <blockquote><p class="posting">
 <b>중요 개념 요약:</b></br>
 </br>
@@ -96,6 +100,10 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 <b>Log : </b>1개의 메세지를 말한다.</br>
 <b>Offset : </b>파티션 내에서 각 메시지가 가지는 Unique Id를 말한다.</br>
 </p></blockquote>
+      <p class="Imgtext">
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka2.png" class="concept"></br>
+          <내용></br>
+      </p>
 	</br>
 	기본 개념에서 알았으니, 이제 카프카에 대해서 살펴보겠습니다.</br>
 	</br>
@@ -107,7 +115,10 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	카프카의 Topic은 항상 Multi-Subscribe입니다. 
 	즉, Topic에는 기록 된 데이터를 구독하는 0, 1 또는 많은 사용자가있을 수 있습니다.
 	각 Topic에 대해 카프카 클러스터는 다음과 같은 Partition Log를 유지합니다.</br>
-<그림 1.></br>
+      <p class="Imgtext">
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka3.png" class="concept"></br>
+          <내용></br>
+      </p>
 	각 Partition은 순서화되고 변하지 않는 레코드의 순서이고 이 레코드 순서는 계속해서 추가되는 구조화된 커밋 Log입니다.
 	Partition의 레코드에는 파티션 내의 각 레코드를 고유하게 식별하는 Offset이라는 순차적인 ID 번호가 각각 할당 됩니다.</br>
 	</br>
@@ -115,7 +126,10 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	예를 들어 보존 정책을 2일로 설정하면 레코드를 게시한 후 2일 동안 소비정책을 사용할 수 있으며 
 	그 이후에는 사용 가능한 공간을 늘리기 위해 폐기됩니다.
 	Kafka의 성능은 데이터 크기와 관련하여 실질적으로 일정하므로 데이터를 오랫동안 저장하는 것은 문제가 되지 않습니다.</br>
-<그림 2.></br>
+      <p class="Imgtext">
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka4.png" class="concept"></br>
+          <내용></br>
+      </p>
 	사실, Consumer당 기준으로 유지되는 메타 데이터는 로그에서 해당 Consumer의 Offset 또는 위치입니다.
 	이 Offset은 Consumer에 의해 제어됩니다. 
 	일반적으로 소비자는 레코드를 읽을 때 선형적으로 Offset을 진행하지만, 
@@ -158,7 +172,10 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	모든 Consumer 인스턴스가 동일한 Consumer 그룹을 갖는 경우 레코드는 Consumer 인스턴스보다 효과적으로 로드 밸런싱됩니다.</br>
 	</br>
 	모든 Consumer 인스턴스가 서로 다른 소비자 그룹을 갖고 있으면 각 레코드가 모든 Consumer 프로세스에 브로드 캐스팅됩니다.</br>
-<그림 3.></br>
+      <p class="Imgtext">
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka5.png" class="concept"></br>
+          <내용></br>
+      </p>
 	2개의 Consumer 그룹이 있는 4개의 Partiton (P0-P3)을 호스팅하는 2대의 서버 Kafka 클러스터, Consumer 그룹 A에는 두 개의 Consumer 인스턴스가 있고 그룹 B에는 네 개의 인스턴스가 있습니다.</br>
 	</br>
 	그러나 더 일반적으로, 우리는 Topic이 각각의 "Logical Subscriber"에 대해 하나씩 적은 수의 Consumer 그룹을 가지고 있음을 발견했습니다.
