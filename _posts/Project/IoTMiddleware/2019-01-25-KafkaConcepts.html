@@ -191,6 +191,41 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	대부분의 응용 프로그램에서는 Key단위로 데이터를 분할하는 기능과 함께 Partition 단위의 순서만으로 충분합니다.
 	그러나 레코드에 대한 전체 순서가 필요한 경우 이는 하나의 Partition만 있는 항목으로 달성할 수 있습니다.
 	단, 이는 소비자 그룹당 하나의 Consumer 프로세스를 의미합니다.</br>
+
+
+
+<h2 class="BasicFontSet">Messaging 시스템으로서의 카프카</h2>
+	카프카의 스트림 개념은 기존의 엔터프라이즈 메시징 시스템과 어떻게 비교되는가?</br>
+	</br>
+	메시징에는 전통적으로 두 가지 모델이 있습니다. 
+	Queuing과 Publish-Subscribe입니다. 
+	대기열에서 Consumer 풀은 서버에서 읽을 수 있으며 각 레코드는 그 중 하나에 저장됩니다. 
+	Publish-Subscribe에서 레코드가 모든 사용자에게 브로드 캐스팅됩니다. 
+	이 두 모델에는 각각 강점과 약점이 있습니다. 
+	대기열 처리 기능을 사용하면 여러 Consumer 인스턴스에서 데이터 처리를 나눌 수 있으므로 처리 규모를 확장할 수 있습니다. 
+	유감스럽게도 대기열은 Multi-Subscriber가 아닙니다. 
+	한 프로세스가 사라진 데이터를 읽으면 대기열이 여러 Subscriber가 아닙니다.
+	Publish-Subscribe를 사용하면 데이터를 여러 프로세스에 브로드 캐스트 할 수 있지만 모든 메시지가 모든 Subscriber에게 전달되기 때문에 확장 처리 방법이 없습니다.</br>
+	</br>
+	카프카의 Consumer 그룹 개념은이 두 개념을 일반화합니다. 
+	대기열에서와 마찬가지로 Consumer 그룹은 프로세스 모음 (Consumer 그룹의 구성원)을 통해 처리를 나눌 수 있습니다. 
+	Publish-Subscribe와 마찬가지로 Kafka를 사용하면 여러 Consumer 그룹에 메시지를 브로드 캐스트 할 수 있습니다.</br>
+	</br>
+	카프카의 모델의 장점은 모든 주제가 이러한 속성을 모두 갖추고 있다는 것입니다. 
+	즉, 처리 규모를 조정할 수 있고 Multi-Subscriber이기도합니다. 하나 또는 둘 다를 선택할 필요가 없습니다.</br>
+	</br>
+	Kafka는 전통적인 메시징 시스템보다 더 강력한 주문 보증을 제공합니다.</br>
+	</br>
+	전통적인 대기열은 서버에서 순서대로 레코드를 보유하고, 여러 소비자가 대기열에서 소모하는 경우 서버는 저장된 순서대로 레코드를 전달합니다. 
+	그러나 서버가 레코드를 순서대로 전달하더라도 레코드는 비동기적으로 소비자에게 전달되므로 서로 다른 소비자에게 순서가 잘못될 수 있습니다. 
+	이것은 실제로 병렬 소비가 발생하면 레코드의 순서가 손실된다는 것을 의미합니다. 
+	메시징 시스템은 대기열에서 하나의 프로세스만 사용할 수 있는 "Exclusive Consumer"라는 개념을 사용하여 이 문제를 해결하기도하지만 처리 과정에서 병렬 처리가 없다는 것을 의미합니다.</br>
+	</br>
+	Topic내에서 병렬 처리 개념 (파티션)을 가짐으로써 카프카는 Consumer 프로세스 풀에 대해 주문 보증과 로드 밸런싱을 모두 제공할 수 있습니다. 
+	이는 Topic의 Partition을 Consumer 그룹의 Consumer에게 할당하여 각 Partition이 그룹의 정확히 한 Consumer에 의해 소비되도록하여 수행됩니다. 
+	이렇게함으로써 우리는 Consumer가 해당 파티션의 유일한 Subscriber임을 확인하고 순서대로 데이터를 소비합니다. 
+	Partition이 많으므로 많은 Consumer 인스턴스에서로드의 균형을 유지합니다. 
+	그러나 Consumer 그룹에는 Partition보다 더 많은 Consumer 인스턴스가 있을 수 없습니다.</br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference">https://epicdevs.com/17</br>
 		https://www.confluent.io/blog/tutorial-getting-started-with-the-new-apache-kafka-0-9-consumer-client/</br>
 		https://taetaetae.github.io/2017/11/02/what-is-kafka/</br>
