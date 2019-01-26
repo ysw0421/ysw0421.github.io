@@ -83,7 +83,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	그리고 컨슈머는 카프카에 저장되어 있는 메시지를 필요로 할때, 가져갈 수 있습니다.</br>
 	</br>
       <p class="Imgtext">
-          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka1.png" class="concept"></br>
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka1.png" class="concept" style="width:60%"></br>
           <내용></br>
       </p>
 <blockquote><p class="posting">
@@ -101,7 +101,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 <b>Offset : </b>파티션 내에서 각 메시지가 가지는 Unique Id를 말한다.</br>
 </p></blockquote>
       <p class="Imgtext">
-          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka2.png" class="concept"></br>
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka2.png" class="concept" style="width:70%"></br>
           <내용></br>
       </p>
 	</br>
@@ -116,7 +116,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	즉, Topic에는 기록 된 데이터를 구독하는 0, 1 또는 많은 사용자가있을 수 있습니다.
 	각 Topic에 대해 카프카 클러스터는 다음과 같은 Partition Log를 유지합니다.</br>
       <p class="Imgtext">
-          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka3.png" class="concept"></br>
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka3.png" class="concept" style="width:50%"></br>
           <내용></br>
       </p>
 	각 Partition은 순서화되고 변하지 않는 레코드의 순서이고 이 레코드 순서는 계속해서 추가되는 구조화된 커밋 Log입니다.
@@ -127,7 +127,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	그 이후에는 사용 가능한 공간을 늘리기 위해 폐기됩니다.
 	Kafka의 성능은 데이터 크기와 관련하여 실질적으로 일정하므로 데이터를 오랫동안 저장하는 것은 문제가 되지 않습니다.</br>
       <p class="Imgtext">
-          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka4.png" class="concept"></br>
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka4.png" class="concept" style="width:80%"></br>
           <내용></br>
       </p>
 	사실, Consumer당 기준으로 유지되는 메타 데이터는 로그에서 해당 Consumer의 Offset 또는 위치입니다.
@@ -173,7 +173,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	</br>
 	모든 Consumer 인스턴스가 서로 다른 소비자 그룹을 갖고 있으면 각 레코드가 모든 Consumer 프로세스에 브로드 캐스팅됩니다.</br>
       <p class="Imgtext">
-          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka5.png" class="concept"></br>
+          <img src="/asset/Project/IoTMiddleware/DataCollectionService/Kafka/Kafka5.png" class="concept" style="width:80%"></br>
           <내용></br>
       </p>
 	2개의 Consumer 그룹이 있는 4개의 Partiton (P0-P3)을 호스팅하는 2대의 서버 Kafka 클러스터, Consumer 그룹 A에는 두 개의 Consumer 인스턴스가 있고 그룹 B에는 네 개의 인스턴스가 있습니다.</br>
