@@ -46,7 +46,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	<h3 class="Categories BasicFontSet">InfluxDB</h3>
 	{% for news in site.categories.DB %}
         {% if news.title == 'InfluxDB'%}
-          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag">{{ page.category }}</a>
+          <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag" href="https://ysw0421.github.io/contents/categories/#DB">{{ page.category }}</a>
         {% endif %}
         {% endfor %}
      </a>
