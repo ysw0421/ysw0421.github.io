@@ -73,8 +73,28 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 <h2 class="BasicFontSet">Docker Image 생성</h2>
 	Kafka Docker Container를 생성하기 위해서는 Docker image가 필요하다.
 	Docker image는 이미 만들어진 image를 다운 받거나 Dockerfile을 이용하여 image를 빌드하고 생성할 수 있다.
-	Kafka Docker image를 빌드하기 위한 Dockerfile의 내용은 아래와 같다.</br>
-<코드 1.></br>
+<pre><code>
+FROM ubuntu:14.04
+
+#Update & Install wget
+RUN sudo apt-get update
+RUN sudo apt-get install -y wget vim iputils-ping net-tools iproute2 dnsutils
+
+#Install Oracle JAVA
+RUN sudo mkdir -p /opt
+RUN sudo wget -q https://mirror.nm.gist.ac.kr/getJava -O - | tar -zxv -C /opt
+
+#Configurate environmental variables
+ENV JAVA_HOME /opt/jdk
+ENV PATH $PATH:/opt/jdk/bin
+RUN ln -s `ls /opt | grep "^jdk.*"` /opt/jdk && ln -s /opt/jdk/bin/java /usr/local/bin/java
+
+#Install Kafka
+RUN sudo wget --no-check-certificate https://archive.apache.org/dist/kafka/0.8.2.0/kafka_2.10-0.8.2.0.tgz -O - | tar -zxv
+RUN sudo mv kafka_2.10-0.8.2.0 /kafka
+
+WORKDIR /kafka
+</code></pre>
 	또는, 미리 생성된 Kafka 이미지를 docker pull 명령어를 통해서 이미지를 다운받는다.
 	이 기술문서에서는 docker image를 다운받아 활용하는 내용을 다룬다.</br>
 	</br>
