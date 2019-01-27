@@ -113,6 +113,12 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	</br>
 	</br>
 <h2 class="BasicFontSet">Main Concept</h2>
+	InfluxDB에 들어가기 전에 데이터베이스의 주요 개념을 익히는 것이 좋습니다. 
+	이 문서는 이러한 개념과 일반적인 InfluxDB 용어에 대해 간략하게 소개합니다. 
+	아래에 나열된 모든 용어에 대한 목록을 제공했지만, 
+	이 문서를 처음부터 끝까지 읽으므로 우리가 가장 좋아하는 시계열 데이터베이스를 좀 더 일반적으로 이해할 것을 권장합니다.</br>
+	자세한 내용은 아래의 URL로</br>
+	https://code.i-harness.com/ko-kr/docs/influxdata/influxdb/v1.3/concepts/key_concepts/index</br>
 <h2 class="BasicFontSet">Design Insights and Tradeoffs in InfluxDB</h2>
 	InfluxDB는 시계열 데이터베이스입니다. 
 	이 UseCase에 맞게 최적화하면 주로 기능을 희생하여 성능을 향상시키는 몇 가지 단점이 있습니다. 
@@ -165,7 +171,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	3. InfluxQL 함수와 함께 사용할 계획이라면 데이터를 필드에 저장하십시오.</br>
 	4. 문자열이 아닌 다른 문자열이 필요한 경우 필드에 데이터 저장 - 태그 값은 항상 문자열로 해석됩니다.</br>
 	</br>
-	<b>InfluxQL 키워드를 식별자 이름으로 사용하지 마십시오.</b></br>
+<b>InfluxQL 키워드를 식별자 이름으로 사용하지 마십시오.</b></br>
 	이것은 필수는 아니지만 쿼리 작성을 단순화합니다. 식별자를 큰 따옴표로 묶을 필요가 없습니다. </br>
 	식별자는 데이터베이스 이름, 보존 정책 이름, user 이름, measurement 이름, 태그 키 및 필드 키입니다. </br>
 	피할 단어에 대해서는 InfluxQL 키워드를 참조하십시오.</br>
