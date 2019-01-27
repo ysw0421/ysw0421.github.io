@@ -157,21 +157,23 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	특별한 순서없이 다음과 같이하는 것이 좋습니다.</br>
 <b>메타 데이터를 태그로 인코딩</b></br>
 	Tags는 인덱싱되고 Fields는 인덱싱되지 않습니다. 즉, 태그에 대한 쿼리가 필드에 대한 쿼리보다 성능이 좋습니다.</br>
-</br>
-일반적으로 검색어는 태그로 저장된 내용과 필드로 저장되는 내용을 안내해야합니다.</br>
-</br>
-1. 데이터를 자주 쿼리하는 메타 데이터인 경우 태그에 데이터 저장</br>
-2. GROUP BY()와 함께 사용할 계획이라면 데이터를 태그에 저장하십시오.</br>
-3. InfluxQL 함수와 함께 사용할 계획이라면 데이터를 필드에 저장하십시오.</br>
-4. 문자열이 아닌 다른 문자열이 필요한 경우 필드에 데이터 저장 - 태그 값은 항상 문자열로 해석됩니다.</br>
-</br>
-<b>InfluxQL 키워드를 식별자 이름으로 사용하지 마십시오.</b></br>
-이것은 필수는 아니지만 쿼리 작성을 단순화합니다. 식별자를 큰 따옴표로 묶을 필요가 없습니다. </br>
-식별자는 데이터베이스 이름, 보존 정책 이름, user 이름, measurement 이름, 태그 키 및 필드 키입니다. </br>
-피할 단어에 대해서는 InfluxQL 키워드를 참조하십시오.</br>
-</br>
-[Az,_] 이외의 문자가 포함되어있는 경우에는 식별자를 큰 따옴표로 묶어야합니다.</br>
+	</br>
+	일반적으로 검색어는 태그로 저장된 내용과 필드로 저장되는 내용을 안내해야합니다.</br>
+	</br>
+	1. 데이터를 자주 쿼리하는 메타 데이터인 경우 태그에 데이터 저장</br>
+	2. GROUP BY()와 함께 사용할 계획이라면 데이터를 태그에 저장하십시오.</br>
+	3. InfluxQL 함수와 함께 사용할 계획이라면 데이터를 필드에 저장하십시오.</br>
+	4. 문자열이 아닌 다른 문자열이 필요한 경우 필드에 데이터 저장 - 태그 값은 항상 문자열로 해석됩니다.</br>
+	</br>
+	<b>InfluxQL 키워드를 식별자 이름으로 사용하지 마십시오.</b></br>
+	이것은 필수는 아니지만 쿼리 작성을 단순화합니다. 식별자를 큰 따옴표로 묶을 필요가 없습니다. </br>
+	식별자는 데이터베이스 이름, 보존 정책 이름, user 이름, measurement 이름, 태그 키 및 필드 키입니다. </br>
+	피할 단어에 대해서는 InfluxQL 키워드를 참조하십시오.</br>
+	</br>
+	[Az,_] 이외의 문자가 포함되어있는 경우에는 식별자를 큰 따옴표로 묶어야합니다.</br>
 <h2 class="BasicFontSet">Storage Engine</h2>
+	추후 업데이트 예정(안될 수도 있음..)</br>
+	https://code.i-harness.com/ko-kr/docs/influxdata/influxdb/v1.3/concepts/storage_engine/index</br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> https://code.i-harness.com/ko-kr/docs/influxdata/influxdb/v1.3/concepts/index</a></p></blockquote>
   </body>
 </html>
