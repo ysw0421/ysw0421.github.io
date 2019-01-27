@@ -17,6 +17,24 @@ comments: true
     <style>
       @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
     </style>
+  <!--
+  수식용 스크립트 MathJax
+  -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      //jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
   </head>
   <body>	  
 <!--
@@ -36,7 +54,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 이미지: Imgsize - media query 적용
 이미지 text: Imgtext
       <p class="Imgtext">
-          <img src="이미지 주소"></br>
+          <img src="이미지 주소" class="concept"></br>
           <내용></br>
       </p>
 전체 코드 URL: CodeURL
@@ -50,5 +68,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
         {% endif %}
         {% endfor %}
      </a>
+	<blockquote><p class="posting">포스팅 </p></blockquote>
+	<blockquote><p class="Reference">가져온곳: <a class="Reference"> https://code.i-harness.com/ko-kr/docs/influxdata/influxdb/v1.3/concepts/index</a></p></blockquote>
   </body>
 </html>
