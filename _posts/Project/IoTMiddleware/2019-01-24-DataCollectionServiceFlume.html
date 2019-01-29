@@ -79,7 +79,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	</br>
 	</br>
 <pre><code>
-FROM resin/rpi-raspbian:wheezy
+FROM resin/rpi-raspbian
 
 #Update & Install wget, vim
 RUN apt-get update
@@ -109,7 +109,7 @@ ADD plugins.d /flume/plugins.d
 ADD flume-conf.properties /flume/conf/
 
 #Csharp Programming
-COPY seri.py /flume/
+COPY PySerial.py /flume/
 COPY autosensor.sh /flume/
 
 #Working directory
@@ -117,15 +117,11 @@ WORKDIR /flume
 </code></pre>
 	</br>
 	</br>
-이미지 빌드
+<p class="Paragraph">이미지 빌드</p>
 	컨테이너 생성후 Flume Configuration 파일, Python 파일, 센서수집 파일이 필요하기 때문에 Dockerfile, flume-conf.properties,
-	plugins.d Pyserial.py, autosensor.sh를 가진 폴더에서 Dockerfile을 빌드한다.
-	이에 대한 내용은 다음과 같다.</br>
-	sudo docker build --tag <img name> .</br>
-
-컨테이너 생성
+	plugins.d Pyserial.py, autosensor.sh를 가진 폴더에서 Dockerfile을 빌드한다.</br>
+<p class="Paragraph">컨테이너 생성</p>
 	컨테이너에서 시리얼통신 사용시 --privileged 옵션을 줘야지만 컨테이너에서 정상적인 Serial 통신이 가능하다.</br>
-	sudo docker run -it --privileged --net=host --name <container name> <img name></br>
 </br>
 </br>
 </br>
@@ -193,13 +189,12 @@ done
 	</br>
 	</br>
 <h2 class="BasicFontSet">Container 실행</h2>
-	Docker container가 실행중일 때, attach 명령어를 통하여 Container에 접속 가능하다. Ctrl + P + Q를 통하여 컨테이너를 끄지 않고 나올 수 있다.</br>
-	sudo docker attach flume</br>
+	Docker container가 실행중일 때, attach 명령어를 통하여 Container에 접속 가능하다.</br>
 	</br>
 	Serial 통신포트를 설정한 후 Flume Agent를 실행한다. 
 	Pyserial.py 파일을 이용하여 아두이노에서 보내는 센서값 들을 라즈베리파이의 지정된 폴더안에 저장하고,
 	Agent를 실행시켜 센서값들을 라즈베리파이의 지정된 폴더안에 저장하고, Agent를 실행시켜 센서값들을 Kafka broker에게 전송한다.
-	이 때 Kafka Zookeeper와 broker는 실행 중이어야 한다. 이에 대한 내용은 다음과 같다.</br>
+	이 때 Kafka Zookeeper와 broker는 실행 중이어야 한다.</br>
 	sudo python Pyserial.py</br>
 	sudo bin/flume-ng agent --conf conf --conf-file conf/flume-conf.properties --name <flume agent name> -Dflume.root.logger=INFO,console</br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
