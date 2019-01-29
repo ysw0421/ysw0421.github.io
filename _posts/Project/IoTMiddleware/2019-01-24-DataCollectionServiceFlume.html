@@ -85,7 +85,15 @@ FROM resin/rpi-raspbian
 RUN apt-get update
 RUN apt-get -y install wget
 RUN apt-get -y install vim
-RUN apt-get -y install python
+RUN apt-get -y install python \
+    python-dev \
+    python-pip \
+    python-virtualenv \
+    --no-install-recommends
+RUN pip install pyserial
+
+RUN mkdir -p /var/log/apache/flumeSpool
+RUN touch /var/log/apache/flumeSpool/sensor.txt
 
 #Timezone
 RUN cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime
@@ -196,6 +204,7 @@ done
 	Agent를 실행시켜 센서값들을 라즈베리파이의 지정된 폴더안에 저장하고, Agent를 실행시켜 센서값들을 Kafka broker에게 전송한다.
 	이 때 Kafka Zookeeper와 broker는 실행 중이어야 한다.</br>
 	sudo python Pyserial.py</br>
+	위의 명령어를 실행시킨 이후 다른 터미널을 켜서 아래의 명령어를 실행한다.</br>
 	sudo bin/flume-ng agent --conf conf --conf-file conf/flume-conf.properties --name <flume agent name> -Dflume.root.logger=INFO,console</br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
   </body>
