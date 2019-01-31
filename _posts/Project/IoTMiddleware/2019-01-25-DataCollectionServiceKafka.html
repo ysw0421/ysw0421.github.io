@@ -135,10 +135,10 @@ bin/zookeeper-server-start.sh config/zookeeper.properties # Kafka Zookeeper 실�
 	</br>
 	config/server.properties 파일을 통하여 Kafka Broker의 세부 설정을 수행할 수 있다. 
 	Broker의 기본 port는 9092, localhost이다. 
-	localhost가 아닌 외부에서 해당 broker 사용이 가능하게 하려면 advertised.host.name 부분에 <외부 IP>:<port>를 설정하고, 이 항목을 활성화 한다.
+	localhost가 아닌 외부에서 해당 broker 사용이 가능하게 하려면 advertised.host.name 부분에 &lt;외부 IP&gt;:&lt;port&gt;를 설정하고, 이 항목을 활성화 한다.
 	이에 대한 내용은 다음과 같다.</br>
 	</br>
-	Kafka Broker를 관리하는 Zookeeper를 설정하기 위해서, Configuration File의 Zookeeper.Connet=<Zookeeper IP>:<Zookeeper Port>에 
+	Kafka Broker를 관리하는 Zookeeper를 설정하기 위해서, Configuration File의 Zookeeper.Connet=&lt;Zookeeper IP&gt;:&lt;Zookeeper Port&gt;에 
 	실행중인 Zookeeper Docker Container의 IP와 port를 기입하고 해당 항목을 활성화 한다.</br>
 	</br>
 	config/server.properties 파일에 설정된대로 Kafka Broker를 실행한다. 
@@ -159,6 +159,7 @@ bin/kafka-server-start.sh config/server.properties  # Kafka Broker 실행
 	</br>
 	</br>
 	</br>
+&lt;&gt;
 <h2 class="BasicFontSet">Topic 생성</h2>
 	Topic은 Zookeeper가 관리하며 Zookeeper를 통하여 Topic을 생성 및 삭제가 가능하다. 
 	--partitions 옵션으로 Topic Partition 개수를 지정할 수 있다.
@@ -170,8 +171,8 @@ bin/kafka-server-start.sh config/server.properties  # Kafka Broker 실행
 	</br>
 	</br>
 <pre><code>
-bin/kafka-topics.sh --create --zookeeper <zookeeper hostname>:<zookeeper port> --replication-factor 1 --partitions <partition 개수> --topic <topic name>
-# 확인 방법 : bin/kafka-topics.sh --list --zookeeper <zookeeper hostname>:<zookeeper port>
+bin/kafka-topics.sh --create --zookeeper &lt;zookeeper hostname&gt;:&lt;zookeeper port&gt; --replication-factor 1 --partitions &lt;partition 개수&gt; --topic &lt;topic name&gt;
+# 확인 방법 : bin/kafka-topics.sh --list --zookeeper &lt;zookeeper hostname&gt;:&lt;zookeeper port&gt;
 </code></pre>
 	</br>
 	</br>
