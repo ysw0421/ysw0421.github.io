@@ -74,7 +74,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	</br>
 	</br>
 <pre><code>
-# 이전에 다운받은적이 없으면 지금 다
+# 이전에 다운받은적이 없으면 지금 다운로드
 git clone https://github.com/JNU-IoT/Kafka-InfluxDB
 # Kafka-InfluxDB/InfluxDB 디렉토리로 이동
 cd ~/Kafka-InfluxDB/InfluxDB
@@ -87,6 +87,7 @@ docker run -d -v /var/lib/influxdb:/var/lib/influxdb -v $PWD/influxdb.conf:/etc/
 <h2 class="BasicFontSet">Docker Image 생성 및 Container 생성</h2>
 	</br>
 	</br>
+이 이미지는 Node.js에 kafka consumer에서 받은 데이터를 InfluxDB에 저장하는 스크립트를 올려서 실행하는 설정을 담고 있다.
 <pre><code>
 # Kafka-InfluxDB/KafkaToDB 디렉토리로 이동
 cd ~/Kafka-InfluxDB/KafkaToDB
@@ -99,6 +100,7 @@ docker run -it --net=host -e TOPIC_NAME=${topic_name} --name kafkatodb kafkatodb
 <h2 class="BasicFontSet">1.6 검증 방법 및 결과 확인</h2>
 	</br>
 	</br>
+해당서비스의 동작의 검증은 InfluxDB에 저장된 값들을 요청하여 해당값들이 잘 저장되어 있는지를 확인한다.</br>
 <pre><code>
 curl -G 'http://${server_ip}:8686/query?pretty=true' --data-urlencode "db=${database_name}" --data-urlencode "q=SELECT * FROM ${topic_name}"
 </code></pre>
