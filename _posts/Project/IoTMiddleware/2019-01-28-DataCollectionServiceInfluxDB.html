@@ -70,14 +70,43 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
      </a>
 	<blockquote><p class="posting">포스팅 </p></blockquote>
 <h2 class="BasicFontSet">1.4 InfluxDB</h2>
-<h2 class="BasicFontSet">Docker Image 생성</h2>
-<h2 class="BasicFontSet">Container 생성</h2>
+<h2 class="BasicFontSet">Docker Image 생성 및 Container 생성</h2>
+	</br>
+	</br>
+	</br>
+<pre><code>
+# 이전에 다운받은적이 없으면 지금 다
+git clone https://github.com/JNU-IoT/Kafka-InfluxDB
+# Kafka-InfluxDB/InfluxDB 디렉토리로 이동
+cd ~/Kafka-InfluxDB/InfluxDB
+docker run -d -v /var/lib/influxdb:/var/lib/influxdb -v $PWD/influxdb.conf:/etc/influxdb/influxdb.conf:ro -e INFLUXDB_ADMIN_ENABLED=true --name influx influxdb
+</code></pre>
+	</br>
+	</br>
 	</br>
 <h2 class="BasicFontSet">1.5 Consumer 설정</h2>
-<h2 class="BasicFontSet">Docker Image 생성</h2>
-<h2 class="BasicFontSet">Container 생성</h2>
+<h2 class="BasicFontSet">Docker Image 생성 및 Container 생성</h2>
+	</br>
+	</br>
+	</br>
+<pre><code>
+# Kafka-InfluxDB/KafkaToDB 디렉토리로 이동
+cd ~/Kafka-InfluxDB/KafkaToDB
+docker build -t kafkatodb .
+docker run -it --net=host -e TOPIC_NAME=${topic_name} --name kafkatodb kafkatodb
+</code></pre>
+	</br>
+	</br>
 	</br>
 <h2 class="BasicFontSet">1.6 검증 방법 및 결과 확인</h2>
+	</br>
+	</br>
+	</br>
+<pre><code>
+curl -G 'http://${server_ip}:8686/query?pretty=true' --data-urlencode "db=${database_name}" --data-urlencode "q=SELECT * FROM ${topic_name}"
+</code></pre>
+	</br>
+	</br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
   </body>
 </html>
