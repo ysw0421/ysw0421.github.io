@@ -119,6 +119,15 @@ WORKDIR /kafka
 	</br>
 	</br>
 	</br>
+<pre><code>
+docker run -it --net=host --name=zookeeper kafka
+vim config/server.properties # 설정 
+bin/zookeeper-server-start.sh config/zookeeper.properties # Kafka Zookeeper 실행
+</code></pre>
+	</br>
+	</br>
+	</br>
+	</br>
 <h2 class="BasicFontSet">Broker Container Configuration & RUN</h2>
 	Zookeeper를 실행시킨 후에는 메시지 처리를 위한 Kafka Broker를 실행한다. 
 	이를 위해 우선 Broker docker container를 생성하고 확인한다. 
@@ -138,6 +147,18 @@ WORKDIR /kafka
 	</br>
 	</br>
 	</br>
+<pre><code>
+docker run -it --net=host --name broker kafka
+vim config/server.properties
+advertised.host.name= #hostname routable by clients # 주석 제거 ip 설정
+advertised.port= #port accessible by clients        # 주석 제거 port 설정
+bin/kafka-server-start.sh config/server.properties  # Kafka Broker 실행
+</code></pre>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
 <h2 class="BasicFontSet">Topic 생성</h2>
 	Topic은 Zookeeper가 관리하며 Zookeeper를 통하여 Topic을 생성 및 삭제가 가능하다. 
 	--partitions 옵션으로 Topic Partition 개수를 지정할 수 있다.
@@ -145,6 +166,15 @@ WORKDIR /kafka
 	이를 위해 아래의 코드를 이용한다.</br>
 	</br>
 	Zookeeper가 가지고 있는 Topic을 확인하려면 --list 명령어를 통해 다음과 같이 확인이 가능하다.</br>
+	</br>
+	</br>
+	</br>
+<pre><code>
+bin/kafka-topics.sh --create --zookeeper <zookeeper hostname>:<zookeeper port> --replication-factor 1 --partitions <partition 개수> --topic <topic name>
+# 확인 방법 : bin/kafka-topics.sh --list --zookeeper <zookeeper hostname>:<zookeeper port>
+</code></pre>
+	</br>
+	</br>
 	<blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p></blockquote>
   </body>
 </html>
