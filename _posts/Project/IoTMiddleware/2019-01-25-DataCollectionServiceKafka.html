@@ -71,7 +71,7 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 	<blockquote><p class="posting">포스팅 </p></blockquote>
 <h2 class="BasicFontSet">1.3. Kafka 설정</h2>
 <h2 class="BasicFontSet">Docker Image 생성</h2>
-	Kafka Docker Container를 생성하기 위해서는 Docker image가 필요하다.
+	Kafka를 Docker Container 통해 자동화 시스템을 구축을 해가위해서 Dockerfile을 작성하였다. 
 	Docker image는 이미 만들어진 image를 다운 받거나 Dockerfile을 이용하여 image를 빌드하고 생성할 수 있다.
 	</br>
 	</br>
@@ -103,17 +103,12 @@ WORKDIR /kafka
 	또는, 미리 생성된 Kafka 이미지를 docker pull 명령어를 통해서 이미지를 다운받는다.
 	이 기술문서에서는 docker image를 다운받아 활용하는 내용을 다룬다.</br>
 	</br>
-	다운받은 docker image 확인</br>
-	</br>
 	</br>
 	</br>
 <h2 class="BasicFontSet">Zookeeper Container Configuration & Run</h2>
-	컨테이너 이미지를 사용하여  Zookeeper 컨테이너를 생성하고 확인한다.
-	이에 대한 내용은 다음과 같다.</br>
-	</br>
+	컨테이너 이미지를 사용하여  Zookeeper 컨테이너를 생성하고 확인한다.</br>
 	config/zookeeper.properties 파일을 통하여 zookeeper를 설정한다.
 	기본포트는 2181로 설정한다.</br>
-	</br>
 	Kafka broker/consumer, flume agent를 실행시키기 전 가장 먼저 Zookeeper를 실행시켜야 한다.
 	Zookeeper를 실행하는 방법은 다음과 같다.</br>
 	</br>
@@ -121,7 +116,7 @@ WORKDIR /kafka
 	</br>
 <pre><code>
 docker run -it --net=host --name=zookeeper kafka
-vim config/server.properties # 설정 
+vim config/server.properties # 설정  clientPort=2181
 bin/zookeeper-server-start.sh config/zookeeper.properties # Kafka Zookeeper 실행
 </code></pre>
 	</br>
@@ -130,17 +125,13 @@ bin/zookeeper-server-start.sh config/zookeeper.properties # Kafka Zookeeper 실�
 	</br>
 <h2 class="BasicFontSet">Broker Container Configuration & RUN</h2>
 	Zookeeper를 실행시킨 후에는 메시지 처리를 위한 Kafka Broker를 실행한다. 
-	이를 위해 우선 Broker docker container를 생성하고 확인한다. 
-	이에 대한 내용은 다음과 같다.</br>
-	</br>
+	이를 위해 우선 Broker docker container를 생성하고 확인한다. </br>
 	config/server.properties 파일을 통하여 Kafka Broker의 세부 설정을 수행할 수 있다. 
 	Broker의 기본 port는 9092, localhost이다. 
 	localhost가 아닌 외부에서 해당 broker 사용이 가능하게 하려면 advertised.host.name 부분에 &lt;외부 IP&gt;:&lt;port&gt;를 설정하고, 이 항목을 활성화 한다.
 	이에 대한 내용은 다음과 같다.</br>
-	</br>
 	Kafka Broker를 관리하는 Zookeeper를 설정하기 위해서, Configuration File의 Zookeeper.Connet=&lt;Zookeeper IP&gt;:&lt;Zookeeper Port&gt;에 
 	실행중인 Zookeeper Docker Container의 IP와 port를 기입하고 해당 항목을 활성화 한다.</br>
-	</br>
 	config/server.properties 파일에 설정된대로 Kafka Broker를 실행한다. 
 	이때, Kafka Broker 실행 전에는 Zookeeper가 반드시 실행 중인지 확인해야 한다.
 	Kafka Broker를 실행시키는 방법은 다음과 같다.</br>
@@ -150,8 +141,8 @@ bin/zookeeper-server-start.sh config/zookeeper.properties # Kafka Zookeeper 실�
 <pre><code>
 docker run -it --net=host --name broker kafka
 vim config/server.properties
-advertised.host.name= #hostname routable by clients # 주석 제거 ip 설정
-advertised.port= #port accessible by clients        # 주석 제거 port 설정
+	advertised.host.name= #hostname routable by clients # 주석 제거 ip 설정
+	advertised.port= #port accessible by clients        # 주석 제거 port 설정
 bin/kafka-server-start.sh config/server.properties  # Kafka Broker 실행
 </code></pre>
 	</br>
@@ -162,9 +153,7 @@ bin/kafka-server-start.sh config/server.properties  # Kafka Broker 실행
 <h2 class="BasicFontSet">Topic 생성</h2>
 	Topic은 Zookeeper가 관리하며 Zookeeper를 통하여 Topic을 생성 및 삭제가 가능하다. 
 	--partitions 옵션으로 Topic Partition 개수를 지정할 수 있다.
-	Flume Agent에서 사용하기 위해 설정된 Topic을 Zookeeper에서 생성한다. 
-	이를 위해 아래의 코드를 이용한다.</br>
-	</br>
+	Flume Agent에서 사용하기 위해 설정된 Topic을 Zookeeper에서 생성한다. </br>
 	Zookeeper가 가지고 있는 Topic을 확인하려면 --list 명령어를 통해 다음과 같이 확인이 가능하다.</br>
 	</br>
 	</br>
