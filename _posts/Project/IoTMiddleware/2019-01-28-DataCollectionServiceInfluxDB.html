@@ -72,6 +72,10 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 <h2 class="BasicFontSet">1.4 InfluxDB</h2>
 <h2 class="BasicFontSet">Docker Image 생성 및 Container 생성</h2>
 	</br>
+	InfluxDB는 TSDB의 일종으로 처리에 복잡한 논리, 분석 또는 비지니스 규칙 및 데이터에 대한 처리에 유용하다.</br>
+	전통적인 RDB에서는 시간 범위 및 롤업 및 임의의 시간대 변환으로 가득차 있는 기록 데이터 쿼리가 어렵다.</br>
+	TSDB중 InfluxDB는 설치가 간편하며 검색할 때 SQL구문을 활용할 수 있다.</br>
+	</br>
 	</br>
 <pre><code>
 # 이전에 다운받은적이 없으면 지금 다운로드
@@ -86,7 +90,12 @@ docker run -d -v /var/lib/influxdb:/var/lib/influxdb -v $PWD/influxdb.conf:/etc/
 <h2 class="BasicFontSet">1.5 Consumer 설정</h2>
 <h2 class="BasicFontSet">Docker Image 생성 및 Container 생성</h2>
 	</br>
-이 이미지는 Node.js에 kafka consumer에서 받은 데이터를 InfluxDB에 저장하는 스크립트를 올려서 실행하는 설정을 담고 있다.</br>
+	해당 서비스에서 Flume을 통해 수집된 정보는 Kafka Broker에게 전달되고, Kafka Consumer를 통해 InfluxDB에 저장된다.
+	이를 위해 Kafka Consumer는 Node.js를 이용해 Kafka에서 받은 값을 InfluxD에 저장한다.
+	Node.js는 Chrome V8 JavaScript엔진으로 빌드된 JavaScript 런타임이다. 
+	Node.js는 이벤트 기반, 논 블로킹 I/O모델을 사용해 가볍고 효율적이다. 
+	또한, Kafka관련 라이브러리도 포함하고 있어서 Node.js에서 Kafka를 구현하고 컨트롤하기 쉽다.
+	이 이미지는 Node.js에 kafka consumer에서 받은 데이터를 InfluxDB에 저장하는 스크립트를 올려서 실행하는 설정을 담고 있다.</br>
 	</br>
 	</br>
 <pre><code>
@@ -100,7 +109,7 @@ docker run -it --net=host -e TOPIC_NAME=${topic_name} --name kafkatodb kafkatodb
 	</br>
 <h2 class="BasicFontSet">1.6 검증 방법 및 결과 확인</h2>
 	</br>
-해당서비스의 동작의 검증은 InfluxDB에 저장된 값들을 요청하여 해당값들이 잘 저장되어 있는지를 확인한다.</br>
+	해당서비스의 동작의 검증은 InfluxDB에 저장된 값들을 요청하여 해당값들이 잘 저장되어 있는지를 확인한다.</br>
 	</br>
 	</br>
 <pre><code>
