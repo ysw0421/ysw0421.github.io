@@ -61,9 +61,9 @@ posting한곳: Posting <blockquote><p class="posting">포스팅 </p></blockquote
 참고자료: Reference <blockquote><p class="Reference">가져온곳: <a class="Reference"> URL</a></p>
 -->
       <a>
-	<h3 class="Categories BasicFontSet">Data Collection Service - Flume & Kafka</h3>
+	<h3 class="Categories BasicFontSet">Data Collection Service - Flume</h3>
 	{% for news in site.categories.IoT %}
-        {% if news.title == 'Data Collection Service - Flume & Kafka'%}
+        {% if news.title == 'Data Collection Service - Flume'%}
           <a class="Date">{{ news.date | date_to_string }}</a> | <a class="post-tag" href="https://ysw0421.github.io/contents/projects/#IoT">{{ page.category }}</a>
         {% endif %}
         {% endfor %}
